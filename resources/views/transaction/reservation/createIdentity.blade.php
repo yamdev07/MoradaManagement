@@ -5,21 +5,21 @@
     <style>
         .email-info {
             background-color: #f8f9fa;
-            border-left: 4px solid #0d6efd;
+            border-left: 4px solid #8b4513;
             padding: 10px;
             border-radius: 4px;
             margin-bottom: 15px;
         }
         .existing-customer-info {
             background-color: #e7f1ff;
-            border-left: 4px solid #0d6efd;
+            border-left: 4px solid #8b4513;
             padding: 15px;
             border-radius: 6px;
             margin-bottom: 20px;
             display: none;
         }
         .reservation-count-badge {
-            background-color: #0d6efd;
+            background-color: #8b4513;
             color: white;
             padding: 3px 8px;
             border-radius: 12px;
@@ -34,7 +34,7 @@
         <div class="row justify-content-md-center">
             <div class="col-lg-12">
                 <div class="card shadow-sm border">
-                    <div class="card-header bg-primary text-white">
+                    <div class="card-header" style="background: #8b4513; color: white;">
                         <h2 class="mb-0">
                             <i class="fas fa-user-plus me-2"></i>
                             Add Customer Information
@@ -44,7 +44,7 @@
                     <div class="card-body p-4">
                         <!-- Information sur la politique d'email -->
                         <div class="email-info">
-                            <i class="fas fa-info-circle text-primary me-2"></i>
+                            <i class="fas fa-info-circle me-2" style="color: #8b4513;"></i>
                             <strong>Important:</strong> Same email address can be used for multiple reservations. 
                             If customer already exists, their information will be updated.
                         </div>
@@ -52,7 +52,7 @@
                         <!-- Affichage des informations client existant (via AJAX) -->
                         <div id="existingCustomerInfo" class="existing-customer-info">
                             <div class="d-flex align-items-center">
-                                <i class="fas fa-user-check fa-2x text-primary me-3"></i>
+                                <i class="fas fa-user-check fa-2x me-3" style="color: #8b4513;"></i>
                                 <div>
                                     <h5 class="mb-1">Existing Customer Found</h5>
                                     <p class="mb-1" id="customerDetails"></p>
@@ -238,7 +238,7 @@
                                     <a href="{{ route('dashboard.index') }}" class="btn btn-outline-secondary">
                                         <i class="fas fa-times me-1"></i> Cancel
                                     </a>
-                                    <button type="submit" class="btn btn-primary px-4">
+                                    <button type="submit" class="btn" style="color: #8b4513;" px-4">
                                         <i class="fas fa-save me-2"></i>
                                         Save & Continue
                                         <span id="submitText">to Room Selection</span>

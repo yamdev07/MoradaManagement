@@ -1,6 +1,6 @@
 @extends('frontend.layouts.master')
 
-@section('title', 'Restaurant Gastronomique - cactus Palace')
+@section('title', 'Gastronomie - Morada Lodge')
 
 @section('content')
     <!-- Hero Section -->
@@ -8,8 +8,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 mx-auto text-center">
-                    <h1 class="display-4 mb-4">Le Restaurant Gastronomique</h1>
-                    <p class="lead mb-4">Une expérience culinaire unique par notre chef étoilé</p>
+                    <h1 class="display-4 mb-4">Gastronomie</h1>
+                    <p class="lead mb-4" style="font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 400; font-style: italic; color: #f8f9fa; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">Saveurs d'Afrique & du Monde</p>
                 </div>
             </div>
         </div>
@@ -20,239 +20,357 @@
         <div class="container">
             <div class="row align-items-center mb-5">
                 <div class="col-lg-6">
-                    <h2 class="mb-4">Cuisine Française Raffinée</h2>
-                    <p>Notre restaurant vous invite à un voyage culinaire exceptionnel. Sous la direction de notre chef étoilé, nous proposons une cuisine française contemporaine mettant en valeur les produits de saison.</p>
-                    <p>Avec une vue imprenable sur les jardins de l'hôtel, le restaurant offre une ambiance élégante et chaleureuse, parfaite pour un dîner romantique ou un déjeuner d'affaires.</p>
+                    <h2 class="mb-4" style="font-family: Arial, sans-serif; font-weight: normal; color: black; font-size: 1.6rem;">Notre restaurant vous invite à un voyage culinaire exceptionnel sous une majestueuse paillote face à la piscine. Découvrez nos spécialités locales revisitées et notre cuisine internationale raffinée.</h2>
                     
-                    <div class="mt-4">
-                        <h5>Horaires d'ouverture :</h5>
-                        <ul class="list-unstyled">
-                            <li><strong>Petit-déjeuner :</strong> 7h - 11h</li>
-                            <li><strong>Déjeuner :</strong> 12h - 15h</li>
-                            <li><strong>Dîner :</strong> 19h - 23h</li>
-                        </ul>
+                    <div class="mb-4">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <div class="d-flex align-items-center">
+                                    <div class="me-3">
+                                        <div style="width: 45px; height: 45px; border-radius: 50%; background-color: #8B4513; display: flex; align-items: center; justify-content: center;">
+                                            <i class="fas fa-leaf fa-lg" style="color: white;"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <h5 class="mb-1" style="font-family: Arial, sans-serif; font-weight: bold; color: black;">Cuisine Locale Authentique</h5>
+                                        <p class="mb-0" style="font-family: Arial, sans-serif; font-weight: normal; color: black;">Amiwo, Atassi, MAN au Télibo revisités avec passion</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <div class="d-flex align-items-center">
+                                    <div class="me-3">
+                                        <div style="width: 45px; height: 45px; border-radius: 50%; background-color: #8B4513; display: flex; align-items: center; justify-content: center;">
+                                            <i class="fas fa-glass-martini-alt fa-lg" style="color: white;"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <h5 class="mb-1" style="font-family: Arial, sans-serif; font-weight: bold; color: black;">Bar & Cocktails</h5>
+                                        <p class="mb-0" style="font-family: Arial, sans-serif; font-weight: normal; color: black;">Cocktails signature et boissons rafraîchissantes</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <div class="d-flex align-items-center">
+                                    <div class="me-3">
+                                        <div style="width: 45px; height: 45px; border-radius: 50%; background-color: #8B4513; display: flex; align-items: center; justify-content: center;">
+                                            <i class="fas fa-drumstick-bite fa-lg" style="color: white;"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <h5 class="mb-1" style="font-family: Arial, sans-serif; font-weight: bold; color: black;">Grillades & Fruits de Mer</h5>
+                                        <p class="mb-0" style="font-family: Arial, sans-serif; font-weight: normal; color: black;">Brochettes, poissons braisés, gambas sautées</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <div class="d-flex align-items-center">
+                                    <div class="me-3">
+                                        <div style="width: 45px; height: 45px; border-radius: 50%; background-color: #8B4513; display: flex; align-items: center; justify-content: center;">
+                                            <i class="fas fa-clock fa-lg" style="color: white;"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <h5 class="mb-1" style="font-family: Arial, sans-serif; font-weight: bold; color: black;">Service Continu</h5>
+                                        <p class="mb-0" style="font-family: Arial, sans-serif; font-weight: normal; color: black;">Ouvert de 7h à 23h tous les jours</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="text-center mt-4">
+                            <a href="#menu" class="btn" style="display: none;">
+                                Voir le menu
+                            </a>
+                        </div>
                     </div>
                 </div>
                 <div class="col-lg-6">
-                    <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
-                         alt="Notre chef" 
+                    <img src="{{ asset('img/room/Photo11.jpeg') }}" 
+                         alt="Notre restaurant" 
                          class="img-fluid rounded shadow">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Menu -->
-    <section class="py-5 bg-light">
-        <div class="container">
-            <div class="text-center mb-5">
-                <h2 class="mb-3">Notre Carte</h2>
-                <p class="text-muted">Découvrez notre sélection de plats raffinés</p>
-            </div>
-
-            <!-- Filtres catégories -->
-            <div class="row mb-4">
-                <div class="col-12">
-                    <div class="d-flex justify-content-center flex-wrap">
-                        <button class="btn btn-outline-primary-custom m-1 category-filter active" data-category="all">
-                            Tous
-                        </button>
-                        <button class="btn btn-outline-primary-custom m-1 category-filter" data-category="entree">
-                            Entrées
-                        </button>
-                        <button class="btn btn-outline-primary-custom m-1 category-filter" data-category="plat">
-                            Plats principaux
-                        </button>
-                        <button class="btn btn-outline-primary-custom m-1 category-filter" data-category="dessert">
-                            Desserts
-                        </button>
-                        <button class="btn btn-outline-primary-custom m-1 category-filter" data-category="boisson">
-                            Boissons
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Liste des menus -->
-            <div class="row" id="menuList">
-                @forelse($menus as $menu)
-                <div class="col-lg-6 mb-4 menu-item" data-category="{{ $menu->category }}">
-                    <div class="card border-0 shadow-sm h-100">
-                        <div class="row g-0">
-                            <div class="col-md-4">
-                                @if($menu->image)
-                                <img src="{{ asset('storage/' . $menu->image) }}" 
-                                     class="img-fluid rounded-start h-100" 
-                                     alt="{{ $menu->name }}"
-                                     style="object-fit: cover; height: 200px;">
-                                @else
-                                <div class="bg-secondary d-flex align-items-center justify-content-center h-100">
-                                    <i class="fas fa-utensils fa-3x text-white"></i>
-                                </div>
-                                @endif
-                            </div>
-                            <div class="col-md-8">
-                                <div class="card-body">
-                                    <div class="d-flex justify-content-between align-items-start">
-                                        <h5 class="card-title">{{ $menu->name }}</h5>
-                                        <span class="h5 text-primary-custom mb-0">
-                                            {{ number_format($menu->price, 2) }} €
-                                        </span>
-                                    </div>
-                                    <p class="card-text text-muted">{{ $menu->description }}</p>
-                                    <span class="badge bg-primary-custom">
-                                        @if($menu->category == 'plat') Plat principal
-                                        @elseif($menu->category == 'entree') Entrée
-                                        @elseif($menu->category == 'dessert') Dessert
-                                        @elseif($menu->category == 'boisson') Boisson
-                                        @else {{ ucfirst($menu->category) }}
-                                        @endif
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                @empty
-                <div class="col-12 text-center py-5">
-                    <i class="fas fa-utensils fa-4x text-muted mb-3"></i>
-                    <h4>Menu en préparation</h4>
-                    <p class="text-muted">Notre chef travaille sur de nouvelles créations.</p>
-                </div>
-                @endforelse
-            </div>
-        </div>
-    </section>
-
-    <!-- Réservation -->
-    <section class="py-5">
+    <!-- Carte du Restaurant -->
+    <section class="py-5" style="background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);">
         <div class="container">
             <div class="row">
-                <div class="col-lg-8 mx-auto">
-                    <div class="card border-0 shadow-lg">
-                        <div class="card-body p-5">
-                            <div class="text-center mb-4">
-                                <h2 class="mb-2">Réservation de table</h2>
-                                <p class="text-muted">Réservez votre table pour une expérience culinaire inoubliable</p>
-                            </div>
+                <div class="col-lg-10 mx-auto">
+                    <!-- Carte principale -->
+                    <div class="card border-0 shadow-xl" style="border-radius: 20px; overflow: hidden; background: white;">
+                        
+                        <!-- En-tête simple -->
+                        <div class="text-center p-4" style="background: linear-gradient(135deg, #8B4513 0%, #A0522D 100%); color: white;">
+                            <h1 class="mb-0" style="font-family: Arial, sans-serif; font-weight: bold; font-size: 2rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">
+                                <i class="fas fa-utensils me-3"></i>MENU
+                            </h1>
+                        </div>
+
+                        <div class="card-body p-0">
                             
-                            <form id="reservationForm">
-                                @csrf
-                                <div class="row">
-                                    <div class="col-md-6 mb-3">
-                                        <label class="form-label">Nom complet *</label>
-                                        <input type="text" class="form-control" name="name" required>
+                            <!-- Mets Africains -->
+                            <div class="p-4" style="border-bottom: 1px solid #f0f0f0;">
+                                <div class="d-flex align-items-center mb-4">
+                                    <div class="me-3">
+                                        <div style="width: 40px; height: 40px; border-radius: 50%; background-color: #8B4513; display: flex; align-items: center; justify-content: center;">
+                                            <i class="fas fa-leaf" style="color: white;"></i>
+                                        </div>
                                     </div>
-                                    <div class="col-md-6 mb-3">
-                                        <label class="form-label">Téléphone *</label>
-                                        <input type="tel" class="form-control" name="phone" required>
-                                    </div>
+                                    <h3 class="mb-0" style="font-family: Arial, sans-serif; font-weight: bold; color: #8B4513; font-size: 1.4rem;">Mets Africains</h3>
                                 </div>
                                 
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
-                                        <label class="form-label">Date *</label>
-                                        <input type="date" class="form-control" name="date" required>
+                                        <div class="d-flex justify-content-between align-items-start p-3" style="background-color: #fafafa; border-radius: 10px; border-left: 4px solid #8B4513;">
+                                            <div>
+                                                <h5 class="mb-1" style="font-family: Arial, sans-serif; font-weight: bold; color: black; font-size: 1rem;">Amiwo au poulet</h5>
+                                                <p class="mb-0" style="font-family: Arial, sans-serif; font-weight: normal; color: #666; font-size: 0.9rem;">Plat traditionnel à base de maïs avec poulet</p>
+                                            </div>
+                                            <span class="badge" style="background-color: #8B4513; color: white; padding: 8px 12px; border-radius: 20px; font-weight: bold;">5.000 FCFA</span>
+                                        </div>
                                     </div>
                                     <div class="col-md-6 mb-3">
-                                        <label class="form-label">Heure *</label>
-                                        <input type="time" class="form-control" name="time" required>
+                                        <div class="d-flex justify-content-between align-items-start p-3" style="background-color: #fafafa; border-radius: 10px; border-left: 4px solid #8B4513;">
+                                            <div>
+                                                <h5 class="mb-1" style="font-family: Arial, sans-serif; font-weight: bold; color: black; font-size: 1rem;">Atassi avec Dja</h5>
+                                                <p class="mb-0" style="font-family: Arial, sans-serif; font-weight: normal; color: #666; font-size: 0.9rem;">Riz parfumé accompagné de sauce tomate</p>
+                                            </div>
+                                            <span class="badge" style="background-color: #8B4513; color: white; padding: 8px 12px; border-radius: 20px; font-weight: bold;">3.500 FCFA</span>
+                                        </div>
                                     </div>
+                                    <div class="col-md-6 mb-3">
+                                        <div class="d-flex justify-content-between align-items-start p-3" style="background-color: #fafafa; border-radius: 10px; border-left: 4px solid #8B4513;">
+                                            <div>
+                                                <h5 class="mb-1" style="font-family: Arial, sans-serif; font-weight: bold; color: black; font-size: 1rem;">Bomiwo au poulet</h5>
+                                                <p class="mb-0" style="font-family: Arial, sans-serif; font-weight: normal; color: #666; font-size: 0.9rem;">Spécialité à base de pâte de maïs et poulet</p>
+                                            </div>
+                                            <span class="badge" style="background-color: #8B4513; color: white; padding: 8px 12px; border-radius: 20px; font-weight: bold;">5.500 FCFA</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <div class="d-flex justify-content-between align-items-start p-3" style="background-color: #fafafa; border-radius: 10px; border-left: 4px solid #8B4513;">
+                                            <div>
+                                                <h5 class="mb-1" style="font-family: Arial, sans-serif; font-weight: bold; color: black; font-size: 1rem;">MAN au Télibo</h5>
+                                                <p class="mb-0" style="font-family: Arial, sans-serif; font-weight: normal; color: #666; font-size: 0.9rem;">Plat signature du chef avec poisson fumé</p>
+                                            </div>
+                                            <span class="badge" style="background-color: #8B4513; color: white; padding: 8px 12px; border-radius: 20px; font-weight: bold;">6.000 FCFA</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Spécialités Européennes -->
+                            <div class="p-4" style="border-bottom: 1px solid #f0f0f0;">
+                                <div class="d-flex align-items-center mb-4">
+                                    <div class="me-3">
+                                        <div style="width: 40px; height: 40px; border-radius: 50%; background-color: #8B4513; display: flex; align-items: center; justify-content: center;">
+                                            <i class="fas fa-hamburger" style="color: white;"></i>
+                                        </div>
+                                    </div>
+                                    <h3 class="mb-0" style="font-family: Arial, sans-serif; font-weight: bold; color: #8B4513; font-size: 1.4rem;">Spécialités Européennes</h3>
                                 </div>
                                 
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
-                                        <label class="form-label">Nombre de personnes *</label>
-                                        <select class="form-select" name="persons" required>
-                                            <option value="1">1 personne</option>
-                                            <option value="2" selected>2 personnes</option>
-                                            <option value="3">3 personnes</option>
-                                            <option value="4">4 personnes</option>
-                                            <option value="5">5 personnes</option>
-                                            <option value="6">6 personnes</option>
-                                            <option value="7">7 personnes</option>
-                                            <option value="8">8 personnes</option>
-                                            <option value="9">9 personnes</option>
-                                            <option value="10">10 personnes</option>
-                                        </select>
+                                        <div class="d-flex justify-content-between align-items-start p-3" style="background-color: #fafafa; border-radius: 10px; border-left: 4px solid #8B4513;">
+                                            <div>
+                                                <h5 class="mb-1" style="font-family: Arial, sans-serif; font-weight: bold; color: black; font-size: 1rem;">Spaghettis bolognaise</h5>
+                                                <p class="mb-0" style="font-family: Arial, sans-serif; font-weight: normal; color: #666; font-size: 0.9rem;">Pâtes italiennes avec sauce à la viande maison</p>
+                                            </div>
+                                            <span class="badge" style="background-color: #8B4513; color: white; padding: 8px 12px; border-radius: 20px; font-weight: bold;">2.500 FCFA</span>
+                                        </div>
                                     </div>
                                     <div class="col-md-6 mb-3">
-                                        <label class="form-label">Type de table</label>
-                                        <select class="form-select" name="table_type">
-                                            <option value="standard">Standard</option>
-                                            <option value="window">Fenêtre</option>
-                                            <option value="terrace">Terrasse</option>
-                                            <option value="private">Salle privée</option>
-                                        </select>
+                                        <div class="d-flex justify-content-between align-items-start p-3" style="background-color: #fafafa; border-radius: 10px; border-left: 4px solid #8B4513;">
+                                            <div>
+                                                <h5 class="mb-1" style="font-family: Arial, sans-serif; font-weight: bold; color: black; font-size: 1rem;">Steak de bœuf</h5>
+                                                <p class="mb-0" style="font-family: Arial, sans-serif; font-weight: normal; color: #666; font-size: 0.9rem;">Entrecôte grillée, frites et sauce au choix</p>
+                                            </div>
+                                            <span class="badge" style="background-color: #8B4513; color: white; padding: 8px 12px; border-radius: 20px; font-weight: bold;">4.500 FCFA</span>
+                                        </div>
                                     </div>
                                 </div>
-                                
-                                <div class="mb-3">
-                                    <label class="form-label">Notes spéciales</label>
-                                    <textarea class="form-control" name="notes" rows="3" placeholder="Allergies, préférences alimentaires..."></textarea>
+                            </div>
+
+                            <!-- Grillades & Fruits de Mer -->
+                            <div class="p-4" style="border-bottom: 1px solid #f0f0f0;">
+                                <div class="d-flex align-items-center mb-4">
+                                    <div class="me-3">
+                                        <div style="width: 40px; height: 40px; border-radius: 50%; background-color: #8B4513; display: flex; align-items: center; justify-content: center;">
+                                            <i class="fas fa-drumstick-bite" style="color: white;"></i>
+                                        </div>
+                                    </div>
+                                    <h3 class="mb-0" style="font-family: Arial, sans-serif; font-weight: bold; color: #8B4513; font-size: 1.4rem;">Grillades & Fruits de Mer</h3>
                                 </div>
                                 
-                                <div class="text-center">
-                                    <button type="submit" class="btn btn-primary-custom btn-lg">
-                                        <i class="fas fa-calendar-check me-2"></i> Réserver maintenant
-                                    </button>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <div class="d-flex justify-content-between align-items-start p-3" style="background-color: #fafafa; border-radius: 10px; border-left: 4px solid #8B4513;">
+                                            <div>
+                                                <h5 class="mb-1" style="font-family: Arial, sans-serif; font-weight: bold; color: black; font-size: 1rem;">Brochette de bœuf</h5>
+                                                <p class="mb-0" style="font-family: Arial, sans-serif; font-weight: normal; color: #666; font-size: 0.9rem;">Brochettes marinées avec légumes grillés</p>
+                                            </div>
+                                            <span class="badge" style="background-color: #8B4513; color: white; padding: 8px 12px; border-radius: 20px; font-weight: bold;">4.000 FCFA</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <div class="d-flex justify-content-between align-items-start p-3" style="background-color: #fafafa; border-radius: 10px; border-left: 4px solid #8B4513;">
+                                            <div>
+                                                <h5 class="mb-1" style="font-family: Arial, sans-serif; font-weight: bold; color: black; font-size: 1rem;">Brochette de poisson</h5>
+                                                <p class="mb-0" style="font-family: Arial, sans-serif; font-weight: normal; color: #666; font-size: 0.9rem;">Brochettes de poisson frais et épices</p>
+                                            </div>
+                                            <span class="badge" style="background-color: #8B4513; color: white; padding: 8px 12px; border-radius: 20px; font-weight: bold;">4.500 FCFA</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <div class="d-flex justify-content-between align-items-start p-3" style="background-color: #fafafa; border-radius: 10px; border-left: 4px solid #8B4513;">
+                                            <div>
+                                                <h5 class="mb-1" style="font-family: Arial, sans-serif; font-weight: bold; color: black; font-size: 1rem;">Poisson braisé</h5>
+                                                <p class="mb-0" style="font-family: Arial, sans-serif; font-weight: normal; color: #666; font-size: 0.9rem;">Poisson entier grillé au feu de bois</p>
+                                            </div>
+                                            <span class="badge" style="background-color: #8B4513; color: white; padding: 8px 12px; border-radius: 20px; font-weight: bold;">4.500 FCFA</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <div class="d-flex justify-content-between align-items-start p-3" style="background-color: #fafafa; border-radius: 10px; border-left: 4px solid #8B4513;">
+                                            <div>
+                                                <h5 class="mb-1" style="font-family: Arial, sans-serif; font-weight: bold; color: black; font-size: 1rem;">Gambas sautées à l'ail</h5>
+                                                <p class="mb-0" style="font-family: Arial, sans-serif; font-weight: normal; color: #666; font-size: 0.9rem;">Crevettes géantes sautées à l'ail et persil</p>
+                                            </div>
+                                            <span class="badge" style="background-color: #8B4513; color: white; padding: 8px 12px; border-radius: 20px; font-weight: bold;">12.000 FCFA</span>
+                                        </div>
+                                    </div>
                                 </div>
-                            </form>
+                            </div>
+
+                            <!-- Restauration Rapide -->
+                            <div class="p-4" style="border-bottom: 1px solid #f0f0f0;">
+                                <div class="d-flex align-items-center mb-4">
+                                    <div class="me-3">
+                                        <div style="width: 40px; height: 40px; border-radius: 50%; background-color: #8B4513; display: flex; align-items: center; justify-content: center;">
+                                            <i class="fas fa-clock" style="color: white;"></i>
+                                        </div>
+                                    </div>
+                                    <h3 class="mb-0" style="font-family: Arial, sans-serif; font-weight: bold; color: #8B4513; font-size: 1.4rem;">Restauration Rapide</h3>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <div class="d-flex justify-content-between align-items-start p-3" style="background-color: #fafafa; border-radius: 10px; border-left: 4px solid #8B4513;">
+                                            <div>
+                                                <h5 class="mb-1" style="font-family: Arial, sans-serif; font-weight: bold; color: black; font-size: 1rem;">Shawarma (poulet ou viande)</h5>
+                                                <p class="mb-0" style="font-family: Arial, sans-serif; font-weight: normal; color: #666; font-size: 0.9rem;">Wrap garni de viande, légumes et sauce</p>
+                                            </div>
+                                            <span class="badge" style="background-color: #8B4513; color: white; padding: 8px 12px; border-radius: 20px; font-weight: bold;">2.000 FCFA</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <div class="d-flex justify-content-between align-items-start p-3" style="background-color: #fafafa; border-radius: 10px; border-left: 4px solid #8B4513;">
+                                            <div>
+                                                <h5 class="mb-1" style="font-family: Arial, sans-serif; font-weight: bold; color: black; font-size: 1rem;">Burgers variés</h5>
+                                                <p class="mb-0" style="font-family: Arial, sans-serif; font-weight: normal; color: #666; font-size: 0.9rem;">Selon l'inspiration du chef - demandez-nous</p>
+                                            </div>
+                                            <span class="badge" style="background-color: #6c757d; color: white; padding: 8px 12px; border-radius: 20px; font-weight: bold;">Sur commande</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <div class="d-flex justify-content-between align-items-start p-3" style="background-color: #fafafa; border-radius: 10px; border-left: 4px solid #8B4513;">
+                                            <div>
+                                                <h5 class="mb-1" style="font-family: Arial, sans-serif; font-weight: bold; color: black; font-size: 1rem;">Frites au poulet</h5>
+                                                <p class="mb-0" style="font-family: Arial, sans-serif; font-weight: normal; color: #666; font-size: 0.9rem;">Frites croustillantes avec poulet pané</p>
+                                            </div>
+                                            <span class="badge" style="background-color: #8B4513; color: white; padding: 8px 12px; border-radius: 20px; font-weight: bold;">2.500 FCFA</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Salades Fraîches -->
+                            <div class="p-4" style="border-bottom: 1px solid #f0f0f0;">
+                                <div class="d-flex align-items-center mb-4">
+                                    <div class="me-3">
+                                        <div style="width: 40px; height: 40px; border-radius: 50%; background-color: #8B4513; display: flex; align-items: center; justify-content: center;">
+                                            <i class="fas fa-leaf" style="color: white;"></i>
+                                        </div>
+                                    </div>
+                                    <h3 class="mb-0" style="font-family: Arial, sans-serif; font-weight: bold; color: #8B4513; font-size: 1.4rem;">Salades Fraîches</h3>
+                                </div>
+                                <div class="p-3" style="background-color: #fafafa; border-radius: 10px; border-left: 4px solid #8B4513;">
+                                    <p class="mb-0" style="font-family: Arial, sans-serif; font-weight: normal; color: #666; font-size: 0.95rem;">Salades composées accompagnées de sauces maison — prix selon la carte du jour</p>
+                                </div>
+                            </div>
+
+                            <!-- Bar & Cocktails -->
+                            <div class="p-4" style="border-bottom: 1px solid #f0f0f0;">
+                                <div class="d-flex align-items-center mb-4">
+                                    <div class="me-3">
+                                        <div style="width: 40px; height: 40px; border-radius: 50%; background-color: #8B4513; display: flex; align-items: center; justify-content: center;">
+                                            <i class="fas fa-glass-martini-alt" style="color: white;"></i>
+                                        </div>
+                                    </div>
+                                    <h3 class="mb-0" style="font-family: Arial, sans-serif; font-weight: bold; color: #8B4513; font-size: 1.4rem;">Bar & Cocktails</h3>
+                                </div>
+                                <div class="p-3" style="background-color: #fafafa; border-radius: 10px; border-left: 4px solid #8B4513;">
+                                    <p class="mb-3" style="font-family: Arial, sans-serif; font-weight: normal; color: #666; font-size: 0.95rem;">Un large choix de boissons rafraîchissantes et cocktails originaux pour accompagner vos repas ou vos moments de détente.</p>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <p class="mb-2" style="font-family: Arial, sans-serif; font-weight: bold; color: black; font-size: 1rem;">
+                                                <i class="fas fa-wine-glass me-2" style="color: #8B4513;"></i>Vins sélectionnés
+                                            </p>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p class="mb-2" style="font-family: Arial, sans-serif; font-weight: bold; color: black; font-size: 1rem;">
+                                                <i class="fas fa-cocktail me-2" style="color: #8B4513;"></i>Cocktails maison
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Ambiance Festive -->
+                            <div class="p-4" style="border-bottom: 1px solid #f0f0f0;">
+                                <div class="d-flex align-items-center mb-4">
+                                    <div class="me-3">
+                                        <div style="width: 40px; height: 40px; border-radius: 50%; background-color: #8B4513; display: flex; align-items: center; justify-content: center;">
+                                            <i class="fas fa-music" style="color: white;"></i>
+                                        </div>
+                                    </div>
+                                    <h3 class="mb-0" style="font-family: Arial, sans-serif; font-weight: bold; color: #8B4513; font-size: 1.4rem;">Ambiance Festive</h3>
+                                </div>
+                                    <p class="mb-0" style="font-family: Arial, sans-serif; font-weight: normal; color: #666; font-size: 0.95rem;">Profitez d'un barbecue ou d'un chili entre amis autour de la piscine, dans une ambiance conviviale et musicale.</p>
+                                </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-@endsection
 
-@push('scripts')
-<script>
-$(document).ready(function() {
-    // Filtrage des menus
-    $('.category-filter').click(function() {
-        $('.category-filter').removeClass('active');
-        $(this).addClass('active');
-        
-        const category = $(this).data('category');
-        
-        if (category === 'all') {
-            $('.menu-item').show();
-        } else {
-            $('.menu-item').hide();
-            $(`.menu-item[data-category="${category}"]`).show();
-        }
-    });
+    @endsection
 
-    // Réservation
-    $('#reservationForm').submit(function(e) {
-        e.preventDefault();
-        
-        const formData = $(this).serialize();
-        
-        $.ajax({
-            url: '{{ route("restaurant.reservation.store") }}',
-            type: 'POST',
-            data: formData,
-            success: function(response) {
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Réservation envoyée !',
-                    text: 'Nous vous confirmerons votre réservation par téléphone.',
-                    timer: 3000
-                }).then(() => {
-                    $('#reservationForm')[0].reset();
-                });
-            },
-            error: function() {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Erreur',
-                    text: 'Une erreur est survenue. Veuillez réessayer.'
-                });
+    @push('scripts')
+    <script>
+    $(document).ready(function() {
+        // Filtrage des menus
+        $('.category-filter').click(function() {
+            $('.category-filter').removeClass('active');
+            $(this).addClass('active');
+            
+            const category = $(this).data('category');
+            
+            if (category === 'all') {
+                $('.menu-item').show();
+            } else {
+                $('.menu-item').hide();
+                $(`.menu-item[data-category="${category}"]`).show();
             }
         });
     });
-});
-</script>
-@endpush
+    </script>
+    @endpush

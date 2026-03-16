@@ -7,27 +7,27 @@
    STYLES TRANSACTION INDEX - Design moderne cohérent
 ═══════════════════════════════════════════════════════════════════ */
 :root {
-    --primary: #2563eb;
-    --primary-light: #3b82f6;
-    --primary-soft: rgba(37, 99, 235, 0.08);
-    --success: #10b981;
-    --success-light: rgba(16, 185, 129, 0.08);
-    --warning: #f59e0b;
-    --warning-light: rgba(245, 158, 11, 0.08);
+    --primary: #8b4513;
+    --primary-light: #a0522d;
+    --primary-soft: rgba(139, 69, 19, 0.08);
+    --success: #8b4513;
+    --success-light: rgba(139, 69, 19, 0.08);
+    --warning: #8b4513;
+    --warning-light: rgba(139, 69, 19, 0.08);
     --danger: #ef4444;
     --danger-light: rgba(239, 68, 68, 0.08);
-    --info: #3b82f6;
-    --info-light: rgba(59, 130, 246, 0.08);
-    --dark: #1e293b;
-    --gray-50: #f8fafc;
-    --gray-100: #f1f5f9;
-    --gray-200: #e5e7eb;
-    --gray-300: #d1d5db;
-    --gray-400: #94a3b8;
-    --gray-500: #64748b;
-    --gray-600: #475569;
-    --gray-700: #334155;
-    --gray-800: #1e293b;
+    --info: #8b4513;
+    --info-light: rgba(139, 69, 19, 0.08);
+    --dark: #3d241a;
+    --gray-50: #fcf8f3;
+    --gray-100: #f9f0e6;
+    --gray-200: #f5e6d3;
+    --gray-300: #e8d5c4;
+    --gray-400: #d2b48c;
+    --gray-500: #704838;
+    --gray-600: #5f3c2e;
+    --gray-700: #4e3024;
+    --gray-800: #3d241a;
     --amber-50: #fffbeb;
     --amber-100: #fef3c7;
     --amber-500: #f59e0b;
@@ -100,17 +100,17 @@
 }
 .badge-reservation {
     background: var(--warning-light);
-    color: #b45309;
+    color: var(--warning-600);
     border: 1px solid rgba(245, 158, 11, 0.15);
 }
 .badge-active {
     background: var(--success-light);
-    color: #047857;
-    border: 1px solid rgba(16, 185, 129, 0.15);
+    color: var(--success-600);
+    border: 1px solid rgba(139, 69, 19, 0.15);
 }
 .badge-completed {
     background: var(--info-light);
-    color: #1e40af;
+    color: var(--info-600);
     border: 1px solid rgba(37, 99, 235, 0.15);
 }
 .badge-cancelled {
@@ -411,11 +411,11 @@
 }
 .date-indicator.upcoming {
     background: var(--warning-light);
-    color: #b45309;
+    color: var(--warning-600);
 }
 .date-indicator.ready {
     background: var(--success-light);
-    color: #047857;
+    color: var(--success-600);
 }
 .date-indicator.overdue {
     background: var(--danger-light);
@@ -423,7 +423,7 @@
 }
 .date-indicator.pending {
     background: var(--info-light);
-    color: #1e40af;
+    color: var(--info-600);
 }
 .date-indicator.late {
     background: var(--amber-50);
@@ -525,7 +525,7 @@
     box-shadow: 0 2px 8px rgba(245, 158, 11, 0.05);
 }
 .receptionist-note-modern i {
-    color: #d97706;
+    color: var(--warning-600);
 }
 
 /* ────────── PAGINATION ────────── */
@@ -618,7 +618,7 @@
     <div class="d-flex flex-wrap gap-2 mb-4">
         <span class="legend-badge"><i class="fas fa-circle text-warning"></i> Réservation</span>
         <span class="legend-badge"><i class="fas fa-circle text-success"></i> Dans l'hôtel</span>
-        <span class="legend-badge"><i class="fas fa-circle text-info"></i> Terminé (payé)</span>
+        <span class="legend-badge"><i class="fas fa-circle text-primary"></i> Terminé (payé)</span>
         <span class="legend-badge"><i class="fas fa-circle text-danger"></i> Annulée</span>
         <span class="legend-badge"><i class="fas fa-circle text-secondary"></i> No Show</span>
         <span class="legend-badge"><i class="fas fa-exclamation-triangle text-warning"></i> Terminé mais impayé</span>

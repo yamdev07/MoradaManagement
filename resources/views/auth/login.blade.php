@@ -1,5 +1,5 @@
 @extends('template.auth')
-@section('title', 'Login - Cactus Hotel')
+@section('title', 'Login - Morada Lodge')
 @section('content')
 
 <style>
@@ -7,26 +7,26 @@
    STYLES LOGIN - Design moderne cohérent
 ═══════════════════════════════════════════════════════════════════ */
 :root {
-    --primary: #2E7D32;
-    --primary-light: #4CAF50;
-    --primary-soft: rgba(46, 125, 50, 0.08);
-    --success: #10b981;
-    --success-light: rgba(16, 185, 129, 0.08);
+    --primary: #8b4513;
+    --primary-light: #a0522d;
+    --primary-soft: rgba(139, 69, 19, 0.08);
+    --success: #8b4513;
+    --success-light: rgba(139, 69, 19, 0.08);
     --warning: #f59e0b;
     --warning-light: rgba(245, 158, 11, 0.08);
     --danger: #ef4444;
     --danger-light: rgba(239, 68, 68, 0.08);
-    --info: #3b82f6;
-    --info-light: rgba(59, 130, 246, 0.08);
-    --gray-50: #f8fafc;
-    --gray-100: #f1f5f9;
-    --gray-200: #e2e8f0;
-    --gray-300: #cbd5e1;
-    --gray-400: #94a3b8;
-    --gray-500: #64748b;
-    --gray-600: #475569;
-    --gray-700: #334155;
-    --gray-800: #1e293b;
+    --info: #8b4513;
+    --info-light: rgba(139, 69, 19, 0.08);
+    --gray-50: #fcf8f3;
+    --gray-100: #f9f0e6;
+    --gray-200: #f5e6d3;
+    --gray-300: #e8d5c4;
+    --gray-400: #d2b48c;
+    --gray-500: #704838;
+    --gray-600: #5f3c2e;
+    --gray-700: #4e3024;
+    --gray-800: #3d241a;
     --white: #ffffff;
     --radius: 12px;
     --shadow: 0 4px 20px rgba(0, 0, 0, 0.02), 0 1px 3px rgba(0, 0, 0, 0.05);
@@ -48,7 +48,7 @@ body {
     align-items: center;
     justify-content: center;
     padding: 2rem 1rem;
-    background: linear-gradient(135deg, rgba(46, 125, 50, 0.05) 0%, rgba(76, 175, 80, 0.05) 100%);
+    background: linear-gradient(135deg, rgba(139, 69, 19, 0.05) 0%, rgba(160, 82, 45, 0.05) 100%);
 }
 
 .login-card {
@@ -70,7 +70,7 @@ body {
 
 /* Côté gauche avec l'icône et présentation */
 .login-left {
-    background: linear-gradient(135deg, var(--primary) 0%, #1B5E20 100%);
+    background: linear-gradient(135deg, var(--primary) 0%, #654321 100%);
     color: white;
     padding: 3rem;
     flex: 1;
@@ -326,7 +326,7 @@ body {
 }
 
 .forgot-link:hover {
-    color: #1B5E20;
+    color: #654321;
 }
 
 .forgot-link:hover::after {
@@ -334,18 +334,18 @@ body {
 }
 
 .btn-login {
-    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+    background: linear-gradient(135deg, #8B4513 0%, #964B00 100%);
     color: white;
     border: none;
-    border-radius: 10px;
-    padding: 1rem 2rem;
+    padding: 0.8rem 2.5rem;
+    border-radius: var(--radius);
     font-size: 1rem;
     font-weight: 600;
-    width: 100%;
     cursor: pointer;
     transition: var(--transition);
+    width: 100%;
+    box-shadow: 0 4px 15px rgba(139, 69, 19, 0.3);
     display: flex;
-    align-items: center;
     justify-content: center;
     gap: 0.5rem;
     position: relative;
@@ -366,9 +366,9 @@ body {
 }
 
 .btn-login:hover {
-    background: linear-gradient(135deg, #1B5E20 0%, var(--primary) 100%);
+    background: linear-gradient(135deg, #654321 0%, var(--primary) 100%);
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(46, 125, 50, 0.3);
+    box-shadow: 0 8px 20px rgba(139, 69, 19, 0.3);
 }
 
 .btn-login:hover::before {
@@ -416,7 +416,7 @@ body {
 
 .demo-credentials {
     background: var(--primary-soft);
-    border: 1px solid rgba(46, 125, 50, 0.2);
+    border: 1px solid rgba(139, 69, 19, 0.2);
     border-radius: 12px;
     padding: 1.2rem;
     margin-top: 1.5rem;
@@ -424,7 +424,7 @@ body {
 }
 
 .demo-credentials:hover {
-    background: rgba(46, 125, 50, 0.12);
+    background: rgba(139, 69, 19, 0.12);
     transform: translateY(-2px);
 }
 
@@ -557,33 +557,33 @@ body {
         <!-- Côté gauche avec présentation -->
         <div class="login-left">
             <div class="hotel-icon">
-                <img src="{{ asset('img/logo_cactus1.jpeg') }}"
-                     alt="Cactus Hotel"
+                <img src="{{ asset('img/logo/logo_ancien.jpg') }}"
+                     alt="Morada Lodge"
                      class="mb-2">
-                <div class="hotel-name">CACTUS HOTEL</div>
-                <div class="hotel-slogan">Luxury & Comfort in Every Stay</div>
+                <div class="hotel-name">MORADA LODGE</div>
+                <div class="hotel-slogan">Votre oasis de tranquillité et de saveurs</div>
             </div>
 
             <ul class="features-list">
                 <li>
-                    <i class="fas fa-shield-alt"></i>
+                    <i class="fas fa-swimming-pool"></i>
                     <div>
-                        <strong>Sécurité garantie</strong>
-                        <small>Vos données sont protégées</small>
+                        <strong>Piscine privée</strong>
+                        <small>Détente absolue dans un cadre idyllique</small>
                     </div>
                 </li>
                 <li>
-                    <i class="fas fa-bolt"></i>
+                    <i class="fas fa-utensils"></i>
                     <div>
-                        <strong>Accès rapide</strong>
-                        <small>Gérez votre hôtel en un clic</small>
+                        <strong>Gastronomie</strong>
+                        <small>Cuisine raffinée locale et internationale</small>
                     </div>
                 </li>
                 <li>
-                    <i class="fas fa-headset"></i>
+                    <i class="fas fa-concierge-bell"></i>
                     <div>
-                        <strong>Support 24/7</strong>
-                        <small>Assistance technique disponible</small>
+                        <strong>Service 5 étoiles</strong>
+                        <small>Excellence et attention personnalisée</small>
                     </div>
                 </li>
             </ul>
@@ -592,20 +592,20 @@ body {
         <!-- Côté droit avec formulaire -->
         <div class="login-right">
             <div class="login-header">
-                <h3>Welcome Back</h3>
-                <p>Please sign in to access your dashboard</p>
+                <h3>Bienvenue</h3>
+                <p>Connectez-vous pour accéder à votre tableau de bord</p>
             </div>
 
             <form id="form-login" action="/login" method="POST">
                 @csrf
 
                 <div class="form-group">
-                    <label for="email" class="form-label">Email Address</label>
+                    <label for="email" class="form-label">Adresse email</label>
                     <div class="position-relative">
                         <i class="fas fa-envelope input-icon"></i>
                         <input type="email" id="email" name="email"
                                class="form-control @error('email') is-invalid @enderror"
-                               placeholder="Enter your email"
+                               placeholder="Entrez votre email"
                                value="{{ old('email') }}" required autofocus>
                     </div>
                     @error('email')
@@ -617,12 +617,12 @@ body {
                 </div>
 
                 <div class="form-group">
-                    <label for="password" class="form-label">Password</label>
+                    <label for="password" class="form-label">Mot de passe</label>
                     <div class="position-relative">
                         <i class="fas fa-lock input-icon"></i>
                         <input type="password" id="password" name="password"
                                class="form-control @error('password') is-invalid @enderror"
-                               placeholder="Enter your password" required>
+                               placeholder="Entrez votre mot de passe" required>
                     </div>
                     @error('password')
                         <div class="text-danger">
@@ -636,17 +636,17 @@ body {
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" id="remember" name="remember">
                         <label class="form-check-label" for="remember">
-                            Remember me
+                            Se souvenir de moi
                         </label>
                     </div>
                     <a href="/forgot-password" class="forgot-link">
-                        Forgot Password?
+                        Mot de passe oublié ?
                     </a>
                 </div>
 
                 <button type="submit" class="btn-login">
                     <i class="fas fa-sign-in-alt"></i>
-                    Sign In
+                    Se connecter
                 </button>
 
                 
@@ -688,12 +688,12 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Désactiver le bouton pendant la soumission
         submitBtn.disabled = true;
-        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Signing in...';
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Connexion en cours...';
         
         // Réactiver après 3 secondes au cas où
         setTimeout(() => {
             submitBtn.disabled = false;
-            submitBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Sign In';
+            submitBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Se connecter';
         }, 3000);
     });
     

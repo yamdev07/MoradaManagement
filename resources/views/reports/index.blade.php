@@ -83,7 +83,7 @@
         <div class="col-md-3">
             <div class="card shadow-sm border-0 rounded-3 p-3">
                 <div class="d-flex align-items-center">
-                    <div class="bg-success text-white rounded-circle d-flex justify-content-center align-items-center" style="width: 48px; height: 48px;">
+                    <div class="bg-primary text-white rounded-circle d-flex justify-content-center align-items-center" style="width: 48px; height: 48px;">
                         <i class="fas fa-credit-card fa-lg"></i>
                     </div>
                     <div class="ms-3">
@@ -99,7 +99,7 @@
         <div class="col-md-3">
             <div class="card shadow-sm border-0 rounded-3 p-3">
                 <div class="d-flex align-items-center">
-                    <div class="bg-info text-white rounded-circle d-flex justify-content-center align-items-center" style="width: 48px; height: 48px;">
+                    <div class="bg-primary text-white rounded-circle d-flex justify-content-center align-items-center" style="width: 48px; height: 48px;">
                         <i class="fas fa-moon fa-lg"></i>
                     </div>
                     <div class="ms-3">
@@ -114,7 +114,7 @@
         <div class="col-md-3">
             <div class="card shadow-sm border-0 rounded-3 p-3">
                 <div class="d-flex align-items-center">
-                    <div class="bg-warning text-white rounded-circle d-flex justify-content-center align-items-center" style="width: 48px; height: 48px;">
+                    <div class="bg-primary text-white rounded-circle d-flex justify-content-center align-items-center" style="width: 48px; height: 48px;">
                         <i class="fas fa-chart-line fa-lg"></i>
                     </div>
                     <div class="ms-3">
@@ -136,7 +136,7 @@
         <div class="col-md-3">
             <div class="card shadow-sm border-0 rounded-3 p-3">
                 <div class="d-flex align-items-center">
-                    <div class="bg-secondary text-white rounded-circle d-flex justify-content-center align-items-center" style="width: 48px; height: 48px;">
+                    <div class="bg-primary text-white rounded-circle d-flex justify-content-center align-items-center" style="width: 48px; height: 48px;">
                         <i class="fas fa-bed fa-lg"></i>
                     </div>
                     <div class="ms-3">
@@ -411,7 +411,7 @@
                                     <td class="text-end fw-bold">{{ number_format($recep['total'] ?? 0, 0, ',', ' ') }} CFA</td>
                                     <td class="text-center">
                                         <div class="progress" style="height: 20px;">
-                                            <div class="progress-bar bg-success" role="progressbar" 
+                                            <div class="progress-bar bg-primary" role="progressbar" 
                                                 style="width: {{ $recep['productivity'] ?? 0 }}%;" 
                                                 aria-valuenow="{{ $recep['productivity'] ?? 0 }}" 
                                                 aria-valuemin="0" 
@@ -672,13 +672,13 @@
                     datasets: [{
                         data: paymentData,
                         backgroundColor: [
-                            '#28a745', // cash - green
-                            '#dc3545', // card - red
-                            '#17a2b8', // mobile - cyan
-                            '#ffc107', // transfer - yellow
-                            '#6f42c1', // fedapay - purple
-                            '#fd7e14', // check - orange
-                            '#6c757d'  // other - gray
+                            '#8b4513', // cash - marron
+                            '#ef4444', // card - red
+                            '#8b4513', // mobile - marron
+                            '#8b4513', // transfer - marron
+                            '#8b4513', // fedapay - marron
+                            '#8b4513', // check - marron
+                            '#704838'  // other - marron foncé
                         ],
                         borderWidth: 0
                     }]
@@ -725,7 +725,7 @@
                     labels: ['Occupées', 'Disponibles'],
                     datasets: [{
                         data: [occupied, available],
-                        backgroundColor: ['#dc3545', '#28a745'],
+                        backgroundColor: ['#ef4444', '#8b4513'],
                         borderWidth: 0
                     }]
                 },
@@ -772,12 +772,12 @@
                         label: 'Nombre de chambres',
                         data: roomStatusData,
                         backgroundColor: [
-                            '#28a745', // disponible - green
-                            '#dc3545', // occupée - red
-                            '#ffc107', // maintenance - yellow
-                            '#17a2b8', // réservée - cyan
-                            '#6f42c1', // nettoyage - purple
-                            '#6c757d'  // sale - gray
+                            '#8b4513', // disponible - marron
+                            '#ef4444', // occupée - red
+                            '#8b4513', // maintenance - marron
+                            '#8b4513', // réservée - marron
+                            '#8b4513', // nettoyage - marron
+                            '#704838'  // sale - marron foncé
                         ],
                         borderRadius: 5
                     }]
@@ -817,7 +817,7 @@
                     labels: ['Avant 12h', '12h-14h (largesse)', 'Après 14h (late checkout)'],
                     datasets: [{
                         data: checkoutTimesData,
-                        backgroundColor: ['#28a745', '#ffc107', '#dc3545'],
+                        backgroundColor: ['#8b4513', '#8b4513', '#ef4444'],
                         borderWidth: 0
                     }]
                 },
@@ -850,22 +850,23 @@
 </script>
 
 <style>
-    .bg-purple { background-color: #6f42c1; }
+    /* Palette Morada Lodge */
+    .bg-purple { background-color: #8b4513; }
     .badge { font-size: 0.8rem; padding: 0.35rem 0.65rem; }
     .card { transition: transform 0.2s; }
     .card:hover { transform: translateY(-2px); }
-    .table th { font-weight: 600; color: #495057; }
+    .table th { font-weight: 600; color: #3d241a; }
     .btn-hotel-primary {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(135deg, #8b4513 0%, #704838 100%);
         border: none;
         color: white;
     }
     .btn-hotel-primary:hover {
-        background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+        background: linear-gradient(135deg, #704838 0%, #8b4513 100%);
         color: white;
     }
     .progress {
-        background-color: #e9ecef;
+        background-color: #f5e6d3;
         border-radius: 10px;
     }
     .progress-bar {

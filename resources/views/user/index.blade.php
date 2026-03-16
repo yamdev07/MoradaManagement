@@ -4,46 +4,46 @@
 
 <style>
 /* ═══════════════════════════════════════════════════════════════
-   DESIGN SYSTEM - VERT SIDEBAR
+   DESIGN SYSTEM - MARRON MORADA LODGE
 ═══════════════════════════════════════════════════════════════════ */
 :root {
-    /* Palette principale - Vert du Sidebar */
-    --primary-50: #E8F5F0;
-    --primary-100: #C1E4D6;
-    --primary-200: #96D3BA;
-    --primary-300: #6BC29E;
-    --primary-400: #4BB589;
-    --primary-500: #2AA874;
-    --primary-600: #25A06C;
-    --primary-700: #1F9661;
-    --primary-800: #198C57;
-    --primary-900: #0F7C44;
+    /* Palette principale - Marron Morada Lodge */
+    --primary-50: #fcf8f3;
+    --primary-100: #f9f0e6;
+    --primary-200: #f5e6d3;
+    --primary-300: #e8d5c4;
+    --primary-400: #d2b48c;
+    --primary-500: #8b4513;
+    --primary-600: #704838;
+    --primary-700: #5f3c2e;
+    --primary-800: #4e3024;
+    --primary-900: #3d241a;
 
     /* Couleurs utilitaires */
-    --success-500: #22C55E;
-    --danger-500: #EF4444;
-    --danger-600: #DC2626;
-    --warning-500: #F59E0B;
-    --warning-600: #D97706;
-    --info-500: #3B82F6;
-    --info-600: #2563EB;
+    --success-500: #8b4513;
+    --danger-500: #8b4513;
+    --danger-600: #704838;
+    --warning-500: #8b4513;
+    --warning-600: #704838;
+    --info-500: #8b4513;
+    --info-600: #704838;
 
     /* Neutres */
-    --gray-50: #F9FAFB;
-    --gray-100: #F3F4F6;
-    --gray-200: #E5E7EB;
-    --gray-300: #D1D5DB;
-    --gray-400: #9CA3AF;
-    --gray-500: #6B7280;
-    --gray-600: #4B5563;
-    --gray-700: #374151;
-    --gray-800: #1F2937;
-    --gray-900: #111827;
+    --gray-50: #fcf8f3;
+    --gray-100: #f9f0e6;
+    --gray-200: #f5e6d3;
+    --gray-300: #e8d5c4;
+    --gray-400: #d2b48c;
+    --gray-500: #704838;
+    --gray-600: #5f3c2e;
+    --gray-700: #4e3024;
+    --gray-800: #3d241a;
+    --gray-900: #2d1f15;
 
     /* Ombres */
-    --shadow-sm: 0 1px 2px 0 rgba(42, 168, 116, 0.08);
-    --shadow-md: 0 4px 6px -1px rgba(42, 168, 116, 0.12);
-    --shadow-lg: 0 10px 15px -3px rgba(42, 168, 116, 0.15);
+    --shadow-sm: 0 1px 2px 0 rgba(139, 69, 19, 0.08);
+    --shadow-md: 0 4px 6px -1px rgba(139, 69, 19, 0.12);
+    --shadow-lg: 0 10px 15px -3px rgba(139, 69, 19, 0.15);
     
     /* Transitions */
     --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -121,7 +121,7 @@
     justify-content: center;
     color: white;
     font-size: 1.25rem;
-    box-shadow: 0 4px 10px rgba(42, 168, 116, 0.3);
+    box-shadow: 0 4px 10px rgba(139, 69, 19, 0.3);
 }
 
 .header-title h1 {
@@ -218,13 +218,13 @@
     text-decoration: none;
     background: linear-gradient(135deg, var(--primary-700), var(--primary-500));
     color: white;
-    box-shadow: 0 4px 6px -1px rgba(42, 168, 116, 0.3);
+    box-shadow: 0 4px 6px -1px rgba(139, 69, 19, 0.3);
 }
 
 .btn-primary:hover {
     background: linear-gradient(135deg, var(--primary-800), var(--primary-600));
     transform: translateY(-1px);
-    box-shadow: 0 6px 8px -1px rgba(42, 168, 116, 0.4);
+    box-shadow: 0 6px 8px -1px rgba(139, 69, 19, 0.4);
     color: white;
     text-decoration: none;
 }
@@ -308,7 +308,7 @@
 .search-input:focus {
     outline: none;
     border-color: var(--primary-500);
-    box-shadow: 0 0 0 3px rgba(42, 168, 116, 0.1);
+    box-shadow: 0 0 0 3px rgba(139, 69, 19, 0.1);
 }
 
 /* ═══════════════════════════════════════════════════════════════

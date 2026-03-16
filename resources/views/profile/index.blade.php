@@ -7,40 +7,40 @@
    DESIGN SYSTEM - MÊME STYLE QUE CHECK-IN
 ═══════════════════════════════════════════════════════════════════ */
 :root {
-    --primary-50: #ecfdf5;
-    --primary-100: #d1fae5;
-    --primary-400: #34d399;
-    --primary-500: #10b981;
-    --primary-600: #059669;
-    --primary-700: #047857;
-    --primary-800: #065f46;
+    --primary-50: #fcf8f3;
+    --primary-100: #f9f0e6;
+    --primary-400: #a0522d;
+    --primary-500: #8b4513;
+    --primary-600: #704838;
+    --primary-700: #5f3c2e;
+    --primary-800: #4e3024;
 
-    --amber-50: #fffbeb;
-    --amber-100: #fef3c7;
-    --amber-400: #fbbf24;
-    --amber-500: #f59e0b;
-    --amber-600: #d97706;
+    --amber-50: #fcf8f3;
+    --amber-100: #f9f0e6;
+    --amber-400: #a0522d;
+    --amber-500: #8b4513;
+    --amber-600: #704838;
 
-    --blue-50: #eff6ff;
-    --blue-100: #dbeafe;
-    --blue-500: #3b82f6;
-    --blue-600: #2563eb;
+    --blue-50: #fcf8f3;
+    --blue-100: #f9f0e6;
+    --blue-500: #8b4513;
+    --blue-600: #704838;
 
-    --gray-50: #f9fafb;
-    --gray-100: #f3f4f6;
-    --gray-200: #e5e7eb;
-    --gray-300: #d1d5db;
-    --gray-400: #9ca3af;
-    --gray-500: #6b7280;
-    --gray-600: #4b5563;
-    --gray-700: #374151;
-    --gray-800: #1f2937;
-    --gray-900: #111827;
+    --gray-50: #fcf8f3;
+    --gray-100: #f9f0e6;
+    --gray-200: #f5e6d3;
+    --gray-300: #e8d5c4;
+    --gray-400: #d2b48c;
+    --gray-500: #704838;
+    --gray-600: #5f3c2e;
+    --gray-700: #4e3024;
+    --gray-800: #3d241a;
+    --gray-900: #2d1f15;
 
-    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
-    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
-    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+    --shadow-sm: 0 1px 2px 0 rgb(139 69 19 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(139 69 19 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(139 69 19 / 0.1);
+    --shadow-xl: 0 20px 25px -5px rgb(139 69 19 / 0.1);
 }
 
 * { box-sizing: border-box; }
@@ -116,7 +116,7 @@
     justify-content: center;
     color: white;
     font-size: 1.25rem;
-    box-shadow: 0 4px 10px rgba(5, 150, 105, 0.3);
+    box-shadow: 0 4px 10px rgba(139, 69, 19, 0.3);
 }
 
 .header-subtitle {
@@ -167,13 +167,13 @@
 .btn-primary-modern {
     background: linear-gradient(135deg, var(--primary-700), var(--primary-500));
     color: white;
-    box-shadow: 0 4px 6px -1px rgba(5, 150, 105, 0.3);
+    box-shadow: 0 4px 6px -1px rgba(139, 69, 19, 0.3);
 }
 
 .btn-primary-modern:hover {
     background: linear-gradient(135deg, var(--primary-800), var(--primary-600));
     transform: translateY(-1px);
-    box-shadow: 0 6px 8px -1px rgba(5, 150, 105, 0.4);
+    box-shadow: 0 6px 8px -1px rgba(139, 69, 19, 0.4);
     color: white;
     text-decoration: none;
 }
@@ -186,7 +186,7 @@
 .btn-success-modern:hover {
     background: var(--primary-700);
     transform: translateY(-1px);
-    box-shadow: 0 4px 8px rgba(5, 150, 105, 0.3);
+    box-shadow: 0 4px 8px rgba(139, 69, 19, 0.3);
 }
 
 .btn-warning-modern {
@@ -197,7 +197,7 @@
 .btn-warning-modern:hover {
     background: var(--amber-600);
     transform: translateY(-1px);
-    box-shadow: 0 4px 8px rgba(245, 158, 11, 0.3);
+    box-shadow: 0 4px 8px rgba(139, 69, 19, 0.3);
 }
 
 /* Cartes */
@@ -769,8 +769,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 matchMessage.innerHTML = '<i class="fas fa-times-circle text-danger me-1"></i> Les mots de passe ne correspondent pas';
                 matchMessage.style.color = '#ef4444';
             } else {
-                matchMessage.innerHTML = '<i class="fas fa-check-circle text-success me-1"></i> Les mots de passe correspondent';
-                matchMessage.style.color = '#10b981';
+                matchMessage.innerHTML = '<i class="fas fa-check-circle text-primary me-1"></i> Les mots de passe correspondent';
+                matchMessage.style.color = '#8b4513';
             }
         });
     }

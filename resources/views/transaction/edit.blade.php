@@ -4,11 +4,11 @@
 
 <style>
 :root {
-    --primary: #2563eb;
-    --primary-light: #3b82f6;
-    --primary-soft: rgba(37, 99, 235, 0.08);
-    --success: #10b981;
-    --success-light: rgba(16, 185, 129, 0.08);
+    --primary: #8b4513;
+    --primary-light: #a0522d;
+    --primary-soft: rgba(139, 69, 19, 0.08);
+    --success: #8b4513;
+    --success-light: rgba(139, 69, 19, 0.08);
     --warning: #f59e0b;
     --warning-light: rgba(245, 158, 11, 0.08);
     --danger: #ef4444;

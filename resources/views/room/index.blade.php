@@ -6,25 +6,27 @@
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
 <style>
 :root {
-    --bg:       #f5f8fa;
+    --bg:       #fcf8f3;
     --surf:     #ffffff;
-    --surf2:    #f1f5f9;
-    --brd:      #e2e8f0;
-    --brd2:     #cbd5e1;
-    --txt:      #0f172a;
-    --txt2:     #475569;
-    --txt3:     #94a3b8;
+    --surf2:    #f9f0e6;
+    --brd:      #f5e6d3;
+    --brd2:     #e8d5c4;
+    --txt:      #3d241a;
+    --txt2:     #5f3c2e;
+    --txt3:     #704838;
     
-    --blue:     #3b82f6;
-    --blue-dim: rgba(59,130,246,.15);
-    --grn:      #10b981;
-    --grn-dim:  rgba(16,185,129,.15);
-    --yel:      #eab308;
-    --yel-dim:  rgba(234,179,8,.15);
+    --primary:  #8b4513;
+    --primary-dim: rgba(139,69,19,.15);
+    --blue:     #8b4513;
+    --blue-dim: rgba(139,69,19,.15);
+    --grn:      #a0522d;
+    --grn-dim: rgba(139, 69, 19, .15);
+    --yel:      #8b4513;
+    --yel-dim:  rgba(139,69,19,.15);
     --red:      #ef4444;
     --red-dim:  rgba(239,68,68,.15);
-    --purple:   #8b5cf6;
-    --purple-dim: rgba(139,92,246,.15);
+    --purple:   #8b4513;
+    --purple-dim: rgba(139,69,19,.15);
     
     --r: 12px;
 }
@@ -83,7 +85,7 @@ body {
 }
 .alert--success {
     background: var(--grn-dim);
-    border-color: rgba(16,185,129,.3);
+    border-color: rgba(139,69,19,.3);
     color: var(--grn);
 }
 .alert--danger {
@@ -115,16 +117,16 @@ body {
     white-space: nowrap;
 }
 .btn--primary {
-    background: var(--blue);
-    border-color: var(--blue);
+    background: var(--grn);
+    border-color: var(--grn);
     color: white;
 }
 .btn--primary:hover {
-    background: #2563eb;
-    border-color: #2563eb;
+    background: rgba(139, 69, 19, .25);
+    border-color: var(--grn);
     color: white;
     transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(59,130,246,.3);
+    box-shadow: 0 4px 12px rgba(139, 69, 19, .3);
 }
 .btn i { font-size: 14px; }
 
@@ -146,24 +148,24 @@ body {
     transform: translateY(-2px);
 }
 .btn-view {
-    background: var(--blue-dim);
-    border-color: rgba(59,130,246,.3);
-    color: var(--blue);
+    background: var(--primary-dim);
+    border-color: rgba(139,69,19,.3);
+    color: var(--primary);
 }
 .btn-view:hover {
-    background: rgba(59,130,246,.25);
-    border-color: var(--blue);
-    color: var(--blue);
+    background: rgba(139,69,19,.25);
+    border-color: var(--primary);
+    color: var(--primary);
 }
 .btn-edit {
-    background: var(--grn-dim);
-    border-color: rgba(16,185,129,.3);
-    color: var(--grn);
+    background: var(--primary-dim);
+    border-color: rgba(139,69,19,.3);
+    color: var(--primary);
 }
 .btn-edit:hover {
-    background: rgba(16,185,129,.25);
-    border-color: var(--grn);
-    color: var(--grn);
+    background: rgba(139,69,19,.25);
+    border-color: var(--primary);
+    color: var(--primary);
 }
 .btn-delete {
     background: var(--red-dim);
@@ -309,7 +311,7 @@ body {
 }
 .room-price__custom {
     font-size: 11px;
-    color: var(--yel);
+    color: var(--blue);
     margin-top: 3px;
     display: flex;
     align-items: center;
@@ -329,12 +331,17 @@ body {
     font-weight: 600;
     white-space: nowrap;
 }
-.badge--success { background: var(--grn-dim); color: var(--grn); }
-.badge--warning { background: var(--yel-dim); color: var(--yel); }
+.badge--success { background: var(--primary-dim); color: var(--primary); }
+.badge--warning { background: var(--primary-dim); color: var(--primary); }
 .badge--danger  { background: var(--red-dim); color: var(--red); }
-.badge--blue    { background: var(--blue-dim); color: var(--blue); }
-.badge--purple  { background: var(--purple-dim); color: var(--purple); }
+.badge--blue    { background: var(--primary-dim); color: var(--primary); }
+.badge--purple  { background: var(--primary-dim); color: var(--primary); }
 .badge--gray    { background: var(--surf2); color: var(--txt3); }
+.badge--green   { background: var(--primary-dim); color: var(--primary); }
+.badge--orange  { background: var(--primary-dim); color: var(--primary); }
+.badge--yellow  { background: var(--primary-dim); color: var(--primary); }
+.badge--red     { background: var(--red-dim); color: var(--red); }
+.badge--cyan    { background: var(--primary-dim); color: var(--primary); }
 
 /* ══════════════════════════════════════
    EMPTY STATE

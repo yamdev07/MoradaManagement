@@ -6,31 +6,31 @@
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
 <style>
 :root {
-    --bg:       #f5f8fa;
+    --bg:       #fcf8f3;
     --surf:     #ffffff;
-    --surf2:    #f1f5f9;
-    --brd:      #e2e8f0;
-    --brd2:     #cbd5e1;
-    --txt:      #0f172a;
-    --txt2:     #475569;
-    --txt3:     #94a3b8;
+    --surf2:    #f9f0e6;
+    --brd:      #f5e6d3;
+    --brd2:     #e8d5c4;
+    --txt:      #3d241a;
+    --txt2:     #5f3c2e;
+    --txt3:     #704838;
     
-    --red:      #ef4444;
-    --red-dim:  rgba(239,68,68,.15);
-    --ora:      #f97316;
-    --ora-dim:  rgba(249,115,22,.15);
-    --yel:      #eab308;
-    --yel-dim:  rgba(234,179,8,.15);
-    --grn:      #10b981;
-    --grn-dim:  rgba(16,185,129,.15);
-    --blue:     #3b82f6;
-    --blue-dim: rgba(59,130,246,.15);
-    --cyan:     #06b6d4;
-    --cyan-dim: rgba(6,182,212,.15);
-    --purple:   #8b5cf6;
-    --purple-dim: rgba(139,92,246,.15);
-    --gray:     #64748b;
-    --gray-dim: rgba(100,116,139,.15);
+    --red:      #a0522d;
+    --red-dim:  rgba(139, 69, 19, .15);
+    --ora:      #a0522d;
+    --ora-dim: rgba(139, 69, 19, .15);
+    --yel:      #a0522d;
+    --yel-dim: rgba(139, 69, 19, .15);
+    --grn:      #8b4513;
+    --grn-dim: rgba(139, 69, 19, .15);
+    --blue:     #8b4513;
+    --blue-dim: rgba(139, 69, 19, .15);
+    --cyan:     #8b4513;
+    --cyan-dim: rgba(139,69,19,.15);
+    --purple:   #8b4513;
+    --purple-dim: rgba(139,69,19,.15);
+    --gray:     #704838;
+    --gray-dim: rgba(139,69,19,.15);
     
     --r: 12px;
 }
@@ -100,8 +100,8 @@ body {
     color: white;
 }
 .btn--primary:hover {
-    background: #2563eb;
-    border-color: #2563eb;
+    background: var(--primary-600);
+    border-color: var(--primary-600);
     color: white;
     transform: translateY(-1px);
 }
@@ -220,13 +220,13 @@ body {
 
 /* Color variants */
 .card__head--red    { background: linear-gradient(135deg, var(--red), #dc2626); color: white; border-bottom: none; }
-.card__head--orange { background: linear-gradient(135deg, var(--ora), #ea580c); color: white; border-bottom: none; }
-.card__head--yellow { background: linear-gradient(135deg, var(--yel), #ca8a04); color: white; border-bottom: none; }
-.card__head--green  { background: linear-gradient(135deg, var(--grn), #059669); color: white; border-bottom: none; }
-.card__head--blue   { background: linear-gradient(135deg, var(--blue), #2563eb); color: white; border-bottom: none; }
-.card__head--cyan   { background: linear-gradient(135deg, var(--cyan), #0891b2); color: white; border-bottom: none; }
-.card__head--purple { background: linear-gradient(135deg, var(--purple), #7c3aed); color: white; border-bottom: none; }
-.card__head--gray   { background: linear-gradient(135deg, var(--gray), #475569); color: white; border-bottom: none; }
+.card__head--orange { background: linear-gradient(135deg, var(--ora), var(--primary-800)); color: white; border-bottom: none; }
+.card__head--yellow { background: linear-gradient(135deg, var(--yel), var(--primary-800)); color: white; border-bottom: none; }
+.card__head--green  { background: linear-gradient(135deg, var(--grn), var(--primary-800)); color: white; border-bottom: none; }
+.card__head--blue   { background: linear-gradient(135deg, var(--blue), var(--primary-800)); color: white; border-bottom: none; }
+.card__head--cyan   { background: linear-gradient(135deg, var(--cyan), var(--primary-800)); color: white; border-bottom: none; }
+.card__head--purple { background: linear-gradient(135deg, var(--purple), var(--primary-800)); color: white; border-bottom: none; }
+.card__head--gray   { background: linear-gradient(135deg, var(--gray), var(--primary-700)); color: white; border-bottom: none; }
 
 /* ══════════════════════════════════════
    ROOM CARDS GRID

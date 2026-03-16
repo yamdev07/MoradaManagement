@@ -160,7 +160,7 @@ div.table-responsive > div.dataTables_wrapper > div.row:last-child {
 }
 
 .capacity-badge {
-    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    background: linear-gradient(135deg, #8b4513 0%, #654321 100%);
     color: white;
     padding: 0.375rem 0.75rem;
     border-radius: 20px;
@@ -176,7 +176,7 @@ div.table-responsive > div.dataTables_wrapper > div.row:last-child {
 
 .price-amount {
     font-weight: 700;
-    color: #059669;
+    color: #8b4513;
     font-size: 1.05rem;
 }
 
@@ -192,8 +192,8 @@ div.table-responsive > div.dataTables_wrapper > div.row:last-child {
     &.status-active,
     &.status-vacant {
         background: linear-gradient(135deg, #dcfdf7 0%, #a7f3d0 100%);
-        color: #047857;
-        border-color: #059669;
+        color: #704214;
+        border-color: #8b4513;
     }
 
     &.status-inactive,
@@ -252,7 +252,7 @@ div.table-responsive > div.dataTables_wrapper > div.row:last-child {
 .add-item-btn,
 .add-room-btn,
 .add-type-btn {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #8b4513 0%, #654321 100%);
     border: none;
     border-radius: 12px;
     padding: 0.75rem 1.5rem;
@@ -265,7 +265,7 @@ div.table-responsive > div.dataTables_wrapper > div.row:last-child {
 
     &:hover {
         transform: translateY(-2px);
-        box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+        box-shadow: 0 8px 20px rgba(139, 69, 19, 0.3);
         color: white;
     }
 }
@@ -296,7 +296,7 @@ div.table-responsive > div.dataTables_wrapper > div.row:last-child {
             background-color: white;
 
             &:focus {
-                border-color: #667eea;
+                border-color: #8b4513;
                 outline: none;
             }
         }
@@ -310,9 +310,9 @@ div.table-responsive > div.dataTables_wrapper > div.row:last-child {
             background-color: white;
 
             &:focus {
-                border-color: #667eea;
+                border-color: #8b4513;
                 outline: none;
-                box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.15);
+                box-shadow: 0 0 0 0.2rem rgba(139, 69, 19, 0.15);
             }
         }
     }
@@ -322,8 +322,8 @@ div.table-responsive > div.dataTables_wrapper > div.row:last-child {
             &.current {
                 background: linear-gradient(
                     135deg,
-                    #667eea 0%,
-                    #764ba2 100%
+                    #654321 0%,
+                    #8b4513 100%
                 ) !important;
                 border: none !important;
                 color: white !important;
@@ -333,7 +333,7 @@ div.table-responsive > div.dataTables_wrapper > div.row:last-child {
             &:hover {
                 background: #f1f5f9 !important;
                 border: none !important;
-                color: #667eea !important;
+                color: #8b4513 !important;
             }
         }
     }

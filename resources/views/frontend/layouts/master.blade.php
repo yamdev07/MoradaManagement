@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Hôtel de luxe - Réservez votre séjour dans notre établissement 5 étoiles">
-    <title>@yield('title', 'Hôtel Cactus Palace')</title>
+    <meta name="description" content="Morada Lodge - Havre de luxe au cœur de la nature à Covè, Bénin">
+    <title>@yield('title', 'Morada Lodge - Luxury Nature Resort')</title>
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon-32x32.png') }}">
@@ -22,22 +22,32 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     
     <!-- Styles personnalisés -->
+    <link rel="stylesheet" href="{{ asset('css/morada-lodge.css') }}">
     <style>
         :root {
-            --primary-color: #4CAF50; /* Vert principal */
-            --secondary-color: #81C784; /* Vert secondaire */
-            --light-color: #F1F8E9; /* Vert très clair */
-            --dark-color: #2E7D32; /* Vert foncé */
-            --accent-color: #C8E6C9; /* Vert accent */
+            /* Morada Lodge Base Colors */
+            --primary-brown: #8b4513;
+            --secondary-brown: #a0522d;
+            --accent-gold: #cd853f;
+            --dark-brown: #654321;
+            --light-brown: #f5e6d3;
+            --warm-beige: #f4f1e8;
+            
+            /* Legacy variables for compatibility */
+            --primary-color: var(--primary-brown);
+            --secondary-color: var(--secondary-brown);
+            --light-color: var(--warm-beige);
+            --dark-color: var(--dark-brown);
+            --accent-color: var(--light-brown);
         }
         
         body {
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Inter', sans-serif;
             color: #333;
-            background-color: var(--light-color);
+            background-color: var(--warm-beige);
         }
         
         h1, h2, h3, h4, h5, h6 {
@@ -61,8 +71,8 @@
         }
         
         .btn-primary-custom:hover {
-            background-color: #388E3C;
-            border-color: #388E3C;
+            background-color: var(--secondary-brown);
+            border-color: var(--secondary-brown);
         }
         
         .navbar-brand {
@@ -109,7 +119,7 @@
         
         .room-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 8px 25px rgba(76, 175, 80, 0.2);
+            box-shadow: 0 8px 25px rgba(139, 69, 19, 0.2);
         }
         
         .footer {
@@ -150,19 +160,19 @@
         
         /* Styles pour les formulaires */
         .form-control:focus {
-            border-color: var(--secondary-color);
-            box-shadow: 0 0 0 0.25rem rgba(129, 199, 132, 0.25);
+            border-color: var(--secondary-brown);
+            box-shadow: 0 0 0 0.25rem rgba(160, 82, 45, 0.25);
         }
         
         /* Cartes et conteneurs */
         .card {
-            border: 1px solid rgba(76, 175, 80, 0.1);
+            border: 1px solid rgba(139, 69, 19, 0.1);
             background-color: white;
         }
         
         .card-header {
             background-color: var(--accent-color);
-            border-bottom: 1px solid rgba(76, 175, 80, 0.1);
+            border-bottom: 1px solid rgba(139, 69, 19, 0.1);
         }
         
         /* Tables */
@@ -184,13 +194,13 @@
         
         /* Boutons Hero Section */
         .hero-section .btn-primary-custom {
-            background-color: #2E7D32;
-            border-color: #2E7D32;
+            background-color: var(--primary-brown);
+            border-color: var(--primary-brown);
         }
         
         .hero-section .btn-primary-custom:hover {
-            background-color: #1B5E20;
-            border-color: #1B5E20;
+            background-color: var(--dark-brown);
+            border-color: var(--dark-brown);
         }
         
         .hero-section .btn-outline-light {
@@ -211,11 +221,11 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
         <div class="container">
             <a class="navbar-brand d-flex align-items-center" href="{{ route('frontend.home') }}">
-                <img src="{{ asset('img/logo_cactus.png') }}"
-                    alt="Hôtel Le Cactus"
+                <img src="{{ asset('img/logo/logo_ancien.jpg') }}"
+                    alt="Morada Lodge"
                     class="me-2"
                     style="height: 45px; width: auto;">
-                <span>Le cactus Hotel</span>
+                <span>Morada Lodge</span>
             </a>
 
 
@@ -270,8 +280,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-4 mb-4">
-                    <h4 class="mb-3">Cactus Palace</h4>
-                    <p>Un hôtel 5 étoiles offrant des services exceptionnels dans un cadre luxueux et paisible.</p>
+                    <h4 class="mb-3">Morada Lodge</h4>
+                    <p>Un sanctuaire de luxe au cœur de la nature béninoise, où authenticité et raffinement se rencontrent pour créer des souvenirs inoubliables.</p>
                     <div class="social-icons mt-3">
                         <a href="#"><i class="fab fa-facebook"></i></a>
                         <a href="#"><i class="fab fa-instagram"></i></a>
@@ -293,18 +303,16 @@
                 
                 <div class="col-lg-4 mb-4">
                     <h5 class="mb-3">Contact & Localisation</h5>
-                    <p><i class="fas fa-map-marker-alt me-2"></i> Haie Vive, Cotonou, Bénin</p>
-                    <p><i class="fas fa-phone me-2"></i> +229 01 XX XX XX XX</p>
-                    <p><i class="fas fa-phone me-2"></i> +229 02 XX XX XX XX</p>
-                    <p><i class="fas fa-envelope me-2"></i> contact@cactushotel.com</p>
-                    <p><i class="fas fa-envelope me-2"></i> reservation@cactushotel.com</p>
+                    <p><i class="fas fa-map-marker-alt me-2"></i> Covè, République du Bénin</p>
+                    <p><i class="fas fa-phone me-2"></i> +229 0167836481</p>
+                    <p><i class="fas fa-envelope me-2"></i> admin@moradalodge.com</p>
                 </div>
             </div>
             
             <hr class="my-4" style="border-color: rgba(255,255,255,0.1);">
             
             <div class="text-center">
-                <p class="mb-0">&copy; {{ date('Y') }} Cactus Palace - Haie Vive, Cotonou. Tous droits réservés.</p>
+                <p class="mb-0">&copy; {{ date('Y') }} Morada Lodge - Covè, Bénin. Tous droits réservés.</p>
             </div>
         </div>
     </footer>
