@@ -52,7 +52,7 @@
 
 .progress-indicator > li.completed,
 .progress-indicator > li.completed .bubble {
-    color: #65d074;
+    color: #8b4513;
 }
 
 .progress-indicator > li .bubble {
@@ -79,8 +79,8 @@
 .progress-indicator > li.completed .bubble,
 .progress-indicator > li.completed .bubble:after,
 .progress-indicator > li.completed .bubble:before {
-    background-color: #65d074;
-    border-color: #247830;
+    background-color: #8b4513;
+    border-color: #8b4513;
 }
 
 .progress-indicator > li .bubble:before {
@@ -105,25 +105,25 @@
 
 .progress-indicator > li.active,
 .progress-indicator > li.active .bubble {
-    color: #337ab7;
+    color: #8b4513;
 }
 
 .progress-indicator > li.active .bubble,
 .progress-indicator > li.active .bubble:after,
 .progress-indicator > li.active .bubble:before {
-    background-color: #337ab7;
-    border-color: #122a3f;
+    background-color: #8b4513;
+    border-color: #8b4513;
 }
 
 .progress-indicator > li a:hover .bubble,
 .progress-indicator > li a:hover .bubble:after,
 .progress-indicator > li a:hover .bubble:before {
-    background-color: #5671d0;
-    border-color: #1f306e;
+    background-color: #a0522d;
+    border-color: #8b4513;
 }
 
 .progress-indicator > li a:hover .bubble {
-    color: #5671d0;
+    color: #a0522d;
 }
 
 .progress-indicator > li.danger .bubble,

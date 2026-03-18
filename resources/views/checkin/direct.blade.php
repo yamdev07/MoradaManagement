@@ -7,16 +7,16 @@
    VARIABLES (inchangées)
 ══════════════════════════════════════════════ */
 :root {
-    --green-950: #052e16;
-    --green-900: #064e3b;
-    --green-800: #065f46;
-    --green-700: #047857;
-    --green-600: #059669;
-    --green-500: #10b981;
-    --green-400: #34d399;
-    --green-200: #a7f3d0;
-    --green-100: #d1fae5;
-    --green-50:  #ecfdf5;
+    --green-950: #2c1810;
+    --green-900: #3d241a;
+    --green-800: #4e3024;
+    --green-700: #5f3c2e;
+    --green-600: #704838;
+    --green-500: #8b4513;
+    --green-400: #a0522d;
+    --green-200: #f5e6d3;
+    --green-100: #f9f0e6;
+    --green-50:  #fcf8f3;
 
     --blue-600:  #2563eb;
     --blue-100:  #dbeafe;
@@ -72,7 +72,7 @@
     margin-bottom: 18px; flex-wrap: wrap;
 }
 .dc-breadcrumb a { color: var(--slate-400); text-decoration: none; transition: var(--transition); }
-.dc-breadcrumb a:hover { color: var(--green-600); }
+.dc-breadcrumb a:hover { color: var(--primary-600); }
 .dc-breadcrumb .sep { color: var(--slate-300); }
 .dc-breadcrumb .current { color: var(--slate-600); font-weight: 500; }
 
@@ -88,11 +88,11 @@
 }
 .dc-header-icon {
     width: 44px; height: 44px;
-    background: linear-gradient(135deg, var(--green-800), var(--green-600));
+    background: linear-gradient(135deg, var(--primary-800), var(--primary-600));
     border-radius: var(--radius-sm);
     display: flex; align-items: center; justify-content: center;
     color: white; font-size: 1.1rem; flex-shrink: 0;
-    box-shadow: 0 4px 12px rgba(5,150,105,.3);
+    box-shadow: 0 4px 12px rgba(139,69,19,.3);
 }
 .dc-header-subtitle {
     color: var(--slate-500); font-size: .875rem;
@@ -138,7 +138,7 @@
 }
 .stepper-track-progress {
     height: 100%;
-    background: linear-gradient(90deg, var(--green-500), var(--green-400));
+    background: linear-gradient(90deg, var(--primary-500), var(--primary-400));
     transition: width .4s cubic-bezier(.4,0,.2,1);
     border-radius: 2px;
 }
@@ -169,15 +169,15 @@
     box-shadow: 0 0 0 4px white;
 }
 .step-item.active .step-bubble {
-    background: linear-gradient(135deg, var(--green-800), var(--green-600));
-    border-color: var(--green-500);
+    background: linear-gradient(135deg, var(--primary-800), var(--primary-600));
+    border-color: var(--primary-500);
     color: white;
-    box-shadow: 0 0 0 4px white, 0 4px 14px rgba(5,150,105,.35);
+    box-shadow: 0 0 0 4px white, 0 4px 14px rgba(139,69,19,.35);
     transform: scale(1.08);
 }
 .step-item.completed .step-bubble {
-    background: var(--green-500);
-    border-color: var(--green-400);
+    background: var(--primary-500);
+    border-color: var(--primary-400);
     color: white;
     box-shadow: 0 0 0 4px white;
 }
@@ -187,8 +187,8 @@
     color: var(--slate-400); white-space: nowrap;
     transition: var(--transition);
 }
-.step-item.active .step-label { color: var(--green-700); }
-.step-item.completed .step-label { color: var(--green-600); }
+.step-item.active .step-label { color: var(--primary-700); }
+.step-item.completed .step-label { color: var(--primary-600); }
 
 /* ══════════════════════════════════════════════
    FORM CARD
@@ -246,8 +246,8 @@
     width: 100%;
 }
 .form-control-dc:focus {
-    border-color: var(--green-500);
-    box-shadow: 0 0 0 3px rgba(16,185,129,.12);
+    border-color: var(--primary-500);
+    box-shadow: 0 0 0 3px rgba(139,69,19,.12);
 }
 .form-control-dc.error { border-color: var(--red-500); box-shadow: 0 0 0 3px rgba(239,68,68,.1); }
 .form-control-dc-select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%2394a3b8' d='M1 1l5 5 5-5'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; padding-right: 32px; cursor: pointer; }
@@ -322,8 +322,8 @@
 /* ── Night summary ──────────────────────────── */
 .nights-summary {
     display: flex; align-items: center; gap: 16px;
-    background: var(--green-50);
-    border: 1.5px solid var(--green-100);
+    background: var(--primary-50);
+    border: 1.5px solid var(--primary-100);
     border-radius: var(--radius-md);
     padding: 16px 22px;
     margin-top: 18px;
@@ -331,16 +331,16 @@
 .nights-big {
     text-align: center; flex-shrink: 0;
     padding-right: 16px;
-    border-right: 2px solid var(--green-200);
+    border-right: 2px solid var(--primary-200);
 }
 .nights-big-val {
     font-size: 2.2rem; font-weight: 800;
-    color: var(--green-800); line-height: 1;
+    color: var(--primary-800); line-height: 1;
 }
 .nights-big-label {
     font-size: .7rem; font-weight: 700;
     text-transform: uppercase; letter-spacing: .5px;
-    color: var(--green-600); margin-top: 2px;
+    color: var(--primary-600); margin-top: 2px;
 }
 .nights-dates { flex: 1; }
 .nights-route {
@@ -348,7 +348,7 @@
     font-size: .88rem; font-weight: 600; color: var(--slate-700);
     flex-wrap: wrap;
 }
-.nights-arrow { color: var(--green-500); font-size: .8rem; }
+.nights-arrow { color: var(--primary-500); font-size: .8rem; }
 
 /* ── Room grid ──────────────────────────────── */
 .rooms-filters {
@@ -373,23 +373,23 @@
     position: relative;
 }
 .room-card:hover {
-    border-color: var(--green-300);
+    border-color: var(--primary-300);
     box-shadow: var(--shadow-md);
     transform: translateY(-3px);
 }
 .room-card.selected {
-    border-color: var(--green-500);
-    box-shadow: 0 0 0 3px rgba(16,185,129,.2), var(--shadow-md);
+    border-color: var(--primary-500);
+    box-shadow: 0 0 0 3px rgba(139,69,19,.2), var(--shadow-md);
 }
 .room-card.selected::after {
     content: '';
     position: absolute; top: 10px; right: 10px;
     width: 24px; height: 24px;
-    background: var(--green-500); border-radius: 50%;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='9' viewBox='0 0 12 9' fill='none'%3E%3Cpath d='M1 4L4.5 7.5L11 1' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background: var(--primary-500); border-radius: 50%;
+    background-image: url("data:image/svg+xml,%3Csvg width='12' height='9' viewBox='0 0 12 9' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cpath d='M1 4L4.5 7.5L11 1' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/g%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: center;
-    box-shadow: 0 2px 6px rgba(16,185,129,.4);
+    box-shadow: 0 2px 6px rgba(139,69,19,.4);
 }
 .room-img {
     height: 140px;
@@ -402,7 +402,7 @@
 .room-body { padding: 14px; }
 .room-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px; }
 .room-number { font-size: .95rem; font-weight: 700; color: var(--slate-900); }
-.room-price { font-size: .95rem; font-weight: 700; color: var(--green-700); }
+.room-price { font-size: .95rem; font-weight: 700; color: var(--primary-700); }
 .room-type { font-size: .75rem; color: var(--slate-400); margin-bottom: 10px; }
 .room-features { display: flex; gap: 6px; flex-wrap: wrap; }
 .room-feat-tag {
@@ -414,8 +414,8 @@
 
 /* ── Selected room info ─────────────────────── */
 .selected-room-box {
-    background: var(--green-50);
-    border: 2px solid var(--green-200);
+    background: var(--primary-50);
+    border: 2px solid var(--primary-100);
     border-radius: var(--radius-md);
     padding: 16px 20px;
     margin-top: 20px;
@@ -426,7 +426,7 @@
     display: flex; align-items: center; gap: 8px;
     font-size: .82rem; font-weight: 700;
     text-transform: uppercase; letter-spacing: .4px;
-    color: var(--green-700); margin-bottom: 12px;
+    color: var(--primary-700); margin-bottom: 12px;
 }
 .selected-room-grid {
     display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
@@ -435,7 +435,7 @@
 .srg-item {}
 .srg-label { font-size: .7rem; color: var(--slate-400); font-weight: 600; text-transform: uppercase; letter-spacing: .3px; }
 .srg-value { font-size: .875rem; font-weight: 600; color: var(--slate-800); margin-top: 2px; }
-.srg-value-price { color: var(--green-700); font-size: .95rem; font-weight: 700; }
+.srg-value-price { color: var(--primary-700); font-size: .95rem; font-weight: 700; }
 
 /* ── Summary boxes ──────────────────────────── */
 .summary-grid {
@@ -524,26 +524,26 @@
     display: inline-flex; align-items: center; gap: 8px;
     padding: 10px 24px; border-radius: var(--radius-sm);
     font-size: .875rem; font-weight: 600;
-    background: linear-gradient(135deg, var(--green-800), var(--green-600));
+    background: linear-gradient(135deg, var(--primary-800), var(--primary-600));
     color: white; border: none; cursor: pointer;
     transition: var(--transition);
-    box-shadow: 0 4px 12px rgba(5,150,105,.3);
+    box-shadow: 0 4px 12px rgba(139,69,19,.3);
 }
-.btn-dc-next:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(5,150,105,.38); }
+.btn-dc-next:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(139,69,19,.38); }
 .btn-dc-next:disabled {
     opacity: .5; cursor: not-allowed; transform: none;
     box-shadow: none;
 }
 .btn-dc-submit {
-    background: linear-gradient(135deg, #065f46, #059669);
+    background: linear-gradient(135deg, var(--primary-800), var(--primary-600));
     display: inline-flex; align-items: center; gap: 8px;
     padding: 11px 28px; border-radius: var(--radius-sm);
     font-size: .9rem; font-weight: 700;
     color: white; border: none; cursor: pointer;
     transition: var(--transition);
-    box-shadow: 0 4px 14px rgba(5,150,105,.35);
+    box-shadow: 0 4px 14px rgba(139,69,19,.35);
 }
-.btn-dc-submit:hover { transform: translateY(-2px); box-shadow: 0 8px 22px rgba(5,150,105,.4); }
+.btn-dc-submit:hover { transform: translateY(-2px); box-shadow: 0 8px 22px rgba(139,69,19,.4); }
 .btn-dc-submit:disabled { opacity: .6; cursor: not-allowed; transform: none; }
 
 /* ── Info note ──────────────────────────────── */
@@ -755,7 +755,7 @@
         <div class="dc-tab" id="tab-3">
             <div class="dc-card">
                 <div class="dc-card-header">
-                    <div class="dc-card-header-icon" style="background:var(--green-50);color:var(--green-700)">
+                    <div class="dc-card-header-icon" style="background:var(--primary-50);color:var(--primary-700)">
                         <i class="fas fa-bed"></i>
                     </div>
                     <h2 class="dc-card-header-title">Sélection de la Chambre</h2>
@@ -852,7 +852,7 @@
                     <!-- Chambre sélectionnée -->
                     <div class="selected-room-box" id="selected-room-box">
                         <div class="selected-room-box-title">
-                            <i class="fas fa-check-circle" style="color:var(--green-600)"></i>
+                            <i class="fas fa-check-circle" style="color:var(--primary-600)"></i>
                             Chambre sélectionnée
                         </div>
                         <div class="selected-room-grid">
@@ -892,7 +892,7 @@
         <div class="dc-tab" id="tab-4">
             <div class="dc-card">
                 <div class="dc-card-header">
-                    <div class="dc-card-header-icon" style="background:var(--green-50);color:var(--green-700)">
+                    <div class="dc-card-header-icon" style="background:var(--primary-50);color:var(--primary-700)">
                         <i class="fas fa-clipboard-check"></i>
                     </div>
                     <h2 class="dc-card-header-title">Confirmation du Check-in</h2>
@@ -911,13 +911,13 @@
                             <div class="summary-row"><span class="summary-key">Genre</span><span class="summary-val" id="s-gender">—</span></div>
                         </div>
                         <div class="summary-box">
-                            <div class="summary-box-title" style="color:var(--green-700)">
+                            <div class="summary-box-title" style="color:var(--brown-700)">
                                 <i class="fas fa-bed"></i> Chambre
                             </div>
                             <div class="summary-row"><span class="summary-key">Numéro</span><span class="summary-val" id="s-room">—</span></div>
                             <div class="summary-row"><span class="summary-key">Type</span><span class="summary-val" id="s-room-type">—</span></div>
                             <div class="summary-row"><span class="summary-key">Capacité</span><span class="summary-val" id="s-room-cap">—</span></div>
-                            <div class="summary-row"><span class="summary-key">Prix/nuit</span><span class="summary-val" id="s-price-night" style="color:var(--green-700)">—</span></div>
+                            <div class="summary-row"><span class="summary-key">Prix/nuit</span><span class="summary-val" id="s-price-night" style="color:var(--primary-700)">—</span></div>
                         </div>
                         <div class="summary-box">
                             <div class="summary-box-title" style="color:var(--blue-600)">
@@ -928,11 +928,11 @@
                             <div class="summary-row"><span class="summary-key">Durée</span><span class="summary-val" id="s-nights">—</span></div>
                         </div>
                         <div class="summary-box">
-                            <div class="summary-box-title" style="color:var(--green-700)">
+                            <div class="summary-box-title" style="color:var(--brown-700)">
                                 <i class="fas fa-money-bill-wave"></i> Financier
                             </div>
                             <div class="summary-row"><span class="summary-key">Prix/nuit</span><span class="summary-val" id="s-price2">—</span></div>
-                            <div class="summary-row"><span class="summary-key">Total</span><span class="summary-val" id="s-total" style="color:var(--green-700);font-size:1rem">—</span></div>
+                            <div class="summary-row"><span class="summary-key">Total</span><span class="summary-val" id="s-total" style="color:var(--primary-700);font-size:1rem">—</span></div>
                             <div class="summary-row"><span class="summary-key">Méthode</span><span class="summary-val">Direct</span></div>
                         </div>
                     </div>
@@ -1189,7 +1189,7 @@ function fillCustomer(name, phone, email) {
 
 /* ── Toast alerts ────────────────────────────── */
 function showAlert(msg, type = 'error') {
-    const colors = { error: 'var(--red-500)', info: 'var(--blue-600)', success: 'var(--green-500)' };
+    const colors = { error: 'var(--red-500)', info: 'var(--blue-600)', success: 'var(--primary-500)' };
     const icons  = { error: 'fa-exclamation-circle', info: 'fa-info-circle', success: 'fa-check-circle' };
     const t = document.createElement('div');
     t.style.cssText = `

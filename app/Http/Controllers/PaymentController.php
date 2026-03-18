@@ -489,8 +489,8 @@ class PaymentController extends Controller
             // 2. Recalculer le prix total (au cas où les dates ont changé)
             $totalPrice = $transaction->getTotalPrice();
 
-            // 3. Mettre à jour la transaction
-            $transaction->update([
+            // Les totaux sont calculés dynamiquement, pas besoin de les stocker
+            Log::info("Paiement traité pour transaction #{$transaction->id}", [
                 'total_price' => $totalPrice,
                 'total_payment' => $totalPayment,
             ]);

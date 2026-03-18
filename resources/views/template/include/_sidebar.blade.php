@@ -8,7 +8,7 @@
     <a href="{{ route('dashboard.index') }}" class="sidebar-logo">
         <div class="d-flex align-items-center">
             <div class="">
-                <img src="{{ asset('img/logo_cactus1.jpeg') }}"
+                <img src="{{ asset('img/logo/logo_ancien.jpg') }}"
                     alt="Hotel Cactus"
                     style="height: 42px; border-radius: 8px;">
             </div>
@@ -425,7 +425,7 @@
                                               html: 'Vous avez une session active <strong>#{{ $activeSession->id }}</strong>.<br><br>' +
                                                     'Veuillez la clôturer avant de vous déconnecter.',
                                               icon: 'warning',
-                                              confirmButtonColor: '#10b981',
+                                              confirmButtonColor: '#8b4513',
                                               confirmButtonText: 'Compris',
                                               showCancelButton: true,
                                               cancelButtonText: 'Aller à la session',
@@ -461,7 +461,7 @@
                                             text: 'Voulez-vous vraiment vous déconnecter ?',
                                             icon: 'question',
                                             showCancelButton: true,
-                                            confirmButtonColor: '#10b981',
+                                            confirmButtonColor: '#4e3024',
                                             cancelButtonColor: '#64748b',
                                             confirmButtonText: 'Oui, déconnecter',
                                             cancelButtonText: 'Annuler'
@@ -569,7 +569,7 @@
 /* ─── Base ─────────────────────────────────── */
 .sidebar {
     width: 272px;
-    background: linear-gradient(170deg, #064e3b 0%, #065f46 55%, #047857 100%);
+    background: linear-gradient(170deg, #4e3024 0%, #5f3c2e 55%, #704838 100%);
     color: #fff;
     position: fixed;
     left: 0;
@@ -691,15 +691,15 @@
 }
 .nav-item.active {
     color: #fff;
-    background: linear-gradient(90deg, rgba(16,185,129,.22), rgba(16,185,129,.04));
-    border-left-color: #10b981;
+    background: linear-gradient(90deg, rgba(139,69,19,.22), rgba(139,69,19,.04));
+    border-left-color: #8b4513;
     font-weight: 500;
 }
 
 /* ─── Highlight items ─────────────────────────── */
 .nav-item--highlight .nav-icon {
-    background: rgba(16,185,129,.18);
-    color: #6ee7b7;
+    background: rgba(139,69,19,.18);
+    color: #a0522d;
 }
 .nav-item--highlight .nav-title {
     font-weight: 600;
@@ -707,8 +707,8 @@
 }
 .nav-item--highlight:hover .nav-icon,
 .nav-item--highlight.active .nav-icon {
-    background: rgba(16,185,129,.28);
-    color: #34d399;
+    background: rgba(139,69,19,.28);
+    color: #a0522d;
     transform: scale(1.08);
 }
 
@@ -735,8 +735,8 @@
     transition: background .18s, color .18s, transform .18s;
 }
 .nav-item.active .nav-icon {
-    background: rgba(16,185,129,.2);
-    color: #34d399;
+    background: rgba(139,69,19,.2);
+    color: #a0522d;
     transform: scale(1.06);
 }
 
@@ -807,7 +807,7 @@
 .avatar-placeholder {
     width: 100%; height: 100%;
     border-radius: 50%;
-    background: linear-gradient(135deg, #10b981, #047857);
+    background: linear-gradient(135deg, #8b4513, #704838);
     display: flex; align-items: center; justify-content: center;
     color: white; font-size: 1rem;
     border: 2px solid rgba(255,255,255,.15);
@@ -834,8 +834,8 @@
 
 /* ─── Badge colors ──────────────────────────── */
 .bg-danger   { background: linear-gradient(135deg, #dc2626, #b91c1c) !important; }
-.bg-primary  { background: linear-gradient(135deg, #3b82f6, #1d4ed8) !important; }
-.bg-success  { background: linear-gradient(135deg, #10b981, #047857) !important; }
+.bg-primary  { background: linear-gradient(135deg, #8b4513, #704838) !important; }
+.bg-success  { background: linear-gradient(135deg, #8b4513, #704838) !important; }
 .bg-warning  { background: linear-gradient(135deg, #f59e0b, #d97706) !important; }
 .bg-info     { background: linear-gradient(135deg, #06b6d4, #0891b2) !important; }
 .bg-secondary{ background: linear-gradient(135deg, #64748b, #475569) !important; }

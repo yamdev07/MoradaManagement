@@ -629,25 +629,12 @@ class Transaction extends Model
         
         // 3. Prix total = base + (late fee seulement si late checkout actif)
         $totalWithLate = $basePrice;
+        
         if ($hasLateCheckout && $lateFee > 0) {
             $totalWithLate = $basePrice + $lateFee;
         }
         
-        // 4. Si le champ total_price existe et est différent, le mettre à jour
-        if ($this->total_price && abs($totalWithLate - (float) $this->total_price) > 1) {
-            \Log::info("Correction prix transaction #{$this->id}", [
-                'base_price' => $basePrice,
-                'has_late_checkout' => $hasLateCheckout,
-                'late_fee' => $lateFee,
-                'ancien' => $this->total_price,
-                'nouveau' => $totalWithLate,
-            ]);
-            
-            $this->total_price = $totalWithLate;
-            $this->saveQuietly();
-        }
-        
-        return (float) ($this->total_price ?? $totalWithLate);
+        return (float) $totalWithLate;
     }
 
     /**
@@ -727,38 +714,15 @@ class Transaction extends Model
     public function getTotalPayment()
     {
         try {
-            // TOUJOURS calculer depuis la base pour garantir l'exactitude
+            // Calculer depuis la base pour garantir l'exactitude
             $total = $this->completedPayments()->sum('amount');
-
-            // Si la valeur stockée est différente, la mettre à jour
-            if (abs($total - (float) ($this->total_payment ?? 0)) > 0.01) {
-                $oldTotal = $this->total_payment;
-                $this->total_payment = $total;
-                $this->saveQuietly();
-
-                // Logger la mise à jour
-                if ($oldTotal != $total) {
-                    activity()
-                        ->performedOn($this)
-                        ->withProperties([
-                            'old_total' => $oldTotal,
-                            'new_total' => $total,
-                        ])
-                        ->log('a mis à jour le total des paiements');
-                }
-
-                Log::info("Total paiement mis à jour pour transaction #{$this->id}", [
-                    'ancien' => $oldTotal,
-                    'nouveau' => $total,
-                ]);
-            }
 
             return (float) $total;
 
         } catch (\Exception $e) {
             Log::error("Erreur calcul total paiement transaction #{$this->id}: ".$e->getMessage());
 
-            return (float) ($this->total_payment ?? 0);
+            return 0;
         }
     }
 
@@ -856,38 +820,8 @@ class Transaction extends Model
             // Calculer le total des paiements COMPLÉTÉS
             $totalPaid = $this->completedPayments()->sum('amount');
 
-            // Vérifier les incohérences
-            $oldTotal = (float) ($this->total_payment ?? 0);
-            $diff = abs($totalPaid - $oldTotal);
-
-            if ($diff > 1) {
-                Log::warning("Incohérence détectée transaction #{$this->id}", [
-                    'ancien_total' => $oldTotal,
-                    'nouveau_total' => $totalPaid,
-                    'différence' => $diff,
-                ]);
-            }
-
-            // Mettre à jour
-            $this->total_payment = $totalPaid;
-            $this->save();
-
-            // Logger la mise à jour
-            if ($diff > 0.01) {
-                activity()
-                    ->performedOn($this)
-                    ->withProperties([
-                        'old_total' => $oldTotal,
-                        'new_total' => $totalPaid,
-                        'difference' => $diff,
-                    ])
-                    ->log('a recalculé le total des paiements');
-            }
-
-            // Forcer le rafraîchissement
-            $this->refresh();
-
-            Log::info("Transaction #{$this->id} mise à jour", [
+            // Logger le calcul
+            Log::info("Total calculé pour transaction #{$this->id}", [
                 'total_payment' => $totalPaid,
                 'remaining' => $this->getRemainingPayment(),
             ]);
@@ -1022,8 +956,6 @@ class Transaction extends Model
      */
     public function syncPaymentTotals()
     {
-        DB::beginTransaction();
-
         try {
             Log::info("Synchronisation manuelle transaction #{$this->id}");
 
@@ -1031,47 +963,12 @@ class Transaction extends Model
             $totalPrice = $this->getTotalPrice();
             $totalPayment = $this->completedPayments()->sum('amount');
 
-            // Sauvegarder les anciennes valeurs
-            $oldTotalPrice = $this->total_price;
-            $oldTotalPayment = $this->total_payment;
+            // Les totaux sont calculés dynamiquement, pas besoin de les stocker
+            Log::info("Totaux calculés pour transaction #{$this->id}", [
+                'total_price' => $totalPrice,
+                'total_payment' => $totalPayment,
+            ]);
 
-            // Mettre à jour
-            $this->total_price = $totalPrice;
-            $this->total_payment = $totalPayment;
-            $this->save();
-
-            // Logger la synchronisation
-            activity()
-                ->causedBy(auth()->user())
-                ->performedOn($this)
-                ->withProperties([
-                    'old_price' => $oldTotalPrice,
-                    'new_price' => $totalPrice,
-                    'old_payment' => $oldTotalPayment,
-                    'new_payment' => $totalPayment,
-                ])
-                ->log('a synchronisé les totaux de la réservation');
-
-            // Rafraîchir
-            $this->refresh();
-
-            $result = [
-                'success' => true,
-                'message' => 'Transaction synchronisée avec succès',
-                'total_price' => [
-                    'old' => (float) $oldTotalPrice,
-                    'new' => (float) $totalPrice,
-                    'changed' => $totalPrice != $oldTotalPrice,
-                ],
-                'total_payment' => [
-                    'old' => (float) $oldTotalPayment,
-                    'new' => (float) $totalPayment,
-                    'changed' => $totalPayment != $oldTotalPayment,
-                ],
-                'remaining' => $this->getRemainingPayment(),
-                'payment_rate' => $this->getPaymentRate(),
-                'is_fully_paid' => $this->isFullyPaid(),
-            ];
 
             Log::info('Synchronisation terminée', $result);
 
@@ -1139,17 +1036,8 @@ class Transaction extends Model
     {
         parent::boot();
 
-        // Initialiser total_payment à 0 si null
-        static::creating(function ($transaction) {
-            if (! $transaction->total_payment) {
-                $transaction->total_payment = 0;
-            }
-        });
-
-        // Après création, forcer le calcul
+        // Après création, logger la création
         static::created(function ($transaction) {
-            $transaction->updatePaymentStatus();
-
             // Logger la création
             activity()
                 ->causedBy(auth()->user())
@@ -1253,17 +1141,7 @@ class Transaction extends Model
                 'room_id' => $data['room_id'],
                 'check_in' => $data['check_in'],
                 'check_out' => $data['check_out'],
-                'check_in_time' => $data['check_in_time'] ?? '14:00:00',
-                'check_out_time' => $data['check_out_time'] ?? '12:00:00',
                 'status' => self::STATUS_RESERVED_WAITING,
-                'person_count' => $data['person_count'] ?? 1,
-                'total_price' => $data['total_price'],
-                'total_payment' => 0,
-                'notes' => $data['notes'] . ' | En attente du check-out du client actuel',
-                'special_requests' => $data['special_requests'] ?? null,
-                'id_type' => $data['id_type'] ?? null,
-                'id_number' => $data['id_number'] ?? null,
-                'nationality' => $data['nationality'] ?? null,
             ]);
             
             DB::commit();
@@ -1286,7 +1164,6 @@ class Transaction extends Model
         }
         
         $this->status = self::STATUS_RESERVATION;
-        $this->notes = $this->notes . ' | Confirmée après check-out';
         $this->save();
         
         activity()

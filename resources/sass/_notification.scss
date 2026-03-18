@@ -135,7 +135,7 @@ p:not([class]):first-child {
                                         */
 
 .timelines {
-    --uiTimelineMainColor: var(--timelineMainColor, #222);
+    --uiTimelineMainColor: var(--timelineMainColor, #8b4513);
     --uiTimelineSecondaryColor: var(--timelineSecondaryColor, #fff);
     border-left: var(--timelineLineWidth, 3px) solid var(--timelineLineBackgroundColor, var(--uiTimelineMainColor));
     padding-top: 1rem;
@@ -186,7 +186,7 @@ p:not([class]):first-child {
 /**/
 
 .timelines {
-    --timelineMainColor: #4557bb;
+    --timelineMainColor: #8b4513;
 }
 
 /*

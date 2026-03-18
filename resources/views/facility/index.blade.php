@@ -1,97 +1,409 @@
 @extends('template.master')
-@section('title', 'Facilities')
+@section('title', 'Équipements')
 @section('content')
 
-<div class="d-flex justify-content-between align-items-center mb-3">
-    <h3 class="mb-0">Facilities</h3>
-    <a href="{{ route('facility.create') }}" class="btn btn-success">
-        <i class="fas fa-plus me-2"></i>Add Facility
-    </a>
-</div>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap');
 
-<div class="card shadow-sm border-0">
-    <div class="card-body p-0">
-        <table class="table table-hover mb-0">
-            <thead class="table-light">
-                <tr>
-                    <th>#</th>
-                    <th>Name</th>
-                    <th>Status</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                @forelse($facilities as $facility)
-                    <tr>
-                        <td>{{ $loop->iteration }}</td>
-                        <td>{{ $facility->name }}</td>
-                        <td>
-                            @if($facility->status)
-                                <span class="badge bg-success">Active</span>
-                            @else
-                                <span class="badge bg-danger">Inactive</span>
-                            @endif
-                        </td>
-                        <td>
-                            <a href="{{ route('facility.edit', $facility->id) }}" class="btn btn-sm btn-primary">
-                                <i class="fas fa-edit"></i> Edit
-                            </a>
-                            <button class="btn btn-sm btn-danger delete" 
-                                    data-id="{{ $facility->id }}" 
-                                    data-name="{{ $facility->name }}">
-                                <i class="fas fa-trash"></i> Delete
-                            </button>
+:root {
+    /* ── Morada Lodge Palette ── */
+    /* BROWN/BEIGE */
+    --m50:  #f9f5f0;
+    --m100: #f4f1e8;
+    --m200: #e8dcc0;
+    --m300: #d4b896;
+    --m400: #c19a6b;
+    --m500: #8b4513;
+    --m600: #704838;
+    --m700: #5a2b0d;
+    --m800: #4a1f08;
+    --m900: #3a1504;
+    /* BLANC / SURFACE */
+    --white:    #ffffff;
+    --surface:  #f9f5f0;
+    --surface2: #f4f1e8;
+    /* GRIS */
+    --s50:  #fafafa;
+    --s100: #f5f5f5;
+    --s200: #e5e5e5;
+    --s300: #d4d4d4;
+    --s400: #a3a3a3;
+    --s500: #737373;
+    --s600: #525252;
+    --s700: #404040;
+    --s800: #262626;
+    --s900: #171717;
 
-                            <form id="delete-facility-form-{{ $facility->id }}" 
-                                  action="{{ route('facility.destroy', $facility->id) }}" 
-                                  method="POST" class="d-none">
-                                @csrf
-                                @method('DELETE')
-                            </form>
-                        </td>
-                    </tr>
-                @empty
-                    <tr>
-                        <td colspan="4" class="text-center text-muted">No facilities found.</td>
-                    </tr>
-                @endforelse
-            </tbody>
-        </table>
+    --shadow-xs: 0 1px 2px rgba(0,0,0,.04);
+    --shadow-sm: 0 1px 6px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.04);
+    --shadow-md: 0 4px 16px rgba(0,0,0,.08), 0 2px 4px rgba(0,0,0,.04);
+    --shadow-lg: 0 12px 40px rgba(0,0,0,.10), 0 4px 12px rgba(0,0,0,.05);
+
+    --r:   8px;
+    --rl:  14px;
+    --rxl: 20px;
+    --transition: all .2s cubic-bezier(.4,0,.2,1);
+    --font: 'DM Sans', system-ui, sans-serif;
+    --mono: 'DM Mono', monospace;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+.facility-page {
+    background: var(--surface);
+    min-height: 100vh;
+    padding: 28px 32px 64px;
+    font-family: var(--font);
+    color: var(--s800);
+}
+
+/* ── Animations ── */
+@keyframes fadeSlide {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+.anim-1 { animation: fadeSlide .4s ease both; }
+.anim-2 { animation: fadeSlide .4s .08s ease both; }
+
+/* ══════════════════════════════════════════════
+   BREADCRUMB
+══════════════════════════════════════════════ */
+.breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: .8rem;
+    color: var(--s400);
+    margin-bottom: 20px;
+}
+.breadcrumb a {
+    color: var(--s400);
+    text-decoration: none;
+    transition: var(--transition);
+}
+.breadcrumb a:hover {
+    color: var(--g600);
+}
+.breadcrumb .sep {
+    color: var(--s300);
+}
+.breadcrumb .current {
+    color: var(--s600);
+    font-weight: 500;
+}
+
+/* ══════════════════════════════════════════════
+   HEADER
+══════════════════════════════════════════════ */
+.page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+    gap: 16px;
+    padding-bottom: 24px;
+    border-bottom: 1.5px solid var(--s100);
+}
+.header-title {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+.header-icon {
+    width: 48px;
+    height: 48px;
+    background: var(--m600);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+    box-shadow: 0 4px 14px rgba(139,69,19,.35);
+}
+.header-title h1 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--s900);
+    margin: 0;
+    line-height: 1.2;
+    letter-spacing: -.3px;
+}
+.header-title em {
+    font-style: normal;
+    color: var(--m600);
+}
+.header-subtitle {
+    color: var(--s400);
+    font-size: .8rem;
+    margin-top: 3px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.header-subtitle i { color: var(--m500); }
+.header-actions { display: flex; align-items: center; gap: 10px; }
+
+/* ════════════════════════════════════════════
+   BUTTONS
+══════════════════════════════════════════════ */
+.btn-db {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 20px;
+    border-radius: var(--r);
+    font-size: .8rem;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    transition: var(--transition);
+    text-decoration: none;
+    white-space: nowrap;
+    line-height: 1;
+    font-family: var(--font);
+}
+.btn-db-primary {
+    background: var(--m600);
+    color: white;
+    box-shadow: 0 2px 10px rgba(139,69,19,.3);
+}
+.btn-db-primary:hover {
+    background: var(--m700);
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 14px rgba(139,69,19,.35);
+}
+.btn-db-ghost {
+    background: var(--white);
+    color: var(--s600);
+    border: 1.5px solid var(--s200);
+}
+.btn-db-ghost:hover {
+    background: var(--m50);
+    border-color: var(--m300);
+    color: var(--m700);
+}
+.btn-sm {
+    padding: 6px 12px;
+    font-size: .7rem;
+}
+
+/* ════════════════════════════════════════════
+   CARD
+══════════════════════════════════════════════ */
+.card {
+    background: var(--white);
+    border: 1.5px solid var(--s100);
+    border-radius: var(--rxl);
+    overflow: hidden;
+    margin-bottom: 20px;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+}
+.card:hover { box-shadow: var(--shadow-md); }
+.table-responsive {
+    overflow-x: auto;
+}
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.table thead th {
+    background: var(--s50);
+    padding: 12px 16px;
+    font-size: .7rem;
+    font-weight: 600;
+    color: var(--s500);
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    border-bottom: 1.5px solid var(--s100);
+    text-align: left;
+}
+.table tbody td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--s100);
+    color: var(--s700);
+    font-size: .8rem;
+    vertical-align: middle;
+}
+.table tbody tr:hover td { background: var(--m50); }
+
+/* ════════════════════════════════════════════
+   BADGES
+══════════════════════════════════════════════ */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 10px;
+    border-radius: 100px;
+    font-size: .68rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+.badge-primary { background: var(--m100); color: var(--m700); border: 1.5px solid var(--m200); }
+.badge-success { background: var(--m100); color: var(--m700); border: 1.5px solid var(--m200); }
+.badge-danger { background: #fee2e2; color: #b91c1c; border: 1.5px solid #fecaca; }
+.badge-info { background: var(--m50); color: var(--m600); border: 1.5px solid var(--m200); }
+.badge-secondary { background: var(--s100); color: var(--s600); border: 1.5px solid var(--s200); }
+.badge-number {
+    background: var(--s100);
+    color: var(--s600);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: .65rem;
+}
+
+/* ════════════════════════════════════════════
+   EMPTY STATE
+══════════════════════════════════════════════ */
+.empty-state {
+    text-align: center;
+    padding: 48px 24px;
+}
+.empty-state i {
+    font-size: 3rem;
+    color: var(--s300);
+    margin-bottom: 16px;
+}
+.empty-state h5 {
+    font-size: .95rem;
+    font-weight: 600;
+    color: var(--s600);
+    margin-bottom: 4px;
+}
+.empty-state p {
+    color: var(--s400);
+    font-size: .8rem;
+}
+</style>
+
+<div class="facility-page">
+
+    {{-- Breadcrumb --}}
+    <div class="breadcrumb anim-1">
+        <a href="{{ route('dashboard.index') }}"><i class="fas fa-home"></i> Dashboard</a>
+        <span class="sep"><i class="fas fa-chevron-right fa-xs"></i></span>
+        <span class="current">Équipements</span>
     </div>
+
+    {{-- En-tête --}}
+    <div class="page-header anim-2">
+        <div>
+            <div class="header-title">
+                <span class="header-icon"><i class="fas fa-cogs"></i></span>
+                <h1>Gestion des <em>équipements</em></h1>
+            </div>
+            <p class="header-subtitle">Liste des équipements disponibles dans les chambres</p>
+        </div>
+        <a href="{{ route('facility.create') }}" class="btn-db btn-db-primary">
+            <i class="fas fa-plus-circle"></i> Ajouter
+        </a>
+    </div>
+
+    {{-- Tableau --}}
+    <div class="card">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th width="80">#</th>
+                        <th>Nom</th>
+                        <th width="120">Statut</th>
+                        <th width="200" class="text-center">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @forelse($facilities as $facility)
+                        <tr>
+                            <td><span class="badge badge-gray">{{ $loop->iteration }}</span></td>
+                            <td>
+                                <div class="d-flex align-items-center gap-2">
+                                    @if($facility->icon)
+                                        <i class="fas {{ $facility->icon }}" style="color:var(--m600);"></i>
+                                    @else
+                                        <i class="fas fa-cog" style="color:var(--m600);"></i>
+                                    @endif
+                                    <span class="fw-semibold">{{ $facility->name }}</span>
+                                </div>
+                            </td>
+                            <td>
+                                @if($facility->status)
+                                    <span class="badge badge-primary"><i class="fas fa-check-circle"></i> Actif</span>
+                                @else
+                                    <span class="badge badge-danger"><i class="fas fa-times-circle"></i> Inactif</span>
+                                @endif
+                            </td>
+                            <td>
+                                <div class="d-flex gap-1 justify-content-center">
+                                    <a href="{{ route('facility.edit', $facility->id) }}" 
+                                       class="btn btn-gray btn-sm"
+                                       title="Modifier">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <button class="btn btn-red btn-sm delete" 
+                                            data-id="{{ $facility->id }}" 
+                                            data-name="{{ $facility->name }}"
+                                            title="Supprimer">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                    <form id="delete-form-{{ $facility->id }}" 
+                                          action="{{ route('facility.destroy', $facility->id) }}" 
+                                          method="POST" class="d-none">
+                                        @csrf @method('DELETE')
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="4">
+                                <div class="empty-state">
+                                    <div class="empty-icon"><i class="fas fa-cogs"></i></div>
+                                    <h4>Aucun équipement</h4>
+                                    <p>Commencez par ajouter un équipement.</p>
+                                    <a href="{{ route('facility.create') }}" class="btn btn-primary mt-3">
+                                        <i class="fas fa-plus-circle"></i> Ajouter
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
+    </div>
+
 </div>
 
-@endsection
-
-@section('footer')
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        $('.delete').click(function() {
-            var facility_id = $(this).data('id');
-            var facility_name = $(this).data('name');
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.delete').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const id = this.dataset.id;
+            const name = this.dataset.name;
 
-            const swalWithBootstrapButtons = Swal.mixin({
-                customClass: {
-                    confirmButton: 'btn btn-success',
-                    cancelButton: 'btn btn-danger'
-                },
-                buttonsStyling: false
-            });
-
-            swalWithBootstrapButtons.fire({
-                title: 'Are you sure?',
-                text: "Facility \"" + facility_name + "\" will be deleted. You won't be able to revert this!",
+            Swal.fire({
+                title: 'Confirmer la suppression',
+                html: `Supprimer l'équipement <strong>${name}</strong> ?`,
                 icon: 'warning',
                 showCancelButton: true,
-                confirmButtonText: 'Yes, delete it!',
-                cancelButtonText: 'No, cancel!',
-                reverseButtons: true
+                confirmButtonColor: '#1e6b2e',
+                cancelButtonColor: '#b91c1c',
+                confirmButtonText: '<i class="fas fa-check"></i> Oui, supprimer',
+                cancelButtonText: '<i class="fas fa-times"></i> Annuler'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    var form_id = "#delete-facility-form-" + facility_id;
-                    $(form_id).submit();
+                    document.getElementById(`delete-form-${id}`).submit();
                 }
             });
         });
     });
+});
 </script>
+
 @endsection

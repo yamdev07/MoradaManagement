@@ -15,10 +15,10 @@
     --txt2:     #475569;
     --txt3:     #94a3b8;
     
-    --blue:     #3b82f6;
-    --blue-dim: rgba(59,130,246,.15);
-    --grn:      #10b981;
-    --grn-dim:  rgba(16,185,129,.15);
+    --blue:     #8b4513;
+    --blue-dim: rgba(139, 69, 19, .15);
+    --grn:      #a0522d;
+    --grn-dim:  rgba(139, 69, 19, .15);
     --yel:      #eab308;
     --yel-dim:  rgba(234,179,8,.15);
     --red:      #ef4444;

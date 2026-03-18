@@ -47,16 +47,18 @@
                     <!-- Image principale -->
                     <div class="main-image-container mb-3">
                         @php
-                            // Image principale par défaut
-                            $mainImage = asset('img/default/default-room.png');
+                            // Images de haute qualité pour la chambre
+                            $roomImages = [
+                                'https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+                                'https://images.unsplash.com/photo-1611892440507-42a662e3ab78?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+                                'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80'
+                            ];
+                            $mainImage = $roomImages[0]; // Image principale par défaut
                             
-                            // Chercher une image dans les images de la chambre
-                            if($room->images && $room->images->count() > 0) {
-                                $firstImage = $room->images->first();
-                                $testPath = 'img/room/' . $room->number . '/' . $firstImage->url;
-                                if(file_exists(public_path($testPath))) {
-                                    $mainImage = asset($testPath);
-                                }
+                            // Utiliser les images locales si elles existent
+                            $localImage = 'img/room/room1.jpg';
+                            if(file_exists(public_path($localImage))) {
+                                $mainImage = asset($localImage);
                             }
                         @endphp
                         

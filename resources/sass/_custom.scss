@@ -17,7 +17,7 @@
    Base Styles (Mobile First)
    =================================== */
 body {
-    background-color: #f8fafc;
+    background-color: #f4f1e8;
     font-family: "Inter", "Nunito", sans-serif;
     font-size: 0.875rem;
     line-height: 1.6;
@@ -26,7 +26,7 @@ body {
 }
 
 body.sidebar-layout {
-    background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+    background: linear-gradient(135deg, #f4f1e8 0%, #f5e6d3 100%);
     min-height: 100vh;
     padding-top: 65px; // Mobile header space
 }
@@ -150,7 +150,7 @@ body.sidebar-layout {
    Welcome Section (Mobile First)
    =================================== */
 .welcome-section {
-    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+    background: linear-gradient(135deg, #ffffff 0%, #f4f1e8 100%);
     border-radius: 12px;
     padding: 1.5rem;
     margin-bottom: 1.5rem;
@@ -159,7 +159,7 @@ body.sidebar-layout {
 }
 
 .text-gradient {
-    background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+    background: linear-gradient(135deg, #8b4513 0%, #a0522d 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -184,21 +184,21 @@ body.sidebar-layout {
 }
 
 .btn-hotel-primary {
-    background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+    background: linear-gradient(135deg, #8b4513 0%, #a0522d 100%);
     color: white;
 
     &:hover {
-        background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 100%);
+        background: linear-gradient(135deg, #654321 0%, #8b4513 100%);
         color: white;
     }
 }
 
 .btn-hotel-success {
-    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    background: linear-gradient(135deg, #7B6856 0%, #6B5846 100%);
     color: white;
 
     &:hover {
-        background: linear-gradient(135deg, #059669 0%, #047857 100%);
+        background: linear-gradient(135deg, #A0522D 0%, #6B3410 100%);
         color: white;
     }
 }
@@ -303,11 +303,11 @@ body.sidebar-layout {
 }
 
 .card-stats-success {
-    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);
+    background: linear-gradient(135deg, #FFC107 0%, #FFA07A 100%);
+    box-shadow: 0 4px 12px rgba(255, 193, 7, 0.25);
 
     &:hover {
-        box-shadow: 0 8px 25px rgba(16, 185, 129, 0.35);
+        box-shadow: 0 8px 25px rgba(255, 193, 7, 0.35);
     }
 }
 
@@ -482,11 +482,11 @@ body.sidebar-layout {
             &.bg-success {
                 background: linear-gradient(
                     135deg,
-                    #34d399 0%,
-                    #10b981 100%
+                    #8B7A6A 0%,
+                    #7B6856 100%
                 ) !important;
                 color: white;
-                border-color: #059669;
+                border-color: #6B5846;
             }
 
             &.bg-warning {
@@ -513,7 +513,7 @@ body.sidebar-layout {
         // Price formatting
         .price {
             font-weight: 700;
-            color: #059669;
+            color: #7B6856;
             font-size: 0.9rem;
         }
     }
@@ -594,11 +594,12 @@ body.sidebar-layout {
                 &:hover {
                     background: linear-gradient(
                         135deg,
-                        #059669 0%,
-                        #047857 100%
+                        #7B6856 0%,
+                        #6B5846 100%
                     );
                     color: white;
-                    border-color: #047857;
+                    border-color: #6B5846;
+                    box-shadow: 0 6px 20px rgba(123, 104, 86, 0.4);
                 }
             }
 
@@ -740,19 +741,19 @@ body.sidebar-layout {
                     &.bg-success {
                         background: linear-gradient(
                             135deg,
-                            #10b981 0%,
-                            #059669 100%
+                            #7B6856 0%,
+                            #6B5846 100%
                         ) !important;
                         color: white;
-                        border-color: rgba(5, 150, 105, 0.3);
-                        box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+                        border-color: rgba(123, 104, 86, 0.3);
+                        box-shadow: 0 2px 8px rgba(123, 104, 86, 0.3);
                     }
 
                     &.bg-warning {
                         background: linear-gradient(
                             135deg,
-                            #f59e0b 0%,
-                            #d97706 100%
+                            #7B6856 0%,
+                            #6B5846 100%
                         ) !important;
                         color: white;
                         border-color: rgba(217, 119, 6, 0.3);
@@ -786,7 +787,7 @@ body.sidebar-layout {
                 .price,
                 .amount {
                     font-weight: 700;
-                    color: #059669;
+                    color: #7B6856;
                     font-size: 0.95rem;
                 }
 
@@ -867,11 +868,11 @@ body.sidebar-layout {
                             &:hover {
                                 background: linear-gradient(
                                     135deg,
-                                    #059669 0%,
-                                    #047857 100%
+                                    #654321 0%,
+                                    #8b4513 100%
                                 );
                                 color: white;
-                                border-color: #047857;
+                                border-color: #8b4513;
                                 box-shadow: 0 6px 20px rgba(5, 150, 105, 0.4);
                             }
                         }
@@ -983,8 +984,8 @@ body.sidebar-layout {
     &.bg-success {
         background: linear-gradient(
             135deg,
-            #10b981 0%,
-            #059669 100%
+            #7B6856 0%,
+            #6B5846 100%
         ) !important;
     }
 
@@ -2233,8 +2234,8 @@ body.sidebar-layout {
    =================================== */
 
 // Navigation improvements
-.navbar-lh {
-    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+.mobile-header {
+    background: linear-gradient(135deg, #ffffff 0%, #f4f1e8 100%);
     border-bottom: 1px solid #e2e8f0;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 
@@ -2361,11 +2362,11 @@ body.sidebar-layout {
     &.alert-success {
         background: linear-gradient(
             135deg,
-            rgba(16, 185, 129, 0.1) 0%,
-            rgba(5, 150, 105, 0.1) 100%
+            rgba(139, 69, 19, 0.1) 0%,
+            rgba(139, 69, 19, 0.1) 100%
         );
-        color: #047857;
-        border-left: 4px solid #10b981;
+        color: #704214;
+        border-left: 4px solid #8b4513;
     }
 
     &.alert-warning {

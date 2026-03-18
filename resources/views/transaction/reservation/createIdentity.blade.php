@@ -1,272 +1,690 @@
 @extends('template.master')
-@section('title', 'Create Identity')
-@section('head')
-    <link rel="stylesheet" href="{{ asset('style/css/progress-indication.css') }}">
-    <style>
-        .email-info {
-            background-color: #f8f9fa;
-            border-left: 4px solid #0d6efd;
-            padding: 10px;
-            border-radius: 4px;
-            margin-bottom: 15px;
-        }
-        .existing-customer-info {
-            background-color: #e7f1ff;
-            border-left: 4px solid #0d6efd;
-            padding: 15px;
-            border-radius: 6px;
-            margin-bottom: 20px;
-            display: none;
-        }
-        .reservation-count-badge {
-            background-color: #0d6efd;
-            color: white;
-            padding: 3px 8px;
-            border-radius: 12px;
-            font-size: 0.8em;
-            margin-left: 5px;
-        }
-    </style>
-@endsection
+@section('title', 'Création Client')
 @section('content')
-    @include('transaction.reservation.progressbar')
-    <div class="container mt-3">
-        <div class="row justify-content-md-center">
-            <div class="col-lg-12">
-                <div class="card shadow-sm border">
-                    <div class="card-header bg-primary text-white">
-                        <h2 class="mb-0">
-                            <i class="fas fa-user-plus me-2"></i>
-                            Add Customer Information
-                        </h2>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap');
+
+:root {
+    /* ── Morada Lodge Palette ── */
+    /* BROWN/BEIGE */
+    --m50:  #f9f5f0;
+    --m100: #f4f1e8;
+    --m200: #e8dcc0;
+    --m300: #d4b896;
+    --m400: #c19a6b;
+    --m500: #8b4513;
+    --m600: #703610;
+    --m700: #5a2b0d;
+    --m800: #4a1f08;
+    --m900: #3a1504;
+    /* BLANC / SURFACE */
+    --white:    #ffffff;
+    --surface:  #f9f5f0;
+    --surface2: #f4f1e8;
+    /* GRIS */
+    --s50:  #fafafa;
+    --s100: #f5f5f5;
+    --s200: #e5e5e5;
+    --s300: #d4d4d4;
+    --s400: #a3a3a3;
+    --s500: #737373;
+    --s600: #525252;
+    --s700: #404040;
+    --s800: #262626;
+    --s900: #171717;
+
+    --shadow-xs: 0 1px 2px rgba(0,0,0,.04);
+    --shadow-sm: 0 1px 6px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.04);
+    --shadow-md: 0 4px 16px rgba(0,0,0,.08), 0 2px 4px rgba(0,0,0,.04);
+    --shadow-lg: 0 12px 40px rgba(0,0,0,.10), 0 4px 12px rgba(0,0,0,.05);
+
+    --r:   8px;
+    --rl:  14px;
+    --rxl: 20px;
+    --transition: all .2s cubic-bezier(.4,0,.2,1);
+    --font: 'DM Sans', system-ui, sans-serif;
+    --mono: 'DM Mono', monospace;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+.create-identity-page {
+    padding: 28px 32px 64px;
+    background: var(--surface);
+    min-height: 100vh;
+    font-family: var(--font);
+    color: var(--s800);
+}
+
+/* ── Animations ── */
+@keyframes fadeSlide {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes scaleIn {
+    from { opacity: 0; transform: scale(.96); }
+    to   { opacity: 1; transform: scale(1); }
+}
+.anim-1 { animation: fadeSlide .4s ease both; }
+.anim-2 { animation: fadeSlide .4s .08s ease both; }
+.anim-3 { animation: fadeSlide .4s .16s ease both; }
+.anim-4 { animation: fadeSlide .4s .24s ease both; }
+.anim-5 { animation: fadeSlide .4s .32s ease both; }
+.anim-6 { animation: fadeSlide .4s .40s ease both; }
+
+/* ══════════════════════════════════════════════
+   BREADCRUMB
+══════════════════════════════════════════════ */
+.identity-breadcrumb {
+    display: flex; align-items: center; gap: 6px;
+    font-size: .8rem; color: var(--s400);
+    margin-bottom: 20px;
+}
+.identity-breadcrumb a {
+    color: var(--s400); text-decoration: none;
+    transition: var(--transition);
+}
+.identity-breadcrumb a:hover { color: var(--m600); }
+.identity-breadcrumb .sep { color: var(--s300); }
+.identity-breadcrumb .current { color: var(--s600); font-weight: 500; }
+
+/* ══════════════════════════════════════════════
+   HEADER
+══════════════════════════════════════════════ */
+.identity-header {
+    display: flex; align-items: center;
+    justify-content: space-between; flex-wrap: wrap;
+    gap: 16px; margin-bottom: 32px;
+    padding-bottom: 24px;
+    border-bottom: 1.5px solid var(--s100);
+}
+.identity-brand { display: flex; align-items: center; gap: 14px; }
+.identity-brand-icon {
+    width: 48px; height: 48px;
+    background: var(--m600); border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    color: white; font-size: 1.1rem; flex-shrink: 0;
+    box-shadow: 0 4px 14px rgba(139,69,19,.35);
+}
+.identity-header-title {
+    font-size: 1.4rem; font-weight: 700;
+    color: var(--s900); line-height: 1.2; letter-spacing: -.3px;
+}
+.identity-header-title em { font-style: normal; color: var(--m600); }
+.identity-header-sub {
+    font-size: .8rem; color: var(--s400); margin-top: 3px;
+    display: flex; align-items: center; gap: 8px;
+}
+.identity-header-sub i { color: var(--m500); }
+.identity-header-actions { display: flex; align-items: center; gap: 10px; }
+
+/* ══════════════════════════════════════════════
+   PROGRESS BAR
+══════════════════════════════════════════════ */
+.progress-container {
+    margin-bottom: 30px;
+}
+.progress-steps {
+    display: flex; justify-content: space-between; position: relative;
+    margin-bottom: 20px;
+}
+.progress-steps::before {
+    content: ''; position: absolute; top: 20px; left: 0; right: 0;
+    height: 2px; background: var(--s200); z-index: 1;
+}
+.progress-step {
+    position: relative; z-index: 2; text-align: center; flex: 1;
+}
+.step-circle {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: var(--white); border: 2px solid var(--s200);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 8px; font-weight: 600; color: var(--s600);
+    transition: var(--transition);
+}
+.step-active .step-circle {
+    background: var(--m600); border-color: var(--m600);
+    color: white;
+}
+.step-completed .step-circle {
+    background: var(--m500); border-color: var(--m500);
+    color: white;
+}
+.step-label {
+    font-size: .75rem; color: var(--s400); font-weight: 500;
+}
+.step-active .step-label {
+    color: var(--m600); font-weight: 600;
+}
+
+/* ══════════════════════════════════════════════
+   CARTE PRINCIPALE
+══════════════════════════════════════════════ */
+.identity-card {
+    background: var(--white); border-radius: var(--rxl);
+    border: 1.5px solid var(--s100); overflow: hidden;
+    margin-bottom: 20px; box-shadow: var(--shadow-sm);
+}
+.identity-card-header {
+    padding: 18px 24px;
+    border-bottom: 1.5px solid var(--s100);
+    background: linear-gradient(135deg, var(--m700), var(--m500));
+    color: white;
+}
+.identity-card-title {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 1rem; font-weight: 600; color: white; margin: 0;
+}
+.identity-card-title i { color: white; }
+.identity-card-body { padding: 28px; }
+.identity-card-footer {
+    padding: 16px 24px; border-top: 1.5px solid var(--s100);
+    background: var(--surface);
+}
+
+/* ══════════════════════════════════════════════
+   INFO BOX
+══════════════════════════════════════════════ */
+.info-box {
+    background: var(--m50); border-left: 4px solid var(--m600);
+    padding: 14px 18px; border-radius: var(--rl);
+    margin-bottom: 20px; display: flex; align-items: center; gap: 12px;
+}
+.info-icon {
+    width: 32px; height: 32px; border-radius: 8px;
+    background: var(--m100); color: var(--m600);
+    display: flex; align-items: center; justify-content: center;
+    font-size: .9rem; flex-shrink: 0;
+}
+.info-text {
+    font-size: .8rem; color: var(--s700);
+}
+.info-text strong { color: var(--s800); }
+
+/* ══════════════════════════════════════════════
+   EXISTING CUSTOMER INFO
+══════════════════════════════════════════════ */
+.existing-customer-info {
+    background: var(--m50); border-left: 4px solid var(--m600);
+    border-radius: var(--rl); padding: 16px;
+    margin-bottom: 24px; display: none;
+}
+.existing-customer-content {
+    display: flex; align-items: center; gap: 16px;
+}
+.existing-icon {
+    width: 48px; height: 48px; border-radius: 12px;
+    background: var(--m100); color: var(--m600);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem; flex-shrink: 0;
+}
+.existing-details {
+    flex: 1;
+}
+.existing-title {
+    font-size: .9rem; font-weight: 600; color: var(--s800);
+    margin-bottom: 4px;
+}
+.existing-info {
+    font-size: .8rem; color: var(--s600); margin-bottom: 4px;
+}
+.existing-meta {
+    font-size: .7rem; color: var(--s400);
+}
+.reservation-badge {
+    display: inline-block; background: var(--m600); color: white;
+    padding: 2px 8px; border-radius: 20px; font-size: .7rem;
+    font-weight: 600; margin-left: 6px;
+}
+
+/* ══════════════════════════════════════════════
+   FORMULAIRES
+══════════════════════════════════════════════ */
+.form-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+@media(max-width:768px){ .form-grid{ grid-template-columns:1fr; } }
+
+.form-group {
+    display: flex; flex-direction: column;
+}
+.form-label {
+    font-size: .75rem; font-weight: 600; color: var(--s600);
+    margin-bottom: 6px; display: flex; align-items: center; gap: 6px;
+    text-transform: uppercase; letter-spacing: .5px;
+}
+.form-label i { font-size: .7rem; color: var(--m500); }
+.form-label .required {
+    color: #b91c1c; font-size: .7rem; margin-left: 4px;
+}
+.form-control, .form-select {
+    padding: 10px 14px; border-radius: var(--r);
+    border: 1.5px solid var(--s200); font-size: .875rem;
+    font-family: var(--font); transition: var(--transition);
+    background: var(--white); width: 100%;
+}
+.form-control:focus, .form-select:focus {
+    outline: none; border-color: var(--m400);
+    box-shadow: 0 0 0 3px var(--m100);
+}
+.form-control.is-invalid, .form-select.is-invalid {
+    border-color: #b91c1c; background: #fee2e2;
+}
+.form-text {
+    font-size: .7rem; color: var(--s400); margin-top: 4px;
+    display: flex; align-items: center; gap: 4px;
+}
+.form-text i { color: var(--m500); }
+
+/* ══════════════════════════════════════════════
+   FILE INPUT
+══════════════════════════════════════════════ */
+.input-group {
+    display: flex;
+}
+.input-group .form-control {
+    border-radius: var(--r) 0 0 var(--r); flex: 1;
+}
+.input-group .btn-outline {
+    padding: 0 16px; background: var(--white);
+    border: 1.5px solid var(--s200); border-left: none;
+    border-radius: 0 var(--r) var(--r) 0;
+    color: var(--s600); cursor: pointer; transition: var(--transition);
+}
+.input-group .btn-outline:hover {
+    background: var(--m50); color: var(--m600);
+    border-color: var(--m200);
+}
+
+/* Avatar preview */
+.avatar-preview {
+    margin-top: 12px; display: none;
+}
+.preview-image {
+    max-width: 150px; max-height: 150px;
+    border-radius: var(--rl); border: 3px solid var(--m200);
+}
+
+/* ══════════════════════════════════════════════
+   MESSAGES D'ERREUR
+══════════════════════════════════════════════ */
+.error-message {
+    display: flex; align-items: center; gap: 4px;
+    font-size: .7rem; color: #b91c1c; margin-top: 4px;
+}
+.error-message i { font-size: .65rem; }
+
+/* ══════════════════════════════════════════════
+   ALERTES
+══════════════════════════════════════════════ */
+.alert-db {
+    display: flex; align-items: center; gap: 12px;
+    padding: 14px 18px; border-radius: var(--rl);
+    margin-bottom: 20px; border: 1.5px solid transparent;
+    font-size: .875rem; background: var(--white);
+    box-shadow: var(--shadow-sm);
+}
+.alert-db-info {
+    background: var(--m50); border-color: var(--m200);
+    color: var(--m700);
+}
+.alert-db-danger {
+    background: #fee2e2; border-color: #fecaca;
+    color: #b91c1c;
+}
+.alert-db ul {
+    margin: 8px 0 0 20px; padding: 0;
+}
+
+/* ══════════════════════════════════════════════
+   BOUTONS
+══════════════════════════════════════════════ */
+.btn-db {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 10px 20px; border-radius: var(--r);
+    font-size: .8rem; font-weight: 500; border: none;
+    cursor: pointer; transition: var(--transition);
+    text-decoration: none; white-space: nowrap; line-height: 1;
+    font-family: var(--font);
+}
+.btn-db-primary {
+    background: var(--m600); color: white;
+    box-shadow: 0 2px 10px rgba(139,69,19,.3);
+}
+.btn-db-primary:hover {
+    background: var(--m700); color: white;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 14px rgba(139,69,19,.35);
+    text-decoration: none;
+}
+.btn-db-ghost {
+    background: var(--white); color: var(--s600);
+    border: 1.5px solid var(--s200);
+}
+.btn-db-ghost:hover {
+    background: var(--m50); border-color: var(--m300);
+    color: var(--m900); text-decoration: none;
+}
+.btn-db-outline {
+    background: transparent; color: var(--s600);
+    border: 1.5px solid var(--s200);
+}
+.btn-db-outline:hover {
+    background: var(--m50); color: var(--m700);
+    border-color: var(--m300);
+}
+
+/* ══════════════════════════════════════════════
+   FOOTER INFO
+══════════════════════════════════════════════ */
+.footer-info {
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: .7rem; color: var(--s400);
+}
+.footer-info i { color: var(--m500); }
+
+/* ══════════════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════════════ */
+@media(max-width:768px){
+    .create-identity-page{ padding: 20px; }
+    .identity-header{ flex-direction: column; align-items: flex-start; }
+    .identity-card-body{ padding: 20px; }
+    .progress-steps{ flex-wrap: wrap; gap: 10px; }
+    .progress-step{ min-width: 120px; }
+    .footer-info{ flex-direction: column; gap: 10px; text-align: center; }
+}
+</style>
+
+<div class="create-identity-page">
+    <!-- Breadcrumb -->
+    <div class="identity-breadcrumb anim-1">
+        <a href="{{ route('dashboard.index') }}"><i class="fas fa-home fa-xs"></i> Dashboard</a>
+        <span class="sep"><i class="fas fa-chevron-right fa-xs"></i></span>
+        <span class="current">Création client</span>
+    </div>
+
+    <!-- Header -->
+    <div class="identity-header anim-2">
+        <div class="identity-brand">
+            <div class="identity-brand-icon"><i class="fas fa-user-plus"></i></div>
+            <div>
+                <h1 class="identity-header-title">Création <em>client</em></h1>
+                <p class="identity-header-sub">
+                    <i class="fas fa-users me-1"></i> Étape 1/4 · Informations personnelles
+                </p>
+            </div>
+        </div>
+        <div class="identity-header-actions">
+            <a href="{{ route('dashboard.index') }}" class="btn-db btn-db-ghost">
+                <i class="fas fa-times me-2"></i> Annuler
+            </a>
+        </div>
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="progress-container anim-3">
+        <div class="progress-steps">
+            <div class="progress-step step-active">
+                <div class="step-circle">1</div>
+                <div class="step-label">Identité</div>
+            </div>
+            <div class="progress-step">
+                <div class="step-circle">2</div>
+                <div class="step-label">Dates</div>
+            </div>
+            <div class="progress-step">
+                <div class="step-circle">3</div>
+                <div class="step-label">Chambre</div>
+            </div>
+            <div class="progress-step">
+                <div class="step-circle">4</div>
+                <div class="step-label">Confirmation</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Card -->
+    <div class="identity-card anim-4">
+        <div class="identity-card-header">
+            <h5 class="identity-card-title">
+                <i class="fas fa-user-circle"></i>
+                Informations client
+            </h5>
+        </div>
+
+        <div class="identity-card-body">
+            <!-- Info Email -->
+            <div class="info-box">
+                <div class="info-icon">
+                    <i class="fas fa-info-circle"></i>
+                </div>
+                <div class="info-text">
+                    <strong>Important :</strong> Le même email peut être utilisé pour plusieurs réservations. 
+                    Si le client existe déjà, ses informations seront mises à jour.
+                </div>
+            </div>
+
+            <!-- Existing Customer Info (AJAX) -->
+            <div id="existingCustomerInfo" class="existing-customer-info">
+                <div class="existing-customer-content">
+                    <div class="existing-icon">
+                        <i class="fas fa-user-check"></i>
                     </div>
-                    
-                    <div class="card-body p-4">
-                        <!-- Information sur la politique d'email -->
-                        <div class="email-info">
-                            <i class="fas fa-info-circle text-primary me-2"></i>
-                            <strong>Important:</strong> Same email address can be used for multiple reservations. 
-                            If customer already exists, their information will be updated.
-                        </div>
-                        
-                        <!-- Affichage des informations client existant (via AJAX) -->
-                        <div id="existingCustomerInfo" class="existing-customer-info">
-                            <div class="d-flex align-items-center">
-                                <i class="fas fa-user-check fa-2x text-primary me-3"></i>
-                                <div>
-                                    <h5 class="mb-1">Existing Customer Found</h5>
-                                    <p class="mb-1" id="customerDetails"></p>
-                                    <small class="text-muted">
-                                        <span id="reservationCount">0</span> existing reservation(s)
-                                    </small>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        @if(session('info'))
-                            <div class="alert alert-info">
-                                <i class="fas fa-info-circle me-2"></i>
-                                {{ session('info') }}
-                            </div>
-                        @endif
-                        
-                        @if($errors->any())
-                            <div class="alert alert-danger">
-                                <ul class="mb-0">
-                                    @foreach($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
-                        
-                        <form class="row g-3" method="POST" action="{{ route('transaction.reservation.storeCustomer') }}"
-                            enctype="multipart/form-data" id="customerForm">
-                            @csrf
-                            
-                            <!-- Champ Email avec vérification AJAX -->
-                            <div class="col-md-12 mb-3">
-                                <label for="email" class="form-label fw-bold">
-                                    Email Address 
-                                    <span class="text-danger">*</span>
-                                </label>
-                                <input type="email" class="form-control @error('email') is-invalid @enderror" 
-                                       id="email" name="email" value="{{ old('email') }}" 
-                                       placeholder="example@domain.com" required
-                                       onblur="checkExistingCustomer()">
-                                <div class="form-text">
-                                    <i class="fas fa-lightbulb me-1"></i>
-                                    Enter customer's email address. System will check if customer already exists.
-                                </div>
-                                @error('email')
-                                    <div class="text-danger mt-1">
-                                        <i class="fas fa-exclamation-circle me-1"></i>
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-                            
-                            <!-- Champ Nom -->
-                            <div class="col-md-12 mb-3">
-                                <label for="name" class="form-label fw-bold">
-                                    Full Name 
-                                    <span class="text-danger">*</span>
-                                </label>
-                                <input type="text" class="form-control @error('name') is-invalid @enderror" 
-                                       id="name" name="name" value="{{ old('name') }}" 
-                                       placeholder="John Doe" required>
-                                @error('name')
-                                    <div class="text-danger mt-1">
-                                        <i class="fas fa-exclamation-circle me-1"></i>
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-                            
-                            <!-- Date de naissance -->
-                            <div class="col-md-6 mb-3">
-                                <label for="birthdate" class="form-label fw-bold">
-                                    Date of Birth
-                                </label>
-                                <input type="date" class="form-control @error('birthdate') is-invalid @enderror"
-                                    id="birthdate" name="birthdate" value="{{ old('birthdate') }}">
-                                @error('birthdate')
-                                    <div class="text-danger mt-1">
-                                        <i class="fas fa-exclamation-circle me-1"></i>
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-                            
-                            <!-- Genre -->
-                            <div class="col-md-6 mb-3">
-                                <label for="gender" class="form-label fw-bold">
-                                    Gender 
-                                    <span class="text-danger">*</span>
-                                </label>
-                                <select class="form-select @error('gender') is-invalid @enderror" 
-                                        id="gender" name="gender" required>
-                                    <option value="">Select Gender</option>
-                                    <option value="Male" {{ old('gender') == 'Male' ? 'selected' : '' }}>Male</option>
-                                    <option value="Female" {{ old('gender') == 'Female' ? 'selected' : '' }}>Female</option>
-                                    <option value="Other" {{ old('gender') == 'Other' ? 'selected' : '' }}>Other</option>
-                                </select>
-                                @error('gender')
-                                    <div class="text-danger mt-1">
-                                        <i class="fas fa-exclamation-circle me-1"></i>
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-                            
-                            <!-- Téléphone -->
-                            <div class="col-md-6 mb-3">
-                                <label for="phone" class="form-label fw-bold">
-                                    Phone Number 
-                                    <span class="text-danger">*</span>
-                                </label>
-                                <input type="text" class="form-control @error('phone') is-invalid @enderror" 
-                                       id="phone" name="phone" value="{{ old('phone') }}" 
-                                       placeholder="+1234567890" required>
-                                @error('phone')
-                                    <div class="text-danger mt-1">
-                                        <i class="fas fa-exclamation-circle me-1"></i>
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-                            
-                            <!-- Profession -->
-                            <div class="col-md-6 mb-3">
-                                <label for="job" class="form-label fw-bold">Profession</label>
-                                <input type="text" class="form-control @error('job') is-invalid @enderror" 
-                                       id="job" name="job" value="{{ old('job') }}" 
-                                       placeholder="Software Engineer">
-                                @error('job')
-                                    <div class="text-danger mt-1">
-                                        <i class="fas fa-exclamation-circle me-1"></i>
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-                            
-                            <!-- Adresse -->
-                            <div class="col-md-12 mb-3">
-                                <label for="address" class="form-label fw-bold">Address</label>
-                                <textarea class="form-control @error('address') is-invalid @enderror" 
-                                          id="address" name="address" rows="3" 
-                                          placeholder="Street, City, Country">{{ old('address') }}</textarea>
-                                @error('address')
-                                    <div class="text-danger mt-1">
-                                        <i class="fas fa-exclamation-circle me-1"></i>
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-                            
-                            <!-- Photo de profil -->
-                            <div class="col-md-12 mb-4">
-                                <label for="avatar" class="form-label fw-bold">Profile Picture (Optional)</label>
-                                <div class="input-group">
-                                    <input class="form-control @error('avatar') is-invalid @enderror" 
-                                           type="file" name="avatar" id="avatar" accept="image/*">
-                                    <button class="btn btn-outline-secondary" type="button" onclick="clearAvatar()">
-                                        <i class="fas fa-times"></i> Clear
-                                    </button>
-                                </div>
-                                <div class="form-text">
-                                    <i class="fas fa-image me-1"></i>
-                                    Upload customer's photo (JPEG, PNG, max 2MB)
-                                </div>
-                                @error('avatar')
-                                    <div class="text-danger mt-1">
-                                        <i class="fas fa-exclamation-circle me-1"></i>
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                                
-                                <!-- Aperçu de l'image -->
-                                <div id="avatarPreview" class="mt-2" style="display: none;">
-                                    <img id="previewImage" src="#" alt="Preview" 
-                                         class="img-thumbnail" style="max-width: 150px; max-height: 150px;">
-                                </div>
-                            </div>
-                            
-                            <!-- Boutons -->
-                            <div class="col-12">
-                                <div class="d-flex justify-content-between">
-                                    <a href="{{ route('dashboard.index') }}" class="btn btn-outline-secondary">
-                                        <i class="fas fa-times me-1"></i> Cancel
-                                    </a>
-                                    <button type="submit" class="btn btn-primary px-4">
-                                        <i class="fas fa-save me-2"></i>
-                                        Save & Continue
-                                        <span id="submitText">to Room Selection</span>
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    
-                    <div class="card-footer bg-light">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <small class="text-muted">
-                                    <i class="fas fa-user me-1"></i>
-                                    Customer Information - Step 1 of 4
-                                </small>
-                            </div>
-                            <div class="col-md-6 text-end">
-                                <small class="text-muted">
-                                    Next: Select Dates & Room
-                                </small>
-                            </div>
+                    <div class="existing-details">
+                        <div class="existing-title">Client existant trouvé</div>
+                        <div class="existing-info" id="customerDetails"></div>
+                        <div class="existing-meta">
+                            <span id="reservationCount">0</span> réservation(s) existante(s)
                         </div>
                     </div>
                 </div>
             </div>
+
+            @if(session('info'))
+                <div class="alert-db alert-db-info">
+                    <i class="fas fa-info-circle"></i>
+                    <span>{{ session('info') }}</span>
+                </div>
+            @endif
+
+            @if($errors->any())
+                <div class="alert-db alert-db-danger">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <div style="flex:1">
+                        <strong>Veuillez corriger les erreurs :</strong>
+                        <ul>
+                            @foreach($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
+            @endif
+
+            <form method="POST" action="{{ route('transaction.reservation.storeCustomer') }}"
+                  enctype="multipart/form-data" id="customerForm">
+                @csrf
+
+                <div class="form-grid">
+                    <!-- Email (full width) -->
+                    <div class="form-group" style="grid-column: 1 / -1;">
+                        <label for="email" class="form-label">
+                            <i class="fas fa-envelope"></i>
+                            Adresse email <span class="required">*</span>
+                        </label>
+                        <input type="email" class="form-control @error('email') is-invalid @enderror" 
+                               id="email" name="email" value="{{ old('email') }}" 
+                               placeholder="exemple@domaine.com" required
+                               onblur="checkExistingCustomer()">
+                        @error('email')
+                            <div class="error-message">
+                                <i class="fas fa-exclamation-circle"></i> {{ $message }}
+                            </div>
+                        @enderror
+                        <div class="form-text">
+                            <i class="fas fa-lightbulb"></i>
+                            Saisissez l'email du client. Le système vérifiera s'il existe déjà.
+                        </div>
+                    </div>
+
+                    <!-- Nom complet -->
+                    <div class="form-group">
+                        <label for="name" class="form-label">
+                            <i class="fas fa-user"></i>
+                            Nom complet <span class="required">*</span>
+                        </label>
+                        <input type="text" class="form-control @error('name') is-invalid @enderror" 
+                               id="name" name="name" value="{{ old('name') }}" 
+                               placeholder="Jean Dupont" required>
+                        @error('name')
+                            <div class="error-message">
+                                <i class="fas fa-exclamation-circle"></i> {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+
+                    <!-- Date de naissance -->
+                    <div class="form-group">
+                        <label for="birthdate" class="form-label">
+                            <i class="fas fa-birthday-cake"></i>
+                            Date de naissance
+                        </label>
+                        <input type="date" class="form-control @error('birthdate') is-invalid @enderror"
+                               id="birthdate" name="birthdate" value="{{ old('birthdate') }}">
+                        @error('birthdate')
+                            <div class="error-message">
+                                <i class="fas fa-exclamation-circle"></i> {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+
+                    <!-- Genre -->
+                    <div class="form-group">
+                        <label for="gender" class="form-label">
+                            <i class="fas fa-venus-mars"></i>
+                            Genre <span class="required">*</span>
+                        </label>
+                        <select class="form-select @error('gender') is-invalid @enderror" 
+                                id="gender" name="gender" required>
+                            <option value="">-- Sélectionner --</option>
+                            <option value="Male" {{ old('gender') == 'Male' ? 'selected' : '' }}>Masculin</option>
+                            <option value="Female" {{ old('gender') == 'Female' ? 'selected' : '' }}>Féminin</option>
+                            <option value="Other" {{ old('gender') == 'Other' ? 'selected' : '' }}>Autre</option>
+                        </select>
+                        @error('gender')
+                            <div class="error-message">
+                                <i class="fas fa-exclamation-circle"></i> {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+
+                    <!-- Téléphone -->
+                    <div class="form-group">
+                        <label for="phone" class="form-label">
+                            <i class="fas fa-phone"></i>
+                            Téléphone <span class="required">*</span>
+                        </label>
+                        <input type="text" class="form-control @error('phone') is-invalid @enderror" 
+                               id="phone" name="phone" value="{{ old('phone') }}" 
+                               placeholder="+229 XX XX XX XX" required>
+                        @error('phone')
+                            <div class="error-message">
+                                <i class="fas fa-exclamation-circle"></i> {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+
+                    <!-- Profession -->
+                    <div class="form-group">
+                        <label for="job" class="form-label">
+                            <i class="fas fa-briefcase"></i>
+                            Profession
+                        </label>
+                        <input type="text" class="form-control @error('job') is-invalid @enderror" 
+                               id="job" name="job" value="{{ old('job') }}" 
+                               placeholder="Développeur, Médecin, Étudiant...">
+                        @error('job')
+                            <div class="error-message">
+                                <i class="fas fa-exclamation-circle"></i> {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+
+                    <!-- Adresse (full width) -->
+                    <div class="form-group" style="grid-column: 1 / -1;">
+                        <label for="address" class="form-label">
+                            <i class="fas fa-map-marker-alt"></i>
+                            Adresse
+                        </label>
+                        <textarea class="form-control @error('address') is-invalid @enderror" 
+                                  id="address" name="address" rows="3" 
+                                  placeholder="Rue, Ville, Pays">{{ old('address') }}</textarea>
+                        @error('address')
+                            <div class="error-message">
+                                <i class="fas fa-exclamation-circle"></i> {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+
+                    <!-- Photo de profil (full width) -->
+                    <div class="form-group" style="grid-column: 1 / -1;">
+                        <label for="avatar" class="form-label">
+                            <i class="fas fa-camera"></i>
+                            Photo de profil
+                        </label>
+                        <div class="input-group">
+                            <input class="form-control @error('avatar') is-invalid @enderror" 
+                                   type="file" name="avatar" id="avatar" accept="image/*">
+                            <button class="btn-outline" type="button" onclick="clearAvatar()">
+                                <i class="fas fa-times"></i> Effacer
+                            </button>
+                        </div>
+                        <div class="form-text">
+                            <i class="fas fa-image"></i>
+                            Formats acceptés : JPEG, PNG, GIF (max 2MB)
+                        </div>
+                        @error('avatar')
+                            <div class="error-message">
+                                <i class="fas fa-exclamation-circle"></i> {{ $message }}
+                            </div>
+                        @enderror
+
+                        <!-- Avatar preview -->
+                        <div id="avatarPreview" class="avatar-preview">
+                            <img id="previewImage" src="#" alt="Aperçu" class="preview-image">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Actions -->
+                <div style="display: flex; justify-content: space-between; margin-top: 28px;">
+                    <a href="{{ route('dashboard.index') }}" class="btn-db btn-db-ghost">
+                        <i class="fas fa-times me-2"></i> Annuler
+                    </a>
+                    <button type="submit" class="btn-db btn-db-primary">
+                        <i class="fas fa-save me-2"></i> Enregistrer
+                        <span id="submitText">et continuer</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <div class="identity-card-footer">
+            <div class="footer-info">
+                <div>
+                    <i class="fas fa-user me-1"></i> Étape 1/4 - Identité
+                </div>
+                <div>
+                    <i class="fas fa-arrow-right me-1"></i> Prochaine étape : Dates et chambre
+                </div>
+            </div>
         </div>
     </div>
+</div>
+
 @endsection
 
 @section('footer')
@@ -284,7 +702,7 @@ function checkExistingCustomer() {
     // Afficher un indicateur de chargement
     const submitButton = document.querySelector('button[type="submit"]');
     const originalText = submitButton.innerHTML;
-    submitButton.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i> Checking...';
+    submitButton.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i> Vérification...';
     submitButton.disabled = true;
     
     // Effectuer la requête AJAX
@@ -309,11 +727,11 @@ function checkExistingCustomer() {
             
             // Mettre à jour le texte du bouton
             document.getElementById('submitText').innerHTML = 
-                'Update & Continue <span class="reservation-count-badge">' + 
-                data.customer.reservation_count + ' existing</span>';
+                'et mettre à jour <span class="reservation-badge">' + 
+                data.customer.reservation_count + ' résa(s)</span>';
         } else {
             hideExistingCustomerInfo();
-            document.getElementById('submitText').innerHTML = 'Save & Continue to Room Selection';
+            document.getElementById('submitText').innerHTML = 'et continuer';
         }
     })
     .catch(error => {
@@ -334,7 +752,7 @@ function showExistingCustomerInfo(data) {
     const reservationCount = document.getElementById('reservationCount');
     
     customerDetails.innerHTML = 
-        `<strong>${data.customer.name}</strong> | ${data.customer.email} | ${data.customer.phone}`;
+        `<strong>${data.customer.name}</strong> · ${data.customer.email} · ${data.customer.phone}`;
     reservationCount.textContent = data.customer.reservation_count;
     
     infoDiv.style.display = 'block';
@@ -343,7 +761,7 @@ function showExistingCustomerInfo(data) {
 // Fonction pour masquer les informations du client existant
 function hideExistingCustomerInfo() {
     document.getElementById('existingCustomerInfo').style.display = 'none';
-    document.getElementById('submitText').innerHTML = 'Save & Continue to Room Selection';
+    document.getElementById('submitText').innerHTML = 'et continuer';
 }
 
 // Fonction de validation d'email
@@ -384,14 +802,14 @@ document.getElementById('customerForm').addEventListener('submit', function(e) {
     
     if (!validateEmail(email)) {
         e.preventDefault();
-        alert('Please enter a valid email address.');
+        alert('Veuillez saisir une adresse email valide.');
         document.getElementById('email').focus();
         return false;
     }
     
     if (!name.trim()) {
         e.preventDefault();
-        alert('Please enter customer name.');
+        alert('Veuillez saisir le nom du client.');
         document.getElementById('name').focus();
         return false;
     }
@@ -399,7 +817,7 @@ document.getElementById('customerForm').addEventListener('submit', function(e) {
     // Vérifier si on veut confirmer pour un client existant
     const existingCustomerDiv = document.getElementById('existingCustomerInfo');
     if (existingCustomerDiv.style.display === 'block') {
-        if (!confirm('Customer already exists. Do you want to update their information and create a new reservation?')) {
+        if (!confirm('Ce client existe déjà. Voulez-vous mettre à jour ses informations et créer une nouvelle réservation ?')) {
             e.preventDefault();
             return false;
         }

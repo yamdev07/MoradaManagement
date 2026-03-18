@@ -17,7 +17,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     {{-- Icon --}}
-    <link rel="icon" href="{{ asset('img/logo/sip.png') }}">
+    <link rel="icon" href="{{ asset('img/logo/logo_ancien.jpg') }}">
     
     {{-- style --}}
     @vite('resources/sass/app.scss')
@@ -28,7 +28,7 @@
     {{-- Styles spécifiques aux pages --}}
     @stack('styles')
     
-    <title>@yield('title') - Hotel Admin</title>
+    <title>@yield('title') - Morada Lodge Admin</title>
     
     @yield('head')
 </head>

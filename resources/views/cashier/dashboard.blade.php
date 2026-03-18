@@ -6,15 +6,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root {
-    --primary: #3b82f6;
-    --success: #10b981;
-    --warning: #f59e0b;
+    --primary: #8b4513;
+    --success: #8b4513;
+    --warning: #8b4513;
     --danger: #ef4444;
-    --info: #06b6d4;
-    --dark: #1e293b;
-    --light: #f8fafc;
-    --border: #e2e8f0;
-    --shadow: rgba(0,0,0,0.05);
+    --info: #8b4513;
+    --dark: #3d241a;
+    --light: #fcf8f3;
+    --border: #f5e6d3;
+    --shadow: rgba(139,69,19,0.05);
 }
 
 body {
@@ -42,7 +42,7 @@ body {
     align-items: center;
     gap: 0.5rem;
     font-size: 0.875rem;
-    color: #64748b;
+    color: var(--gray-500);
 }
 
 .role-badge {
@@ -58,24 +58,24 @@ body {
 }
 
 .role-admin {
-    background: rgba(16,185,129,0.1);
-    color: #059669;
+    background: rgba(139,69,19,0.1);
+    color: var(--primary);
 }
 
 .role-receptionist {
-    background: rgba(59,130,246,0.1);
-    color: #2563eb;
+    background: rgba(139,69,19,0.1);
+    color: var(--primary);
 }
 
 .role-cashier {
-    background: rgba(245,158,11,0.1);
-    color: #d97706;
+    background: rgba(139,69,19,0.1);
+    color: var(--primary);
 }
 
 /* Permission alerts */
 .permission-alert {
-    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
-    border: 1px solid #fbbf24;
+    background: linear-gradient(135deg, var(--light) 0%, var(--light) 100%);
+    border: 1px solid var(--warning);
     border-radius: 12px;
     padding: 1rem 1.25rem;
     margin-bottom: 1.5rem;
@@ -89,7 +89,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #f59e0b;
+    color: var(--warning);
     font-size: 1.25rem;
     flex-shrink: 0;
 }
@@ -119,8 +119,8 @@ body {
 
 /* Active session card */
 .active-session {
-    background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
-    border: 2px solid #10b981;
+    background: linear-gradient(135deg, var(--light) 0%, var(--light) 100%);
+    border: 2px solid var(--success);
     border-radius: 12px;
     padding: 1.5rem;
     margin-bottom: 1.5rem;
@@ -135,7 +135,7 @@ body {
     right: 0;
     width: 200px;
     height: 200px;
-    background: radial-gradient(circle, rgba(16,185,129,0.1) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(139,69,19,0.1) 0%, transparent 70%);
     border-radius: 50%;
     transform: translate(50%, -50%);
 }
@@ -151,7 +151,7 @@ body {
     font-size: 1.5rem;
     color: var(--success);
     flex-shrink: 0;
-    box-shadow: 0 4px 6px rgba(16,185,129,0.1);
+    box-shadow: 0 4px 6px rgba(139,69,19,0.1);
 }
 
 .session-badge {
@@ -181,11 +181,41 @@ body {
 
 /* No session card */
 .no-session {
-    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
-    border: 2px dashed #f59e0b;
+    background: linear-gradient(135deg, var(--light) 0%, var(--light) 100%);
+    border: 2px dashed var(--warning);
     border-radius: 12px;
     padding: 1.5rem;
     margin-bottom: 1.5rem;
+}
+
+/* Breadcrumb */
+.breadcrumb {
+    background: transparent;
+    padding: 0;
+    margin-bottom: 0;
+}
+
+.breadcrumb-item {
+    color: var(--primary);
+}
+
+.breadcrumb-item a {
+    color: var(--primary);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.breadcrumb-item a:hover {
+    color: var(--primary);
+    opacity: 0.8;
+}
+
+.breadcrumb-item.active {
+    color: var(--gray-500);
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+    color: var(--gray-400);
 }
 
 /* Stats cards */
@@ -217,7 +247,7 @@ body {
 .stat-label {
     font-size: 0.8125rem;
     font-weight: 600;
-    color: #64748b;
+    color: var(--gray-500);
     text-transform: uppercase;
     letter-spacing: 0.5px;
     margin-bottom: 0.5rem;
@@ -248,7 +278,7 @@ body {
 .nav-tabs .nav-link {
     border: none;
     border-radius: 8px;
-    color: #64748b;
+    color: var(--gray-500);
     font-weight: 600;
     font-size: 0.875rem;
     padding: 0.75rem 1.25rem;
@@ -296,7 +326,7 @@ body {
     padding: 1rem 1.25rem;
     font-size: 0.75rem;
     font-weight: 700;
-    color: #64748b;
+    color: var(--gray-500);
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
@@ -368,7 +398,7 @@ body {
 }
 
 .btn-primary:hover {
-    background: #2563eb;
+    background: var(--primary);
     border-color: #2563eb;
     transform: translateY(-2px);
 }
@@ -477,7 +507,7 @@ body {
 }
 
 .summary-label {
-    color: #64748b;
+    color: var(--gray-500);
     font-size: 0.875rem;
 }
 
@@ -568,11 +598,11 @@ body {
                 </p>
                 <div class="permission-badges">
                     <span class="permission-badge">
-                        <i class="fas fa-check text-success"></i> Visualisation
+                        <i class="fas fa-check text-primary"></i> Visualisation
                     </span>
                     @if($isCashier)
                     <span class="permission-badge">
-                        <i class="fas fa-check text-success"></i> Paiements
+                        <i class="fas fa-check text-primary"></i> Paiements
                     </span>
                     <span class="permission-badge">
                         <i class="fas fa-times text-danger"></i> Administration
@@ -672,7 +702,7 @@ body {
                         <div class="stat-value">{{ $todayStats['totalBookings'] }}</div>
                         <div class="stat-subtitle">Aujourd'hui</div>
                     </div>
-                    <div class="stat-icon" style="background:rgba(59,130,246,0.1);color:var(--primary)">
+                    <div class="stat-icon" style="background:rgba(139,69,19,0.1);color:var(--primary)">
                         <i class="fas fa-calendar-check"></i>
                     </div>
                 </div>
@@ -687,7 +717,7 @@ body {
                         <div class="stat-value">{{ number_format($todayStats['revenue'], 0, ',', ' ') }}</div>
                         <div class="stat-subtitle">FCFA aujourd'hui</div>
                     </div>
-                    <div class="stat-icon" style="background:rgba(16,185,129,0.1);color:var(--success)">
+                    <div class="stat-icon" style="background:rgba(139,69,19,0.1);color:var(--success)">
                         <i class="fas fa-chart-line"></i>
                     </div>
                 </div>
@@ -730,13 +760,13 @@ body {
         <li class="nav-item">
             <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#pending">
                 <i class="fas fa-clock me-1"></i> Paiements
-                <span class="badge bg-warning">{{ $pendingPayments->count() }}</span>
+                <span class="badge bg-primary">{{ $pendingPayments->count() }}</span>
             </button>
         </li>
         <li class="nav-item">
             <button class="nav-link" data-bs-toggle="tab" data-bs-target="#sessions">
                 <i class="fas fa-history me-1"></i> Mes sessions
-                <span class="badge bg-info">{{ $recentSessions->count() }}</span>
+                <span class="badge bg-primary">{{ $recentSessions->count() }}</span>
             </button>
         </li>
         @if($isAdmin)
@@ -806,7 +836,7 @@ body {
                                 </td>
                                 <td>
                                     <a href="#" 
-                                       class="btn btn-sm btn-info btn-icon" 
+                                       class="btn btn-sm btn-primary btn-icon" 
                                        title="Voir détail"
                                        data-bs-toggle="modal" 
                                        data-bs-target="#paymentModal{{ $payment->id }}">
@@ -911,7 +941,7 @@ body {
                                 </td>
                                 <td>
                                     <a href="{{ route('cashier.sessions.show', $session) }}" 
-                                       class="btn btn-sm btn-info btn-icon" title="Voir">
+                                       class="btn btn-sm btn-primary btn-icon" title="Voir">
                                         <i class="fas fa-eye"></i>
                                     </a>
                                 </td>
@@ -1042,7 +1072,7 @@ body {
                                 </td>
                                 <td>
                                     <a href="{{ route('cashier.sessions.show', $session) }}" 
-                                       class="btn btn-sm btn-info btn-icon" title="Voir détails">
+                                       class="btn btn-sm btn-primary btn-icon" title="Voir détails">
                                         <i class="fas fa-eye"></i>
                                     </a>
                                 </td>
@@ -1106,7 +1136,7 @@ body {
                         </div>
                         <div class="summary-item">
                             <span class="summary-label">Solde théorique</span>
-                            <span class="summary-value text-success">{{ number_format($activeSession->current_balance, 0, ',', ' ') }} FCFA</span>
+                            <span class="summary-value text-primary">{{ number_format($activeSession->current_balance, 0, ',', ' ') }} FCFA</span>
                         </div>
                         <div class="summary-item">
                             <span class="summary-label">Nombre de paiements</span>
@@ -1198,7 +1228,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 if (difference > 0) {
                     differenceAlert.className = 'mt-2 alert alert-success py-2';
-                    differenceAmount.style.color = '#10b981';
+                    differenceAmount.style.color = 'var(--success)';
                 } else {
                     differenceAlert.className = 'mt-2 alert alert-danger py-2';
                     differenceAmount.style.color = '#ef4444';

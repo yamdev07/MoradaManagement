@@ -3,64 +3,105 @@
 @section('title', 'Réservation en ligne - Hôtel Cactus Palace')
 
 @push('styles')
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root {
-    --primary: #4CAF50;
-    --primary-dark: #2E7D32;
-    --primary-light: #E8F5E9;
-    --error: #e53935;
-    --error-light: #FFEBEE;
+    /* ── Morada Lodge Palette ── */
+    /* BROWN/BEIGE */
+    --m50:  #f9f5f0;
+    --m100: #f4f1e8;
+    --m200: #e8dcc0;
+    --m300: #d4b896;
+    --m400: #c19a6b;
+    --m500: #8b4513;
+    --m600: #704838;
+    --m700: #5a2b0d;
+    --m800: #4a1f08;
+    --m900: #3a1504;
+    /* BLANC / SURFACE */
+    --white:    #ffffff;
+    --surface:  #f9f5f0;
+    --surface2: #f4f1e8;
+    /* GRIS */
+    --s50:  #fafafa;
+    --s100: #f5f5f5;
+    --s200: #e5e5e5;
+    --s300: #d4d4d4;
+    --s400: #a3a3a3;
+    --s500: #737373;
+    --s600: #525252;
+    --s700: #404040;
+    --s800: #262626;
+    --s900: #171717;
+
+    /* Variables pour compatibilité */
+    --primary: var(--m600);
+    --primary-dark: var(--m700);
+    --primary-light: var(--m100);
+    --error: #dc3545;
+    --error-light: #f8d7da;
+
+    --shadow-xs: 0 1px 2px rgba(0,0,0,.04);
+    --shadow-sm: 0 1px 6px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.04);
+    --shadow-md: 0 4px 16px rgba(0,0,0,.08), 0 2px 4px rgba(0,0,0,.04);
+    --shadow-lg: 0 12px 40px rgba(0,0,0,.10), 0 4px 12px rgba(0,0,0,.05);
+
+    --r:   8px;
+    --rl:  14px;
+    --rxl: 20px;
+    --transition: all .2s cubic-bezier(.4,0,.2,1);
+    --font: 'Inter', system-ui, sans-serif;
+    --mono: 'DM Mono', monospace;
 }
 
 * { -webkit-tap-highlight-color: transparent; }
 *:focus, *:focus-visible { outline: none !important; box-shadow: none !important; }
 
-body { font-family: 'Plus Jakarta Sans', sans-serif; }
+body { font-family: var(--font); background: var(--surface); }
 
 /* Hero */
 .hero-reservation {
-    background: linear-gradient(rgba(0,0,0,.65), rgba(0,0,0,.65)),
+    background: linear-gradient(rgba(112,72,56,.85), rgba(112,72,56,.85)),
                 url('https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1920') center/cover;
     color: white; padding: 100px 0 60px; text-align: center;
 }
-.hero-reservation h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 1rem; }
+.hero-reservation h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 1rem; font-family: var(--font); }
 
 /* Cards */
-.card { border: none; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,.08); margin-bottom: 1.5rem; }
-.card-header { background: var(--primary); color: white; border-radius: 12px 12px 0 0 !important; padding: 1rem 1.5rem; border: none; }
-.card-header h4 { margin: 0; font-size: 1.25rem; font-weight: 700; }
+.card { border: none; border-radius: var(--rxl); box-shadow: var(--shadow-md); margin-bottom: 1.5rem; background: var(--white); }
+.card-header { background: var(--m600); color: white; border-radius: var(--rxl) var(--rxl) 0 0 !important; padding: 1rem 1.5rem; border: none; }
+.card-header h4 { margin: 0; font-size: 1.25rem; font-weight: 600; font-family: var(--font); }
 .card-body { padding: 1.5rem; }
 
 /* ══════════════════════════════
    CHAMPS + VALIDATION TEMPS RÉEL
 ══════════════════════════════ */
 .form-label {
-    font-weight: 600; color: #333; margin-bottom: .5rem;
-    display: flex; align-items: center; gap: .35rem;
+    font-weight: 600; color: var(--s700); margin-bottom: .5rem;
+    display: flex; align-items: center; gap: .35rem; font-family: var(--font);
 }
-.label-icon { font-size: .8rem; color: var(--primary); }
+.label-icon { font-size: .8rem; color: var(--m500); }
 
 .form-control,
 .form-select {
-    border: 2px solid #e0e0e0; border-radius: 8px;
-    padding: .75rem 1rem; transition: border-color .25s, box-shadow .25s;
-    font-size: .95rem;
+    border: 2px solid var(--s200); border-radius: var(--r);
+    padding: .75rem 1rem; transition: var(--transition);
+    font-size: .95rem; font-family: var(--font);
 }
 .form-control:focus,
 .form-select:focus {
-    border-color: var(--primary) !important;
-    box-shadow: 0 0 0 3px rgba(76,175,80,.12) !important;
+    border-color: var(--m400) !important;
+    box-shadow: 0 0 0 3px var(--m100) !important;
     outline: none !important;
 }
 
 /* Valide */
 .form-control.is-valid,
 .form-select.is-valid {
-    border-color: var(--primary) !important;
-    background-color: #fafffa;
+    border-color: var(--m500) !important;
+    background-color: var(--m50);
     padding-right: 2.5rem;
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%234CAF50' d='M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e");
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%238b4513' d='M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e");
     background-repeat: no-repeat; background-position: right 1rem center; background-size: 1rem;
 }
 
@@ -102,11 +143,11 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; }
 .input-wrapper .form-control.is-valid ~ .input-icon { color: var(--primary); }
 .input-wrapper .form-control.is-invalid ~ .input-icon { color: var(--error); }
 
-.field-hint { font-size: .76rem; color: #999; margin-top: .25rem; }
+.field-hint { font-size: .76rem; color: var(--s400); margin-top: .25rem; }
 
 /* Compteur caractères */
-.char-counter { font-size: .75rem; color: #aaa; text-align: right; margin-top: .2rem; }
-.char-counter.warn   { color: #FF9800; }
+.char-counter { font-size: .75rem; color: var(--s400); text-align: right; margin-top: .2rem; }
+.char-counter.warn   { color: var(--m400); }
 .char-counter.danger { color: var(--error); }
 
 /* ══════════════════════════════
@@ -118,72 +159,72 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; }
 }
 .progress-steps::before {
     content: ''; position: absolute; top: 16px; left: 0; right: 0;
-    height: 2px; background: #e0e0e0; z-index: 0;
+    height: 2px; background: var(--s200); z-index: 0;
 }
 .progress-fill {
     position: absolute; top: 16px; left: 0; height: 2px;
-    background: var(--primary); z-index: 1; transition: width .4s ease; width: 0%;
+    background: var(--m600); z-index: 1; transition: width .4s ease; width: 0%;
 }
 .step { display: flex; flex-direction: column; align-items: center; gap: .4rem; position: relative; z-index: 2; }
 .step-circle {
-    width: 32px; height: 32px; border-radius: 50%; background: #e0e0e0; color: #999;
+    width: 32px; height: 32px; border-radius: 50%; background: var(--s200); color: var(--s500);
     display: flex; align-items: center; justify-content: center;
-    font-size: .75rem; font-weight: 700; transition: all .3s;
+    font-size: .75rem; font-weight: 600; transition: var(--transition);
 }
-.step.active .step-circle { background: var(--primary); color: white; }
-.step.done   .step-circle { background: var(--primary-dark); color: white; }
-.step-label { font-size: .7rem; color: #999; font-weight: 600; white-space: nowrap; }
+.step.active .step-circle { background: var(--m600); color: white; }
+.step.done   .step-circle { background: var(--m700); color: white; }
+.step-label { font-size: .7rem; color: var(--s400); font-weight: 500; white-space: nowrap; font-family: var(--font); }
 .step.active .step-label,
-.step.done   .step-label  { color: var(--primary-dark); }
+.step.done   .step-label  { color: var(--m700); }
 
 /* Room cards */
 .room-card {
-    border: 2px solid #e9ecef; border-radius: 8px;
-    padding: 1rem; cursor: pointer; transition: all .25s;
-    background: white; margin-bottom: .75rem;
+    border: 2px solid var(--s200); border-radius: var(--r);
+    padding: 1rem; cursor: pointer; transition: var(--transition);
+    background: var(--white); margin-bottom: .75rem;
 }
-.room-card:hover { border-color: var(--primary); transform: translateX(4px); box-shadow: 0 4px 12px rgba(76,175,80,.15); }
-.room-card.selected { border-color: var(--primary); background: var(--primary-light); box-shadow: 0 0 0 3px rgba(76,175,80,.2); }
+.room-card:hover { border-color: var(--m400); transform: translateX(4px); box-shadow: var(--shadow-md); }
+.room-card.selected { border-color: var(--m500); background: var(--m50); box-shadow: 0 0 0 3px var(--m100); }
 .room-card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: .5rem; }
-.room-name { font-size: 1.05rem; font-weight: 700; color: var(--primary-dark); }
-.room-number { font-size: .83rem; color: #777; }
+.room-name { font-size: 1.05rem; font-weight: 600; color: var(--s800); font-family: var(--font); }
+.room-number { font-size: .83rem; color: var(--s500); }
 .room-meta { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
-.room-price { font-size: 1.3rem; font-weight: 800; color: var(--primary); }
-.room-price-unit { font-size: .78rem; color: #999; }
+.room-price { font-size: 1.3rem; font-weight: 700; color: var(--m600); font-family: var(--font); }
+.room-price-unit { font-size: .78rem; color: var(--s400); }
 
 #roomsList::-webkit-scrollbar { width: 8px; }
-#roomsList::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 10px; }
-#roomsList::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 10px; }
+#roomsList::-webkit-scrollbar-track { background: var(--s100); border-radius: 10px; }
+#roomsList::-webkit-scrollbar-thumb { background: var(--m400); border-radius: 10px; }
 
 /* Summary */
 .summary-box {
-    background: var(--primary-light); border-left: 4px solid var(--primary);
-    border-radius: 8px; padding: 1.25rem;
+    background: var(--m50); border-left: 4px solid var(--m500);
+    border-radius: var(--r); padding: 1.25rem;
 }
 .summary-row { display: flex; justify-content: space-between; margin-bottom: .75rem; }
 .summary-row:last-child { margin-bottom: 0; }
-.summary-total { font-size: 1.5rem; font-weight: 800; color: var(--primary); }
+.summary-total { font-size: 1.5rem; font-weight: 700; color: var(--m600); font-family: var(--font); }
 
 /* Buttons */
-.btn { border-radius: 8px; padding: .75rem 1.5rem; font-weight: 600; transition: all .25s; }
+.btn { border-radius: var(--r); padding: .75rem 1.5rem; font-weight: 500; transition: var(--transition); font-family: var(--font); }
 .btn:focus, .btn:focus-visible { outline: none !important; box-shadow: none !important; }
-.btn-primary { background: var(--primary); border-color: var(--primary); }
-.btn-primary:hover { background: var(--primary-dark); border-color: var(--primary-dark); transform: translateY(-1px); }
-.btn-primary:disabled { background: #ccc; border-color: #ccc; transform: none; }
+.btn-primary { background: var(--m600); border-color: var(--m600); }
+.btn-primary:hover { background: var(--m700); border-color: var(--m700); transform: translateY(-1px); }
+.btn-primary:disabled { background: var(--s300); border-color: var(--s300); transform: none; }
 .btn-lg { padding: 1rem 2rem; font-size: 1.1rem; }
 
 /* Features sidebar */
 .feature-item { display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1rem; }
 .feature-icon {
     flex-shrink: 0; width: 40px; height: 40px;
-    background: var(--primary-light); border-radius: 50%;
-    display: flex; align-items: center; justify-content: center; color: var(--primary);
+    background: var(--m100); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center; color: var(--m600);
 }
-.feature-content h6 { margin-bottom: .25rem; font-weight: 600; }
-.feature-content small { color: #666; }
+.feature-content h6 { margin-bottom: .25rem; font-weight: 600; font-family: var(--font); }
+.feature-content small { color: var(--s500); }
 
 .loading-state, .empty-state { text-align: center; padding: 3rem 1rem; }
-.empty-state i { font-size: 3rem; color: #ccc; margin-bottom: 1rem; display: block; }
+.empty-state i { font-size: 3rem; color: var(--s300); margin-bottom: 1rem; display: block; }
 .spinner-border { width: 3rem; height: 3rem; }
 
 .sticky-sidebar { position: sticky; top: 20px; }
@@ -729,7 +770,42 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const urlParams         = new URLSearchParams(window.location.search);
     const preSelectedRoomId = urlParams.get('room_id');
-    if (preSelectedRoomId) checkBtn.click();
+    const preSelectedRoom = urlParams.get('room');
+    const preSelectedRoomType = urlParams.get('room_type');
+    const preSelectedPrice = urlParams.get('price');
+    
+    // Pré-remplir les informations de la chambre si disponibles
+    if (preSelectedRoom && preSelectedRoomType && preSelectedPrice) {
+        // Créer une section d'information pour la chambre pré-sélectionnée
+        const roomInfo = document.createElement('div');
+        roomInfo.className = 'alert alert-info mb-4';
+        roomInfo.innerHTML = `
+            <div class="d-flex align-items-center">
+                <i class="fas fa-info-circle me-2"></i>
+                <div>
+                    <strong>Chambre pré-sélectionnée :</strong> ${preSelectedRoomType}<br>
+                    <small>Tarif : ${parseInt(preSelectedPrice).toLocaleString('fr-FR')} FCFA/nuit</small>
+                </div>
+            </div>
+        `;
+        
+        // Insérer avant le formulaire
+        const form = document.getElementById('reservationForm');
+        form.parentNode.insertBefore(roomInfo, form);
+        
+        // Pré-remplir le champ de notes avec l'information de la chambre
+        const notesField = document.getElementById('notes');
+        if (notesField) {
+            const currentNotes = notesField.value || '';
+            const roomNote = `Intéressé(e) par la ${preSelectedRoomType}`;
+            notesField.value = currentNotes ? currentNotes + '\n' + roomNote : roomNote;
+        }
+        
+        // Déclencher la recherche des chambres disponibles
+        if (preSelectedRoomId) checkBtn.click();
+    } else if (preSelectedRoomId) {
+        checkBtn.click();
+    }
 
     checkBtn.addEventListener('click', async function () {
         if (!checkIn.value)  { setInvalid('check_in',  'Veuillez sélectionner la date d\'arrivée.'); return; }

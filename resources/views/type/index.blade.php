@@ -69,10 +69,10 @@
             <div class="card border-0 shadow-sm h-100">
                 <div class="card-body p-4">
                     <div class="d-flex justify-content-between align-items-start mb-3">
-                        <div class="bg-primary-soft p-3 rounded-circle">
-                            <i class="fas fa-list-alt text-primary fa-lg"></i>
+                        <div class="bg-success-soft p-3 rounded-circle">
+                            <i class="fas fa-list-alt text-success fa-lg"></i>
                         </div>
-                        <span class="badge bg-primary">Total</span>
+                        <span class="badge bg-success">Total</span>
                     </div>
                     <h2 class="fw-bold display-6 text-dark mb-1">{{ $types->count() }}</h2>
                     <p class="text-muted mb-0">Room Types</p>
@@ -97,10 +97,10 @@
             <div class="card border-0 shadow-sm h-100">
                 <div class="card-body p-4">
                     <div class="d-flex justify-content-between align-items-start mb-3">
-                        <div class="bg-warning-soft p-3 rounded-circle">
-                            <i class="fas fa-clock text-warning fa-lg"></i>
+                        <div class="bg-success-soft p-3 rounded-circle">
+                            <i class="fas fa-clock text-success fa-lg"></i>
                         </div>
-                        <span class="badge bg-warning">Inactive</span>
+                        <span class="badge bg-success">Inactive</span>
                     </div>
                     @php
                         $inactiveTypes = $types->count() - $activeTypes;
@@ -114,10 +114,10 @@
             <div class="card border-0 shadow-sm h-100">
                 <div class="card-body p-4">
                     <div class="d-flex justify-content-between align-items-start mb-3">
-                        <div class="bg-info-soft p-3 rounded-circle">
-                            <i class="fas fa-bed text-info fa-lg"></i>
+                        <div class="bg-success-soft p-3 rounded-circle">
+                            <i class="fas fa-bed text-success fa-lg"></i>
                         </div>
-                        <span class="badge bg-info">Rooms</span>
+                        <span class="badge bg-success">Rooms</span>
                     </div>
                     @php
                         $totalRooms = 0;
@@ -138,7 +138,7 @@
             <div class="d-flex justify-content-between align-items-center">
                 <div>
                     <h5 class="mb-0 fw-bold">
-                        <i class="fas fa-list-alt text-primary me-2"></i>
+                        <i class="fas fa-list-alt text-success me-2"></i>
                         All Room Types
                     </h5>
                     <p class="text-muted mb-0">Manage your hotel's room types and pricing</p>
@@ -179,8 +179,8 @@
                                     <td class="py-3">
                                         <div class="d-flex align-items-center">
                                             <div class="avatar me-3">
-                                                <div class="bg-primary-soft rounded-circle p-3">
-                                                    <i class="fas fa-bed text-primary"></i>
+                                                <div class="bg-success-soft rounded-circle p-3">
+                                                    <i class="fas fa-bed text-success"></i>
                                                 </div>
                                             </div>
                                             <div>
@@ -191,7 +191,7 @@
                                                     <p class="text-muted small mb-0">No description</p>
                                                 @endif
                                                 @if($isPopular)
-                                                    <span class="badge bg-warning mt-1">
+                                                    <span class="badge bg-success mt-1">
                                                         <i class="fas fa-star me-1"></i>
                                                         Popular
                                                     </span>
@@ -212,7 +212,7 @@
                                     </td>
                                     <td class="py-3">
                                         <div class="d-flex align-items-center">
-                                            <i class="fas fa-users text-info me-2"></i>
+                                            <i class="fas fa-users text-success me-2"></i>
                                             <span class="fw-medium">{{ $type->capacity ?? 1 }} person(s)</span>
                                         </div>
                                         @if($type->bed_type)
@@ -234,7 +234,7 @@
                                     </td>
                                     <td class="py-3 text-center">
                                         <div class="d-flex flex-column align-items-center">
-                                            <span class="badge {{ $roomCount > 0 ? 'bg-info' : 'bg-light text-dark' }} py-2 px-3">
+                                            <span class="badge {{ $roomCount > 0 ? 'bg-success' : 'bg-light text-dark' }} py-2 px-3">
                                                 <i class="fas fa-door-closed me-1"></i>
                                                 {{ $roomCount }}
                                             </span>
@@ -256,7 +256,7 @@
                                             <!-- Rooms Link -->
                                             @if($roomCount > 0)
                                                 <a href="{{ route('room.index') }}?type={{ $type->id }}" 
-                                                   class="btn btn-outline-info btn-sm px-3"
+                                                   class="btn btn-outline-primary btn-sm px-3"
                                                    data-bs-toggle="tooltip" 
                                                    title="View {{ $roomCount }} rooms">
                                                     <i class="fas fa-eye"></i>
@@ -331,7 +331,7 @@
                     <div class="row align-items-center">
                         <div class="col-md-8">
                             <h6 class="mb-1">
-                                <i class="fas fa-lightbulb text-warning me-2"></i>
+                                <i class="fas fa-lightbulb text-success me-2"></i>
                                 Need help managing room types?
                             </h6>
                             <p class="text-muted mb-0 small">
@@ -401,18 +401,18 @@ document.addEventListener('DOMContentLoaded', function() {
 <style>
 /* Design System */
 :root {
-    --primary: #3b82f6;
-    --primary-soft: #dbeafe;
-    --success: #10b981;
-    --success-soft: #d1fae5;
-    --warning: #f59e0b;
-    --warning-soft: #fef3c7;
+    --primary: #8b4513;
+    --primary-soft: #f9f0e6;
+    --success: #8b4513;
+    --success-soft: #f9f0e6;
+    --warning: #8b4513;
+    --warning-soft: #f9f0e6;
     --danger: #ef4444;
     --danger-soft: #fee2e2;
-    --info: #06b6d4;
-    --info-soft: #cffafe;
-    --dark: #1f2937;
-    --light: #f8fafc;
+    --info: #8b4513;
+    --info-soft: #f9f0e6;
+    --dark: #3d241a;
+    --light: #fcf8f3;
 }
 
 /* Cards */

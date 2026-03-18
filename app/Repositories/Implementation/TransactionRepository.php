@@ -56,11 +56,6 @@ class TransactionRepository implements TransactionRepositoryInterface
                 'check_in' => $request->check_in,
                 'check_out' => $request->check_out,
                 'status' => 'reservation',
-                'person_count' => $personCount,
-                'total_price' => $totalPrice,
-                'adults' => $personCount,
-                'children' => 0,
-                'notes' => $request->notes ?? null,
             ];
 
             \Log::info('🔵 Transaction data to create:', $data);

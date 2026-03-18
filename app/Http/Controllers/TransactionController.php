@@ -1599,21 +1599,11 @@ class TransactionController extends Controller
 
             // ✅ SAUVEGARDER LES ANCIENNES VALEURS
             $oldCheckOut = $transaction->check_out->format('Y-m-d H:i:s');
-            $oldTotalPrice = $transaction->total_price;
             $oldNights = Carbon::parse($transaction->check_in)->diffInDays($transaction->check_out);
-            $oldLateCheckout = $transaction->late_checkout;
-            $oldExpectedTime = $transaction->expected_checkout_time;
-            $oldLateFee = $transaction->late_checkout_fee;
 
             $additionalNights = $request->additional_nights;
             $roomPricePerNight = $transaction->room->price;
             $additionalPrice = $additionalNights * $roomPricePerNight;
-
-            // ✅ PRÉPARER LES NOTES DE BASE
-            $notes = $transaction->notes ?? '';
-            $baseNote = "\n---\nProlongation: " . now()->format('d/m/Y H:i') . 
-                        " - " . $additionalNights . " nuit(s) supplémentaire(s)" .
-                        ($request->notes ? ' - ' . $request->notes : '');
 
             // ✅ PRÉPARER LES DONNÉES DE MISE À JOUR
             // RETOUR À LA NORMALE : 12h00, pas de late checkout
@@ -1622,13 +1612,7 @@ class TransactionController extends Controller
                 'late_checkout' => false,                        // ✅ DÉSACTIVER LATE CHECKOUT
                 'expected_checkout_time' => '12:00:00',          // ✅ RETOUR À 12h00 (VALEUR PAR DÉFAUT)
                 'late_checkout_fee' => null,                     // ✅ SUPPRIMER LE SUPPLÉMENT
-                'notes' => $notes . $baseNote,
             ];
-
-            // ✅ SI C'ÉTAIT UN LATE CHECKOUT, AJOUTER UNE NOTE EXPLICATIVE
-            if ($oldLateCheckout) {
-                $updateData['notes'] .= "\n[" . now()->format('d/m/Y H:i') . "] ✅ LATE CHECKOUT ANNULÉ AUTOMATIQUEMENT - Retour à l'heure normale (12h00)";
-            }
 
             // ✅ METTRE À JOUR LA TRANSACTION
             $transaction->update($updateData);
@@ -1638,23 +1622,8 @@ class TransactionController extends Controller
             
             // ✅ RECALCULER LE PRIX TOTAL
             $newTotalPrice = $transaction->getTotalPrice();
-            $expectedNewPrice = $oldTotalPrice + $additionalPrice;
 
-            // ✅ CORRIGER LE PRIX SI NÉCESSAIRE
-            if (abs($newTotalPrice - $expectedNewPrice) > 1) {
-                Log::info("Correction prix prolongation transaction #{$transaction->id}", [
-                    'old_price' => $oldTotalPrice,
-                    'additional_price' => $additionalPrice,
-                    'expected_new_price' => $expectedNewPrice,
-                    'actual_new_price' => $newTotalPrice,
-                ]);
-                $transaction->total_price = $expectedNewPrice;
-                $transaction->save();
-                $newTotalPrice = $expectedNewPrice;
-                $transaction->refresh();
-            }
-
-            // ✅ CRÉER L'HISTORIQUE COMPLET
+            // ✅ CRÉER L'HISTORIQUE COMPLÉT
             History::create([
                 'transaction_id' => $transaction->id,
                 'user_id' => auth()->id(),
@@ -1662,21 +1631,11 @@ class TransactionController extends Controller
                 'description' => 'Prolongation du séjour de '.$additionalNights.' nuit(s)',
                 'old_values' => json_encode([
                     'check_out' => $oldCheckOut,
-                    'total_price' => $oldTotalPrice,
                     'nights' => $oldNights,
-                    'late_checkout' => $oldLateCheckout,
-                    'expected_checkout_time' => $oldExpectedTime,
-                    'late_checkout_fee' => $oldLateFee,
-                    'room_price_per_night' => $roomPricePerNight,
                 ]),
                 'new_values' => json_encode([
                     'check_out' => $transaction->check_out->format('Y-m-d H:i:s'),
-                    'total_price' => $newTotalPrice,
                     'nights' => Carbon::parse($transaction->check_in)->diffInDays($transaction->check_out),
-                    'late_checkout' => false,
-                    'expected_checkout_time' => '12:00:00',          // ✅ RETOUR À 12h00
-                    'late_checkout_fee' => null,
-                    'room_price_per_night' => $roomPricePerNight,
                     'additional_nights' => $additionalNights,
                     'additional_price' => $additionalPrice,
                 ]),
@@ -1695,30 +1654,9 @@ class TransactionController extends Controller
                         'new_check_out' => $newCheckOut->format('d/m/Y H:i'),
                         'old_check_out' => $oldCheckOut,
                         'room_price_per_night' => $roomPricePerNight,
-                        'late_checkout_removed' => $oldLateCheckout ? true : false,
-                        'old_late_time' => $oldExpectedTime,
-                        'old_late_fee' => $oldLateFee,
-                    ],
-                    beforeState: [
-                        'check_out' => $oldCheckOut,
-                        'total_price' => $oldTotalPrice,
-                        'nights' => $oldNights,
-                        'late_checkout' => $oldLateCheckout,
-                        'expected_checkout_time' => $oldExpectedTime,
-                        'late_checkout_fee' => $oldLateFee,
-                    ],
-                    afterState: [
-                        'check_out' => $transaction->check_out->format('Y-m-d H:i:s'),
-                        'total_price' => $newTotalPrice,
-                        'nights' => Carbon::parse($transaction->check_in)->diffInDays($transaction->check_out),
-                        'late_checkout' => false,
-                        'expected_checkout_time' => '12:00:00',      // ✅ RETOUR À 12h00
-                        'late_checkout_fee' => null,
-                        'notes' => $transaction->notes,
                     ],
                     notes: 'Prolongation de '.$additionalNights.' nuit(s) - '.
-                        number_format($additionalPrice, 0, ',', ' ').' CFA' .
-                        ($oldLateCheckout ? ' (Late checkout annulé)' : '')
+                        number_format($additionalPrice, 0, ',', ' .').' CFA'
                 );
             }
 
@@ -1797,44 +1735,30 @@ class TransactionController extends Controller
             try {
                 // Sauvegarder l'ancienne heure pour l'historique
                 $oldCheckOut = $transaction->check_out->format('Y-m-d H:i:s');
-                $oldTotalPrice = $transaction->total_price;
 
-                // Calculer le nouveau total
-                $newTotal = $transaction->total_price + $request->late_fee;
-                
                 // Créer la nouvelle date de départ avec l'heure choisie
                 $newCheckOut = $transaction->check_out->format('Y-m-d') . ' ' . $request->late_checkout_time . ':00';
-                
-                // Préparer les notes
-                $notes = $transaction->checkout_notes ?? '';
-                $newNote = "\n[" . now()->format('d/m/Y H:i') . "] ✅ LATE CHECKOUT - Départ reporté à {$request->late_checkout_time}";
                 
                 // Mettre à jour la transaction
                 $transaction->update([
                     'late_checkout' => true,
                     'expected_checkout_time' => $request->late_checkout_time,
                     'check_out' => $newCheckOut,
-                    'total_price' => $newTotal,
                     'late_checkout_fee' => $request->late_fee,
-                    'checkout_notes' => $notes . $newNote,
                 ]);
 
                 // ✅ CRÉER UN PAIEMENT POUR LE SUPPLÉMENT
                 if ($request->late_fee > 0) {
-                    $payment = Payment::create([
+                    Payment::create([
                         'transaction_id' => $transaction->id,
                         'customer_id' => $transaction->customer_id,
                         'amount' => $request->late_fee,
                         'payment_method' => 'cash', // ou 'pending' si pas encore payé
                         'status' => 'pending', // En attente de paiement
                         'reference' => 'LATE-' . $transaction->id . '-' . time(),
-                        'description' => 'Supplément late checkout du ' . now()->format('d/m/Y') . ' - Départ à ' . $request->late_checkout_time,                        'created_by' => auth()->id(),
+                        'description' => 'Supplément late checkout du ' . now()->format('d/m/Y') . ' - Départ à ' . $request->late_checkout_time,
+                        'created_by' => auth()->id(),
                     ]);
-
-                    // Ajouter une note sur le paiement
-                    $transaction->notes = ($transaction->notes ? $transaction->notes . "\n" : '') . 
-                        "Supplément late checkout de " . number_format($request->late_fee, 0, ',', ' ') . " CFA créé (en attente)";
-                    $transaction->save();
                 }
 
                 DB::commit();
@@ -1854,7 +1778,7 @@ class TransactionController extends Controller
                     ->log('Late checkout enregistré avec paiement');
 
                 $message = '✅ <strong>Late checkout enregistré avec succès !</strong><br>' .
-                        'Nouvelle heure de départ : <strong>' . $request->late_checkout_time . '</strong><br>';
+                    'Nouvelle heure de départ : <strong>' . $request->late_checkout_time . '</strong><br>';
                 
                 if ($request->late_fee > 0) {
                     $message .= 'Supplément de <strong>' . number_format($request->late_fee, 0, ',', ' ') . ' FCFA</strong> ajouté à la facture.<br>';

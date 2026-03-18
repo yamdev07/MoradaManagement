@@ -7,30 +7,30 @@
    VARIABLES & BASE
 ══════════════════════════════════════════════ */
 :root {
-    --green-950: #052e16;
-    --green-900: #064e3b;
-    --green-800: #065f46;
-    --green-600: #059669;
-    --green-500: #10b981;
-    --green-400: #34d399;
-    --green-100: #d1fae5;
-    --green-50:  #ecfdf5;
+    --brown-950: #2c1810;
+    --brown-900: #3d241a;
+    --brown-800: #4e3024;
+    --brown-600: #704838;
+    --brown-500: #8b4513;
+    --brown-400: #a0522d;
+    --brown-100: #f9f0e6;
+    --brown-50:  #fcf8f3;
 
-    --amber-500: #f59e0b;
-    --amber-100: #fef3c7;
-    --amber-50:  #fffbeb;
+    --amber-500: #8b4513;
+    --amber-100: #f9f0e6;
+    --amber-50:  #fcf8f3;
 
-    --blue-600:  #2563eb;
-    --blue-100:  #dbeafe;
-    --blue-50:   #eff6ff;
+    --blue-600:  #8b4513;
+    --blue-100:  #f9f0e6;
+    --blue-50:   #fcf8f3;
 
-    --slate-900: #0f172a;
-    --slate-700: #334155;
-    --slate-500: #64748b;
-    --slate-400: #94a3b8;
-    --slate-200: #e2e8f0;
-    --slate-100: #f1f5f9;
-    --slate-50:  #f8fafc;
+    --slate-900: #3d241a;
+    --slate-700: #4e3024;
+    --slate-500: #704838;
+    --slate-400: #d2b48c;
+    --slate-200: #f5e6d3;
+    --slate-100: #f9f0e6;
+    --slate-50:  #fcf8f3;
 
     --red-500:   #ef4444;
     --red-100:   #fee2e2;
@@ -74,7 +74,7 @@
     flex-wrap: wrap;
 }
 .ci-breadcrumb a { color: var(--slate-400); text-decoration: none; transition: var(--transition); }
-.ci-breadcrumb a:hover { color: var(--green-600); }
+.ci-breadcrumb a:hover { color: var(--primary-600); }
 .ci-breadcrumb .sep { color: var(--slate-300); }
 .ci-breadcrumb .current { color: var(--slate-600); font-weight: 500; }
 
@@ -98,11 +98,11 @@
 }
 .ci-header-icon {
     width: 44px; height: 44px;
-    background: linear-gradient(135deg, var(--green-800), var(--green-600));
+    background: linear-gradient(135deg, var(--brown-800), var(--brown-600));
     border-radius: var(--radius-sm);
     display: flex; align-items: center; justify-content: center;
     color: white; font-size: 1.1rem;
-    box-shadow: 0 4px 12px rgba(5,150,105,.3);
+    box-shadow: 0 4px 12px rgba(139,69,19,.3);
     flex-shrink: 0;
 }
 .ci-header-subtitle {
@@ -128,13 +128,13 @@
     line-height: 1;
 }
 .btn-ci-primary {
-    background: linear-gradient(135deg, var(--green-800), var(--green-600));
+    background: linear-gradient(135deg, var(--brown-800), var(--brown-600));
     color: white;
-    box-shadow: 0 4px 12px rgba(5,150,105,.3);
+    box-shadow: 0 4px 12px rgba(139,69,19,.3);
 }
 .btn-ci-primary:hover {
-    background: linear-gradient(135deg, var(--green-900), var(--green-800));
-    box-shadow: 0 6px 16px rgba(5,150,105,.4);
+    background: linear-gradient(135deg, var(--brown-900), var(--brown-800));
+    box-shadow: 0 6px 16px rgba(139,69,19,.4);
     transform: translateY(-1px);
     color: white;
     text-decoration: none;
@@ -163,9 +163,9 @@
     font-size: .875rem;
 }
 .ci-alert-success {
-    background: var(--green-50);
-    border-color: var(--green-100);
-    color: #065f46;
+    background: var(--brown-50);
+    border-color: var(--brown-100);
+    color: #4e3024;
 }
 .ci-alert-error {
     background: var(--red-100);
@@ -208,7 +208,7 @@
     position: absolute;
     top: 0; left: 0; right: 0;
     height: 3px;
-    background: var(--card-accent, var(--green-500));
+    background: var(--card-accent, var(--primary-500));
     border-radius: 4px 4px 0 0;
 }
 .stat-card:hover {
@@ -216,9 +216,9 @@
     box-shadow: var(--shadow-md);
 }
 .stat-card--arrivals   { --card-accent: var(--blue-600); }
-.stat-card--staying    { --card-accent: var(--green-500); }
+.stat-card--staying    { --card-accent: var(--primary-500); }
 .stat-card--departures { --card-accent: var(--amber-500); }
-.stat-card--available  { --card-accent: #8b5cf6; }
+.stat-card--available  { --card-accent: var(--brown-500); }
 
 .stat-card-top {
     display: flex; justify-content: space-between; align-items: flex-start;
@@ -247,9 +247,9 @@
     opacity: .85;
 }
 .stat-card--arrivals .stat-card-icon   { background: var(--blue-50);  color: var(--blue-600); }
-.stat-card--staying .stat-card-icon    { background: var(--green-50); color: var(--green-600); }
+.stat-card--staying .stat-card-icon    { background: var(--primary-50); color: var(--primary-600); }
 .stat-card--departures .stat-card-icon { background: var(--amber-50); color: var(--amber-500); }
-.stat-card--available .stat-card-icon  { background: #f5f3ff;         color: #7c3aed; }
+.stat-card--available .stat-card-icon  { background: var(--brown-50);         color: var(--brown-500); }
 
 .stat-card-meta {
     font-size: .78rem;
@@ -313,10 +313,10 @@
 }
 
 /* ── Badge colors ───────────────────────────── */
-.badge-green  { background: var(--green-100); color: #065f46; }
+.badge-green  { background: var(--primary-100); color: #4e3024; }
 .badge-amber  { background: var(--amber-100); color: #92400e; }
 .badge-blue   { background: var(--blue-100);  color: #1e40af; }
-.badge-purple { background: #f5f3ff;          color: #5b21b6; }
+.badge-purple { background: var(--brown-100);          color: var(--brown-600); }
 .badge-slate  { background: var(--slate-100); color: var(--slate-700); }
 
 /* ══════════════════════════════════════════════
@@ -435,19 +435,19 @@
 }
 .btn-res:hover { transform: translateY(-1px); text-decoration: none; }
 .btn-res-checkin {
-    background: linear-gradient(135deg, var(--green-800), var(--green-600));
-    color: white; border-color: var(--green-700);
-    box-shadow: 0 2px 6px rgba(5,150,105,.25);
+    background: linear-gradient(135deg, var(--brown-800), var(--brown-600));
+    color: white; border-color: var(--primary-700);
+    box-shadow: 0 2px 6px rgba(139,69,19,.25);
 }
 .btn-res-checkin:hover {
     box-shadow: 0 4px 10px rgba(5,150,105,.35);
     color: white;
 }
 .btn-res-quick {
-    background: white; color: var(--green-700);
+    background: white; color: var(--primary-700);
     border-color: var(--green-200);
 }
-.btn-res-quick:hover { background: var(--green-50); color: var(--green-800); border-color: var(--green-300); }
+.btn-res-quick:hover { background: var(--primary-50); color: var(--primary-800); border-color: var(--primary-300); }
 .btn-res-view {
     background: white; color: var(--slate-600);
     border-color: var(--slate-200);
@@ -523,7 +523,7 @@
     text-decoration: none;
 }
 .btn-ghost-sm:hover { border-color: var(--slate-300); color: var(--slate-900); background: var(--slate-50); transform: translateY(-1px); }
-.btn-ghost-sm-green:hover { border-color: var(--green-200); color: var(--green-700); background: var(--green-50); }
+.btn-ghost-sm-green:hover { border-color: var(--primary-200); color: var(--primary-700); background: var(--primary-50); }
 
 /* Departure "urgent" tag */
 .tag-urgent {
@@ -534,7 +534,7 @@
     border: 1px solid var(--amber-100);
 }
 .tag-largesse {
-    background: var(--green-50); color: var(--green-700);
+    background: var(--primary-50); color: var(--primary-700);
     border-color: var(--green-200);
 }
 
@@ -560,7 +560,7 @@
     border: 1px solid #fde68a;
 }
 .dep-time-badge-largesse {
-    background: var(--green-100); color: var(--green-800);
+    background: var(--primary-100); color: var(--primary-800);
     border-color: var(--green-200);
 }
 .dep-actions { display: flex; gap: 6px; }
@@ -575,13 +575,13 @@
 .btn-dep-checkout {
     display: inline-flex; align-items: center; gap: 5px;
     padding: 5px 10px; border-radius: 6px; font-size: .75rem; font-weight: 600;
-    border: 1px solid var(--green-200); background: var(--green-50); color: var(--green-700);
+    border: 1px solid var(--primary-200); background: var(--primary-50); color: var(--primary-700);
     cursor: pointer; text-decoration: none; transition: var(--transition);
 }
 .btn-dep-checkout:hover {
-    background: linear-gradient(135deg, var(--green-800), var(--green-600));
+    background: linear-gradient(135deg, var(--brown-800), var(--brown-600));
     color: white; border-color: transparent;
-    box-shadow: 0 3px 8px rgba(5,150,105,.3);
+    box-shadow: 0 3px 8px rgba(139,69,19,.3);
     transform: translateY(-1px);
 }
 .btn-dep-checkout-late {
@@ -604,14 +604,14 @@
     display: inline-flex; align-items: center; gap: 6px;
     padding: 7px 16px; border-radius: var(--radius-sm);
     font-size: .78rem; font-weight: 500;
-    color: var(--green-700); background: transparent;
+    color: var(--primary-700); background: transparent;
     border: 1px solid var(--green-200);
     text-decoration: none; cursor: pointer; transition: var(--transition);
 }
 .btn-ci-footer:hover {
     background: var(--green-50);
-    border-color: var(--green-300);
-    color: var(--green-800);
+    border-color: var(--primary-300);
+    color: var(--primary-800);
     text-decoration: none;
 }
 
@@ -627,7 +627,7 @@
     background: white;
     border-radius: var(--radius-md);
     box-shadow: var(--shadow-lg);
-    border-left: 4px solid var(--green-500);
+    border-left: 4px solid var(--primary-500);
     font-size: .875rem; font-weight: 500;
     color: var(--slate-800);
     pointer-events: auto;
@@ -776,7 +776,7 @@
                         Réservations à venir
                         <span style="font-size:.75rem;font-weight:400;color:var(--slate-400)">Aujourd'hui & Demain</span>
                     </h2>
-                    <span class="ci-card-badge badge-blue">{{ $upcomingReservations->count() }} groupe(s)</span>
+                    <span class="ci-card-badge badge-green">{{ $upcomingReservations->count() }} groupe(s)</span>
                 </div>
 
                 @if($upcomingReservations->isEmpty())
@@ -902,7 +902,7 @@
             <div class="ci-card">
                 <div class="ci-card-header">
                     <h2 class="ci-card-title">
-                        <span class="ci-card-title-dot" style="background:var(--green-500)"></span>
+                        <span class="ci-card-title-dot" style="background:var(--primary-500)"></span>
                         Dans l'hôtel
                     </h2>
                     <span class="ci-card-badge badge-green">{{ $activeGuests->count() }} client{{ $activeGuests->count() > 1 ? 's' : '' }}</span>
@@ -1009,7 +1009,7 @@
 
                 @if($todayDepartures->isEmpty())
                 <div class="ci-empty" style="padding: 28px 20px;">
-                    <div class="ci-empty-icon" style="width:52px;height:52px;font-size:1.3rem;color:var(--green-400);background:var(--green-50);"><i class="fas fa-check-circle"></i></div>
+                    <div class="ci-empty-icon" style="width:52px;height:52px;font-size:1.3rem;color:var(--primary-400);background:var(--primary-50);"><i class="fas fa-check-circle"></i></div>
                     <p class="ci-empty-title" style="font-size:.85rem;">Aucun départ prévu</p>
                 </div>
                 @else
@@ -1097,8 +1097,8 @@ function showToast(msg, type = 'success') {
     const t = document.createElement('div');
     t.className = 'ci-toast' + (type === 'error' ? ' ci-toast-error' : '');
     const icon = type === 'success' ? 'fas fa-check-circle' : 'fas fa-exclamation-circle';
-    const color = type === 'success' ? 'var(--green-500)' : 'var(--red-500)';
-    t.innerHTML = `<i class="${icon}" style="color:${color};font-size:1rem;flex-shrink:0"></i><span>${msg}</span>`;
+    const colors = { error: 'var(--red-500)', info: 'var(--blue-600)', success: 'var(--brown-500)' };
+    t.innerHTML = `<i class="${icon}" style="color:${colors[type]};font-size:1rem;flex-shrink:0"></i><span>${msg}</span>`;
     wrap.appendChild(t);
     setTimeout(() => t.style.opacity = '0', 2800);
     setTimeout(() => t.remove(), 3100);

@@ -1,3 +1,4 @@
+
 @extends('template.master')
 @section('title', 'Dashboard - Rooms Occupancy')
 @section('content')

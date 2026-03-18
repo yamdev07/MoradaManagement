@@ -145,7 +145,7 @@
                         <li>
                             <form action="/logout" method="POST" class="mb-0">
                                 @csrf
-                                <button class="dropdown-item d-flex align-items-center text-danger" type="submit">
+                                <button class="dropdown-item d-flex align-items-center" type="submit" style="background: #8b4513; border-color: #8b4513;">
                                     <i class="fas fa-sign-out-alt me-3"></i>
                                     Logout
                                 </button>

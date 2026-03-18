@@ -331,25 +331,33 @@ class TransactionRoomReservationController extends Controller
             }
 
             // ============ CRÉATION DE LA TRANSACTION ============
-            \Log::info('🔵 Création de la réservation...');
-
-            DB::beginTransaction();
 
             try {
-                // ============ VÉRIFIER/AJOUTER COLONNE NOTES ============
-                \Log::info('🔧 Vérification colonne notes dans transactions...');
-                try {
-                    // Vérifier si la colonne notes existe
-                    $columns = DB::select("SHOW COLUMNS FROM transactions LIKE 'notes'");
-                    if (empty($columns)) {
-                        DB::statement('ALTER TABLE transactions ADD COLUMN notes TEXT NULL');
-                        \Log::info('✅ Colonne notes ajoutée à la table transactions');
-                    } else {
-                        \Log::info('✅ Colonne notes existe déjà');
-                    }
-                } catch (\Exception $e) {
-                    \Log::warning('⚠️ Erreur vérification colonne notes: '.$e->getMessage());
+                // ============ VALIDATION ============
+                \Log::info(' Validation des données...');
+
+                $validator = \Validator::make($request->all(), [
+                    'check_in' => 'required|date',
+                    'check_out' => 'required|date|after:check_in',
+                    'downPayment' => 'nullable|numeric|min:0',
+                    'person_count' => 'nullable|integer|min:1|max:'.$room->capacity,
+                    'payment_method' => 'nullable|string|in:cash,card,mobile_money',
+                ], [
+                    'check_in.required' => 'La date d\'arrivée est obligatoire',
+                    'check_out.required' => 'La date de départ est obligatoire',
+                    'check_out.after' => 'La date de départ doit être après la date d\'arrivée',
+                    'person_count.max' => 'Le nombre de personnes ne peut pas dépasser la capacité de la chambre ('.$room->capacity.')',
+                ]);
+
+                if ($validator->fails()) {
+                    \Log::error(' Validation échouée:', $validator->errors()->toArray());
+
+                    return redirect()->back()
+                        ->withErrors($validator)
+                        ->withInput();
                 }
+
+                $validated = $validator->validated();
 
                 // ============ CRÉATION TRANSACTION ============
                 \Log::info('🔵 Création de la transaction avec colonnes existantes...');
@@ -361,28 +369,7 @@ class TransactionRoomReservationController extends Controller
                     'room_id' => $room->id,
                     'check_in' => $checkIn,
                     'check_out' => $checkOut,
-                    'person_count' => $personCount,
-                    'total_price' => $totalPrice,
-                    'total_payment' => $downPayment,
                     'status' => 'reservation',
-                    'notes' => sprintf(
-                        'Réservation créée par %s | %d nuit(s) | %s FCFA/nuit | Acompte: %s FCFA | Méthode: %s',
-                        $user->name ?? 'Système',
-                        $days,
-                        number_format($room->price, 0, ',', ' '),
-                        number_format($downPayment, 0, ',', ' '),
-                        $paymentMethod
-                    ),
-                    'checkin_notes' => json_encode([
-                        'agent' => $user->name ?? 'Système',
-                        'nights' => $days,
-                        'price_per_night' => $room->price,
-                        'room_type' => $room->type->name ?? 'Standard',
-                        'payment_method' => $paymentMethod,
-                        'down_payment' => $downPayment,
-                        'total_amount' => $totalPrice,
-                        'created_at' => now()->toDateTimeString(),
-                    ]),
                 ];
 
                 \Log::info('📋 Données transaction (colonnes existantes):', $transactionData);
@@ -934,13 +921,7 @@ class TransactionRoomReservationController extends Controller
                 'room_id' => $validated['room_id'],
                 'check_in' => $checkIn,
                 'check_out' => $checkOut,
-                'check_in_time' => $validated['check_in_time'] ?? '14:00:00',
-                'check_out_time' => '12:00:00',
                 'status' => 'reserved_waiting',
-                'person_count' => $validated['person_count'],
-                'total_price' => $totalPrice,
-                'total_payment' => $validated['downPayment'] ?? 0,
-                'notes' => ($validated['notes'] ?? '') . ' | En attente du check-out du client actuel',
             ]);
             
             // Créer le paiement si acompte
