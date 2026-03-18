@@ -1,8 +1,8 @@
-@extends('template.master')
 
-@section('title', 'Gestion des Chambres')
 
-@section('content')
+<?php $__env->startSection('title', 'Gestion des Chambres'); ?>
+
+<?php $__env->startSection('content'); ?>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap');
 
@@ -305,35 +305,36 @@
             <div>
                 <h1 class="rooms-header-title">Gestion des <em>chambres</em></h1>
                 <p class="rooms-header-sub">
-                    <i class="fas fa-door-open me-1"></i> {{ $rooms->total() }} chambres au total
-                    @if($rooms->total() > 0)
-                        · Affichage {{ $rooms->firstItem() }}-{{ $rooms->lastItem() }}
-                    @endif
+                    <i class="fas fa-door-open me-1"></i> <?php echo e($rooms->total()); ?> chambres au total
+                    <?php if($rooms->total() > 0): ?>
+                        · Affichage <?php echo e($rooms->firstItem()); ?>-<?php echo e($rooms->lastItem()); ?>
+
+                    <?php endif; ?>
                 </p>
             </div>
         </div>
         <div class="rooms-header-actions">
-            <a href="{{ route('room.create') }}" class="btn-db btn-db-primary">
+            <a href="<?php echo e(route('room.create')); ?>" class="btn-db btn-db-primary">
                 <i class="fas fa-plus-circle me-2"></i> Nouvelle chambre
             </a>
         </div>
     </div>
 
     <!-- Statistiques -->
-    @php
+    <?php
         $totalRooms = $rooms->total();
         $availableRooms = $rooms->where('roomStatus.name', 'Available')->count();
         $occupiedRooms = $rooms->where('roomStatus.name', 'Occupied')->count();
         $maintenanceRooms = $rooms->where('roomStatus.name', 'Maintenance')->count();
         $dirtyRooms = $rooms->where('roomStatus.name', 'Dirty')->count();
-    @endphp
+    ?>
 
     <div class="stats-grid anim-2">
         <div class="stat-card stat-card--total">
             <div class="stat-card-head">
                 <div class="stat-card-icon"><i class="fas fa-building"></i></div>
             </div>
-            <div class="stat-card-value">{{ $totalRooms }}</div>
+            <div class="stat-card-value"><?php echo e($totalRooms); ?></div>
             <div class="stat-card-label">Total chambres</div>
             <div class="stat-card-footer">
                 <i class="fas fa-door-open"></i>
@@ -345,7 +346,7 @@
             <div class="stat-card-head">
                 <div class="stat-card-icon"><i class="fas fa-check-circle"></i></div>
             </div>
-            <div class="stat-card-value">{{ $availableRooms }}</div>
+            <div class="stat-card-value"><?php echo e($availableRooms); ?></div>
             <div class="stat-card-label">Disponibles</div>
             <div class="stat-card-footer">
                 <i class="fas fa-door-open"></i>
@@ -357,7 +358,7 @@
             <div class="stat-card-head">
                 <div class="stat-card-icon"><i class="fas fa-user"></i></div>
             </div>
-            <div class="stat-card-value">{{ $occupiedRooms }}</div>
+            <div class="stat-card-value"><?php echo e($occupiedRooms); ?></div>
             <div class="stat-card-label">Occupées</div>
             <div class="stat-card-footer">
                 <i class="fas fa-clock"></i>
@@ -369,7 +370,7 @@
             <div class="stat-card-head">
                 <div class="stat-card-icon"><i class="fas fa-broom"></i></div>
             </div>
-            <div class="stat-card-value">{{ $dirtyRooms }}</div>
+            <div class="stat-card-value"><?php echo e($dirtyRooms); ?></div>
             <div class="stat-card-label">À nettoyer</div>
             <div class="stat-card-footer">
                 <i class="fas fa-exclamation-triangle"></i>
@@ -381,7 +382,7 @@
             <div class="stat-card-head">
                 <div class="stat-card-icon"><i class="fas fa-tools"></i></div>
             </div>
-            <div class="stat-card-value">{{ $maintenanceRooms }}</div>
+            <div class="stat-card-value"><?php echo e($maintenanceRooms); ?></div>
             <div class="stat-card-label">Maintenance</div>
             <div class="stat-card-footer">
                 <i class="fas fa-exclamation-triangle"></i>
@@ -391,21 +392,21 @@
     </div>
 
     <!-- Alertes -->
-    @if(session('success'))
+    <?php if(session('success')): ?>
     <div class="alert-modern alert-success anim-2">
         <div class="alert-icon"><i class="fas fa-check-circle"></i></div>
-        <span>{{ session('success') }}</span>
+        <span><?php echo e(session('success')); ?></span>
         <button class="alert-close" onclick="this.parentElement.remove()">×</button>
     </div>
-    @endif
+    <?php endif; ?>
 
-    @if(session('failed'))
+    <?php if(session('failed')): ?>
     <div class="alert-modern alert-danger anim-2">
         <div class="alert-icon"><i class="fas fa-exclamation-circle"></i></div>
-        <span>{{ session('failed') }}</span>
+        <span><?php echo e(session('failed')); ?></span>
         <button class="alert-close" onclick="this.parentElement.remove()">×</button>
     </div>
-    @endif
+    <?php endif; ?>
 
     <!-- Action Bar -->
     <div class="action-bar anim-3">
@@ -413,7 +414,7 @@
             <span class="filter-badge">
                 <i class="fas fa-bed"></i>
                 Toutes les chambres
-                <span class="badge-count">{{ $rooms->total() }}</span>
+                <span class="badge-count"><?php echo e($rooms->total()); ?></span>
             </span>
         </div>
         
@@ -438,7 +439,7 @@
             </h5>
             <span class="rooms-card-badge">
                 <i class="fas fa-list"></i>
-                {{ $rooms->total() }} entrées
+                <?php echo e($rooms->total()); ?> entrées
             </span>
         </div>
         <div class="rooms-card-body">
@@ -456,8 +457,8 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse($rooms as $room)
-                        @php
+                        <?php $__empty_1 = true; $__currentLoopData = $rooms; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $room): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                        <?php
                             // Définir les conditions pour les boutons
                             $isDirty = $room->roomStatus->name == 'Dirty' || $room->room_status_id == 6;
                             $isOccupied = $room->roomStatus->name == 'Occupied' || $room->room_status_id == 2;
@@ -467,64 +468,68 @@
                             $canMarkDirty = !$isDirty && !$isOccupied && !$isMaintenance;
                             $canMarkClean = $isDirty;
                             $canDelete = !$isOccupied && (auth()->user()->role === 'Super' || auth()->user()->role === 'Admin');
-                        @endphp
+                        ?>
                         <tr>
                             <td>
-                                <span class="room-num">{{ $room->number }}</span>
+                                <span class="room-num"><?php echo e($room->number); ?></span>
                             </td>
                             <td>
                                 <div>
                                     <div class="room-name">
-                                        {{ $room->display_name ?? $room->getNameOrNumber() }}
+                                        <?php echo e($room->display_name ?? $room->getNameOrNumber()); ?>
+
                                     </div>
-                                    @if($room->name && $room->name !== $room->display_name)
+                                    <?php if($room->name && $room->name !== $room->display_name): ?>
                                     <div class="room-meta">
                                         <i class="fas fa-tag"></i>
-                                        {{ $room->name }}
+                                        <?php echo e($room->name); ?>
+
                                     </div>
-                                    @endif
-                                    @if($room->view)
+                                    <?php endif; ?>
+                                    <?php if($room->view): ?>
                                     <div class="room-meta">
                                         <i class="fas fa-mountain"></i>
-                                        {{ $room->view }}
+                                        <?php echo e($room->view); ?>
+
                                     </div>
-                                    @endif
+                                    <?php endif; ?>
                                 </div>
                             </td>
                             <td>
                                 <div>
-                                    <div class="room-type">{{ $room->type->name ?? 'Standard' }}</div>
-                                    @if($room->type && $room->type->base_price)
+                                    <div class="room-type"><?php echo e($room->type->name ?? 'Standard'); ?></div>
+                                    <?php if($room->type && $room->type->base_price): ?>
                                     <div class="room-type__base">
-                                        Base: {{ number_format($room->type->base_price, 0, ',', ' ') }} FCFA
+                                        Base: <?php echo e(number_format($room->type->base_price, 0, ',', ' ')); ?> FCFA
                                     </div>
-                                    @endif
+                                    <?php endif; ?>
                                 </div>
                             </td>
                             <td>
                                 <div class="room-capacity">
                                     <i class="fas fa-users"></i>
-                                    <span>{{ $room->capacity }} personne(s)</span>
+                                    <span><?php echo e($room->capacity); ?> personne(s)</span>
                                 </div>
                             </td>
                             <td>
                                 <div>
-                                    <div class="room-price">{{ number_format($room->price, 0, ',', ' ') }} FCFA</div>
-                                    @if($room->price > 0)
+                                    <div class="room-price"><?php echo e(number_format($room->price, 0, ',', ' ')); ?> FCFA</div>
+                                    <?php if($room->price > 0): ?>
                                     <div class="room-price__eur">
-                                        ≈ €{{ number_format($room->price / 655, 2, ',', ' ') }}
+                                        ≈ €<?php echo e(number_format($room->price / 655, 2, ',', ' ')); ?>
+
                                     </div>
-                                    @if($room->type && $room->type->base_price && $room->price != $room->type->base_price)
+                                    <?php if($room->type && $room->type->base_price && $room->price != $room->type->base_price): ?>
                                     <div class="room-price__custom">
                                         <i class="fas fa-exclamation-circle"></i>
                                         Prix personnalisé
                                     </div>
-                                    @endif
-                                    @endif
+                                    <?php endif; ?>
+                                    <?php endif; ?>
                                 </div>
                             </td>
                             <td>
-                                @php
+                                <?php
                                     $statusColor = match($room->roomStatus->name ?? '') {
                                         'Available' => 'success',
                                         'Occupied' => 'warning',
@@ -532,96 +537,97 @@
                                         'Dirty' => 'info',
                                         default => 'gray'
                                     };
-                                @endphp
-                                <span class="badge badge--{{ $statusColor }}">
-                                    <i class="{{ $room->status_icon ?? 'fa-door-closed' }}"></i>
-                                    {{ $room->roomStatus->name ?? 'Inconnu' }}
+                                ?>
+                                <span class="badge badge--<?php echo e($statusColor); ?>">
+                                    <i class="<?php echo e($room->status_icon ?? 'fa-door-closed'); ?>"></i>
+                                    <?php echo e($room->roomStatus->name ?? 'Inconnu'); ?>
+
                                 </span>
                             </td>
                             <td style="text-align: center;">
                                 <div style="display: flex; gap: 6px; justify-content: center; flex-wrap: wrap;">
                                     <!-- Bouton Voir (toujours actif) -->
-                                    <a href="{{ route('room.show', $room->id) }}" 
+                                    <a href="<?php echo e(route('room.show', $room->id)); ?>" 
                                        class="btn-db-icon" 
                                        title="Voir détails">
                                         <i class="fas fa-eye"></i>
                                     </a>
                                     
                                     <!-- Bouton Modifier (toujours actif) -->
-                                    <a href="{{ route('room.edit', $room->id) }}" 
+                                    <a href="<?php echo e(route('room.edit', $room->id)); ?>" 
                                        class="btn-db-icon" 
                                        title="Modifier">
                                         <i class="fas fa-edit"></i>
                                     </a>
 
-                                    @if(in_array(auth()->user()->role, ['Super', 'Admin', 'Housekeeping']))
+                                    <?php if(in_array(auth()->user()->role, ['Super', 'Admin', 'Housekeeping'])): ?>
                                         <!-- ✅ BOUTON MARQUER COMME SALE -->
-                                        @if($canMarkDirty)
+                                        <?php if($canMarkDirty): ?>
                                             <form method="POST" 
-                                                  action="{{ route('room.mark-dirty', $room->id) }}"
+                                                  action="<?php echo e(route('room.mark-dirty', $room->id)); ?>"
                                                   style="display:inline">
-                                                @csrf
+                                                <?php echo csrf_field(); ?>
                                                 <button type="submit" 
                                                         class="btn-db-icon btn-db-icon-warning"
                                                         title="Marquer comme sale"
-                                                        onclick="return confirm('Marquer la chambre {{ $room->number }} comme sale ?')">
+                                                        onclick="return confirm('Marquer la chambre <?php echo e($room->number); ?> comme sale ?')">
                                                     <i class="fas fa-broom"></i>
                                                 </button>
                                             </form>
-                                        @else
+                                        <?php else: ?>
                                             <button class="btn-db-icon" disabled
-                                                    title="{{ $isDirty ? 'Déjà sale' : ($isOccupied ? 'Chambre occupée' : 'Action non disponible') }}">
+                                                    title="<?php echo e($isDirty ? 'Déjà sale' : ($isOccupied ? 'Chambre occupée' : 'Action non disponible')); ?>">
                                                 <i class="fas fa-broom"></i>
                                             </button>
-                                        @endif
+                                        <?php endif; ?>
 
                                         <!-- ✅ BOUTON MARQUER COMME PROPRE -->
-                                        @if($canMarkClean)
+                                        <?php if($canMarkClean): ?>
                                             <form method="POST" 
-                                                  action="{{ route('room.mark-clean', $room->id) }}"
+                                                  action="<?php echo e(route('room.mark-clean', $room->id)); ?>"
                                                   style="display:inline">
-                                                @csrf
+                                                <?php echo csrf_field(); ?>
                                                 <button type="submit" 
                                                         class="btn-db-icon btn-db-icon-success"
                                                         title="Marquer comme propre"
-                                                        onclick="return confirm('Marquer la chambre {{ $room->number }} comme propre ?')">
+                                                        onclick="return confirm('Marquer la chambre <?php echo e($room->number); ?> comme propre ?')">
                                                     <i class="fas fa-check"></i>
                                                 </button>
                                             </form>
-                                        @else
+                                        <?php else: ?>
                                             <button class="btn-db-icon" disabled
-                                                    title="{{ !$isDirty ? 'Pas besoin de nettoyage' : 'Action non disponible' }}">
+                                                    title="<?php echo e(!$isDirty ? 'Pas besoin de nettoyage' : 'Action non disponible'); ?>">
                                                 <i class="fas fa-check"></i>
                                             </button>
-                                        @endif
-                                    @endif
+                                        <?php endif; ?>
+                                    <?php endif; ?>
                                     
                                     <!-- Bouton Supprimer (Super/Admin uniquement) -->
-                                    @if(auth()->user()->role === 'Super' || auth()->user()->role === 'Admin')
-                                        @if($canDelete)
+                                    <?php if(auth()->user()->role === 'Super' || auth()->user()->role === 'Admin'): ?>
+                                        <?php if($canDelete): ?>
                                             <form method="POST" 
-                                                  action="{{ route('room.destroy', $room->id) }}"
+                                                  action="<?php echo e(route('room.destroy', $room->id)); ?>"
                                                   style="display:inline"
-                                                  onsubmit="return confirm('Supprimer la chambre {{ $room->number }} ? Cette action est irréversible.')">
-                                                @csrf
-                                                @method('DELETE')
+                                                  onsubmit="return confirm('Supprimer la chambre <?php echo e($room->number); ?> ? Cette action est irréversible.')">
+                                                <?php echo csrf_field(); ?>
+                                                <?php echo method_field('DELETE'); ?>
                                                 <button type="submit" 
                                                         class="btn-db-icon btn-db-icon-danger"
                                                         title="Supprimer">
                                                     <i class="fas fa-trash"></i>
                                                 </button>
                                             </form>
-                                        @else
+                                        <?php else: ?>
                                             <button class="btn-db-icon btn-db-icon-danger" disabled
                                                     title="Impossible de supprimer une chambre occupée">
                                                 <i class="fas fa-trash"></i>
                                             </button>
-                                        @endif
-                                    @endif
+                                        <?php endif; ?>
+                                    <?php endif; ?>
                                 </div>
                             </td>
                         </tr>
-                        @empty
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
                         <tr>
                             <td colspan="7">
                                 <div class="empty-state">
@@ -630,36 +636,37 @@
                                     </div>
                                     <p class="empty-title">Aucune chambre trouvée</p>
                                     <p class="empty-text">Vous n'avez pas encore ajouté de chambres.</p>
-                                    <a href="{{ route('room.create') }}" class="btn-db btn-db-primary">
+                                    <a href="<?php echo e(route('room.create')); ?>" class="btn-db btn-db-primary">
                                         <i class="fas fa-plus-circle me-2"></i>
                                         Ajouter une chambre
                                     </a>
                                 </div>
                             </td>
                         </tr>
-                        @endforelse
+                        <?php endif; ?>
                     </tbody>
                 </table>
             </div>
             
             <!-- Pagination -->
-            @if($rooms->hasPages())
+            <?php if($rooms->hasPages()): ?>
             <div class="pagination-wrap">
                 <div class="pagination-info">
-                    Affichage de {{ $rooms->firstItem() }} à {{ $rooms->lastItem() }} sur {{ $rooms->total() }} entrées
+                    Affichage de <?php echo e($rooms->firstItem()); ?> à <?php echo e($rooms->lastItem()); ?> sur <?php echo e($rooms->total()); ?> entrées
                 </div>
                 <div>
-                    {{ $rooms->onEachSide(1)->links('pagination::bootstrap-4') }}
+                    <?php echo e($rooms->onEachSide(1)->links('pagination::bootstrap-4')); ?>
+
                 </div>
             </div>
-            @endif
+            <?php endif; ?>
         </div>
     </div>
 </div>
 
-@endsection
+<?php $__env->stopSection(); ?>
 
-@push('scripts')
+<?php $__env->startPush('scripts'); ?>
 <script>
 // Auto-hide alerts after 5 seconds
 setTimeout(() => {
@@ -722,4 +729,5 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 </script>
-@endpush
+<?php $__env->stopPush(); ?>
+<?php echo $__env->make('template.master', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH C:\Users\Majorelle V\Documents\MoradaManagement\resources\views/room/index.blade.php ENDPATH**/ ?>

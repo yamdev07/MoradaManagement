@@ -171,7 +171,7 @@
                                     <span class="price">125 000</span>
                                     <span class="price-label">FCFA/nuit</span>
                                 </div>
-                                <a href="{{ route('frontend.contact') }}?room=Bungalows" class="btn-view">
+                                <a href="{{ route('frontend.reservation') }}?room=Bungalows&room_type=Bungalows Majestueux&price=125000" class="btn-view">
                                     Réserver
                                     <i class="fas fa-arrow-right ms-2"></i>
                                 </a>
@@ -232,7 +232,7 @@
                                     <span class="price">20 000</span>
                                     <span class="price-label">FCFA/nuit</span>
                                 </div>
-                                <a href="{{ route('frontend.contact') }}?room=Confort" class="btn-view">
+                                <a href="{{ route('frontend.reservation') }}?room=Confort&room_type=Chambre Confort&price=20000" class="btn-view">
                                     Réserver
                                     <i class="fas fa-arrow-right ms-2"></i>
                                 </a>
@@ -293,7 +293,7 @@
                                     <span class="price">250 000</span>
                                     <span class="price-label">FCFA/nuit</span>
                                 </div>
-                                <a href="{{ route('frontend.contact') }}?room=Presidentielle" class="btn-view">
+                                <a href="{{ route('frontend.reservation') }}?room=Presidentielle&room_type=Suite Présidentielle&price=250000" class="btn-view">
                                     Réserver
                                     <i class="fas fa-arrow-right ms-2"></i>
                                 </a>

@@ -1,6 +1,6 @@
-@extends('template.master')
-@section('title', 'Gestion des Utilisateurs')
-@section('content')
+
+<?php $__env->startSection('title', 'Gestion des Utilisateurs'); ?>
+<?php $__env->startSection('content'); ?>
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap');
@@ -431,7 +431,7 @@
 <div class="users-page">
     <!-- Breadcrumb -->
     <div class="users-breadcrumb anim-1">
-        <a href="{{ route('dashboard.index') }}"><i class="fas fa-home fa-xs"></i> Dashboard</a>
+        <a href="<?php echo e(route('dashboard.index')); ?>"><i class="fas fa-home fa-xs"></i> Dashboard</a>
         <span class="sep"><i class="fas fa-chevron-right fa-xs"></i></span>
         <span class="current">Utilisateurs</span>
     </div>
@@ -448,27 +448,27 @@
             </div>
         </div>
         <div class="users-header-actions">
-            <a href="{{ route('user.create') }}" class="btn-db btn-db-primary">
+            <a href="<?php echo e(route('user.create')); ?>" class="btn-db btn-db-primary">
                 <i class="fas fa-plus-circle me-2"></i> Nouvel utilisateur
             </a>
         </div>
     </div>
 
     <!-- Statistics -->
-    @php
+    <?php
         $totalUsers = $users->total();
         $totalCustomers = $customers->total();
         $adminCount = $users->where('role', 'Admin')->count();
         $receptionistCount = $users->where('role', 'Receptionist')->count();
         $housekeepingCount = $users->where('role', 'Housekeeping')->count();
-    @endphp
+    ?>
     
     <div class="stats-grid anim-3">
         <div class="stat-card stat-card--total">
             <div class="stat-card-head">
                 <div class="stat-card-icon"><i class="fas fa-users"></i></div>
             </div>
-            <div class="stat-card-value">{{ $totalUsers + $totalCustomers }}</div>
+            <div class="stat-card-value"><?php echo e($totalUsers + $totalCustomers); ?></div>
             <div class="stat-card-label">Utilisateurs totaux</div>
             <div class="stat-card-footer">
                 <i class="fas fa-user"></i>
@@ -480,11 +480,11 @@
             <div class="stat-card-head">
                 <div class="stat-card-icon"><i class="fas fa-user-tie"></i></div>
             </div>
-            <div class="stat-card-value">{{ $totalUsers }}</div>
+            <div class="stat-card-value"><?php echo e($totalUsers); ?></div>
             <div class="stat-card-label">Utilisateurs</div>
             <div class="stat-card-footer">
                 <i class="fas fa-shield-alt"></i>
-                {{ $adminCount }} admin · {{ $receptionistCount + $housekeepingCount }} staff
+                <?php echo e($adminCount); ?> admin · <?php echo e($receptionistCount + $housekeepingCount); ?> staff
             </div>
         </div>
         
@@ -492,7 +492,7 @@
             <div class="stat-card-head">
                 <div class="stat-card-icon"><i class="fas fa-user"></i></div>
             </div>
-            <div class="stat-card-value">{{ $totalCustomers }}</div>
+            <div class="stat-card-value"><?php echo e($totalCustomers); ?></div>
             <div class="stat-card-label">Clients</div>
             <div class="stat-card-footer">
                 <i class="fas fa-id-card"></i>
@@ -504,11 +504,11 @@
             <div class="stat-card-head">
                 <div class="stat-card-icon"><i class="fas fa-layer-group"></i></div>
             </div>
-            <div class="stat-card-value">{{ $users->currentPage() }}</div>
+            <div class="stat-card-value"><?php echo e($users->currentPage()); ?></div>
             <div class="stat-card-label">Page actuelle</div>
             <div class="stat-card-footer">
                 <i class="fas fa-list"></i>
-                {{ $users->perPage() }} par page
+                <?php echo e($users->perPage()); ?> par page
             </div>
         </div>
     </div>
@@ -519,20 +519,20 @@
             <span class="filter-badge">
                 <i class="fas fa-users"></i>
                 Tous
-                <span class="badge-count">{{ $totalUsers + $totalCustomers }}</span>
+                <span class="badge-count"><?php echo e($totalUsers + $totalCustomers); ?></span>
             </span>
         </div>
         
         <div class="action-right">
             <div class="search-container">
                 <i class="fas fa-search search-icon"></i>
-                <form method="GET" action="{{ route('user.index') }}">
-                    <input type="hidden" name="qc" value="{{ request()->input('qc') }}">
+                <form method="GET" action="<?php echo e(route('user.index')); ?>">
+                    <input type="hidden" name="qc" value="<?php echo e(request()->input('qc')); ?>">
                     <input type="text" 
                            class="search-input" 
                            placeholder="Rechercher un utilisateur..." 
                            name="qu" 
-                           value="{{ request()->input('qu') }}"
+                           value="<?php echo e(request()->input('qu')); ?>"
                            autocomplete="off">
                 </form>
             </div>
@@ -550,12 +550,12 @@
                     </h5>
                     <span class="users-card-badge">
                         <i class="fas fa-users"></i>
-                        {{ $users->total() }} enregistrés
+                        <?php echo e($users->total()); ?> enregistrés
                     </span>
                 </div>
                 
                 <div class="users-card-body">
-                    @if($users->count() > 0)
+                    <?php if($users->count() > 0): ?>
                         <div style="overflow-x:auto;">
                             <table class="users-table">
                                 <thead>
@@ -568,55 +568,57 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($users as $user)
-                                        @php
+                                    <?php $__currentLoopData = $users; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <?php
                                             $userType = $user->role == 'Admin' ? 'admin' : 'staff';
                                             $avatarIcon = $user->role == 'Admin' ? 'crown' : ($user->role == 'Receptionist' ? 'headset' : 'broom');
                                             $roleIcon = $user->role == 'Admin' ? 'shield-alt' : 'id-badge';
-                                        @endphp
+                                        ?>
                                         <tr>
                                             <td>
                                                 <span style="font-weight: 600; color: var(--m600);">
-                                                    {{ ($users->currentpage() - 1) * $users->perpage() + $loop->index + 1 }}
+                                                    <?php echo e(($users->currentpage() - 1) * $users->perpage() + $loop->index + 1); ?>
+
                                                 </span>
                                             </td>
                                             <td>
                                                 <div class="user-avatar-cell">
-                                                    <div class="user-avatar {{ $userType }}">
-                                                        <i class="fas fa-{{ $avatarIcon }}"></i>
+                                                    <div class="user-avatar <?php echo e($userType); ?>">
+                                                        <i class="fas fa-<?php echo e($avatarIcon); ?>"></i>
                                                     </div>
-                                                    <span style="font-weight: 500; color:var(--s800);">{{ $user->name }}</span>
+                                                    <span style="font-weight: 500; color:var(--s800);"><?php echo e($user->name); ?></span>
                                                 </div>
                                             </td>
-                                            <td style="color:var(--s600);">{{ $user->email }}</td>
+                                            <td style="color:var(--s600);"><?php echo e($user->email); ?></td>
                                             <td>
-                                                <span class="role-badge {{ $userType }}">
-                                                    <i class="fas fa-{{ $roleIcon }}"></i>
-                                                    {{ $user->role }}
+                                                <span class="role-badge <?php echo e($userType); ?>">
+                                                    <i class="fas fa-<?php echo e($roleIcon); ?>"></i>
+                                                    <?php echo e($user->role); ?>
+
                                                 </span>
                                             </td>
                                             <td>
                                                 <div class="action-group">
-                                                    <a href="{{ route('user.show', ['user' => $user->id]) }}" 
+                                                    <a href="<?php echo e(route('user.show', ['user' => $user->id])); ?>" 
                                                        class="btn-db-icon btn-db-icon-view"
                                                        title="Voir les détails">
                                                         <i class="fas fa-eye"></i>
                                                     </a>
                                                     
-                                                    <a href="{{ route('user.edit', ['user' => $user->id]) }}" 
+                                                    <a href="<?php echo e(route('user.edit', ['user' => $user->id])); ?>" 
                                                        class="btn-db-icon btn-db-icon-edit"
                                                        title="Modifier">
                                                         <i class="fas fa-edit"></i>
                                                     </a>
                                                     
                                                     <form class="d-inline" method="POST"
-                                                          id="delete-post-form-{{ $user->id }}"
-                                                          action="{{ route('user.destroy', ['user' => $user->id]) }}">
-                                                        @csrf
-                                                        @method('DELETE')
+                                                          id="delete-post-form-<?php echo e($user->id); ?>"
+                                                          action="<?php echo e(route('user.destroy', ['user' => $user->id])); ?>">
+                                                        <?php echo csrf_field(); ?>
+                                                        <?php echo method_field('DELETE'); ?>
                                                         <button type="button" 
                                                                 class="btn-db-icon btn-db-icon-delete"
-                                                                onclick="confirmDelete('{{ $user->name }}', {{ $user->id }}, '{{ $user->role }}')"
+                                                                onclick="confirmDelete('<?php echo e($user->name); ?>', <?php echo e($user->id); ?>, '<?php echo e($user->role); ?>')"
                                                                 title="Supprimer">
                                                             <i class="fas fa-trash"></i>
                                                         </button>
@@ -624,26 +626,27 @@
                                                 </div>
                                             </td>
                                         </tr>
-                                    @endforeach
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </tbody>
                             </table>
                         </div>
                         
-                        @if($users->hasPages())
+                        <?php if($users->hasPages()): ?>
                         <div class="pagination-custom">
-                            {{ $users->onEachSide(1)->appends(['customers' => $customers->currentPage(), 'qc' => request()->input('qc')])->links('pagination::bootstrap-4') }}
+                            <?php echo e($users->onEachSide(1)->appends(['customers' => $customers->currentPage(), 'qc' => request()->input('qc')])->links('pagination::bootstrap-4')); ?>
+
                         </div>
-                        @endif
-                    @else
+                        <?php endif; ?>
+                    <?php else: ?>
                         <div class="empty-state">
                             <div class="empty-icon"><i class="fas fa-user-tie"></i></div>
                             <p class="empty-title">Aucun utilisateur</p>
                             <p class="empty-text">Commencez par ajouter votre premier utilisateur.</p>
-                            <a href="{{ route('user.create') }}" class="btn-db btn-db-primary">
+                            <a href="<?php echo e(route('user.create')); ?>" class="btn-db btn-db-primary">
                                 <i class="fas fa-plus-circle me-2"></i>Ajouter
                             </a>
                         </div>
-                    @endif
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
@@ -656,20 +659,20 @@
                     <span class="filter-badge">
                         <i class="fas fa-user"></i>
                         Clients
-                        <span class="badge-count">{{ $customers->total() }}</span>
+                        <span class="badge-count"><?php echo e($customers->total()); ?></span>
                     </span>
                 </div>
                 
                 <div class="action-right">
                     <div class="search-container">
                         <i class="fas fa-search search-icon"></i>
-                        <form method="GET" action="{{ route('user.index') }}">
-                            <input type="hidden" name="qu" value="{{ request()->input('qu') }}">
+                        <form method="GET" action="<?php echo e(route('user.index')); ?>">
+                            <input type="hidden" name="qu" value="<?php echo e(request()->input('qu')); ?>">
                             <input type="text" 
                                    class="search-input" 
                                    placeholder="Rechercher un client..." 
                                    name="qc" 
-                                   value="{{ request()->input('qc') }}"
+                                   value="<?php echo e(request()->input('qc')); ?>"
                                    autocomplete="off">
                         </form>
                     </div>
@@ -684,12 +687,12 @@
                     </h5>
                     <span class="users-card-badge">
                         <i class="fas fa-users"></i>
-                        {{ $customers->total() }} enregistrés
+                        <?php echo e($customers->total()); ?> enregistrés
                     </span>
                 </div>
                 
                 <div class="users-card-body">
-                    @if($customers->count() > 0)
+                    <?php if($customers->count() > 0): ?>
                         <div style="overflow-x:auto;">
                             <table class="users-table">
                                 <thead>
@@ -702,11 +705,12 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($customers as $user)
+                                    <?php $__currentLoopData = $customers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                         <tr>
                                             <td>
                                                 <span style="font-weight: 600; color: var(--g500);">
-                                                    {{ ($customers->currentpage() - 1) * $customers->perpage() + $loop->index + 1 }}
+                                                    <?php echo e(($customers->currentpage() - 1) * $customers->perpage() + $loop->index + 1); ?>
+
                                                 </span>
                                             </td>
                                             <td>
@@ -714,10 +718,10 @@
                                                     <div class="user-avatar customer">
                                                         <i class="fas fa-user"></i>
                                                     </div>
-                                                    <span style="font-weight: 500; color:var(--s800);">{{ $user->name }}</span>
+                                                    <span style="font-weight: 500; color:var(--s800);"><?php echo e($user->name); ?></span>
                                                 </div>
                                             </td>
-                                            <td style="color:var(--s600);">{{ $user->email }}</td>
+                                            <td style="color:var(--s600);"><?php echo e($user->email); ?></td>
                                             <td>
                                                 <span class="role-badge customer">
                                                     <i class="fas fa-user"></i>
@@ -731,20 +735,20 @@
                                                         <i class="fas fa-eye"></i>
                                                     </span>
                                                     
-                                                    <a href="{{ route('user.edit', ['user' => $user->id]) }}" 
+                                                    <a href="<?php echo e(route('user.edit', ['user' => $user->id])); ?>" 
                                                        class="btn-db-icon btn-db-icon-edit"
                                                        title="Modifier">
                                                         <i class="fas fa-edit"></i>
                                                     </a>
                                                     
                                                     <form class="d-inline" method="POST"
-                                                          id="delete-post-form-customer-{{ $user->id }}"
-                                                          action="{{ route('user.destroy', ['user' => $user->id]) }}">
-                                                        @csrf
-                                                        @method('DELETE')
+                                                          id="delete-post-form-customer-<?php echo e($user->id); ?>"
+                                                          action="<?php echo e(route('user.destroy', ['user' => $user->id])); ?>">
+                                                        <?php echo csrf_field(); ?>
+                                                        <?php echo method_field('DELETE'); ?>
                                                         <button type="button" 
                                                                 class="btn-db-icon btn-db-icon-delete"
-                                                                onclick="confirmDelete('{{ $user->name }}', {{ $user->id }}, 'Customer')"
+                                                                onclick="confirmDelete('<?php echo e($user->name); ?>', <?php echo e($user->id); ?>, 'Customer')"
                                                                 title="Supprimer">
                                                             <i class="fas fa-trash"></i>
                                                         </button>
@@ -752,23 +756,24 @@
                                                 </div>
                                             </td>
                                         </tr>
-                                    @endforeach
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </tbody>
                             </table>
                         </div>
                         
-                        @if($customers->hasPages())
+                        <?php if($customers->hasPages()): ?>
                         <div class="pagination-custom">
-                            {{ $customers->onEachSide(1)->appends(['users' => $users->currentPage(), 'qu' => request()->input('qu')])->links('pagination::bootstrap-4') }}
+                            <?php echo e($customers->onEachSide(1)->appends(['users' => $users->currentPage(), 'qu' => request()->input('qu')])->links('pagination::bootstrap-4')); ?>
+
                         </div>
-                        @endif
-                    @else
+                        <?php endif; ?>
+                    <?php else: ?>
                         <div class="empty-state">
                             <div class="empty-icon"><i class="fas fa-user"></i></div>
                             <p class="empty-title">Aucun client</p>
                             <p class="empty-text">Aucun client enregistré pour le moment.</p>
                         </div>
-                    @endif
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
@@ -777,9 +782,9 @@
 
 <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
 
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('footer')
+<?php $__env->startSection('footer'); ?>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
@@ -824,4 +829,5 @@ function confirmDelete(name, id, role) {
     });
 }
 </script>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('template.master', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH C:\Users\Majorelle V\Documents\MoradaManagement\resources\views/user/index.blade.php ENDPATH**/ ?>

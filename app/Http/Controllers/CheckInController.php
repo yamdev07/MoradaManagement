@@ -160,7 +160,6 @@ class CheckInController extends Controller
                 // Mettre à jour la transaction avec la nouvelle chambre
                 $transaction->update([
                     'room_id' => $newRoom->id,
-                    'total_price' => $newRoom->price * $transaction->nights,
                 ]);
 
                 // Libérer l'ancienne chambre si elle n'est plus occupée

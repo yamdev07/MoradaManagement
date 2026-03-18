@@ -1,8 +1,8 @@
-@extends('template.master')
 
-@section('title', 'Housekeeping - Nettoyage des Chambres')
 
-@push('styles')
+<?php $__env->startSection('title', 'Housekeeping - Nettoyage des Chambres'); ?>
+
+<?php $__env->startPush('styles'); ?>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap');
 
@@ -555,12 +555,12 @@
     font-size: .8rem;
 }
 </style>
-@endpush
+<?php $__env->stopPush(); ?>
 
-@section('content')
+<?php $__env->startSection('content'); ?>
 <div class="hk-page">
 
-    {{-- HEADER --}}
+    
     <div class="hk-header anim-1">
         <div class="hk-header__inner">
             <div class="hk-header__title">
@@ -571,200 +571,200 @@
                 </div>
             </div>
             <div class="hk-header__actions">
-                <a href="{{ route('housekeeping.scan') }}" class="btn btn-gray"><i class="fas fa-qrcode"></i> Scanner</a>
-                <a href="{{ route('housekeeping.reports') }}" class="btn btn-green"><i class="fas fa-chart-bar"></i> Rapports</a>
+                <a href="<?php echo e(route('housekeeping.scan')); ?>" class="btn btn-gray"><i class="fas fa-qrcode"></i> Scanner</a>
+                <a href="<?php echo e(route('housekeeping.reports')); ?>" class="btn btn-green"><i class="fas fa-chart-bar"></i> Rapports</a>
             </div>
         </div>
     </div>
 
     <div class="hk-container" style="max-width:1600px; margin:0 auto; padding:0 32px 48px;">
 
-        {{-- ALERTES --}}
-        @if(session('success'))
+        
+        <?php if(session('success')): ?>
         <div class="alert alert-green anim-2">
             <i class="fas fa-check-circle"></i>
-            <span>{{ session('success') }}</span>
+            <span><?php echo e(session('success')); ?></span>
         </div>
-        @endif
+        <?php endif; ?>
 
-        {{-- STATS --}}
+        
         <div class="stats-grid anim-3">
             <div class="stat-card red">
-                <div class="stat-value">{{ $stats['dirty_rooms'] ?? 0 }}</div>
+                <div class="stat-value"><?php echo e($stats['dirty_rooms'] ?? 0); ?></div>
                 <div class="stat-label">À nettoyer</div>
                 <div class="stat-footer"><i class="fas fa-broom"></i> Sales</div>
             </div>
             <div class="stat-card">
-                <div class="stat-value">{{ $stats['clean_rooms'] ?? 0 }}</div>
+                <div class="stat-value"><?php echo e($stats['clean_rooms'] ?? 0); ?></div>
                 <div class="stat-label">Nettoyées</div>
                 <div class="stat-footer"><i class="fas fa-check-circle"></i> Prêtes</div>
             </div>
             <div class="stat-card">
-                <div class="stat-value">{{ $stats['occupied_rooms'] ?? 0 }}</div>
+                <div class="stat-value"><?php echo e($stats['occupied_rooms'] ?? 0); ?></div>
                 <div class="stat-label">Occupées</div>
                 <div class="stat-footer"><i class="fas fa-user"></i> Clients</div>
             </div>
             <div class="stat-card">
-                <div class="stat-value">{{ $stats['total_rooms'] ?? 0 }}</div>
+                <div class="stat-value"><?php echo e($stats['total_rooms'] ?? 0); ?></div>
                 <div class="stat-label">Total</div>
                 <div class="stat-footer"><i class="fas fa-building"></i> Chambres</div>
             </div>
             <div class="stat-card">
-                <div class="stat-value">{{ $stats['cleaned_today'] ?? 0 }}</div>
+                <div class="stat-value"><?php echo e($stats['cleaned_today'] ?? 0); ?></div>
                 <div class="stat-label">Aujourd'hui</div>
                 <div class="stat-footer"><i class="fas fa-calendar-day"></i> Nettoyées</div>
             </div>
             <div class="stat-card">
-                <div class="stat-value">{{ $stats['maintenance_rooms'] ?? 0 }}</div>
+                <div class="stat-value"><?php echo e($stats['maintenance_rooms'] ?? 0); ?></div>
                 <div class="stat-label">Maintenance</div>
                 <div class="stat-footer"><i class="fas fa-tools"></i> En réparation</div>
             </div>
         </div>
 
-        {{-- BANNER --}}
-        @if(($stats['dirty_rooms'] ?? 0) > 0)
+        
+        <?php if(($stats['dirty_rooms'] ?? 0) > 0): ?>
         <div class="action-banner anim-4">
             <div>
-                <h3><i class="fas fa-broom"></i> {{ $stats['dirty_rooms'] ?? 0 }} chambre(s) à nettoyer</h3>
+                <h3><i class="fas fa-broom"></i> <?php echo e($stats['dirty_rooms'] ?? 0); ?> chambre(s) à nettoyer</h3>
                 <p>Cliquez sur le bouton vert pour marquer comme nettoyée</p>
             </div>
             <a href="#dirty" class="btn"><i class="fas fa-arrow-down"></i> Voir</a>
         </div>
-        @endif
+        <?php endif; ?>
 
-        {{-- GRID --}}
+        
         <div class="row g-4">
-            {{-- LEFT COLUMN --}}
+            
             <div class="col-lg-8">
 
-                {{-- SECTION À NETTOYER --}}
+                
                 <div class="section-title" id="dirty">
                     <i class="fas fa-broom"></i> À nettoyer
-                    <span class="section-badge">{{ $roomsByStatus['dirty']->count() }}</span>
+                    <span class="section-badge"><?php echo e($roomsByStatus['dirty']->count()); ?></span>
                 </div>
 
-                @if($roomsByStatus['dirty']->count() > 0)
+                <?php if($roomsByStatus['dirty']->count() > 0): ?>
                 <div class="rooms-grid">
-                    @foreach($roomsByStatus['dirty'] as $room)
+                    <?php $__currentLoopData = $roomsByStatus['dirty']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $room): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <div class="room-card">
                         <div class="room-header">
-                            <div class="room-number">#{{ $room->number }}</div>
+                            <div class="room-number">#<?php echo e($room->number); ?></div>
                             <div class="room-badge red"><i class="fas fa-broom"></i></div>
                         </div>
                         <div class="room-body">
-                            <div class="room-type">{{ $room->type->name ?? 'Standard' }}</div>
-                            <div class="room-meta"><i class="fas fa-user"></i> {{ $room->capacity }} pers.</div>
+                            <div class="room-type"><?php echo e($room->type->name ?? 'Standard'); ?></div>
+                            <div class="room-meta"><i class="fas fa-user"></i> <?php echo e($room->capacity); ?> pers.</div>
                             <div class="room-status red"><i class="fas fa-exclamation-circle"></i> À nettoyer</div>
-                            <form action="{{ route('housekeeping.clean-room', $room->id) }}" method="POST">
-                                @csrf
+                            <form action="<?php echo e(route('housekeeping.clean-room', $room->id)); ?>" method="POST">
+                                <?php echo csrf_field(); ?>
                                 <button class="clean-btn red"><i class="fas fa-check-circle"></i> Marquer nettoyée</button>
                             </form>
                         </div>
                     </div>
-                    @endforeach
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </div>
-                @else
+                <?php else: ?>
                 <div class="empty-state mb-4">
                     <i class="fas fa-check-circle" style="color:var(--green-500);"></i>
                     <h4>Aucune chambre à nettoyer</h4>
                     <p>Toutes les chambres sont propres</p>
                 </div>
-                @endif
+                <?php endif; ?>
 
-                {{-- SECTION NETTOYÉES AUJOURD'HUI --}}
+                
                 <div class="section-title mt-4">
                     <i class="fas fa-check-circle" style="color:var(--green-600);"></i> Nettoyées aujourd'hui
-                    <span class="section-badge">{{ $stats['cleaned_today'] ?? 0 }}</span>
+                    <span class="section-badge"><?php echo e($stats['cleaned_today'] ?? 0); ?></span>
                 </div>
 
-                @if(isset($roomsCleanedToday) && $roomsCleanedToday->count() > 0)
+                <?php if(isset($roomsCleanedToday) && $roomsCleanedToday->count() > 0): ?>
                 <div class="rooms-grid">
-                    @foreach($roomsCleanedToday->take(4) as $room)
+                    <?php $__currentLoopData = $roomsCleanedToday->take(4); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $room): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <div class="room-card">
                         <div class="room-header">
-                            <div class="room-number">#{{ $room->number }}</div>
+                            <div class="room-number">#<?php echo e($room->number); ?></div>
                             <div class="room-badge green"><i class="fas fa-check"></i></div>
                         </div>
                         <div class="room-body">
-                            <div class="room-type">{{ $room->type->name ?? 'Standard' }}</div>
-                            <div class="room-meta"><i class="fas fa-clock"></i> {{ $room->last_cleaned_at ? \Carbon\Carbon::parse($room->last_cleaned_at)->format('H:i') : 'N/A' }}</div>
+                            <div class="room-type"><?php echo e($room->type->name ?? 'Standard'); ?></div>
+                            <div class="room-meta"><i class="fas fa-clock"></i> <?php echo e($room->last_cleaned_at ? \Carbon\Carbon::parse($room->last_cleaned_at)->format('H:i') : 'N/A'); ?></div>
                             <div class="room-status green"><i class="fas fa-check-circle"></i> Nettoyée</div>
                         </div>
                     </div>
-                    @endforeach
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </div>
-                @endif
+                <?php endif; ?>
             </div>
 
-            {{-- RIGHT COLUMN --}}
+            
             <div class="col-lg-4">
 
-                {{-- DÉPARTS --}}
+                
                 <div class="side-card">
                     <div class="side-header">
                         <h3><i class="fas fa-sign-out-alt"></i> Départs aujourd'hui</h3>
-                        <span class="side-badge">{{ $todayDepartures->count() }}</span>
+                        <span class="side-badge"><?php echo e($todayDepartures->count()); ?></span>
                     </div>
                     <div class="side-body">
-                        @if($todayDepartures->count() > 0)
-                            @foreach($todayDepartures->take(5) as $d)
+                        <?php if($todayDepartures->count() > 0): ?>
+                            <?php $__currentLoopData = $todayDepartures->take(5); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $d): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <div class="side-item">
-                                <div class="side-item-room">#{{ $d->room->number }}</div>
+                                <div class="side-item-room">#<?php echo e($d->room->number); ?></div>
                                 <div class="side-item-info">
-                                    <div class="side-item-name">{{ $d->customer->name ?? 'Client' }}</div>
+                                    <div class="side-item-name"><?php echo e($d->customer->name ?? 'Client'); ?></div>
                                     <div class="side-item-meta"><i class="fas fa-clock"></i> 12h00</div>
                                 </div>
                                 <div class="side-item-status red">À nettoyer</div>
                             </div>
-                            @endforeach
-                        @else
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        <?php else: ?>
                         <div class="p-4 text-center text-muted">Aucun départ</div>
-                        @endif
+                        <?php endif; ?>
                     </div>
                 </div>
 
-                {{-- ARRIVÉES --}}
+                
                 <div class="side-card">
                     <div class="side-header">
                         <h3><i class="fas fa-sign-in-alt"></i> Arrivées aujourd'hui</h3>
-                        <span class="side-badge">{{ $todayArrivals->count() }}</span>
+                        <span class="side-badge"><?php echo e($todayArrivals->count()); ?></span>
                     </div>
                     <div class="side-body">
-                        @if($todayArrivals->count() > 0)
-                            @foreach($todayArrivals->take(5) as $a)
+                        <?php if($todayArrivals->count() > 0): ?>
+                            <?php $__currentLoopData = $todayArrivals->take(5); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $a): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <div class="side-item">
-                                <div class="side-item-room">#{{ $a->room->number }}</div>
+                                <div class="side-item-room">#<?php echo e($a->room->number); ?></div>
                                 <div class="side-item-info">
-                                    <div class="side-item-name">{{ $a->customer->name ?? 'Client' }}</div>
+                                    <div class="side-item-name"><?php echo e($a->customer->name ?? 'Client'); ?></div>
                                     <div class="side-item-meta"><i class="fas fa-clock"></i> 14h00</div>
                                 </div>
                                 <div class="side-item-status green">À préparer</div>
                             </div>
-                            @endforeach
-                        @else
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        <?php else: ?>
                         <div class="p-4 text-center text-muted">Aucune arrivée</div>
-                        @endif
+                        <?php endif; ?>
                     </div>
                 </div>
 
-                {{-- ACTIONS RAPIDES --}}
+                
                 <div class="quick-actions">
-                    <a href="{{ route('housekeeping.to-clean') }}" class="quick-btn">
+                    <a href="<?php echo e(route('housekeeping.to-clean')); ?>" class="quick-btn">
                         <i class="fas fa-broom"></i>
                         <span>À nettoyer</span>
-                        <small>{{ $stats['dirty_rooms'] ?? 0 }}</small>
+                        <small><?php echo e($stats['dirty_rooms'] ?? 0); ?></small>
                     </a>
-                    <a href="{{ route('housekeeping.maintenance') }}" class="quick-btn">
+                    <a href="<?php echo e(route('housekeeping.maintenance')); ?>" class="quick-btn">
                         <i class="fas fa-tools"></i>
                         <span>Maintenance</span>
-                        <small>{{ $stats['maintenance_rooms'] ?? 0 }}</small>
+                        <small><?php echo e($stats['maintenance_rooms'] ?? 0); ?></small>
                     </a>
-                    <a href="{{ route('housekeeping.mobile') }}" class="quick-btn">
+                    <a href="<?php echo e(route('housekeeping.mobile')); ?>" class="quick-btn">
                         <i class="fas fa-mobile-alt"></i>
                         <span>Mobile</span>
                         <small>Scanner</small>
                     </a>
-                    <a href="{{ route('housekeeping.daily-report') }}" class="quick-btn">
+                    <a href="<?php echo e(route('housekeeping.daily-report')); ?>" class="quick-btn">
                         <i class="fas fa-file-alt"></i>
                         <span>Rapport</span>
                         <small>Quotidien</small>
@@ -787,4 +787,5 @@ setTimeout(() => {
 }, 3000);
 </script>
 
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('template.master', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH C:\Users\Majorelle V\Documents\MoradaManagement\resources\views/housekeeping/index.blade.php ENDPATH**/ ?>

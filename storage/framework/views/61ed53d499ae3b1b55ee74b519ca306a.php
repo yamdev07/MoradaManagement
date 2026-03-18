@@ -1,6 +1,6 @@
-@extends('template.master')
-@section('title', 'Mon Profil')
-@section('content')
+
+<?php $__env->startSection('title', 'Mon Profil'); ?>
+<?php $__env->startSection('content'); ?>
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap');
@@ -332,7 +332,7 @@
 <div class="profile-page">
     <!-- Breadcrumb -->
     <div class="profile-breadcrumb anim-1">
-        <a href="{{ route('dashboard.index') }}"><i class="fas fa-home fa-xs"></i> Dashboard</a>
+        <a href="<?php echo e(route('dashboard.index')); ?>"><i class="fas fa-home fa-xs"></i> Dashboard</a>
         <span class="sep"><i class="fas fa-chevron-right fa-xs"></i></span>
         <span class="current">Mon Profil</span>
     </div>
@@ -342,7 +342,7 @@
         <div class="profile-brand">
             <div class="profile-brand-icon"><i class="fas fa-user-circle"></i></div>
             <div>
-                <h1 class="profile-header-title">Bonjour, <em>{{ $user->name }}</em> !</h1>
+                <h1 class="profile-header-title">Bonjour, <em><?php echo e($user->name); ?></em> !</h1>
                 <p class="profile-header-sub">
                     <i class="fas fa-user me-1"></i> Gérez vos informations personnelles
                 </p>
@@ -350,61 +350,62 @@
         </div>
         <div class="profile-header-actions">
             <div class="date-display">
-                <div class="day">{{ now()->translatedFormat('l j F Y') }}</div>
-                <div class="time">{{ now()->format('H:i') }}</div>
+                <div class="day"><?php echo e(now()->translatedFormat('l j F Y')); ?></div>
+                <div class="time"><?php echo e(now()->format('H:i')); ?></div>
             </div>
         </div>
     </div>
 
     <!-- Alertes -->
-    @if(session('success'))
+    <?php if(session('success')): ?>
     <div class="alert-db alert-db-success anim-3">
         <div class="alert-db-icon"><i class="fas fa-check"></i></div>
-        <div class="flex-grow-1">{{ session('success') }}</div>
+        <div class="flex-grow-1"><?php echo e(session('success')); ?></div>
         <button class="alert-db-close" onclick="this.parentElement.remove()">×</button>
     </div>
-    @endif
+    <?php endif; ?>
 
-    @if(session('error'))
+    <?php if(session('error')): ?>
     <div class="alert-db alert-db-danger anim-3">
         <div class="alert-db-icon"><i class="fas fa-exclamation"></i></div>
-        <div class="flex-grow-1">{{ session('error') }}</div>
+        <div class="flex-grow-1"><?php echo e(session('error')); ?></div>
         <button class="alert-db-close" onclick="this.parentElement.remove()">×</button>
     </div>
-    @endif
+    <?php endif; ?>
 
-    @if($errors->any())
+    <?php if($errors->any()): ?>
     <div class="alert-db alert-db-danger anim-3">
         <div class="alert-db-icon"><i class="fas fa-exclamation"></i></div>
         <div style="flex:1">
             <strong>Erreurs :</strong>
             <ul class="mb-0 mt-2">
-                @foreach($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
+                <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <li><?php echo e($error); ?></li>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </ul>
         </div>
         <button class="alert-db-close" onclick="this.parentElement.remove()">×</button>
     </div>
-    @endif
+    <?php endif; ?>
 
     <div class="row g-4">
         <!-- Colonne gauche - Avatar -->
         <div class="col-lg-4">
             <div class="profile-card anim-4">
                 <div class="avatar-container">
-                    <img src="{{ $user->getAvatar() }}" 
-                         alt="{{ $user->name }}" 
+                    <img src="<?php echo e($user->getAvatar()); ?>" 
+                         alt="<?php echo e($user->name); ?>" 
                          class="avatar-image"
-                         onerror="this.src='https://ui-avatars.com/api/?name={{ urlencode($user->name) }}&background=2e8540&color=fff&size=140'">
+                         onerror="this.src='https://ui-avatars.com/api/?name=<?php echo e(urlencode($user->name)); ?>&background=2e8540&color=fff&size=140'">
                     
                     <div class="role-badge">
-                        <i class="fas fa-{{ $user->role == 'Admin' ? 'user-shield' : ($user->role == 'Super' ? 'crown' : 'user-tie') }}"></i>
-                        {{ $user->formatted_role ?? $user->role }}
+                        <i class="fas fa-<?php echo e($user->role == 'Admin' ? 'user-shield' : ($user->role == 'Super' ? 'crown' : 'user-tie')); ?>"></i>
+                        <?php echo e($user->formatted_role ?? $user->role); ?>
+
                     </div>
 
-                    <form action="{{ route('profile.update.avatar') }}" method="POST" enctype="multipart/form-data" class="avatar-upload">
-                        @csrf
+                    <form action="<?php echo e(route('profile.update.avatar')); ?>" method="POST" enctype="multipart/form-data" class="avatar-upload">
+                        <?php echo csrf_field(); ?>
                         <input type="file" name="avatar" class="file-input" accept="image/*" id="avatarInput" required>
                         <button type="submit" class="btn-db btn-db-primary">
                             <i class="fas fa-upload me-2"></i> Changer la photo
@@ -425,38 +426,59 @@
                     </h5>
                 </div>
                 <div class="profile-card-body">
-                    <form action="{{ route('profile.update.info') }}" method="POST">
-                        @csrf
+                    <form action="<?php echo e(route('profile.update.info')); ?>" method="POST">
+                        <?php echo csrf_field(); ?>
                         
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="form-label">Nom complet</label>
-                                    <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" 
-                                           value="{{ old('name', $user->name) }}" required>
+                                    <input type="text" name="name" class="form-control <?php $__errorArgs = ['name'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" 
+                                           value="<?php echo e(old('name', $user->name)); ?>" required>
                                 </div>
                             </div>
                             
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="form-label">Email</label>
-                                    <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" 
-                                           value="{{ old('email', $user->email) }}" required>
+                                    <input type="email" name="email" class="form-control <?php $__errorArgs = ['email'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" 
+                                           value="<?php echo e(old('email', $user->email)); ?>" required>
                                 </div>
                             </div>
                             
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="form-label">Téléphone</label>
-                                    <input type="text" name="phone" class="form-control @error('phone') is-invalid @enderror" 
-                                           value="{{ old('phone', $user->phone) }}">
+                                    <input type="text" name="phone" class="form-control <?php $__errorArgs = ['phone'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" 
+                                           value="<?php echo e(old('phone', $user->phone)); ?>">
                                 </div>
                             </div>
                             
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="form-label">Rôle</label>
-                                    <input type="text" class="form-control" value="{{ $user->formatted_role ?? $user->role }}" readonly>
+                                    <input type="text" class="form-control" value="<?php echo e($user->formatted_role ?? $user->role); ?>" readonly>
                                 </div>
                             </div>
                         </div>
@@ -477,8 +499,8 @@
                     </h5>
                 </div>
                 <div class="profile-card-body">
-                    <form action="{{ route('profile.update.password') }}" method="POST" id="passwordForm">
-                        @csrf
+                    <form action="<?php echo e(route('profile.update.password')); ?>" method="POST" id="passwordForm">
+                        <?php echo csrf_field(); ?>
                         
                         <div class="form-group">
                             <label class="form-label">Mot de passe actuel</label>
@@ -520,9 +542,9 @@
     </div>
 </div>
 
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('footer')
+<?php $__env->startSection('footer'); ?>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     // Auto-dismiss des alertes
@@ -604,4 +626,5 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 </script>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('template.master', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH C:\Users\Majorelle V\Documents\MoradaManagement\resources\views/profile/index.blade.php ENDPATH**/ ?>

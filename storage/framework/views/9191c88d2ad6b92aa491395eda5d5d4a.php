@@ -1,8 +1,8 @@
-@extends('frontend.layouts.master')
 
-@section('title', 'Réservation en ligne - Hôtel Cactus Palace')
 
-@push('styles')
+<?php $__env->startSection('title', 'Réservation en ligne - Hôtel Cactus Palace'); ?>
+
+<?php $__env->startPush('styles'); ?>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -238,9 +238,9 @@ body { font-family: var(--font); background: var(--surface); }
     .step-label { font-size: .6rem; }
 }
 </style>
-@endpush
+<?php $__env->stopPush(); ?>
 
-@section('content')
+<?php $__env->startSection('content'); ?>
 
 <section class="hero-reservation">
     <div class="container">
@@ -252,7 +252,7 @@ body { font-family: var(--font); background: var(--surface); }
 <section class="py-5">
     <div class="container">
 
-        {{-- Barre de progression --}}
+        
         <div class="form-progress">
             <div class="progress-steps">
                 <div class="progress-fill" id="progressFill"></div>
@@ -277,10 +277,10 @@ body { font-family: var(--font); background: var(--surface); }
 
         <div class="row">
             <div class="col-lg-8">
-                <form id="reservationForm" action="{{ route('frontend.reservation.request') }}" method="POST" novalidate>
-                    @csrf
+                <form id="reservationForm" action="<?php echo e(route('frontend.reservation.request')); ?>" method="POST" novalidate>
+                    <?php echo csrf_field(); ?>
 
-                    {{-- SECTION 1 — Infos personnelles --}}
+                    
                     <div class="card">
                         <div class="card-header">
                             <h4><i class="fas fa-user me-2"></i>Vos informations</h4>
@@ -368,8 +368,8 @@ body { font-family: var(--font); background: var(--surface); }
                                     </label>
                                     <input type="date" class="form-control" id="f_birthdate" name="birthdate"
                                            required
-                                           max="{{ date('Y-m-d', strtotime('-18 years')) }}"
-                                           value="{{ date('Y-m-d', strtotime('-30 years')) }}">
+                                           max="<?php echo e(date('Y-m-d', strtotime('-18 years'))); ?>"
+                                           value="<?php echo e(date('Y-m-d', strtotime('-30 years'))); ?>">
                                     <div class="field-hint">Minimum 18 ans requis</div>
                                     <div class="field-error" id="f_birthdate-err"><i class="fas fa-exclamation-circle"></i><span></span></div>
                                 </div>
@@ -378,7 +378,7 @@ body { font-family: var(--font); background: var(--surface); }
                         </div>
                     </div>
 
-                    {{-- SECTION 2 — Dates --}}
+                    
                     <div class="card">
                         <div class="card-header">
                             <h4><i class="fas fa-calendar me-2"></i>Dates du séjour</h4>
@@ -398,11 +398,12 @@ body { font-family: var(--font); background: var(--surface); }
                                 <div class="col-md-4">
                                     <label class="form-label" for="adults">Personnes</label>
                                     <select class="form-select" id="adults" name="adults">
-                                        @for($i = 1; $i <= 6; $i++)
-                                            <option value="{{ $i }}" {{ $i == 2 ? 'selected' : '' }}>
-                                                {{ $i }} personne{{ $i > 1 ? 's' : '' }}
+                                        <?php for($i = 1; $i <= 6; $i++): ?>
+                                            <option value="<?php echo e($i); ?>" <?php echo e($i == 2 ? 'selected' : ''); ?>>
+                                                <?php echo e($i); ?> personne<?php echo e($i > 1 ? 's' : ''); ?>
+
                                             </option>
-                                        @endfor
+                                        <?php endfor; ?>
                                     </select>
                                 </div>
                             </div>
@@ -420,7 +421,7 @@ body { font-family: var(--font); background: var(--surface); }
                         </div>
                     </div>
 
-                    {{-- SECTION 3 — Chambre --}}
+                    
                     <div class="card">
                         <div class="card-header">
                             <h4><i class="fas fa-bed me-2"></i>Choisissez votre chambre</h4>
@@ -460,7 +461,7 @@ body { font-family: var(--font); background: var(--surface); }
                         </div>
                     </div>
 
-                    {{-- SECTION 4 — Notes + Récap + Submit --}}
+                    
                     <div class="card">
                         <div class="card-body">
                             <label class="form-label" for="notes">
@@ -498,7 +499,7 @@ body { font-family: var(--font); background: var(--surface); }
                 </form>
             </div>
 
-            {{-- Sidebar --}}
+            
             <div class="col-lg-4">
                 <div class="card sticky-sidebar">
                     <div class="card-body">
@@ -539,7 +540,7 @@ body { font-family: var(--font); background: var(--surface); }
     </div>
 </section>
 
-{{-- Modal succès --}}
+
 <div class="modal fade" id="successModal" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -566,9 +567,9 @@ body { font-family: var(--font); background: var(--surface); }
     </div>
 </div>
 
-@endsection
+<?php $__env->stopSection(); ?>
 
-@push('scripts')
+<?php $__env->startPush('scripts'); ?>
 <script>
 document.addEventListener('DOMContentLoaded', function () {
 
@@ -1004,4 +1005,5 @@ document.addEventListener('DOMContentLoaded', function () {
     refreshProgress();
 });
 </script>
-@endpush
+<?php $__env->stopPush(); ?>
+<?php echo $__env->make('frontend.layouts.master', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH C:\Users\Majorelle V\Documents\MoradaManagement\resources\views/frontend/pages/reservation.blade.php ENDPATH**/ ?>

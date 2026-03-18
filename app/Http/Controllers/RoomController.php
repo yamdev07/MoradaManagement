@@ -448,4 +448,44 @@ class RoomController extends Controller
             ]);
         }
     }
+
+    /**
+     * Mark room as dirty
+     */
+    public function markDirty(Request $request, Room $room)
+    {
+        // Vérifier les permissions
+        if (! in_array(auth()->user()->role, ['Super', 'Admin', 'Housekeeping'])) {
+            return redirect()->back()->with('error', 'Permission denied');
+        }
+
+        // Vérifier si la chambre peut être marquée comme sale
+        if ($room->roomStatus->code === 'maintenance') {
+            return redirect()->back()->with('error', 'Cannot mark a maintenance room as dirty');
+        }
+
+        // Trouver le statut "Dirty" 
+        $dirtyStatus = RoomStatus::where('code', 'dirty')->first();
+        
+        if (! $dirtyStatus) {
+            return redirect()->back()->with('error', 'Dirty status not found');
+        }
+
+        // Enregistrer l'historique
+        DB::table('room_status_history')->insert([
+            'room_id' => $room->id,
+            'old_status_id' => $room->room_status_id,
+            'new_status_id' => $dirtyStatus->id,
+            'changed_by' => auth()->id(),
+            'reason' => 'Marked as dirty',
+            'changed_at' => now(),
+        ]);
+
+        // Mettre à jour la chambre
+        $room->update([
+            'room_status_id' => $dirtyStatus->id,
+        ]);
+
+        return redirect()->back()->with('success', 'Room '.$room->number.' marked as dirty');
+    }
 }
