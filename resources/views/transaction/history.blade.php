@@ -36,7 +36,7 @@
         .timeline-item.payment-added::before { border-color: #198754; }
         .timeline-item.date-changed::before { border-color: #0dcaf0; }
         .timeline-item.note-added::before { border-color: #ffc107; }
-        .timeline-item.cancelled::before { border-color: #dc3545; }
+        .timeline-item.cancelled::before { border-color: #654321; }
         .timeline-item.created::before { border-color: #0d6efd; }
         .timeline-item.marked-arrived::before { border-color: #20c997; }
         .timeline-item.marked-departed::before { border-color: #6c757d; }
@@ -52,7 +52,7 @@
         .timeline-content.payment-added { border-left-color: #198754; }
         .timeline-content.date-changed { border-left-color: #0dcaf0; }
         .timeline-content.note-added { border-left-color: #ffc107; }
-        .timeline-content.cancelled { border-left-color: #dc3545; }
+        .timeline-content.cancelled { border-left-color: #654321; }
         .timeline-content.created { border-left-color: #0d6efd; }
         .timeline-content.marked-arrived { border-left-color: #20c997; }
         .timeline-content.marked-departed { border-left-color: #6c757d; }
@@ -91,7 +91,7 @@
             padding: 5px 12px;
         }
         .history-summary {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #cd853f 0%, #b87333 100%);
             color: white;
             border-radius: 10px;
             padding: 20px;
@@ -105,7 +105,7 @@
             font-weight: bold;
         }
         .diff-negative {
-            color: #dc3545;
+            color: #654321;
             font-weight: bold;
         }
         .diff-neutral {

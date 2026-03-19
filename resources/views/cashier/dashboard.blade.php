@@ -6,12 +6,12 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root {
-    --primary: #3b82f6;
-    --success: #10b981;
-    --warning: #f59e0b;
-    --danger: #ef4444;
+    --primary: #cd853f;
+    --success: #cd853f;
+    --warning: #cd853f;
+    --danger: #654321;
     --info: #06b6d4;
-    --dark: #1e293b;
+    --dark: #654321;
     --light: #f8fafc;
     --border: #e2e8f0;
     --shadow: rgba(0,0,0,0.05);
@@ -28,6 +28,20 @@ body {
     border-bottom: 1px solid var(--border);
     padding: 1.5rem 0;
     margin-bottom: 1.5rem;
+}
+
+/* Header */
+.header-icon-box {
+    width: 45px;
+    height: 45px;
+    background: var(--primary);
+    color: white;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    box-shadow: 0 4px 10px rgba(205,133,63,0.3);
 }
 
 .cashier-title {
@@ -58,24 +72,24 @@ body {
 }
 
 .role-admin {
-    background: rgba(16,185,129,0.1);
-    color: #059669;
+    background: rgba(205,133,63,0.1);
+    color: #b87333;
 }
 
 .role-receptionist {
     background: rgba(59,130,246,0.1);
-    color: #2563eb;
+    color: #cd853f;
 }
 
 .role-cashier {
     background: rgba(245,158,11,0.1);
-    color: #d97706;
+    color: #b87333;
 }
 
 /* Permission alerts */
 .permission-alert {
-    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
-    border: 1px solid #fbbf24;
+    background: linear-gradient(135deg, #f7e7d1 0%, #fde68a 100%);
+    border: 1px solid #cd853f;
     border-radius: 12px;
     padding: 1rem 1.25rem;
     margin-bottom: 1.5rem;
@@ -89,7 +103,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #f59e0b;
+    color: #cd853f;
     font-size: 1.25rem;
     flex-shrink: 0;
 }
@@ -119,8 +133,8 @@ body {
 
 /* Active session card */
 .active-session {
-    background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
-    border: 2px solid #10b981;
+    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+    border: 2px solid #cd853f;
     border-radius: 12px;
     padding: 1.5rem;
     margin-bottom: 1.5rem;
@@ -135,7 +149,7 @@ body {
     right: 0;
     width: 200px;
     height: 200px;
-    background: radial-gradient(circle, rgba(16,185,129,0.1) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(205,133,63,0.1) 0%, transparent 70%);
     border-radius: 50%;
     transform: translate(50%, -50%);
 }
@@ -151,7 +165,7 @@ body {
     font-size: 1.5rem;
     color: var(--success);
     flex-shrink: 0;
-    box-shadow: 0 4px 6px rgba(16,185,129,0.1);
+    box-shadow: 0 4px 6px rgba(205,133,63,0.1);
 }
 
 .session-badge {
@@ -181,8 +195,8 @@ body {
 
 /* No session card */
 .no-session {
-    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
-    border: 2px dashed #f59e0b;
+    background: linear-gradient(135deg, #f7e7d1 0%, #fde68a 100%);
+    border: 2px dashed #cd853f;
     border-radius: 12px;
     padding: 1.5rem;
     margin-bottom: 1.5rem;
@@ -320,18 +334,18 @@ body {
 }
 
 .badge-success-soft {
-    background: rgba(16,185,129,0.1);
-    color: #059669;
+    background: rgba(205,133,63,0.1);
+    color: #b87333;
 }
 
 .badge-warning-soft {
     background: rgba(245,158,11,0.1);
-    color: #d97706;
+    color: #b87333;
 }
 
 .badge-danger-soft {
-    background: rgba(239,68,68,0.1);
-    color: #dc2626;
+    background: rgba(101,67,33,0.1);
+    color: #4d3319;
 }
 
 .badge-info-soft {
@@ -341,7 +355,7 @@ body {
 
 .badge-dark-soft {
     background: rgba(30,41,59,0.1);
-    color: #1e293b;
+    color: #654321;
 }
 
 /* Buttons */
@@ -368,8 +382,8 @@ body {
 }
 
 .btn-primary:hover {
-    background: #2563eb;
-    border-color: #2563eb;
+    background: #cd853f;
+    border-color: #cd853f;
     transform: translateY(-2px);
 }
 
@@ -385,18 +399,18 @@ body {
 }
 
 .method-cash {
-    background: rgba(16,185,129,0.1);
-    color: #059669;
+    background: rgba(205,133,63,0.1);
+    color: #b87333;
 }
 
 .method-card {
     background: rgba(59,130,246,0.1);
-    color: #2563eb;
+    color: #cd853f;
 }
 
 .method-mobile {
     background: rgba(245,158,11,0.1);
-    color: #d97706;
+    color: #b87333;
 }
 
 /* Empty states */
@@ -506,42 +520,45 @@ body {
 @section('content')
 <div class="container-fluid">
     
-    <!-- Header -->
-    <div class="cashier-header">
-        <div class="d-flex justify-content-between align-items-center mb-3">
-            <div>
-                <h1 class="cashier-title">
-                    <i class="fas fa-cash-register me-2" style="color:var(--primary)"></i>
-                    Dashboard Caissier
-                </h1>
-                <div class="user-info-badge mt-2">
-                    Bonjour, <strong class="mx-1">{{ auth()->user()->name }}</strong>
-                    <span class="role-badge {{ $isAdmin ? 'role-admin' : ($isCashier ? 'role-cashier' : 'role-receptionist') }}">
-                        <i class="fas {{ $isAdmin ? 'fa-crown' : ($isCashier ? 'fa-cash-register' : 'fa-user') }}"></i>
-                        {{ auth()->user()->role }}
-                    </span>
+    <!-- Header Section (Modern Card Style) -->
+    <div class="cashier-header-section mb-4">
+        <div class="card border-0 shadow-sm" style="border-radius: 16px; overflow: hidden;">
+            <div class="card-body p-4">
+                <div class="d-flex justify-content-between align-items-start flex-wrap gap-3">
+                    <div>
+                        <div class="d-flex align-items-center gap-3 mb-2">
+                             <div class="header-icon-box">
+                                <i class="fas fa-cash-register"></i>
+                             </div>
+                             <h1 class="cashier-title">Dashboard Caissier</h1>
+                        </div>
+                        
+                        <div class="d-flex align-items-center gap-2 text-muted small">
+                            <span>Bonjour, <strong>{{ auth()->user()->name }}</strong></span>
+                            <span class="role-badge {{ $isAdmin ? 'role-admin' : ($isCashier ? 'role-cashier' : 'role-receptionist') }}">
+                                <i class="fas {{ $isAdmin ? 'fa-crown' : ($isCashier ? 'fa-cash-register' : 'fa-user') }}"></i>
+                                {{ auth()->user()->role }}
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex flex-column align-items-end gap-2 text-end">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb mb-0" style="background:transparent; padding:0;">
+                                <li class="breadcrumb-item"><a href="{{ route('dashboard.index') }}" class="text-decoration-none" style="color:var(--primary)"><i class="fas fa-home me-1"></i> Accueil</a></li>
+                                <li class="breadcrumb-item active">Caissier</li>
+                            </ol>
+                        </nav>
+                        
+                        @if($isAdmin && $canStartSession && !$activeSession)
+                        <a href="{{ route('cashier.sessions.create') }}" class="btn btn-primary btn-sm mt-1">
+                            <i class="fas fa-plus me-2"></i>Nouvelle session
+                        </a>
+                        @endif
+                    </div>
                 </div>
             </div>
-            
-            @if($isAdmin && $canStartSession && !$activeSession)
-            <div>
-                <a href="{{ route('cashier.sessions.create') }}" class="btn btn-primary">
-                    <i class="fas fa-plus me-2"></i>Nouvelle session
-                </a>
-            </div>
-            @endif
         </div>
-        
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb mb-0">
-                <li class="breadcrumb-item">
-                    <a href="{{ route('dashboard.index') }}">
-                        <i class="fas fa-home"></i> Accueil
-                    </a>
-                </li>
-                <li class="breadcrumb-item active">Caissier</li>
-            </ol>
-        </nav>
     </div>
 
     <!-- Receptionist/Cashier permission notice -->
@@ -568,18 +585,18 @@ body {
                 </p>
                 <div class="permission-badges">
                     <span class="permission-badge">
-                        <i class="fas fa-check text-success"></i> Visualisation
+                        <i class="fas fa-check" style="color:var(--primary)"></i> Visualisation
                     </span>
                     @if($isCashier)
                     <span class="permission-badge">
-                        <i class="fas fa-check text-success"></i> Paiements
+                        <i class="fas fa-check" style="color:var(--primary)"></i> Paiements
                     </span>
                     <span class="permission-badge">
-                        <i class="fas fa-times text-danger"></i> Administration
+                        <i class="fas fa-times" style="color:var(--danger)"></i> Administration
                     </span>
                     @else
                     <span class="permission-badge">
-                        <i class="fas fa-times text-danger"></i> Modification
+                        <i class="fas fa-times" style="color:var(--danger)"></i> Modification
                     </span>
                     @endif
                 </div>
@@ -624,7 +641,7 @@ body {
                 </div>
             </div>
             <div class="d-flex gap-2">
-                <a href="{{ route('cashier.sessions.show', $activeSession) }}" class="btn btn-outline-success">
+                <a href="{{ route('cashier.sessions.show', $activeSession) }}" class="btn btn-outline-hotel-primary" style="color:var(--primary);border-color:var(--primary)">
                     <i class="fas fa-eye"></i> Détails
                 </a>
                 @if(($isAdmin && $activeSession->user_id == auth()->id()) || $isCashier || $isReceptionist)
@@ -687,7 +704,7 @@ body {
                         <div class="stat-value">{{ number_format($todayStats['revenue'], 0, ',', ' ') }}</div>
                         <div class="stat-subtitle">FCFA aujourd'hui</div>
                     </div>
-                    <div class="stat-icon" style="background:rgba(16,185,129,0.1);color:var(--success)">
+                    <div class="stat-icon" style="background:rgba(205,133,63,0.1);color:var(--success)">
                         <i class="fas fa-chart-line"></i>
                     </div>
                 </div>
@@ -1198,10 +1215,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 if (difference > 0) {
                     differenceAlert.className = 'mt-2 alert alert-success py-2';
-                    differenceAmount.style.color = '#10b981';
+                    differenceAmount.style.color = '#cd853f';
                 } else {
                     differenceAlert.className = 'mt-2 alert alert-danger py-2';
-                    differenceAmount.style.color = '#ef4444';
+                    differenceAmount.style.color = '#654321';
                 }
             } else {
                 differenceAlert.style.display = 'none';

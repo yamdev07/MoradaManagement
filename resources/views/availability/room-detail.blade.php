@@ -15,10 +15,10 @@
     --txt:      #0f172a;
     --txt2:     #475569;
     --txt3:     #94a3b8;
-    --acc:      #3b82f6;
-    --grn:      #10b981;
-    --yel:      #f59e0b;
-    --red:      #ef4444;
+    --acc:      #cd853f;
+    --grn:      #cd853f;
+    --yel:      #cd853f;
+    --red:      #654321;
     --ora:      #f97316;
     --cyan:     #06b6d4;
     --r:        12px;
@@ -88,9 +88,9 @@ body {
     align-items: center;
     gap: 4px;
 }
-.badge--success { background: rgba(16,185,129,.15); color: var(--grn); }
+.badge--success { background: rgba(205,133,63,.15); color: var(--grn); }
 .badge--warning { background: rgba(245,158,11,.15); color: var(--yel); }
-.badge--danger  { background: rgba(239,68,68,.15); color: var(--red); }
+.badge--danger  { background: rgba(101,67,33,.15); color: var(--red); }
 .badge--info    { background: rgba(59,130,246,.15); color: var(--acc); }
 .badge--light   { background: var(--surf3); color: var(--txt2); }
 
@@ -117,8 +117,8 @@ body {
     color: white;
 }
 .btn--primary:hover {
-    background: #2563eb;
-    border-color: #2563eb;
+    background: #cd853f;
+    border-color: #cd853f;
     color: white;
     transform: translateY(-1px);
 }
@@ -128,8 +128,8 @@ body {
     color: white;
 }
 .btn--success:hover {
-    background: #059669;
-    border-color: #059669;
+    background: #b87333;
+    border-color: #b87333;
     color: white;
     transform: translateY(-1px);
 }
@@ -139,8 +139,8 @@ body {
     color: white;
 }
 .btn--warning:hover {
-    background: #d97706;
-    border-color: #d97706;
+    background: #b87333;
+    border-color: #b87333;
     color: white;
     transform: translateY(-1px);
 }
@@ -193,11 +193,11 @@ body {
     font-size: 13px;
     color: var(--txt);
 }
-.card__head--primary { background: linear-gradient(135deg, #3b82f6, #2563eb); color: white; border-bottom: none; }
-.card__head--success { background: linear-gradient(135deg, #10b981, #059669); color: white; border-bottom: none; }
-.card__head--warning { background: linear-gradient(135deg, #f59e0b, #d97706); color: white; border-bottom: none; }
+.card__head--primary { background: linear-gradient(135deg, #cd853f, #cd853f); color: white; border-bottom: none; }
+.card__head--success { background: linear-gradient(135deg, #cd853f, #b87333); color: white; border-bottom: none; }
+.card__head--warning { background: linear-gradient(135deg, #cd853f, #b87333); color: white; border-bottom: none; }
 .card__head--info    { background: linear-gradient(135deg, #06b6d4, #0891b2); color: white; border-bottom: none; }
-.card__head--dark    { background: linear-gradient(135deg, #334155, #1e293b); color: white; border-bottom: none; }
+.card__head--dark    { background: linear-gradient(135deg, #7b522a, #654321); color: white; border-bottom: none; }
 .card__head i {
     font-size: 14px;
 }
@@ -383,8 +383,8 @@ body {
     height: 16px;
     border-radius: 4px;
 }
-.legend-sq--avail   { background: rgba(16,185,129,.2); border: 1px solid rgba(16,185,129,.4); }
-.legend-sq--occ     { background: rgba(239,68,68,.2); border: 1px solid rgba(239,68,68,.4); }
+.legend-sq--avail   { background: rgba(205,133,63,.2); border: 1px solid rgba(205,133,63,.4); }
+.legend-sq--occ     { background: rgba(101,67,33,.2); border: 1px solid rgba(101,67,33,.4); }
 .legend-sq--unavail { background: rgba(148,163,184,.2); border: 1px solid rgba(148,163,184,.4); }
 .legend-sq--today   { background: rgba(245,158,11,.25); border: 2px solid var(--yel); }
 .legend-item span {
@@ -445,25 +445,25 @@ body {
 }
 
 .cal-day--avail {
-    background: rgba(16,185,129,.12);
-    border-left: 2px solid rgba(16,185,129,.3);
+    background: rgba(205,133,63,.12);
+    border-left: 2px solid rgba(205,133,63,.3);
 }
 .cal-day--avail .cal-day__icon i {
     color: var(--grn);
 }
 .cal-day--avail:hover {
-    background: rgba(16,185,129,.2);
+    background: rgba(205,133,63,.2);
 }
 
 .cal-day--occ {
-    background: rgba(239,68,68,.12);
-    border-left: 2px solid rgba(239,68,68,.3);
+    background: rgba(101,67,33,.12);
+    border-left: 2px solid rgba(101,67,33,.3);
 }
 .cal-day--occ .cal-day__icon i {
     color: var(--red);
 }
 .cal-day--occ:hover {
-    background: rgba(239,68,68,.2);
+    background: rgba(101,67,33,.2);
 }
 
 .cal-day--unavail {
@@ -818,7 +818,7 @@ body {
                             <div class="stat-label">Prix moyen/jour</div>
                         </div>
                     </div>
-                    <div class="stat-item" style="margin-top:12px;background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.2);border-radius:8px">
+                    <div class="stat-item" style="margin-top:12px;background:rgba(205,133,63,.1);border:1px solid rgba(205,133,63,.2);border-radius:8px">
                         <div class="stat-value" style="color:var(--grn);font-family:'JetBrains Mono',monospace;font-size:20px">
                             {{ number_format($roomStats['total_revenue_30d'], 0, ',', ' ') }} FCFA
                         </div>
@@ -831,7 +831,7 @@ body {
                         <div style="font-weight:700;color:var(--yel)">{{ $roomStats['next_available']->format('d/m/Y') }}</div>
                     </div>
                     @elseif(isset($roomStats['formatted_next_available']) && $roomStats['formatted_next_available'] != 'Immédiate')
-                    <div style="margin-top:12px;padding:10px;background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.3);border-radius:8px;text-align:center">
+                    <div style="margin-top:12px;padding:10px;background:rgba(205,133,63,.1);border:1px solid rgba(205,133,63,.3);border-radius:8px;text-align:center">
                         <div style="font-size:11px;color:var(--txt3);margin-bottom:4px">DISPONIBLE</div>
                         <div style="font-weight:700;color:var(--grn)">Immédiatement</div>
                     </div>
@@ -914,7 +914,7 @@ body {
                         <p>Cette chambre est actuellement disponible pour une nouvelle réservation.</p>
                         @if($room->room_status_id == 1)
                         <a href="{{ route('transaction.reservation.createIdentity') }}?room_id={{ $room->id }}" class="btn btn--success">
-                            <i class="fas fa-plus-circle"></i>
+                            <i class="fas fa-plus-circle" style="color: white !important;"></i>
                             Créer une réservation
                         </a>
                         @endif
@@ -1183,12 +1183,12 @@ function handleCalendarDayClick(cell) {
 
 function showOccupancyDetailsModal(roomId, date, roomNumber) {
     const content = `
-        <div class="modal-header" style="background:linear-gradient(135deg,#ef4444,#dc2626);color:white">
+        <div class="modal-header" style="background:linear-gradient(135deg,#654321,#4d3319);color:white">
             <h5 class="modal-title"><i class="fas fa-calendar-times me-2"></i>Chambre Occupée</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" style="filter:invert(1)"></button>
         </div>
         <div class="modal-body">
-            <div style="padding:12px;background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.3);border-radius:8px;margin-bottom:16px">
+            <div style="padding:12px;background:rgba(101,67,33,.1);border:1px solid rgba(101,67,33,.3);border-radius:8px;margin-bottom:16px">
                 <i class="fas fa-exclamation-triangle" style="color:var(--red);margin-right:6px"></i>
                 La chambre ${roomNumber} est occupée le ${new Date(date).toLocaleDateString('fr-FR')}.
             </div>
@@ -1224,12 +1224,12 @@ function showReservationModal(roomId, roomNumber, date) {
     const checkOutStr = checkOutDate.toISOString().split('T')[0];
     
     const content = `
-        <div class="modal-header" style="background:linear-gradient(135deg,#10b981,#059669);color:white">
+        <div class="modal-header" style="background:linear-gradient(135deg,#cd853f,#b87333);color:white">
             <h5 class="modal-title"><i class="fas fa-calendar-plus me-2"></i>Réserver la chambre</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" style="filter:invert(1)"></button>
         </div>
         <div class="modal-body">
-            <div style="padding:12px;background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.3);border-radius:8px;margin-bottom:16px">
+            <div style="padding:12px;background:rgba(205,133,63,.1);border:1px solid rgba(205,133,63,.3);border-radius:8px;margin-bottom:16px">
                 <i class="fas fa-check-circle" style="color:var(--grn);margin-right:6px"></i>
                 La chambre ${roomNumber} est disponible pour le ${new Date(date).toLocaleDateString('fr-FR')}.
             </div>

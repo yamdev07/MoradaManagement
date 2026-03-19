@@ -297,16 +297,13 @@ class Customer extends Model
      */
     public function getAvatarUrlAttribute()
     {
-        if ($this->user && $this->user->avatar) {
+        if ($this->user) {
             return $this->user->getAvatar();
         }
 
-        // Générer un avatar basé sur le nom
+        // Générer un avatar basé sur le nom avec nos couleurs
         $name = urlencode($this->name);
-        $colors = ['4ecdc4', '45b7d1', '96c93d', 'a363d9', 'e74a3b'];
-        $color = $colors[array_rand($colors)];
-
-        return "https://ui-avatars.com/api/?name={$name}&background={$color}&color=fff&size=150&bold=true";
+        return "https://ui-avatars.com/api/?name={$name}&background=cd853f&color=fff&size=150&bold=true";
     }
 
     /**

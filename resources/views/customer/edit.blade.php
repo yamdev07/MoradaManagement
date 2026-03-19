@@ -7,24 +7,24 @@
    DESIGN SYSTEM - MÊME STYLE QUE GESTION DES CLIENTS
 ═══════════════════════════════════════════════════════════════════ */
 :root {
-    --primary-50: #ecfdf5;
-    --primary-100: #d1fae5;
-    --primary-400: #34d399;
-    --primary-500: #10b981;
-    --primary-600: #059669;
-    --primary-700: #047857;
-    --primary-800: #065f46;
+    --primary-50: #fdf5ec;
+    --primary-100: #f7e7d1;
+    --primary-400: #e0a05a;
+    --primary-500: #cd853f;
+    --primary-600: #b87333;
+    --primary-700: #654321;
+    --primary-800: #4d3319;
 
-    --amber-50: #fffbeb;
-    --amber-100: #fef3c7;
-    --amber-400: #fbbf24;
-    --amber-500: #f59e0b;
-    --amber-600: #d97706;
+    --amber-50: #fdf5ec;
+    --amber-100: #f7e7d1;
+    --amber-400: #cd853f;
+    --amber-500: #cd853f;
+    --amber-600: #b87333;
 
-    --blue-50: #eff6ff;
-    --blue-100: #dbeafe;
-    --blue-500: #3b82f6;
-    --blue-600: #2563eb;
+    --blue-50: #fdf5ec;
+    --blue-100: #f7e7d1;
+    --blue-500: #cd853f;
+    --blue-600: #cd853f;
 
     --gray-50: #f9fafb;
     --gray-100: #f3f4f6;
@@ -116,7 +116,7 @@
     justify-content: center;
     color: white;
     font-size: 1.25rem;
-    box-shadow: 0 4px 10px rgba(5, 150, 105, 0.3);
+    box-shadow: 0 4px 10px rgba(101, 67, 33, 0.3);
 }
 
 .header-subtitle {
@@ -143,13 +143,13 @@
 .btn-primary-modern {
     background: linear-gradient(135deg, var(--primary-700), var(--primary-500));
     color: white;
-    box-shadow: 0 4px 6px -1px rgba(5, 150, 105, 0.3);
+    box-shadow: 0 4px 6px -1px rgba(101, 67, 33, 0.3);
 }
 
 .btn-primary-modern:hover {
     background: linear-gradient(135deg, var(--primary-800), var(--primary-600));
     transform: translateY(-1px);
-    box-shadow: 0 6px 8px -1px rgba(5, 150, 105, 0.4);
+    box-shadow: 0 6px 8px -1px rgba(101, 67, 33, 0.4);
     color: white;
     text-decoration: none;
 }
@@ -176,13 +176,13 @@
 }
 
 .btn-warning-modern {
-    background: linear-gradient(135deg, #d97706, #f59e0b);
+    background: linear-gradient(135deg, #b87333, #cd853f);
     color: white;
     box-shadow: 0 4px 6px -1px rgba(245, 158, 11, 0.3);
 }
 
 .btn-warning-modern:hover {
-    background: linear-gradient(135deg, #b45309, #d97706);
+    background: linear-gradient(135deg, #b45309, #b87333);
     transform: translateY(-1px);
     box-shadow: 0 6px 8px -1px rgba(245, 158, 11, 0.4);
     color: white;
@@ -190,13 +190,13 @@
 }
 
 .btn-danger-modern {
-    background: linear-gradient(135deg, #dc2626, #ef4444);
+    background: linear-gradient(135deg, #4d3319, #654321);
     color: white;
     box-shadow: 0 4px 6px -1px rgba(220, 38, 38, 0.3);
 }
 
 .btn-danger-modern:hover {
-    background: linear-gradient(135deg, #b91c1c, #dc2626);
+    background: linear-gradient(135deg, #b91c1c, #4d3319);
     transform: translateY(-1px);
     box-shadow: 0 6px 8px -1px rgba(220, 38, 38, 0.4);
     color: white;
@@ -224,8 +224,8 @@
 }
 
 .alert-danger {
-    background: #fee2e2;
-    border-color: #fecaca;
+    background: #f5ecec;
+    border-color: #e7d1d1;
     color: #b91c1c;
 }
 
@@ -251,7 +251,7 @@
 }
 
 .alert-danger .alert-icon {
-    background: #ef4444;
+    background: #654321;
     color: white;
 }
 
@@ -347,12 +347,12 @@
 }
 
 .form-control.is-invalid {
-    border-color: #ef4444;
+    border-color: #654321;
     background-color: #fef2f2;
 }
 
 .form-control.is-invalid:focus {
-    box-shadow: 0 0 0 3px #fee2e2;
+    box-shadow: 0 0 0 3px #f5ecec;
 }
 
 .form-control:disabled {
@@ -384,7 +384,7 @@
 }
 
 .form-select.is-invalid {
-    border-color: #ef4444;
+    border-color: #654321;
     background-color: #fef2f2;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23ef4444' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
 }
@@ -493,7 +493,7 @@ textarea.form-control {
     gap: 6px;
     margin-top: 6px;
     font-size: 0.75rem;
-    color: #ef4444;
+    color: #654321;
 }
 
 .error-message i {
@@ -633,9 +633,9 @@ textarea.form-control {
                             @if($avatarUrl)
                             <img src="{{ $avatarUrl }}" 
                                  alt="{{ $customer->name }}"
-                                 onerror="this.src='https://ui-avatars.com/api/?name={{ urlencode($customer->name) }}&background=059669&color=fff&size=80'">
+                                 onerror="this.src='https://ui-avatars.com/api/?name={{ urlencode($customer->name) }}&background=cd853f&color=fff&size=80'">
                             @else
-                            <img src="https://ui-avatars.com/api/?name={{ urlencode($customer->name) }}&background=059669&color=fff&size=80" 
+                            <img src="https://ui-avatars.com/api/?name={{ urlencode($customer->name) }}&background=cd853f&color=fff&size=80" 
                                  alt="{{ $customer->name }}">
                             @endif
                             <div class="avatar-preview-info">
@@ -903,7 +903,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                 `,
                 icon: 'info',
-                confirmButtonColor: '#10b981'
+                confirmButtonColor: '#cd853f'
             });
         }
     });

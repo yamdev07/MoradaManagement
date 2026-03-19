@@ -8,8 +8,8 @@
     <a href="{{ route('dashboard.index') }}" class="sidebar-logo">
         <div class="d-flex align-items-center">
             <div class="">
-                <img src="{{ asset('img/logo_cactus1.jpeg') }}"
-                    alt="Hotel Cactus"
+                <img src="{{ asset('img/logo_morada.jpg') }}"
+                    alt="Morada Lodge"
                     style="height: 42px; border-radius: 8px;">
             </div>
             <div class="brand-text ms-2">
@@ -425,11 +425,11 @@
                                               html: 'Vous avez une session active <strong>#{{ $activeSession->id }}</strong>.<br><br>' +
                                                     'Veuillez la clôturer avant de vous déconnecter.',
                                               icon: 'warning',
-                                              confirmButtonColor: '#10b981',
+                                              confirmButtonColor: '#cd853f',
                                               confirmButtonText: 'Compris',
                                               showCancelButton: true,
                                               cancelButtonText: 'Aller à la session',
-                                              cancelButtonColor: '#3b82f6'
+                                              cancelButtonColor: '#cd853f'
                                           }).then((result) => {
                                               if (result.dismiss === Swal.DismissReason.cancel) {
                                                   window.location.href = '{{ route("cashier.sessions.show", $activeSession) }}';
@@ -441,10 +441,10 @@
                              style="cursor: pointer; opacity: 0.7;"
                              title="Déconnexion impossible - Clôturez d'abord votre session #{{ $activeSession->id }}">
                             <div class="nav-icon">
-                                <i class="fas fa-sign-out-alt" style="color: #ef4444;"></i>
+                                <i class="fas fa-sign-out-alt" style="color: #654321;"></i>
                             </div>
                             <div class="nav-content">
-                                <div class="nav-title" style="color: #ef4444;">Déconnexion (bloquée)</div>
+                                <div class="nav-title" style="color: #654321;">Déconnexion (bloquée)</div>
                                 <div class="nav-subtitle">Session #{{ $activeSession->id }} active</div>
                             </div>
                         </div>
@@ -461,7 +461,7 @@
                                             text: 'Voulez-vous vraiment vous déconnecter ?',
                                             icon: 'question',
                                             showCancelButton: true,
-                                            confirmButtonColor: '#10b981',
+                                            confirmButtonColor: '#cd853f',
                                             cancelButtonColor: '#64748b',
                                             confirmButtonText: 'Oui, déconnecter',
                                             cancelButtonText: 'Annuler'
@@ -495,25 +495,14 @@
             <div class="user-profile">
                 <div class="user-avatar">
                     @php
-                        $avatarPath = null;
-                        
-                        if (auth()->user()->avatar) {
-                            if (str_starts_with(auth()->user()->avatar, '/img/user/')) {
-                                $avatarPath = asset(auth()->user()->avatar);
-                            } 
-                            elseif (str_starts_with(auth()->user()->avatar, 'storage/') || str_contains(auth()->user()->avatar, 'storage/')) {
-                                $avatarPath = asset(auth()->user()->avatar);
-                            }
-                            else {
-                                $avatarPath = asset('storage/' . auth()->user()->avatar);
-                            }
-                        }
+                        $avatarUrl = auth()->user()->getAvatar();
+                        $hasCustomAvatar = !auth()->user()->hasDefaultAvatar();
                     @endphp
-
-                    @if($avatarPath)
-                        <img src="{{ $avatarPath }}" 
+                    
+                    @if($hasCustomAvatar)
+                        <img src="{{ $avatarUrl }}" 
                              alt="{{ auth()->user()->name }}"
-                             onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name={{ urlencode(auth()->user()->name) }}&background=059669&color=fff&size=40';">
+                             onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name={{ urlencode(auth()->user()->name) }}&background=cd853f&color=fff&size=40';">
                     @else
                         <div class="avatar-placeholder">
                             <i class="fas fa-user"></i>
@@ -569,7 +558,7 @@
 /* ─── Base ─────────────────────────────────── */
 .sidebar {
     width: 272px;
-    background: linear-gradient(170deg, #064e3b 0%, #065f46 55%, #047857 100%);
+    background: linear-gradient(170deg, #654321 0%, #4d3319 55%, #332111 100%);
     color: #fff;
     position: fixed;
     left: 0;
@@ -684,22 +673,22 @@
 }
 .nav-item:hover {
     color: #fff;
-    background: linear-gradient(90deg, rgba(52,211,153,.14), rgba(52,211,153,.02));
-    border-left-color: rgba(52,211,153,.6);
+    background: linear-gradient(90deg, rgba(205,133,63,.14), rgba(205,133,63,.02));
+    border-left-color: rgba(205,133,63,.6);
     padding-left: 24px;
     text-decoration: none;
 }
 .nav-item.active {
     color: #fff;
-    background: linear-gradient(90deg, rgba(16,185,129,.22), rgba(16,185,129,.04));
-    border-left-color: #10b981;
+    background: linear-gradient(90deg, rgba(205,133,63,.22), rgba(205,133,63,.04));
+    border-left-color: #cd853f;
     font-weight: 500;
 }
 
 /* ─── Highlight items ─────────────────────────── */
 .nav-item--highlight .nav-icon {
-    background: rgba(16,185,129,.18);
-    color: #6ee7b7;
+    background: rgba(205,133,63,.18);
+    color: #cd853f;
 }
 .nav-item--highlight .nav-title {
     font-weight: 600;
@@ -707,15 +696,15 @@
 }
 .nav-item--highlight:hover .nav-icon,
 .nav-item--highlight.active .nav-icon {
-    background: rgba(16,185,129,.28);
-    color: #34d399;
+    background: rgba(205,133,63,.28);
+    color: #e0a05a;
     transform: scale(1.08);
 }
 
 /* ─── Logout item ───────────────────────────── */
 .nav-item--logout:hover {
-    background: linear-gradient(90deg, rgba(239,68,68,.14), transparent);
-    border-left-color: rgba(239,68,68,.5);
+    background: linear-gradient(90deg, rgba(101,67,33,.14), transparent);
+    border-left-color: rgba(101,67,33,.5);
     color: #fca5a5;
 }
 .nav-item--logout:hover .nav-icon { color: #fca5a5; }
@@ -735,8 +724,8 @@
     transition: background .18s, color .18s, transform .18s;
 }
 .nav-item.active .nav-icon {
-    background: rgba(16,185,129,.2);
-    color: #34d399;
+    background: rgba(205,133,63,.2);
+    color: #e0a05a;
     transform: scale(1.06);
 }
 
@@ -767,7 +756,7 @@
     right: 20px;
     top: 50%;
     transform: translateY(-50%);
-    background: linear-gradient(135deg, #ef4444, #dc2626);
+    background: linear-gradient(135deg, #654321, #4d3319);
     color: white;
     font-size: 0.65rem;
     padding: 2px 5px;
@@ -775,7 +764,7 @@
     min-width: 17px;
     text-align: center;
     font-weight: 700;
-    box-shadow: 0 2px 6px rgba(239,68,68,.35);
+    box-shadow: 0 2px 6px rgba(101,67,33,.35);
 }
 
 /* ─── Restricted ────────────────────────────── */
@@ -807,7 +796,7 @@
 .avatar-placeholder {
     width: 100%; height: 100%;
     border-radius: 50%;
-    background: linear-gradient(135deg, #10b981, #047857);
+    background: linear-gradient(135deg, #cd853f, #332111);
     display: flex; align-items: center; justify-content: center;
     color: white; font-size: 1rem;
     border: 2px solid rgba(255,255,255,.15);
@@ -833,10 +822,10 @@
 #sidebar-datetime { font-family: 'Courier New', monospace; font-weight: 500; }
 
 /* ─── Badge colors ──────────────────────────── */
-.bg-danger   { background: linear-gradient(135deg, #dc2626, #b91c1c) !important; }
-.bg-primary  { background: linear-gradient(135deg, #3b82f6, #1d4ed8) !important; }
-.bg-success  { background: linear-gradient(135deg, #10b981, #047857) !important; }
-.bg-warning  { background: linear-gradient(135deg, #f59e0b, #d97706) !important; }
+.bg-danger   { background: linear-gradient(135deg, #4d3319, #b91c1c) !important; }
+.bg-primary  { background: linear-gradient(135deg, #cd853f, #b87333) !important; }
+.bg-success  { background: linear-gradient(135deg, #cd853f, #332111) !important; }
+.bg-warning  { background: linear-gradient(135deg, #cd853f, #b87333) !important; }
 .bg-info     { background: linear-gradient(135deg, #06b6d4, #0891b2) !important; }
 .bg-secondary{ background: linear-gradient(135deg, #64748b, #475569) !important; }
 

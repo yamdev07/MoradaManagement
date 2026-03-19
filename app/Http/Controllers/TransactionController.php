@@ -583,7 +583,7 @@ class TransactionController extends Controller
 
             switch ($newStatus) {
                 case 'active':
-                    $updateData['check_in_actual'] = now();
+                    $updateData['actual_check_in'] = now();
 
                     if ($transaction->room) {
                         $transaction->room->update(['room_status_id' => self::STATUS_OCCUPIED]);
@@ -595,7 +595,7 @@ class TransactionController extends Controller
                                 actionSubtype: 'create',
                                 actionable: $transaction,
                                 actionData: [
-                                    'check_in_actual' => now()->format('Y-m-d H:i:s'),
+                                    'actual_check_in' => now()->format('Y-m-d H:i:s'),
                                     'room_number' => $transaction->room->number,
                                     'customer_name' => $transaction->customer->name,
                                     'room_status' => 'occupied',
@@ -618,7 +618,7 @@ class TransactionController extends Controller
                             "Erreur de sécurité: Paiement incomplet. Solde: " . $formattedRemaining);
                     }
 
-                    $updateData['check_out_actual'] = now();
+                    $updateData['actual_check_out'] = now();
 
                     // =====================================================
                     // Marquer la chambre comme DIRTY (SALE)

@@ -304,11 +304,11 @@
                     html: 'Vous avez une session active <strong>#{{ $activeSession->id }}</strong>.<br><br>' +
                           'Veuillez la clôturer avant de vous déconnecter.',
                     icon: 'warning',
-                    confirmButtonColor: '#10b981',
+                    confirmButtonColor: '#cd853f',
                     confirmButtonText: 'Compris',
                     showCancelButton: true,
                     cancelButtonText: 'Aller à la session',
-                    cancelButtonColor: '#3b82f6'
+                    cancelButtonColor: '#cd853f'
                 }).then((result) => {
                     if (result.dismiss === Swal.DismissReason.cancel) {
                         window.location.href = '{{ route("cashier.sessions.show", $activeSession) }}';

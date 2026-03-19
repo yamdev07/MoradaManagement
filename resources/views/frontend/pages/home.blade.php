@@ -1,6 +1,6 @@
 @extends('frontend.layouts.master')
 
-@section('title', 'Hôtel Luxury Palace - L\'excellence au service du luxe')
+@section('title', 'Morada Lodge - Havre de Luxe au Cœur de la Nature')
 
 @section('content')
     <!-- Hero Section modernisé -->
@@ -10,13 +10,16 @@
                 <div class="row min-vh-100 align-items-center justify-content-center">
                     <div class="col-lg-10 text-center">
                         <div class="hero-badge mb-4" data-aos="fade-down">
-                            <span class="badge-text">Luxury Collection</span>
+                            <span class="badge-text">Luxury Nature Resort</span>
                         </div>
                         <h1 class="hero-title mb-4" data-aos="fade-up" data-aos-delay="100">
-                            Cactus Hotel
+                            Découvrez le Luxe 
+                            <span class="d-block" style="color: #cd853f;">
+                                au Cœur de la Nature
+                            </span>
                         </h1>
                         <p class="hero-subtitle mb-5" data-aos="fade-up" data-aos-delay="200">
-                            L'expérience ultime du luxe et de l'élégance en plein cœur de la ville
+                            Un sanctuaire de tranquillité où l'élégance rencontre l'authenticité africaine
                         </p>
                         <div class="hero-cta" data-aos="fade-up" data-aos-delay="300">
                             <a href="{{ route('frontend.rooms') }}" class="btn-modern btn-primary me-3">
@@ -75,14 +78,14 @@
                 <div class="col-lg-6" data-aos="fade-right">
                     <div class="intro-image-wrapper">
                         <div class="main-image">
-                            <img src="https://images.unsplash.com/photo-1564501049418-3c27787d01e8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
-                                 alt="Lobby Luxury Palace" 
-                                 class="img-fluid">
+                            <img src="http://moradalodge.com/images/accueil_entree.jpg" 
+                                 alt="Morada Lodge Nature Resort" 
+                                 class="img-fluid border-radius-20 shadow-lg">
                         </div>
                         <div class="floating-badge">
                             <div class="badge-content">
-                                <h3>30+</h3>
-                                <p>Années d'excellence</p>
+                                <h3>5★</h3>
+                                <p>Luxe & Nature</p>
                             </div>
                         </div>
                         <div class="decoration-element"></div>
@@ -90,21 +93,20 @@
                 </div>
                 <div class="col-lg-6" data-aos="fade-left">
                     <div class="section-header mb-4">
-                        <span class="section-tag">Notre Histoire</span>
-                        <h2 class="section-title">L'Art de l'Hospitalité Réinventé</h2>
+                        <span class="section-tag">Bienvenue</span>
+                        <h2 class="section-title">Un Sanctuaire de Sérénité</h2>
                     </div>
                     <p class="lead-text mb-4">
-                        Depuis 1995, le Luxury Palace incarne l'excellence hôtelière dans sa forme la plus pure. 
-                        Chaque détail est pensé pour créer des expériences inoubliables et élever le luxe à un art de vivre.
+                        Découvrez Morada Lodge, un véritable havre de paix situé à Covè. Notre établissement allie le raffinement du luxe contemporain à l'authenticité de la nature béninoise pour vous offrir une expérience inoubliable.
                     </p>
                     <div class="features-grid">
                         <div class="feature-item">
                             <div class="feature-icon">
-                                <i class="fas fa-award"></i>
+                                <i class="fas fa-swimming-pool"></i>
                             </div>
                             <div class="feature-content">
-                                <h4>Excellence Certifiée</h4>
-                                <p>5 étoiles & 25+ récompenses internationales</p>
+                                <h4>Piscine Privée</h4>
+                                <p>Détente absolue dans un cadre idyllique</p>
                             </div>
                         </div>
                         <div class="feature-item">
@@ -112,8 +114,8 @@
                                 <i class="fas fa-leaf"></i>
                             </div>
                             <div class="feature-content">
-                                <h4>Engagement Durable</h4>
-                                <p>Luxe responsable & éco-conception</p>
+                                <h4>Écologique</h4>
+                                <p>Respect de l'environnement et développement durable</p>
                             </div>
                         </div>
                     </div>
@@ -126,10 +128,10 @@
     <section class="rooms-section py-7">
         <div class="container">
             <div class="text-center mb-6" data-aos="fade-up">
-                <span class="section-tag">Nos Suites</span>
-                <h2 class="section-title">Chambres & Suites d'Exception</h2>
+                <span class="section-tag">Nos Hébergements</span>
+                <h2 class="section-title">Nos Suites de Prestige</h2>
                 <p class="section-subtitle mx-auto">
-                    Des espaces où le raffinement rencontre le confort absolu
+                    Chaque hébergement est conçu comme un havre de paix, alliant confort moderne et charme authentique africain.
                 </p>
             </div>
 
@@ -242,67 +244,39 @@
         </div>
     </section>
 
-    <!-- Section Services -->
-    <section class="services-section py-7">
+    <section class="gallery-section py-7" id="galerie">
         <div class="container">
             <div class="text-center mb-6" data-aos="fade-up">
-                <span class="section-tag">Expériences</span>
-                <h2 class="section-title">Services d'Exception</h2>
+                <span class="section-tag">Galerie</span>
+                <h2 class="section-title">Moments d'Exception</h2>
                 <p class="section-subtitle mx-auto">
-                    Des prestations sur-mesure pour sublimer votre séjour
+                    Découvrez l'atmosphère unique de Morada Lodge à travers ces images capturent l'essence de notre havre de paix.
                 </p>
             </div>
 
-            <div class="row g-4">
-                <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="0">
-                    <div class="service-card-modern">
-                        <div class="service-icon-wrapper">
-                            <i class="fas fa-utensils"></i>
+            <div class="row g-4 overflow-hidden">
+                <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="0">
+                    <div class="gallery-item">
+                        <img src="http://moradalodge.com/images/piscineP.jpg" alt="Piscine Principale">
+                        <div class="gallery-overlay">
+                            <span>Piscine Principale</span>
                         </div>
-                        <h3>Gastronomie Étoilée</h3>
-                        <p>Chef étoilé Michelin et cuisine fusion innovante</p>
-                        <a href="{{ route('frontend.restaurant') }}" class="service-link">
-                            Découvrir <i class="fas fa-arrow-right"></i>
-                        </a>
                     </div>
                 </div>
-
-                <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="100">
-                    <div class="service-card-modern">
-                        <div class="service-icon-wrapper">
-                            <i class="fas fa-spa"></i>
+                <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="gallery-item">
+                        <img src="http://moradalodge.com/images/jardin.jpg" alt="Jardins">
+                        <div class="gallery-overlay">
+                            <span>Jardins Tropicaux</span>
                         </div>
-                        <h3>Spa & Wellness</h3>
-                        <p>Centre de bien-être avec soins personnalisés</p>
-                        <a href="{{ route('frontend.contact') }}?subject=Spa" class="service-link">
-                            Découvrir <i class="fas fa-arrow-right"></i>
-                        </a>
                     </div>
                 </div>
-
-                <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="200">
-                    <div class="service-card-modern">
-                        <div class="service-icon-wrapper">
-                            <i class="fas fa-concierge-bell"></i>
+                <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="gallery-item">
+                        <img src="http://moradalodge.com/images/Photo10.jpeg" alt="Restaurant">
+                        <div class="gallery-overlay">
+                            <span>Restaurant Paillote</span>
                         </div>
-                        <h3>Conciergerie 24/7</h3>
-                        <p>Service dédié pour répondre à tous vos besoins</p>
-                        <a href="{{ route('frontend.contact') }}?subject=Conciergerie" class="service-link">
-                            Découvrir <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="300">
-                    <div class="service-card-modern">
-                        <div class="service-icon-wrapper">
-                            <i class="fas fa-car-side"></i>
-                        </div>
-                        <h3>Transfert VIP</h3>
-                        <p>Véhicules de luxe avec chauffeur privé</p>
-                        <a href="{{ route('frontend.contact') }}?subject=Transfert" class="service-link">
-                            Découvrir <i class="fas fa-arrow-right"></i>
-                        </a>
                     </div>
                 </div>
             </div>
@@ -313,9 +287,9 @@
     <section class="testimonials-section py-7">
         <div class="container">
             <div class="text-center mb-6" data-aos="fade-up">
-                <span class="section-tag light">Témoignages</span>
-                <h2 class="section-title text-white">Ce Que Nos Clients Disent</h2>
-                <p class="section-subtitle text-white-50 mx-auto">
+                <span class="section-tag brown-text">Témoignages</span>
+                <h2 class="section-title text-dark">Ce Que Nos Clients Disent</h2>
+                <p class="section-subtitle text-muted mx-auto">
                     L'excellence reconnue par nos clients les plus exigeants
                 </p>
             </div>
@@ -334,16 +308,13 @@
                             <i class="fas fa-star"></i>
                         </div>
                         <p class="testimonial-text">
-                            Une expérience hôtelière absolument exceptionnelle. Le service est impeccable, 
-                            l'attention aux détails est remarquable et chaque moment est un véritable enchantement.
+                            "Un séjour absolument magique ! L'accueil chaleureux, la cuisine exceptionnelle et le cadre paradisiaque ont rendu notre lune de miel inoubliable."
                         </p>
                         <div class="testimonial-author">
-                            <img src="https://randomuser.me/api/portraits/women/65.jpg" 
-                                 alt="Sophie Laurent"
-                                 class="author-avatar">
+                            <div class="author-icon-circle"><i class="fas fa-user"></i></div>
                             <div class="author-info">
-                                <h5>Sophie Laurent</h5>
-                                <p>CEO, Luxe Group Paris</p>
+                                <h5>Sophie & Pierre Martin</h5>
+                                <p>France</p>
                             </div>
                         </div>
                     </div>
@@ -362,16 +333,13 @@
                             <i class="fas fa-star"></i>
                         </div>
                         <p class="testimonial-text">
-                            Le restaurant gastronomique est une véritable révélation culinaire. 
-                            Chaque plat est une œuvre d'art qui ravit autant les yeux que les papilles.
+                            "La tranquillité du lieu et la qualité des services font de Morada Lodge une adresse incontournable. Nous reviendrons sans hésiter !"
                         </p>
                         <div class="testimonial-author">
-                            <img src="https://randomuser.me/api/portraits/men/32.jpg" 
-                                 alt="Thomas Dubois"
-                                 class="author-avatar">
+                            <div class="author-icon-circle"><i class="fas fa-user"></i></div>
                             <div class="author-info">
-                                <h5>Thomas Dubois</h5>
-                                <p>Critique Gastronomique</p>
+                                <h5>James Thompson</h5>
+                                <p>Canada</p>
                             </div>
                         </div>
                     </div>
@@ -390,16 +358,13 @@
                             <i class="fas fa-star"></i>
                         </div>
                         <p class="testimonial-text">
-                            Le spa est un havre de paix absolu. L'ambiance zen et les soins sur mesure 
-                            créent une expérience de relaxation incomparable.
+                            "Un véritable havre de paix où service impeccable rime avec authenticité. La découverte culinaire a été un vrai bonheur !"
                         </p>
                         <div class="testimonial-author">
-                            <img src="https://randomuser.me/api/portraits/women/44.jpg" 
-                                 alt="Marie Chen"
-                                 class="author-avatar">
+                            <div class="author-icon-circle"><i class="fas fa-user"></i></div>
                             <div class="author-info">
-                                <h5>Marie Chen</h5>
-                                <p>Lifestyle Influencer</p>
+                                <h5>Amina Diallo</h5>
+                                <p>Sénégal</p>
                             </div>
                         </div>
                     </div>
@@ -451,18 +416,18 @@
             <div class="cta-wrapper">
                 <div class="row align-items-center">
                     <div class="col-lg-7" data-aos="fade-right">
-                        <h2 class="cta-title">Vivez l'Expérience Luxury Palace</h2>
+                        <h2 class="cta-title">Réservez votre Séjour d'Exception</h2>
                         <p class="cta-text">
-                            Réservez dès maintenant et bénéficiez d'une offre exclusive de bienvenue
+                            Notre équipe est à votre disposition pour organiser un séjour sur mesure qui dépassera toutes vos attentes.
                         </p>
                         <div class="cta-actions">
-                            <a href="{{ route('frontend.contact') }}" class="btn-modern btn-primary-lg">
+                            <a href="{{ route('frontend.reservation') }}" class="btn-modern btn-primary-lg">
                                 <i class="fas fa-calendar-check me-2"></i>
                                 Réserver maintenant
                             </a>
-                            <a href="tel:+33123456789" class="btn-modern btn-white-lg">
+                            <a href="tel:+2290167836481" class="btn-modern btn-white-lg">
                                 <i class="fas fa-phone me-2"></i>
-                                (+33) 1 23 45 67 89
+                                (+229) 01 67 83 64 81
                             </a>
                         </div>
                     </div>
@@ -488,20 +453,21 @@
    VARIABLES & BASE
    ============================================ */
 :root {
-    --cactus-green: #1A472A;
-    --cactus-light: #2E5C3F;
-    --cactus-dark: #0F2918;
-    --gold-accent: #C9A961;
-    --light-bg: #F8FAF9;
+    --primary-brown: #654321;
+    --secondary-brown: #C5A059;
+    --dark-brown: #654321;
+    --gold-accent: #C5A059;
+    --light-bg: #FDFBF7;
     --white: #FFFFFF;
-    --text-dark: #1A1A1A;
-    --text-gray: #6B7280;
-    --border-color: #E5E7EB;
-    
+    --text-dark: #654321;
+    --text-gray: #666666;
+    --border-color: #EEEEEE;
+
     --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    --shadow-sm: 0 2px 8px rgba(26, 71, 42, 0.08);
-    --shadow-md: 0 8px 24px rgba(26, 71, 42, 0.12);
-    --shadow-lg: 0 16px 48px rgba(26, 71, 42, 0.16);
+}
+
+.text-gold-accent {
+    color: var(--brown-old-accent) !important;
 }
 
 * {
@@ -528,8 +494,8 @@ body {
 .hero-modern {
     position: relative;
     min-height: 100vh;
-    background: linear-gradient(rgba(15, 41, 24, 0.85), rgba(26, 71, 42, 0.9)), 
-                url('https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+    background: linear-gradient(rgba(101, 67, 33, 0.85), rgba(101, 67, 33, 0.9)), 
+                url('http://moradalodge.com/images/accueil.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -555,7 +521,7 @@ body {
     background: rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 50px;
-    color: var(--gold-accent);
+    color: var(--brown-old-accent);
     font-size: 13px;
     font-weight: 500;
     letter-spacing: 2px;
@@ -636,13 +602,13 @@ body {
 
 .form-input:focus {
     outline: none;
-    border-color: var(--cactus-green);
-    box-shadow: 0 0 0 4px rgba(26, 71, 42, 0.1);
+    border-color: var(--primary-brown);
+    box-shadow: 0 0 0 4px rgba(101, 67, 33, 0.1);
 }
 
 .btn-search {
     padding: 14px 30px;
-    background: var(--cactus-green);
+    background: var(--primary-brown);
     color: var(--white);
     border: none;
     border-radius: 8px;
@@ -658,7 +624,7 @@ body {
 }
 
 .btn-search:hover {
-    background: var(--cactus-light);
+    background: var(--secondary-brown);
     transform: translateY(-2px);
     box-shadow: var(--shadow-md);
 }
@@ -666,7 +632,7 @@ body {
 /* Scroll Indicator */
 .scroll-indicator {
     position: absolute;
-    bottom: 40px;
+    bottom: 20px; /* Rapproché du bas pour laisser plus d'espace au-dessus */
     left: 50%;
     transform: translateX(-50%);
     display: flex;
@@ -727,11 +693,11 @@ body {
 
 .btn-primary {
     background: var(--white);
-    color: var(--cactus-green);
+    color: var(--primary-brown);
 }
 
 .btn-primary:hover {
-    background: var(--gold-accent);
+    background: var(--brown-old-accent);
     color: var(--white);
     transform: translateY(-2px);
     box-shadow: 0 12px 28px rgba(201, 169, 97, 0.3);
@@ -744,33 +710,33 @@ body {
 }
 
 .btn-outline:hover {
-    background: rgba(255, 255, 255, 0.1);
+    background: var(--white);
     border-color: var(--white);
-    color: var(--white);
+    color: var(--primary-brown) !important;
 }
 
 .btn-outline-lg {
     padding: 18px 45px;
     font-size: 16px;
     background: transparent;
-    color: var(--cactus-green);
-    border: 2px solid var(--cactus-green);
+    color: var(--primary-brown);
+    border: 2px solid var(--primary-brown);
 }
 
 .btn-outline-lg:hover {
-    background: var(--cactus-green);
+    background: var(--primary-brown);
     color: var(--white);
 }
 
 .btn-primary-lg {
     padding: 18px 45px;
     font-size: 16px;
-    background: var(--cactus-green);
+    background: var(--primary-brown);
     color: var(--white);
 }
 
 .btn-primary-lg:hover {
-    background: var(--cactus-light);
+    background: var(--secondary-brown);
     transform: translateY(-2px);
     box-shadow: var(--shadow-lg);
 }
@@ -779,7 +745,7 @@ body {
     padding: 18px 45px;
     font-size: 16px;
     background: var(--white);
-    color: var(--cactus-green);
+    color: var(--primary-brown);
     border: 2px solid var(--white);
 }
 
@@ -794,8 +760,8 @@ body {
 .section-tag {
     display: inline-block;
     padding: 6px 20px;
-    background: rgba(26, 71, 42, 0.1);
-    color: var(--cactus-green);
+    background: rgba(101, 67, 33, 0.1);
+    color: var(--primary-brown);
     border-radius: 50px;
     font-size: 13px;
     font-weight: 600;
@@ -806,7 +772,7 @@ body {
 
 .section-tag.light {
     background: rgba(255, 255, 255, 0.1);
-    color: var(--gold-accent);
+    color: var(--brown-old-accent);
 }
 
 .section-title {
@@ -861,7 +827,7 @@ body {
 .floating-badge h3 {
     font-size: 3rem;
     font-weight: 700;
-    color: var(--cactus-green);
+    color: var(--primary-brown);
     margin-bottom: 5px;
 }
 
@@ -877,7 +843,7 @@ body {
     left: -20px;
     width: 150px;
     height: 150px;
-    background: var(--gold-accent);
+    background: var(--brown-old-accent);
     opacity: 0.15;
     border-radius: 20px;
     z-index: -1;
@@ -904,7 +870,7 @@ body {
 .feature-icon {
     width: 60px;
     height: 60px;
-    background: linear-gradient(135deg, var(--cactus-green), var(--cactus-light));
+    background: linear-gradient(135deg, var(--primary-brown), var(--secondary-brown));
     border-radius: 12px;
     display: flex;
     align-items: center;
@@ -986,12 +952,13 @@ body {
 }
 
 .status-badge.available {
-    background: rgba(34, 197, 94, 0.9);
+    background: rgba(201, 169, 97, 0.95); /* Gold Accent */
     color: var(--white);
+    box-shadow: 0 4px 12px rgba(201, 169, 97, 0.3);
 }
 
 .status-badge.on-request {
-    background: rgba(251, 191, 36, 0.9);
+    background: rgba(101, 67, 33, 0.85); /* Primary Brown */
     color: var(--white);
 }
 
@@ -1013,7 +980,7 @@ body {
 }
 
 .wishlist-btn:hover {
-    background: var(--cactus-green);
+    background: var(--primary-brown);
     color: var(--white);
     transform: scale(1.1);
 }
@@ -1050,8 +1017,8 @@ body {
     align-items: center;
     gap: 6px;
     padding: 6px 12px;
-    background: rgba(26, 71, 42, 0.1);
-    color: var(--cactus-green);
+    background: rgba(101, 67, 33, 0.1);
+    color: var(--primary-brown);
     border-radius: 50px;
     font-size: 13px;
     font-weight: 600;
@@ -1082,7 +1049,7 @@ body {
 }
 
 .spec-item i {
-    color: var(--cactus-green);
+    color: var(--primary-brown);
 }
 
 .room-footer {
@@ -1100,7 +1067,7 @@ body {
 .price {
     font-size: 1.5rem;
     font-weight: 700;
-    color: var(--cactus-green);
+    color: var(--primary-brown);
 }
 
 .price-label {
@@ -1113,7 +1080,7 @@ body {
     align-items: center;
     gap: 8px;
     padding: 12px 24px;
-    background: var(--cactus-green);
+    background: var(--primary-brown);
     color: var(--white);
     text-decoration: none;
     border-radius: 8px;
@@ -1123,7 +1090,7 @@ body {
 }
 
 .btn-view:hover {
-    background: var(--cactus-light);
+    background: var(--secondary-brown);
     transform: translateX(3px);
 }
 
@@ -1132,6 +1099,10 @@ body {
    ============================================ */
 .services-section {
     background: var(--light-bg);
+}
+
+.brown-text {
+    color: var(--primary-brown) !important;
 }
 
 .service-card-modern {
@@ -1145,7 +1116,7 @@ body {
 }
 
 .service-card-modern:hover {
-    border-color: var(--cactus-green);
+    border-color: var(--primary-brown);
     transform: translateY(-5px);
     box-shadow: var(--shadow-md);
 }
@@ -1153,14 +1124,15 @@ body {
 .service-icon-wrapper {
     width: 80px;
     height: 80px;
-    background: linear-gradient(135deg, var(--cactus-green), var(--cactus-light));
-    border-radius: 50%;
+    background: var(--white);
+    border-radius: 16px;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 0 auto 25px;
     font-size: 32px;
-    color: var(--white);
+    color: var(--primary-brown);
+    box-shadow: var(--shadow-md);
     transition: var(--transition-smooth);
 }
 
@@ -1186,7 +1158,7 @@ body {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    color: var(--cactus-green);
+    color: var(--primary-brown);
     font-weight: 600;
     font-size: 0.9rem;
     text-decoration: none;
@@ -1195,26 +1167,20 @@ body {
 
 .service-link:hover {
     gap: 12px;
-    color: var(--cactus-light);
+    color: var(--secondary-brown);
 }
 
 /* ============================================
    TESTIMONIALS SECTION
    ============================================ */
 .testimonials-section {
-    background: linear-gradient(135deg, var(--cactus-dark), var(--cactus-green));
+    background: var(--light-bg);
     position: relative;
+    color: var(--text-dark);
 }
 
 .testimonials-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" fill="%231A472A"/><circle cx="50" cy="50" r="1" fill="%23ffffff" opacity="0.1"/></svg>');
-    opacity: 0.3;
+    display: none;
 }
 
 .testimonials-section .container {
@@ -1223,11 +1189,11 @@ body {
 }
 
 .testimonial-card-modern {
-    background: rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(10px);
+    background: var(--white);
     padding: 35px;
     border-radius: 16px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
     transition: var(--transition-smooth);
     height: 100%;
 }
@@ -1235,12 +1201,12 @@ body {
 .testimonial-card-modern:hover {
     background: rgba(255, 255, 255, 0.12);
     transform: translateY(-5px);
-    border-color: var(--gold-accent);
+    border-color: var(--brown-old-accent);
 }
 
 .quote-icon {
     font-size: 2rem;
-    color: var(--gold-accent);
+    color: var(--brown-old-accent);
     opacity: 0.5;
     margin-bottom: 20px;
 }
@@ -1251,15 +1217,16 @@ body {
 }
 
 .rating i {
-    color: var(--gold-accent);
+    color: var(--brown-old-accent);
     font-size: 14px;
 }
 
 .testimonial-text {
     font-size: 1rem;
-    color: rgba(255, 255, 255, 0.9);
-    line-height: 1.7;
+    font-style: italic;
+    color: var(--text-dark);
     margin-bottom: 25px;
+    line-height: 1.7;
 }
 
 .testimonial-author {
@@ -1268,25 +1235,84 @@ body {
     gap: 15px;
 }
 
-.author-avatar {
+.author-icon-circle {
     width: 55px;
     height: 55px;
     border-radius: 50%;
-    border: 3px solid var(--gold-accent);
-    object-fit: cover;
+    background: var(--primary-brown);
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.1rem;
+    box-shadow: var(--shadow-sm);
 }
 
 .author-info h5 {
     font-size: 1rem;
-    font-weight: 600;
-    color: var(--white);
-    margin-bottom: 3px;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 2px;
 }
 
 .author-info p {
-    font-size: 0.85rem;
-    color: var(--gold-accent);
-    margin: 0;
+    font-size: 0.8rem;
+    color: var(--text-gray);
+    margin-bottom: 0;
+}
+
+/* ============================================
+   GALLERY SECTION
+   ============================================ */
+.gallery-section {
+    background: var(--white);
+}
+
+.gallery-item {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    height: 350px;
+    cursor: pointer;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.gallery-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+    display: flex;
+    align-items: flex-end;
+    padding: 30px;
+    opacity: 0;
+    transition: var(--transition-smooth);
+}
+
+.gallery-overlay span {
+    color: var(--white);
+    font-size: 1.2rem;
+    font-weight: 600;
+    transform: translateY(20px);
+    transition: var(--transition-smooth);
+}
+
+.gallery-item:hover img {
+    transform: scale(1.1);
+}
+
+.gallery-item:hover .gallery-overlay {
+    opacity: 1;
+}
+
+.gallery-item:hover .gallery-overlay span {
+    transform: translateY(0);
 }
 
 /* Stats */
@@ -1296,21 +1322,26 @@ body {
 
 .stat-item {
     text-align: center;
+    padding: 20px;
 }
 
 .stat-number {
-    font-size: 3rem;
-    font-weight: 700;
-    color: var(--gold-accent);
-    margin-bottom: 10px;
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--primary-brown);
+    margin-bottom: 5px;
 }
 
 .stat-label {
     font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.7);
+    color: var(--text-gray);
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .stat-stars {
+    color: var(--brown-old-accent);
+    font-size: 0.8rem;
     display: flex;
     gap: 3px;
     justify-content: center;
@@ -1318,7 +1349,7 @@ body {
 }
 
 .stat-stars i {
-    color: var(--gold-accent);
+    color: var(--brown-old-accent);
     font-size: 14px;
 }
 
@@ -1330,7 +1361,7 @@ body {
 }
 
 .cta-wrapper {
-    background: linear-gradient(135deg, var(--cactus-green), var(--cactus-light));
+    background: linear-gradient(135deg, var(--primary-brown), var(--secondary-brown));
     border-radius: 24px;
     padding: 80px 60px;
     position: relative;
@@ -1393,7 +1424,7 @@ body {
 .discount {
     font-size: 3rem;
     font-weight: 700;
-    color: var(--cactus-green);
+    color: var(--primary-brown);
     line-height: 1;
 }
 
@@ -1493,7 +1524,8 @@ body {
         justify-content: center;
     }
 }
-</style>
+
+    </style>
 @endpush
 
 @push('scripts')
@@ -1554,7 +1586,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (icon.classList.contains('far')) {
                 icon.classList.remove('far');
                 icon.classList.add('fas');
-                this.style.color = '#DC2626';
+                this.style.color = '#8B0000';
             } else {
                 icon.classList.remove('fas');
                 icon.classList.add('far');

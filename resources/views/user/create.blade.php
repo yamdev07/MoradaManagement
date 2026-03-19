@@ -236,21 +236,21 @@
    VARIABLES & BASE
    ======================================== */
 :root {
-    --primary-color: #1A472A;
-    --primary-light: #2E5C3F;
-    --primary-dark: #0F2918;
-    --accent-color: #C9A961;
-    --success-color: #22C55E;
-    --danger-color: #EF4444;
-    --warning-color: #F59E0B;
-    --info-color: #3B82F6;
+    --primary-color: #1a472a;
+    --primary-light: #2e5c3f;
+    --primary-dark: #0f2918;
+    --accent-color: #c9a961;
+    --success-color: #22c55e;
+    --danger-color: #654321;
+    --warning-color: #cd853f;
+    --info-color: #cd853f;
     
-    --bg-light: #F8FAF9;
-    --bg-white: #FFFFFF;
-    --text-dark: #1A1A1A;
-    --text-gray: #6B7280;
-    --text-light: #9CA3AF;
-    --border-color: #E5E7EB;
+    --bg-light: #f8faf9;
+    --bg-white: #ffffff;
+    --text-dark: #1a1a1a;
+    --text-gray: #6b7280;
+    --text-light: #9ca3af;
+    --border-color: #e5e7eb;
     
     --radius-sm: 8px;
     --radius-md: 12px;
@@ -462,7 +462,7 @@ body {
 
 .form-control-modern.is-invalid:focus,
 .form-select-modern.is-invalid:focus {
-    box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.1);
+    box-shadow: 0 0 0 4px rgba(101, 67, 33, 0.1);
 }
 
 /* Password Field */
@@ -495,7 +495,7 @@ body {
     font-size: 0.85rem;
     margin-top: 8px;
     padding: 8px 12px;
-    background: rgba(239, 68, 68, 0.05);
+    background: rgba(101, 67, 33, 0.05);
     border-radius: var(--radius-sm);
     border-left: 3px solid var(--danger-color);
 }
@@ -585,12 +585,12 @@ body {
    INFO CARD
    ======================================== */
 .info-card {
-    background: linear-gradient(135deg, #FEF3C7, #FDE68A);
+    background: linear-gradient(135deg, #f7e7d1, #fde68a);
     border-radius: var(--radius-lg);
     padding: 25px;
     display: flex;
     gap: 20px;
-    border: 2px solid #FCD34D;
+    border: 2px solid #fcd34d;
 }
 
 .info-card-icon {

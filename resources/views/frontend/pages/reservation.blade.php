@@ -1,14 +1,14 @@
 @extends('frontend.layouts.master')
 
-@section('title', 'Réservation en ligne - Hôtel Cactus Palace')
+@section('title', 'Réservation en ligne - Morada Lodge')
 
 @push('styles')
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root {
-    --primary: #4CAF50;
-    --primary-dark: #2E7D32;
-    --primary-light: #E8F5E9;
+    --primary: #654321;
+    --primary-dark: #654321;
+    --primary-light: #FFFFFF;
     --error: #e53935;
     --error-light: #FFEBEE;
 }
@@ -50,7 +50,7 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; }
 .form-control:focus,
 .form-select:focus {
     border-color: var(--primary) !important;
-    box-shadow: 0 0 0 3px rgba(76,175,80,.12) !important;
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, .12) !important;
     outline: none !important;
 }
 
@@ -142,8 +142,8 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; }
     padding: 1rem; cursor: pointer; transition: all .25s;
     background: white; margin-bottom: .75rem;
 }
-.room-card:hover { border-color: var(--primary); transform: translateX(4px); box-shadow: 0 4px 12px rgba(76,175,80,.15); }
-.room-card.selected { border-color: var(--primary); background: var(--primary-light); box-shadow: 0 0 0 3px rgba(76,175,80,.2); }
+.room-card:hover { border-color: var(--primary); transform: translateX(4px); box-shadow: 0 4px 12px rgba(0, 0, 0, .15); }
+.room-card.selected { border-color: var(--primary); background: var(--primary-light); box-shadow: 0 0 0 3px rgba(0, 0, 0, .2); }
 .room-card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: .5rem; }
 .room-name { font-size: 1.05rem; font-weight: 700; color: var(--primary-dark); }
 .room-number { font-size: .83rem; color: #777; }
@@ -152,7 +152,7 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; }
 .room-price-unit { font-size: .78rem; color: #999; }
 
 #roomsList::-webkit-scrollbar { width: 8px; }
-#roomsList::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 10px; }
+#roomsList::-webkit-scrollbar-track { background: #FFFFFF !important; border-radius: 10px; }
 #roomsList::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 10px; }
 
 /* Summary */
@@ -196,7 +196,27 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; }
     .progress-steps::before { display: none; }
     .step-label { font-size: .6rem; }
 }
-</style>
+
+    /* Contrast & Design Consistency */
+    .bg-primary, .btn-primary { color: #ffffff !important; }
+    .text-primary { color: var(--primary-color) !important; }
+    .card-header { 
+        background-color: var(--primary-color) !important; 
+        color: #ffffff !important; 
+    }
+    .card-header h4 { color: #ffffff !important; }
+    .card-header i { color: #ffffff !important; }
+    
+    .room-stat-badge { 
+        color: var(--primary-color) !important; 
+        background: var(--secondary-color) !important; 
+    }
+    
+    .room-card.selected { 
+        border-color: var(--primary-color) !important; 
+        background-color: rgba(197, 160, 89, 0.05) !important; 
+    }
+    </style>
 @endpush
 
 @section('content')
@@ -484,10 +504,10 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; }
                         <hr class="my-4">
                         <h6 class="fw-bold mb-3">Besoin d'aide ?</h6>
                         <div class="d-grid gap-2">
-                            <a href="https://wa.me/229XXXXX" target="_blank" class="btn btn-success">
+                            <a href="https://wa.me/229XXXXX" target="_blank" class="btn btn-hotel-brown">
                                 <i class="fab fa-whatsapp me-2"></i>WhatsApp
                             </a>
-                            <a href="tel:+229XXXXX" class="btn btn-outline-primary">
+                            <a href="tel:+229XXXXX" class="btn btn-outline-hotel-brown">
                                 <i class="fas fa-phone me-2"></i>Appeler
                             </a>
                         </div>
@@ -738,7 +758,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         this.disabled = true;
         this.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Recherche...';
-        roomsList.innerHTML = '<div class="loading-state"><div class="spinner-border text-success"></div><p class="mt-2 text-muted">Recherche des chambres...</p></div>';
+        roomsList.innerHTML = '<div class="loading-state"><div class="spinner-border text-hotel-brown"></div><p class="mt-2 text-muted">Recherche des chambres...</p></div>';
 
         try {
             const p = new URLSearchParams({ check_in: checkIn.value, check_out: checkOut.value, adults: $('adults').value });
@@ -791,7 +811,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         <div class="room-name">${room.name}</div>
                         <div class="room-number">Chambre ${room.number} · ${room.type_name || 'Standard'}</div>
                     </div>
-                    <span class="badge bg-success"><i class="fas fa-users me-1"></i>${room.capacity} pers.</span>
+                    <span class="badge bg-hotel-brown"><i class="fas fa-users me-1"></i>${room.capacity} pers.</span>
                 </div>
                 <div class="room-meta">
                     <div>

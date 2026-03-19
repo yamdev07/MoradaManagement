@@ -1,6 +1,6 @@
 @extends('frontend.layouts.master')
 
-@section('title', $room->name . ' - Hôtel Cactus Palace')
+@section('title', $room->name . ' - Morada Lodge')
 
 @section('content')
     <!-- Hero Section avec l'image principale en fond -->
@@ -87,7 +87,7 @@
                                 <img src="{{ $thumbUrl }}" 
                                      alt="Miniature {{ $index+1 }}"
                                      class="img-fluid rounded-3 thumbnail-image"
-                                     style="height: 100px; width: 100%; object-fit: cover; cursor: pointer; {{ $index == 0 ? 'border: 3px solid #4CAF50;' : '' }}"
+                                     style="height: 100px; width: 100%; object-fit: cover; cursor: pointer; {{ $index == 0 ? 'border: 3px solid #654321;' : '' }}"
                                      onclick="changeMainImage('{{ $thumbUrl }}', this)">
                             </div>
                         @endforeach
@@ -318,7 +318,7 @@
 }
 
 .badge-available {
-    background: rgba(76, 175, 80, 0.9);
+    background: rgba(0, 0, 0, 0.9);
     color: white;
 }
 
@@ -342,7 +342,7 @@
 
 .thumbnail-image:hover {
     transform: scale(1.05);
-    box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
 /* Description */
@@ -351,11 +351,11 @@
     border-radius: 20px;
     padding: 30px;
     box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-    border: 1px solid #e8f5e9;
+    border: 1px solid #FFFFFF;
 }
 
 .section-title {
-    color: #2E7D32;
+    color: #654321;
     font-size: 1.5rem;
     font-weight: 600;
     margin-bottom: 20px;
@@ -363,7 +363,7 @@
 
 .lead-text {
     font-size: 1.2rem;
-    color: #1B5E20;
+    color: #666;
     font-weight: 500;
     margin-bottom: 15px;
 }
@@ -371,7 +371,7 @@
 .main-description {
     font-size: 1rem;
     line-height: 1.8;
-    color: #4a5568;
+    color: #666;
     margin-bottom: 15px;
 }
 
@@ -386,20 +386,20 @@
     align-items: center;
     gap: 15px;
     padding: 10px;
-    background: #f8f9fa;
+    background: #FFFFFF !important;
     border-radius: 12px;
     transition: all 0.3s ease;
 }
 
 .facility-item:hover {
-    background: #e8f5e9;
+    background: #FFFFFF;
     transform: translateX(5px);
 }
 
 .facility-icon {
     width: 40px;
     height: 40px;
-    background: #4CAF50;
+    background: #654321;
     color: white;
     border-radius: 10px;
     display: flex;
@@ -414,11 +414,11 @@
     border-radius: 20px;
     overflow: hidden;
     box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-    border: 1px solid #e8f5e9;
+    border: 1px solid #FFFFFF;
 }
 
 .booking-header {
-    background: linear-gradient(135deg, #2E7D32, #4CAF50);
+    background: linear-gradient(135deg, #654321, #654321);
     color: white;
     padding: 20px;
     text-align: center;
@@ -434,10 +434,10 @@
 }
 
 .price-box {
-    background: #f8f9fa;
+    background: #FFFFFF !important;
     padding: 20px;
     border-radius: 15px;
-    border: 1px solid #e8f5e9;
+    border: 1px solid #FFFFFF;
 }
 
 .price-label {
@@ -450,7 +450,7 @@
 .price-amount {
     font-size: 2.5rem;
     font-weight: 700;
-    color: #2E7D32;
+    color: #654321;
     line-height: 1.2;
 }
 
@@ -460,25 +460,25 @@
 }
 
 .form-label {
-    color: #2E7D32;
+    color: #654321;
     font-weight: 600;
     font-size: 0.9rem;
     margin-bottom: 5px;
 }
 
 .date-input, .form-select {
-    border: 1px solid #c8e6c9;
+    border: 1px solid #A0522D;
     border-radius: 10px;
     padding: 10px;
 }
 
 .date-input:focus, .form-select:focus {
-    border-color: #4CAF50;
-    box-shadow: 0 0 0 0.2rem rgba(76, 175, 80, 0.25);
+    border-color: #654321;
+    box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.25);
 }
 
 .btn-check-availability {
-    background: #4CAF50;
+    background: #654321;
     color: white;
     border: none;
     padding: 15px;
@@ -492,16 +492,16 @@
 }
 
 .btn-check-availability:hover {
-    background: #2E7D32;
+    background: #654321;
     transform: translateY(-2px);
-    box-shadow: 0 5px 20px rgba(76, 175, 80, 0.4);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
     color: white;
 }
 
 .btn-contact {
     background: white;
-    color: #4CAF50;
-    border: 2px solid #4CAF50;
+    color: #654321ff;
+    border: 2px solid #654321;
     padding: 13px;
     border-radius: 12px;
     font-weight: 600;
@@ -512,14 +512,14 @@
 }
 
 .btn-contact:hover {
-    background: #4CAF50;
+    background: #654321;
     color: white;
 }
 
 .booking-footer {
     padding: 20px;
-    background: #f8f9fa;
-    border-top: 1px solid #e8f5e9;
+    background: #FFFFFF !important;
+    border-top: 1px solid #FFFFFF;
 }
 
 .info-item {
@@ -532,7 +532,7 @@
 }
 
 .info-item i {
-    color: #4CAF50;
+    color: #654321;
     width: 20px;
 }
 
@@ -548,7 +548,7 @@
 
 .room-card-similar:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(76, 175, 80, 0.2);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
 .room-card-image {
@@ -583,8 +583,8 @@
 }
 
 .room-capacity {
-    background: #e8f5e9;
-    color: #2E7D32;
+    background: #FFFFFF;
+    color: #654321;
     padding: 3px 10px;
     border-radius: 5px;
     font-size: 0.8rem;
@@ -594,11 +594,11 @@
 .room-price {
     font-size: 1.3rem;
     font-weight: 700;
-    color: #4CAF50;
+    color: #654321;
 }
 
 .btn-view {
-    background: #4CAF50;
+    background: #654321;
     color: white;
     padding: 8px 15px;
     border-radius: 8px;
@@ -608,12 +608,12 @@
 }
 
 .btn-view:hover {
-    background: #2E7D32;
+    background: #654321;
     color: white;
 }
 
 .section-title-large {
-    color: #2E7D32;
+    color: #654321;
     font-size: 2.2rem;
     font-weight: 700;
 }
@@ -637,7 +637,30 @@
         margin-top: 20px;
     }
 }
-</style>
+
+    /* Contrast Fixes */
+    .bg-primary, .bg-hotel-brown, .bg-dark, .badge-dark, .btn-primary { color: #ffffff !important; }
+    .text-white { color: #ffffff !important; }
+    .bg-primary-soft i, .bg-info-soft i { color: var(--primary) !important; }
+    
+    /* Contrast & Visibility Fixes */
+    .bg-primary, .bg-hotel-brown, .bg-dark, .badge-dark, .btn-primary, .btn-ci-primary { color: #ffffff !important; }
+    .text-white, .btn-ci-primary i, .btn-modern i, .header-icon i { color: #ffffff !important; }
+    .room-stat-badge { color: #654321 !important; background: #D2B48C !important; }
+    .badge-blue, .status-info { background: #FFFFFF !important; color: #0369a1 !important; }
+    .badge-hotel-brown, .status-online { background: #FFFFFF !important; color: #654321 !important; }
+    .badge-amber, .status-normal { background: #FFFFFF !important; color: #92400e !important; }
+    
+    /* Design Fixes */
+    .bg-primary { background-color: #654321 !important; }
+    .text-primary { color: #654321 !important; }
+    .btn-primary { background-color: #654321 !important; border-color: #654321 !important; }
+    .btn-primary:hover { background-color: #654321 !important; border-color: #654321 !important; }
+    .card-header.bg-primary { background-color: #654321 !important; }
+    .existing-customer-info { background-color: #FFFFFF !important; border-left: 4px solid #654321 !important; }
+    .existing-customer-info h5 { color: #654321 !important; }
+    .text-white, .btn-primary { color: #ffffff !important; }
+    </style>
 @endpush
 
 @push('scripts')
@@ -666,7 +689,7 @@ function changeMainImage(src, element) {
     });
     
     if (element) {
-        element.style.border = '3px solid #4CAF50';
+        element.style.border = '3px solid #654321';
     }
 }
 
@@ -677,7 +700,7 @@ function nextImage() {
     
     // Mettre à jour les miniatures
     document.querySelectorAll('.thumbnail-image').forEach((thumb, index) => {
-        thumb.style.border = index === currentImageIndex ? '3px solid #4CAF50' : 'none';
+        thumb.style.border = index === currentImageIndex ? '3px solid #654321' : 'none';
     });
 }
 
@@ -687,7 +710,7 @@ function prevImage() {
     
     // Mettre à jour les miniatures
     document.querySelectorAll('.thumbnail-image').forEach((thumb, index) => {
-        thumb.style.border = index === currentImageIndex ? '3px solid #4CAF50' : 'none';
+        thumb.style.border = index === currentImageIndex ? '3px solid #654321' : 'none';
     });
 }
 

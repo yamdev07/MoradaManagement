@@ -1,5 +1,5 @@
 @extends('template.auth')
-@section('title', 'Login - Cactus Hotel')
+@section('title', 'Login - Morada Lodge')
 @section('content')
 
 <style>
@@ -7,17 +7,17 @@
    STYLES LOGIN - Design moderne cohérent
 ═══════════════════════════════════════════════════════════════════ */
 :root {
-    --primary: #2E7D32;
-    --primary-light: #4CAF50;
-    --primary-soft: rgba(46, 125, 50, 0.08);
-    --success: #10b981;
-    --success-light: rgba(16, 185, 129, 0.08);
-    --warning: #f59e0b;
-    --warning-light: rgba(245, 158, 11, 0.08);
-    --danger: #ef4444;
-    --danger-light: rgba(239, 68, 68, 0.08);
-    --info: #3b82f6;
-    --info-light: rgba(59, 130, 246, 0.08);
+    --primary: #654321;
+    --primary-light: #cd853f;
+    --primary-soft: rgba(101, 67, 33, 0.08);
+    --success: #cd853f;
+    --success-light: rgba(205, 133, 63, 0.08);
+    --warning: #cd853f;
+    --warning-light: rgba(205, 133, 63, 0.08);
+    --danger: #654321;
+    --danger-light: rgba(101, 67, 33, 0.08);
+    --info: #cd853f;
+    --info-light: rgba(205, 133, 63, 0.08);
     --gray-50: #f8fafc;
     --gray-100: #f1f5f9;
     --gray-200: #e2e8f0;
@@ -25,8 +25,8 @@
     --gray-400: #94a3b8;
     --gray-500: #64748b;
     --gray-600: #475569;
-    --gray-700: #334155;
-    --gray-800: #1e293b;
+    --gray-700: #7b522a;
+    --gray-800: #654321;
     --white: #ffffff;
     --radius: 12px;
     --shadow: 0 4px 20px rgba(0, 0, 0, 0.02), 0 1px 3px rgba(0, 0, 0, 0.05);
@@ -48,7 +48,7 @@ body {
     align-items: center;
     justify-content: center;
     padding: 2rem 1rem;
-    background: linear-gradient(135deg, rgba(46, 125, 50, 0.05) 0%, rgba(76, 175, 80, 0.05) 100%);
+    background: linear-gradient(135deg, rgba(205, 133, 63, 0.05) 0%, rgba(101, 67, 33, 0.05) 100%);
 }
 
 .login-card {
@@ -70,7 +70,7 @@ body {
 
 /* Côté gauche avec l'icône et présentation */
 .login-left {
-    background: linear-gradient(135deg, var(--primary) 0%, #1B5E20 100%);
+    background: linear-gradient(135deg, var(--primary) 0%, #4a3311 100%);
     color: white;
     padding: 3rem;
     flex: 1;
@@ -326,7 +326,7 @@ body {
 }
 
 .forgot-link:hover {
-    color: #1B5E20;
+    color: #4a3311;
 }
 
 .forgot-link:hover::after {
@@ -366,9 +366,9 @@ body {
 }
 
 .btn-login:hover {
-    background: linear-gradient(135deg, #1B5E20 0%, var(--primary) 100%);
+    background: linear-gradient(135deg, #4a3311 0%, var(--primary) 100%);
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(46, 125, 50, 0.3);
+    box-shadow: 0 8px 20px rgba(101, 67, 33, 0.3);
 }
 
 .btn-login:hover::before {
@@ -416,7 +416,7 @@ body {
 
 .demo-credentials {
     background: var(--primary-soft);
-    border: 1px solid rgba(46, 125, 50, 0.2);
+    border: 1px solid rgba(101, 67, 33, 0.2);
     border-radius: 12px;
     padding: 1.2rem;
     margin-top: 1.5rem;
@@ -424,7 +424,7 @@ body {
 }
 
 .demo-credentials:hover {
-    background: rgba(46, 125, 50, 0.12);
+    background: rgba(205, 133, 63, 0.12);
     transform: translateY(-2px);
 }
 
@@ -557,10 +557,10 @@ body {
         <!-- Côté gauche avec présentation -->
         <div class="login-left">
             <div class="hotel-icon">
-                <img src="{{ asset('img/logo_cactus1.jpeg') }}"
-                     alt="Cactus Hotel"
+                <img src="{{ asset('img/logo_morada.jpg') }}"
+                     alt="Morada Lodge"
                      class="mb-2">
-                <div class="hotel-name">CACTUS HOTEL</div>
+                <div class="hotel-name">MORADA LODGE</div>
                 <div class="hotel-slogan">Luxury & Comfort in Every Stay</div>
             </div>
 

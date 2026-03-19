@@ -332,7 +332,7 @@
 @push('styles')
 <style>
     .card.border-danger .card-header {
-        background: linear-gradient(135deg, #dc3545, #c82333) !important;
+        background: linear-gradient(135deg, #654321, #c82333) !important;
     }
     
     .card.border-success .card-header {

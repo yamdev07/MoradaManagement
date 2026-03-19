@@ -223,11 +223,11 @@
                         <div class="d-flex align-items-center mb-3">
                             <div class="timeline-legend me-3">
                                 <div class="d-flex align-items-center mb-2">
-                                    <div class="legend-color" style="background-color: #007bff; width: 20px; height: 10px; margin-right: 8px;"></div>
+                                    <div class="legend-color" style="background-color: #cd853f; width: 20px; height: 10px; margin-right: 8px;"></div>
                                     <small class="text-muted">Votre recherche</small>
                                 </div>
                                 <div class="d-flex align-items-center">
-                                    <div class="legend-color" style="background-color: #dc3545; width: 20px; height: 10px; margin-right: 8px;"></div>
+                                    <div class="legend-color" style="background-color: #654321; width: 20px; height: 10px; margin-right: 8px;"></div>
                                     <small class="text-muted">Réservation existante</small>
                                 </div>
                             </div>
@@ -380,12 +380,12 @@
     }
     
     .timeline-day.available {
-        background-color: #007bff;
+        background-color: #cd853f;
         color: white;
     }
     
     .timeline-day.conflict {
-        background-color: #dc3545;
+        background-color: #654321;
         color: white;
     }
     

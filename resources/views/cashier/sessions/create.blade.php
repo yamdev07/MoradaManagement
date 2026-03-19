@@ -5,11 +5,11 @@
 @push('styles')
 <style>
 :root {
-    --primary: #3b82f6;
-    --success: #10b981;
-    --warning: #f59e0b;
-    --danger: #ef4444;
-    --dark: #1e293b;
+    --primary: #cd853f;
+    --success: #cd853f;
+    --warning: #cd853f;
+    --danger: #654321;
+    --dark: #654321;
     --light: #f8fafc;
     --border: #e2e8f0;
 }
@@ -35,7 +35,7 @@
 .session-header .icon {
     width: 80px;
     height: 80px;
-    background: rgba(16,185,129,0.1);
+    background: rgba(205,133,63,0.1);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -100,9 +100,9 @@
 }
 
 .btn-start:hover:not(:disabled) {
-    background: #059669;
+    background: #b87333;
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(16,185,129,0.2);
+    box-shadow: 0 4px 12px rgba(205,133,63,0.2);
 }
 
 .btn-start:disabled {
@@ -147,8 +147,8 @@
 }
 
 .session-rules {
-    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
-    border: 1px solid #fbbf24;
+    background: linear-gradient(135deg, #f7e7d1 0%, #fde68a 100%);
+    border: 1px solid #cd853f;
     border-radius: 12px;
     padding: 1.25rem;
     margin-bottom: 1.5rem;
@@ -192,18 +192,18 @@
 }
 
 .alert-warning {
-    background: #fef3c7;
+    background: #f7e7d1;
     color: #92400e;
 }
 
 .alert-danger {
-    background: #fee2e2;
+    background: #f5ecec;
     color: #991b1b;
 }
 
 .alert-success {
-    background: #d1fae5;
-    color: #065f46;
+    background: #f7e7d1;
+    color: #4d3319;
 }
 
 .alert i {

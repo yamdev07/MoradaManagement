@@ -24,7 +24,7 @@
             margin: 0;
             padding: 0;
             min-height: 100vh;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #cd853f 0%, #b87333 100%);
             overflow-x: hidden;
         }
 
@@ -284,14 +284,14 @@
             width: 100%;
             margin-top: 0.5rem;
             font-size: 0.875rem;
-            color: #dc3545;
+            color: #654321;
             background: rgba(220, 53, 69, 0.1);
             padding: 0.5rem;
             border-radius: 6px;
         }
 
         .is-invalid {
-            border-color: #dc3545;
+            border-color: #654321;
             background: rgba(220, 53, 69, 0.1);
         }
 

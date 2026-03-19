@@ -1,6 +1,6 @@
 @extends('frontend.layouts.master')
 
-@section('title', 'Nos Chambres - Hôtel Cactus Palace')
+@section('title', 'Nos Chambres - Morada Lodge')
 
 @section('content')
     <!-- Hero Section pour les chambres -->
@@ -11,10 +11,10 @@
                     <h1 class="display-4 mb-4">Nos Chambres & Suites</h1>
                     <p class="lead mb-4">Découvrez l'harmonie entre confort luxueux et élégance naturelle</p>
                     <div class="d-flex justify-content-center align-items-center gap-3">
-                        <span class="badge bg-success">
+                        <span class="badge bg-hotel-brown">
                             <i class="fas fa-bed me-1"></i>{{ $rooms->total() }} Chambres
                         </span>
-                        <span class="badge bg-info">
+                        <span class="badge bg-hotel-black">
                             <i class="fas fa-check-circle me-1"></i>{{ $availableCount ?? 0 }} Disponibles
                         </span>
                         <span class="badge bg-warning">
@@ -27,16 +27,16 @@
     </section>
 
     <!-- Section de filtres -->
-    <section class="py-4" style="background-color: #E8F5E9;">
+    <section class="py-4" style="#FFFFFF;">
         <div class="container">
             <form action="{{ route('frontend.rooms') }}" method="GET" id="filterForm">
                 <div class="row g-3 align-items-center">
                     <div class="col-lg-3">
                         <div class="form-group">
-                            <label for="type" class="form-label" style="color: #2E7D32; font-weight: 500;">
+                            <label for="type" class="form-label" style="color: #654321; font-weight: 500;">
                                 <i class="fas fa-filter me-2"></i>Type de chambre
                             </label>
-                            <select class="form-select" id="type" name="type" style="border: 1px solid #C8E6C9;">
+                            <select class="form-select" id="type" name="type" style="border: 1px solid #A0522D;">
                                 <option value="">Tous les types</option>
                                 @foreach($types as $type)
                                     <option value="{{ $type->id }}" {{ request('type') == $type->id ? 'selected' : '' }}>
@@ -48,10 +48,10 @@
                     </div>
                     <div class="col-lg-3">
                         <div class="form-group">
-                            <label for="capacity" class="form-label" style="color: #2E7D32; font-weight: 500;">
+                            <label for="capacity" class="form-label" style="color: #654321; font-weight: 500;">
                                 <i class="fas fa-users me-2"></i>Capacité
                             </label>
-                            <select class="form-select" id="capacity" name="capacity" style="border: 1px solid #C8E6C9;">
+                            <select class="form-select" id="capacity" name="capacity" style="border: 1px solid #A0522D;">
                                 <option value="">Toute capacité</option>
                                 @for($i = 1; $i <= 5; $i++)
                                     @php $count = $roomsByCapacity[$i] ?? 0; @endphp
@@ -65,10 +65,10 @@
                     </div>
                     <div class="col-lg-3">
                         <div class="form-group">
-                            <label for="price_range" class="form-label" style="color: #2E7D32; font-weight: 500;">
+                            <label for="price_range" class="form-label" style="color: #654321; font-weight: 500;">
                                 <i class="fas fa-money-bill me-2"></i>Budget/nuit (FCFA)
                             </label>
-                            <select class="form-select" id="price_range" name="price_range" style="border: 1px solid #C8E6C9;">
+                            <select class="form-select" id="price_range" name="price_range" style="border: 1px solid #A0522D;">
                                 <option value="">Tous les prix</option>
                                 <option value="0-50000" {{ request('price_range') == '0-50000' ? 'selected' : '' }}>
                                     < 50 000 FCFA ({{ $priceRanges['0-50000'] ?? 0 }})
@@ -90,7 +90,7 @@
                     </div>
                     <div class="col-lg-3 text-lg-end">
                         <div class="d-flex gap-2 mt-4">
-                            <button type="submit" class="btn" style="background-color: #4CAF50; border-color: #4CAF50; color: white; padding: 10px 20px;">
+                            <button type="submit" class="btn" style="background-color: #654321; border-color: #ffffff; color: white; padding: 10px 20px;">
                                 <i class="fas fa-search me-2"></i>Filtrer
                             </button>
                             <a href="{{ route('frontend.rooms') }}" class="btn" style="background-color: #FF9800; border-color: #FF9800; color: white; padding: 10px 20px;">
@@ -105,7 +105,7 @@
 
     <!-- Résultats de recherche -->
     @if(request()->hasAny(['type', 'capacity', 'price_range']))
-    <section class="py-3" style="background-color: #F1F8E9;">
+    <section class="py-3" style="#FFFFFF;">
         <div class="container">
             <div class="alert alert-success border-0 d-flex align-items-center justify-content-between">
                 <div>
@@ -116,7 +116,7 @@
                     @if(request('price_range')) • Budget: {{ request('price_range') }} FCFA @endif
                 </div>
                 <div>
-                    <a href="{{ route('frontend.rooms') }}" class="btn btn-sm btn-outline-success">
+                    <a href="{{ route('frontend.rooms') }}" class="btn btn-sm btn-outline-hotel-brown">
                         <i class="fas fa-times me-1"></i>Effacer filtres
                     </a>
                 </div>
@@ -134,19 +134,19 @@
                     <div class="d-flex align-items-center flex-wrap gap-2">
                         <span class="me-1 text-muted"><i class="fas fa-sort me-1"></i>Trier par:</span>
                         <div class="btn-group" role="group">
-                            <button type="button" class="btn btn-outline-success sort-btn" data-sort="price_asc">Prix ↑</button>
-                            <button type="button" class="btn btn-outline-success sort-btn" data-sort="price_desc">Prix ↓</button>
-                            <button type="button" class="btn btn-outline-success sort-btn" data-sort="name_asc">Nom A-Z</button>
-                            <button type="button" class="btn btn-outline-success sort-btn" data-sort="capacity_desc">Capacité</button>
+                            <button type="button" class="btn btn-outline-hotel-brown sort-btn" data-sort="price_asc">Prix ↑</button>
+                            <button type="button" class="btn btn-outline-hotel-brown sort-btn" data-sort="price_desc">Prix ↓</button>
+                            <button type="button" class="btn btn-outline-hotel-brown sort-btn" data-sort="name_asc">Nom A-Z</button>
+                            <button type="button" class="btn btn-outline-hotel-brown sort-btn" data-sort="capacity_desc">Capacité</button>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6 text-end">
                     <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-outline-success view-btn active" data-view="grid">
+                        <button type="button" class="btn btn-outline-hotel-brown view-btn active" data-view="grid">
                             <i class="fas fa-th-large"></i>
                         </button>
-                        <button type="button" class="btn btn-outline-success view-btn" data-view="list">
+                        <button type="button" class="btn btn-outline-hotel-brown view-btn" data-view="list">
                             <i class="fas fa-list"></i>
                         </button>
                     </div>
@@ -160,16 +160,16 @@
                      data-price="{{ $room->price }}"
                      data-name="{{ strtolower($room->name) }}"
                      data-capacity="{{ $room->capacity }}">
-                    <div class="card room-card h-100 border-0 shadow-sm" style="border-top: 4px solid #4CAF50;">
+                    <div class="card room-card h-100 border-0 shadow-sm" style="border-top: 4px solid #654321;">
 
                         <!-- Badge statut -->
                         <div class="room-status-badge" style="position: absolute; top: 15px; right: 15px; z-index: 1;">
                             @if($room->is_available_today)
-                                <span class="badge bg-success" style="padding: 6px 12px; font-weight: 600;">
+                                <span class="status-badge-available">
                                     <i class="fas fa-check-circle me-1"></i>Disponible
                                 </span>
                             @else
-                                <span class="badge bg-danger" style="padding: 6px 12px; font-weight: 600;">
+                                <span class="status-badge-unavailable">
                                     <i class="fas fa-times-circle me-1"></i>Non disponible
                                 </span>
                             @endif
@@ -216,17 +216,17 @@
                         <div class="card-body d-flex flex-column">
                             <div class="d-flex justify-content-between align-items-start mb-2">
                                 <div>
-                                    <h5 class="card-title mb-1" style="color: #2E7D32; font-weight: 600;">{{ $room->name }}</h5>
+                                    <h5 class="card-title mb-1" style="color: #654321; font-weight: 600;">{{ $room->name }}</h5>
                                     <h6 class="text-muted mb-2">
                                         <i class="fas fa-door-closed me-1"></i>{{ $room->type->name ?? 'Chambre Standard' }}
                                     </h6>
                                 </div>
                                 <div class="text-end">
-                                    <span class="badge" style="background-color: #81C784; color: white;">
+                                    <span class="badge" style="background-color: #654321; color: white;">
                                         <i class="fas fa-user-friends me-1"></i>{{ $room->capacity }}
                                     </span>
                                     <div class="mt-1">
-                                        <span class="badge" style="background-color: #2196F3; color: white;">
+                                        <span class="badge" style="background-color: #654321; color: white;">
                                             Chambre {{ $room->number }}
                                         </span>
                                     </div>
@@ -243,7 +243,7 @@
 
                             @if($theme)
                             <div class="room-theme mb-3">
-                                <span class="badge" style="background-color: #E8F5E9; color: #2E7D32; font-weight: 500; border: 1px solid #C8E6C9;">
+                                <span class="badge" style="#FFFFFF; color: #654321; font-weight: 500; border: 1px solid #A0522D;">
                                     <i class="fas fa-leaf me-1"></i>{{ $theme }}
                                 </span>
                             </div>
@@ -252,11 +252,11 @@
                             @if($room->view)
                             <div class="room-description mb-3">
                                 <p class="card-text text-muted mb-1" style="font-size: 0.9rem; line-height: 1.4; min-height: 60px;">
-                                    <i class="fas fa-quote-left me-1 text-success"></i>
+                                    <i class="fas fa-quote-left me-1 text-hotel-brown"></i>
                                     {{ Str::limit($room->view, 80) }}
                                 </p>
                                 <small class="text-muted">
-                                    <a href="{{ route('frontend.room.details', $room->id) }}" class="text-success text-decoration-none">
+                                    <a href="{{ route('frontend.room.details', $room->id) }}" class="text-hotel-brown text-decoration-none">
                                         Lire la suite <i class="fas fa-arrow-right ms-1"></i>
                                     </a>
                                 </small>
@@ -301,7 +301,7 @@
                             <!-- Prix + boutons — poussés tout en bas -->
                             <div class="d-flex justify-content-between align-items-center mt-auto pt-3 border-top">
                                 <div>
-                                    <span class="h4 mb-0" style="color: #4CAF50;">
+                                    <span class="h4 mb-0" style="color: #654321;">
                                         {{ number_format($room->price, 0, ',', ' ') }} FCFA
                                     </span>
                                     <small class="text-muted d-block">par nuit</small>
@@ -309,13 +309,13 @@
                                 <div class="d-flex gap-2">
                                     <a href="{{ route('frontend.room.details', $room->id) }}"
                                        class="btn btn-sm"
-                                       style="background-color: #4CAF50; border-color: #4CAF50; color: white;">
+                                       style="background-color: #654321; border-color: #ffffff; color: white;">
                                         <i class="fas fa-eye me-1"></i> Détails
                                     </a>
                                     @if($room->is_available_today)
                                         <a href="{{ route('frontend.reservation') }}?room_id={{ $room->id }}"
                                            class="btn btn-sm"
-                                           style="color: #4CAF50; border-color: #4CAF50; background-color: transparent;">
+                                           style="color: #654321; border-color: #654321; background-color: transparent;">
                                             <i class="fas fa-calendar-check me-1"></i> Réserver
                                         </a>
                                     @endif
@@ -338,7 +338,7 @@
                                 <small class="text-muted">
                                     <i class="fas fa-clock me-1"></i>
                                     @if($room->room_status_id == 1)
-                                        <span class="text-success">Prête à accueillir</span>
+                                        <span class="text-hotel-brown">Prête à accueillir</span>
                                     @elseif($room->room_status_id == 3)
                                         <span class="text-warning">En nettoyage</span>
                                     @elseif($room->room_status_id == 4)
@@ -358,18 +358,18 @@
                 </div>
                 @empty
                 <div class="col-12">
-                    <div class="text-center py-5" style="background-color: #F1F8E9; border-radius: 10px;">
+                    <div class="text-center py-5" style="#FFFFFF; border-radius: 10px;">
                         <div class="rounded-circle d-inline-flex align-items-center justify-content-center mb-4"
-                             style="width: 80px; height: 80px; background-color: #C8E6C9;">
-                            <i class="fas fa-bed fa-2x" style="color: #2E7D32;"></i>
+                             style="width: 80px; height: 80px; background-color: #A0522D;">
+                            <i class="fas fa-bed fa-2x" style="color: #654321;"></i>
                         </div>
-                        <h4 style="color: #2E7D32;">Aucune chambre trouvée</h4>
+                        <h4 style="color: #654321;">Aucune chambre trouvée</h4>
                         <p class="text-muted mb-4">Aucune chambre ne correspond à vos critères de recherche.</p>
                         <div class="d-flex justify-content-center gap-3">
-                            <a href="{{ route('frontend.rooms') }}" class="btn" style="background-color: #4CAF50; border-color: #4CAF50; color: white;">
+                            <a href="{{ route('frontend.rooms') }}" class="btn" style="background-color: #654321; border-color: #ffffff; color: white;">
                                 <i class="fas fa-redo me-1"></i> Voir toutes les chambres
                             </a>
-                            <a href="{{ route('frontend.contact') }}" class="btn btn-outline-success">
+                            <a href="{{ route('frontend.contact') }}" class="btn btn-outline-hotel-brown">
                                 <i class="fas fa-question-circle me-1"></i> Demander conseil
                             </a>
                         </div>
@@ -390,23 +390,23 @@
     </section>
 
     <!-- Section comparaison -->
-    <section class="py-5" style="background-color: #F8FDF9;">
+    <section class="py-5" style="#FFFFFF;">
         <div class="container">
             <div class="text-center mb-5">
-                <h2 style="color: #2E7D32;"><i class="fas fa-balance-scale me-2"></i>Comparez nos chambres</h2>
+                <h2 style="color: #654321;"><i class="fas fa-balance-scale me-2"></i>Comparez nos chambres</h2>
                 <p class="text-muted">Trouvez celle qui correspond parfaitement à vos besoins</p>
             </div>
             <div class="table-responsive">
-                <table class="table table-bordered table-hover" style="border-color: #C8E6C9;">
-                    <thead style="background-color: #E8F5E9;">
+                <table class="table table-bordered table-hover" style="border-color: #A0522D;">
+                    <thead style="#FFFFFF;">
                         <tr>
-                            <th style="color: #2E7D32;">Chambre</th>
-                            <th style="color: #2E7D32;">Type</th>
-                            <th style="color: #2E7D32;">Capacité</th>
-                            <th style="color: #2E7D32;">Surface</th>
-                            <th style="color: #2E7D32;">Prix/nuit</th>
-                            <th style="color: #2E7D32;">Équipements</th>
-                            <th style="color: #2E7D32;">Actions</th>
+                            <th style="color: #654321;">Chambre</th>
+                            <th style="color: #654321;">Type</th>
+                            <th style="color: #654321;">Capacité</th>
+                            <th style="color: #654321;">Surface</th>
+                            <th style="color: #654321;">Prix/nuit</th>
+                            <th style="color: #654321;">Équipements</th>
+                            <th style="color: #654321;">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -418,10 +418,10 @@
                             </td>
                             <td>{{ $room->type->name }}</td>
                             <td class="text-center">
-                                <span class="badge" style="background-color: #81C784;">{{ $room->capacity }}</span>
+                                <span class="badge" style="background-color: #654321;">{{ $room->capacity }}</span>
                             </td>
                             <td>{{ $room->size ?? 'N/A' }} m²</td>
-                            <td><strong style="color: #4CAF50;">{{ number_format($room->price, 0, ',', ' ') }} FCFA</strong></td>
+                            <td><strong style="color: #ffffff;">{{ number_format($room->price, 0, ',', ' ') }} FCFA</strong></td>
                             <td>
                                 <div class="d-flex flex-wrap gap-1">
                                     @foreach($room->facilities->take(3) as $facility)
@@ -430,7 +430,7 @@
                                 </div>
                             </td>
                             <td>
-                                <a href="{{ route('frontend.room.details', $room->id) }}" class="btn btn-sm btn-success">
+                                <a href="{{ route('frontend.room.details', $room->id) }}" class="btn btn-sm btn-hotel-brown">
                                     <i class="fas fa-eye me-1"></i>Voir
                                 </a>
                             </td>
@@ -443,32 +443,32 @@
     </section>
 
     <!-- Section statistiques -->
-    <section class="py-5" style="background-color: #F1F8E9;">
+    <section class="py-5" style="#FFFFFF;">
         <div class="container">
             <div class="text-center mb-5">
-                <h2 style="color: #2E7D32;">Notre Sélection en Chiffres</h2>
+                <h2 style="color: #654321;">Notre Sélection en Chiffres</h2>
                 <p class="text-muted">La qualité au service de votre confort</p>
             </div>
             <div class="row g-4">
                 <div class="col-md-3">
                     <div class="text-center">
                         <div class="rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
-                             style="width: 80px; height: 80px; background-color: #4CAF50;">
+                             style="width: 80px; height: 80px; background-color: #654321;">
                             <i class="fas fa-bed fa-2x text-white"></i>
                         </div>
-                        <h3 style="color: #2E7D32;">{{ $totalRooms ?? 0 }}</h3>
-                        <h5 style="color: #2E7D32;">Chambres</h5>
+                        <h3 style="color: #ffffff;">{{ $totalRooms ?? 0 }}</h3>
+                        <h5 style="color: #654321;">Chambres</h5>
                         <p class="text-muted">Types variés pour tous vos besoins</p>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="text-center">
                         <div class="rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
-                             style="width: 80px; height: 80px; background-color: #2196F3;">
+                             style="width: 80px; height: 80px; background-color: #654321;">
                             <i class="fas fa-check-circle fa-2x text-white"></i>
                         </div>
-                        <h3 style="color: #2196F3;">{{ $availableCount ?? 0 }}</h3>
-                        <h5 style="color: #2196F3;">Disponibles</h5>
+                        <h3 style="color: #ffffff;">{{ $availableCount ?? 0 }}</h3>
+                        <h5 style="color: #654321;">Disponibles</h5>
                         <p class="text-muted">Chambres prêtes à vous accueillir</p>
                     </div>
                 </div>
@@ -486,11 +486,11 @@
                 <div class="col-md-3">
                     <div class="text-center">
                         <div class="rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
-                             style="width: 80px; height: 80px; background-color: #9C27B0;">
+                             style="width: 80px; height: 80px; background-color: #654321;">
                             <i class="fas fa-star fa-2x text-white"></i>
                         </div>
-                        <h3 style="color: #9C27B0;">4.8/5</h3>
-                        <h5 style="color: #9C27B0;">Satisfaction</h5>
+                        <h3 style="color: #ffffff;">4.8/5</h3>
+                        <h5 style="color: #654321;">Satisfaction</h5>
                         <p class="text-muted">Note moyenne de nos clients</p>
                     </div>
                 </div>
@@ -501,29 +501,29 @@
     <!-- Section CTA -->
     <section class="py-5">
         <div class="container">
-            <div class="card border-0 shadow-sm" style="background: linear-gradient(135deg, #E8F5E9, #C8E6C9); border: 1px solid #A5D6A7;">
+            <div class="card border-0 shadow-sm" style="background: linear-gradient(135deg, #FFFFFF, #A0522D); border: 1px solid #654321;">
                 <div class="card-body p-5">
                     <div class="row align-items-center">
                         <div class="col-lg-8">
-                            <h3 style="color: #2E7D32;">
+                            <h3 style="color: #654321;">
                                 <i class="fas fa-question-circle me-2"></i>Besoin d'aide pour choisir ?
                             </h3>
                             <p class="text-muted mb-0">Notre équipe est à votre disposition pour vous conseiller et vous aider à trouver la chambre parfaite pour votre séjour.</p>
                             <div class="mt-3">
-                                <a href="https://wa.me/229XXXXXXXXX" target="_blank" class="btn btn-success me-2">
+                                <a href="https://wa.me/229XXXXXXXXX" target="_blank" class="btn btn-hotel-brown me-2">
                                     <i class="fab fa-whatsapp me-2"></i>WhatsApp
                                 </a>
-                                <a href="mailto:reservations@lecactushotel.bj" class="btn btn-outline-success me-2">
+                                <a href="mailto:reservations@moradalodge.com" class="btn btn-outline-hotel-brown me-2">
                                     <i class="fas fa-envelope me-2"></i>Email
                                 </a>
-                                <a href="tel:+229XXXXXXXXX" class="btn btn-outline-success">
+                                <a href="tel:+229XXXXXXXXX" class="btn btn-outline-hotel-brown">
                                     <i class="fas fa-phone-alt me-2"></i>Appeler
                                 </a>
                             </div>
                         </div>
                         <div class="col-lg-4 text-lg-end mt-3 mt-lg-0">
                             <div class="d-grid">
-                                <a href="{{ route('frontend.contact') }}" class="btn btn-lg" style="background-color: #2E7D32; border-color: #2E7D32; color: white;">
+                                <a href="{{ route('frontend.contact') }}" class="btn btn-lg" style="background-color: #654321; border-color: #ffffff; color: white;">
                                     <i class="fas fa-calendar-check me-2"></i> Demander un devis
                                 </a>
                                 <small class="text-muted mt-2">Réponse sous 24h maximum</small>
@@ -565,7 +565,7 @@
 
 .room-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(76,175,80,0.2) !important;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2) !important;
 }
 
 .room-card:hover .room-image {
@@ -620,13 +620,13 @@
 /* ── BOUTONS TRI / VUE ── */
 .sort-btn.active,
 .view-btn.active {
-    background-color: #4CAF50 !important;
+    background-color: #654321 !important;
     color: white !important;
 }
 
 .form-select:focus {
-    border-color: #4CAF50 !important;
-    box-shadow: 0 0 0 0.2rem rgba(76,175,80,0.25) !important;
+    border-color: #ffffff !important;
+    box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.25) !important;
     outline: none !important;
 }
 
@@ -652,7 +652,7 @@
 /* Pas de translateY au hover en vue liste */
 #rooms-grid.view-list .room-card:hover {
     transform: none !important;
-    box-shadow: 0 4px 20px rgba(76,175,80,0.15) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15) !important;
 }
 
 /* Image fixe à gauche */
@@ -740,7 +740,30 @@
     .card-title { font-size: 1.1rem; }
     .card-text { font-size: 0.85rem; }
 }
-</style>
+
+    /* Contrast Fixes */
+    .bg-primary, .bg-hotel-brown, .bg-dark, .badge-dark, .btn-primary { color: #ffffff !important; }
+    .text-white { color: #ffffff !important; }
+    .bg-primary-soft i, .bg-info-soft i { color: var(--primary) !important; }
+    
+    /* Contrast & Visibility Fixes */
+    .bg-primary, .bg-hotel-brown, .bg-dark, .badge-dark, .btn-primary, .btn-ci-primary { color: #ffffff !important; }
+    .text-white, .btn-ci-primary i, .btn-modern i, .header-icon i { color: #ffffff !important; }
+    .room-stat-badge { color: #654321 !important; background: #D2B48C !important; }
+    .badge-blue, .status-info { background: #FFFFFF !important; color: #0369a1 !important; }
+    .badge-hotel-brown, .status-online { background: #FFFFFF !important; color: #654321 !important; }
+    .badge-amber, .status-normal { background: #FFFFFF !important; color: #92400e !important; }
+    
+    /* Design Fixes */
+    .bg-primary { background-color: #654321 !important; }
+    .text-primary { color: #654321 !important; }
+    .btn-primary { background-color: #654321 !important; border-color: #654321 !important; }
+    .btn-primary:hover { background-color: #654321 !important; border-color: #654321 !important; }
+    .card-header.bg-primary { background-color: #654321 !important; }
+    .existing-customer-info { background-color: #FFFFFF !important; border-left: 4px solid #654321 !important; }
+    .existing-customer-info h5 { color: #654321 !important; }
+    .text-white, .btn-primary { color: #ffffff !important; }
+    </style>
 @endpush
 
 @push('scripts')

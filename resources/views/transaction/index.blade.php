@@ -7,18 +7,18 @@
    STYLES TRANSACTION INDEX - Design moderne cohérent
 ═══════════════════════════════════════════════════════════════════ */
 :root {
-    --primary: #2563eb;
-    --primary-light: #3b82f6;
-    --primary-soft: rgba(37, 99, 235, 0.08);
-    --success: #10b981;
-    --success-light: rgba(16, 185, 129, 0.08);
-    --warning: #f59e0b;
+    --primary: #cd853f;
+    --primary-light: #cd853f;
+    --primary-soft: rgba(205, 133, 63, 0.08);
+    --success: #cd853f;
+    --success-light: rgba(205, 133, 63, 0.08);
+    --warning: #cd853f;
     --warning-light: rgba(245, 158, 11, 0.08);
-    --danger: #ef4444;
-    --danger-light: rgba(239, 68, 68, 0.08);
-    --info: #3b82f6;
+    --danger: #654321;
+    --danger-light: rgba(101, 67, 33, 0.08);
+    --info: #cd853f;
     --info-light: rgba(59, 130, 246, 0.08);
-    --dark: #1e293b;
+    --dark: #654321;
     --gray-50: #f8fafc;
     --gray-100: #f1f5f9;
     --gray-200: #e5e7eb;
@@ -26,12 +26,12 @@
     --gray-400: #94a3b8;
     --gray-500: #64748b;
     --gray-600: #475569;
-    --gray-700: #334155;
-    --gray-800: #1e293b;
-    --amber-50: #fffbeb;
-    --amber-100: #fef3c7;
-    --amber-500: #f59e0b;
-    --amber-600: #d97706;
+    --gray-700: #7b522a;
+    --gray-800: #654321;
+    --amber-50: #fdf5ec;
+    --amber-100: #f7e7d1;
+    --amber-500: #cd853f;
+    --amber-600: #b87333;
     --radius: 12px;
     --shadow: 0 4px 20px rgba(0, 0, 0, 0.02), 0 1px 3px rgba(0, 0, 0, 0.05);
     --shadow-hover: 0 10px 30px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.1);
@@ -105,18 +105,18 @@
 }
 .badge-active {
     background: var(--success-light);
-    color: #047857;
-    border: 1px solid rgba(16, 185, 129, 0.15);
+    color: #332111;
+    border: 1px solid rgba(205, 133, 63, 0.15);
 }
 .badge-completed {
     background: var(--info-light);
-    color: #1e40af;
-    border: 1px solid rgba(37, 99, 235, 0.15);
+    color: #cd853f;
+    border: 1px solid rgba(205, 133, 63, 0.15);
 }
 .badge-cancelled {
     background: var(--danger-light);
     color: #b91c1c;
-    border: 1px solid rgba(239, 68, 68, 0.15);
+    border: 1px solid rgba(101, 67, 33, 0.15);
 }
 .badge-no_show {
     background: var(--gray-100);
@@ -126,7 +126,7 @@
 .badge-unpaid {
     background: var(--danger-light);
     color: #b91c1c;
-    border: 1px solid rgba(239, 68, 68, 0.15);
+    border: 1px solid rgba(101, 67, 33, 0.15);
 }
 .badge-late {
     background: var(--amber-50);
@@ -214,7 +214,7 @@
     font-weight: 600;
     font-size: 0.75rem;
     flex-shrink: 0;
-    box-shadow: 0 2px 6px rgba(37, 99, 235, 0.2);
+    box-shadow: 0 2px 6px rgba(205, 133, 63, 0.2);
 }
 .client-avatar img {
     width: 100%;
@@ -318,7 +318,7 @@
 .btn-pay {
     background: var(--success-light);
     color: var(--success);
-    border-color: rgba(16, 185, 129, 0.2);
+    border-color: rgba(205, 133, 63, 0.2);
 }
 .btn-pay:hover {
     background: var(--success);
@@ -328,7 +328,7 @@
 .btn-arrived {
     background: var(--success-light);
     color: var(--success);
-    border-color: rgba(16, 185, 129, 0.2);
+    border-color: rgba(205, 133, 63, 0.2);
 }
 .btn-arrived:hover {
     background: var(--success);
@@ -415,7 +415,7 @@
 }
 .date-indicator.ready {
     background: var(--success-light);
-    color: #047857;
+    color: #332111;
 }
 .date-indicator.overdue {
     background: var(--danger-light);
@@ -423,7 +423,7 @@
 }
 .date-indicator.pending {
     background: var(--info-light);
-    color: #1e40af;
+    color: #cd853f;
 }
 .date-indicator.late {
     background: var(--amber-50);
@@ -496,7 +496,7 @@
 .btn-primary-custom:hover {
     background: var(--primary-light);
     transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(37, 99, 235, 0.2);
+    box-shadow: 0 4px 8px rgba(205, 133, 63, 0.2);
 }
 .btn-outline-custom {
     background: transparent;
@@ -516,8 +516,8 @@
 
 /* ────────── NOTE RÉCEPTIONNISTE ────────── */
 .receptionist-note-modern {
-    background: linear-gradient(135deg, #fef3c7, #fffbeb);
-    border-left: 4px solid #f59e0b;
+    background: linear-gradient(135deg, #f7e7d1, #fdf5ec);
+    border-left: 4px solid #cd853f;
     border-radius: 8px;
     padding: 16px 20px;
     margin-bottom: 24px;
@@ -525,7 +525,7 @@
     box-shadow: 0 2px 8px rgba(245, 158, 11, 0.05);
 }
 .receptionist-note-modern i {
-    color: #d97706;
+    color: #b87333;
 }
 
 /* ────────── PAGINATION ────────── */
@@ -566,7 +566,7 @@
 
 /* ────────── BADGE INFO PERMISSIONS ────────── */
 .info-badge-modern {
-    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    background: linear-gradient(135deg, #cd853f, #cd853f);
     color: white;
     padding: 4px 12px;
     border-radius: 30px;

@@ -23,8 +23,8 @@
             display: inline-block;
             margin-right: 8px;
         }
-        .room-available { background-color: #28a745; }
-        .room-occupied { background-color: #dc3545; }
+        .room-available { background-color: #cd853f; }
+        .room-occupied { background-color: #654321; }
         .room-maintenance { background-color: #ffc107; }
         .room-cleaning { background-color: #17a2b8; }
         .alternative-room {
@@ -48,8 +48,8 @@
             border-radius: 4px;
             font-weight: bold;
         }
-        .price-positive { background-color: #ffe6e6; color: #dc3545; }
-        .price-negative { background-color: #e6ffe6; color: #28a745; }
+        .price-positive { background-color: #ffe6e6; color: #654321; }
+        .price-negative { background-color: #e6ffe6; color: #cd853f; }
         .price-neutral { background-color: #f8f9fa; color: #6c757d; }
         .form-stepper {
             display: flex;
@@ -94,7 +94,7 @@
             color: white;
         }
         .step.completed .step-number {
-            background-color: #28a745;
+            background-color: #cd853f;
             color: white;
         }
         .step-label {

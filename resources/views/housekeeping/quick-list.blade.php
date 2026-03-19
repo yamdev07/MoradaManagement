@@ -452,7 +452,7 @@
     .card-header.bg-info,
     .card-header.bg-purple,
     .card-header.bg-secondary {
-        background: linear-gradient(135deg, var(--bs-danger), #dc2626) !important;
+        background: linear-gradient(135deg, var(--bs-danger), #4d3319) !important;
     }
     
     .card-header.bg-warning {

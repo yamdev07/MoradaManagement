@@ -672,8 +672,8 @@
                     datasets: [{
                         data: paymentData,
                         backgroundColor: [
-                            '#28a745', // cash - green
-                            '#dc3545', // card - red
+                            '#cd853f', // cash - green
+                            '#654321', // card - red
                             '#17a2b8', // mobile - cyan
                             '#ffc107', // transfer - yellow
                             '#6f42c1', // fedapay - purple
@@ -725,7 +725,7 @@
                     labels: ['Occupées', 'Disponibles'],
                     datasets: [{
                         data: [occupied, available],
-                        backgroundColor: ['#dc3545', '#28a745'],
+                        backgroundColor: ['#654321', '#cd853f'],
                         borderWidth: 0
                     }]
                 },
@@ -772,8 +772,8 @@
                         label: 'Nombre de chambres',
                         data: roomStatusData,
                         backgroundColor: [
-                            '#28a745', // disponible - green
-                            '#dc3545', // occupée - red
+                            '#cd853f', // disponible - green
+                            '#654321', // occupée - red
                             '#ffc107', // maintenance - yellow
                             '#17a2b8', // réservée - cyan
                             '#6f42c1', // nettoyage - purple
@@ -817,7 +817,7 @@
                     labels: ['Avant 12h', '12h-14h (largesse)', 'Après 14h (late checkout)'],
                     datasets: [{
                         data: checkoutTimesData,
-                        backgroundColor: ['#28a745', '#ffc107', '#dc3545'],
+                        backgroundColor: ['#cd853f', '#ffc107', '#654321'],
                         borderWidth: 0
                     }]
                 },
@@ -856,12 +856,12 @@
     .card:hover { transform: translateY(-2px); }
     .table th { font-weight: 600; color: #495057; }
     .btn-hotel-primary {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(135deg, #cd853f 0%, #b87333 100%);
         border: none;
         color: white;
     }
     .btn-hotel-primary:hover {
-        background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+        background: linear-gradient(135deg, #b87333 0%, #cd853f 100%);
         color: white;
     }
     .progress {

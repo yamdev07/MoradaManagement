@@ -92,7 +92,7 @@
             border-bottom: none;
         }
         .btn-confirm {
-            background: linear-gradient(135deg, #28a745, #20c997);
+            background: linear-gradient(135deg, #cd853f, #20c997);
             border: none;
             padding: 12px 30px;
             font-weight: 600;
@@ -962,7 +962,7 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
             submitBtn.classList.remove('btn-primary');
             submitBtn.classList.add('btn-confirm');
-            submitBtn.style.background = 'linear-gradient(135deg, #28a745, #20c997)';
+            submitBtn.style.background = 'linear-gradient(135deg, #cd853f, #20c997)';
         }
     }
     

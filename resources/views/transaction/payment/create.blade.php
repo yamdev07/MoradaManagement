@@ -7,24 +7,24 @@
    DESIGN SYSTEM - MÊME STYLE QUE CHECK-IN
 ═══════════════════════════════════════════════════════════════════ */
 :root {
-    --primary-50: #ecfdf5;
-    --primary-100: #d1fae5;
-    --primary-400: #34d399;
-    --primary-500: #10b981;
-    --primary-600: #059669;
-    --primary-700: #047857;
-    --primary-800: #065f46;
+    --primary-50: #fdf5ec;
+    --primary-100: #f7e7d1;
+    --primary-400: #e0a05a;
+    --primary-500: #cd853f;
+    --primary-600: #b87333;
+    --primary-700: #332111;
+    --primary-800: #4d3319;
 
-    --amber-50: #fffbeb;
-    --amber-100: #fef3c7;
-    --amber-400: #fbbf24;
-    --amber-500: #f59e0b;
-    --amber-600: #d97706;
+    --amber-50: #fdf5ec;
+    --amber-100: #f7e7d1;
+    --amber-400: #cd853f;
+    --amber-500: #cd853f;
+    --amber-600: #b87333;
 
-    --blue-50: #eff6ff;
-    --blue-100: #dbeafe;
-    --blue-500: #3b82f6;
-    --blue-600: #2563eb;
+    --blue-50: #fdf5ec;
+    --blue-100: #f7e7d1;
+    --blue-500: #cd853f;
+    --blue-600: #cd853f;
 
     --gray-50: #f9fafb;
     --gray-100: #f3f4f6;
@@ -116,7 +116,7 @@
     justify-content: center;
     color: white;
     font-size: 1.25rem;
-    box-shadow: 0 4px 10px rgba(5, 150, 105, 0.3);
+    box-shadow: 0 4px 10px rgba(101, 67, 33, 0.3);
 }
 
 .header-subtitle {
@@ -143,13 +143,13 @@
 .btn-primary-modern {
     background: linear-gradient(135deg, var(--primary-700), var(--primary-500));
     color: white;
-    box-shadow: 0 4px 6px -1px rgba(5, 150, 105, 0.3);
+    box-shadow: 0 4px 6px -1px rgba(101, 67, 33, 0.3);
 }
 
 .btn-primary-modern:hover {
     background: linear-gradient(135deg, var(--primary-800), var(--primary-600));
     transform: translateY(-1px);
-    box-shadow: 0 6px 8px -1px rgba(5, 150, 105, 0.4);
+    box-shadow: 0 6px 8px -1px rgba(101, 67, 33, 0.4);
     color: white;
     text-decoration: none;
 }
@@ -162,7 +162,7 @@
 .btn-success-modern:hover {
     background: var(--primary-700);
     transform: translateY(-1px);
-    box-shadow: 0 4px 8px rgba(5, 150, 105, 0.3);
+    box-shadow: 0 4px 8px rgba(101, 67, 33, 0.3);
 }
 
 .btn-outline-modern {
@@ -195,13 +195,13 @@
 
 .btn-outline-danger-modern {
     background: white;
-    color: #ef4444;
-    border: 1px solid #fecaca;
+    color: #654321;
+    border: 1px solid #e7d1d1;
 }
 
 .btn-outline-danger-modern:hover {
-    background: #fee2e2;
-    border-color: #fecaca;
+    background: #f5ecec;
+    border-color: #e7d1d1;
     color: #b91c1c;
 }
 
@@ -281,7 +281,7 @@
 
 /* Résumé transaction */
 .summary-card {
-    background: linear-gradient(135deg, #065f46, #047857);
+    background: linear-gradient(135deg, #4d3319, #332111);
     border-radius: 20px;
     padding: 24px;
     color: white;
@@ -508,8 +508,8 @@
 }
 
 .amount-input.error {
-    border-color: #ef4444;
-    background: #fee2e2;
+    border-color: #654321;
+    background: #f5ecec;
 }
 
 .amount-currency {

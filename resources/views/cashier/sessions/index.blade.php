@@ -5,11 +5,11 @@
 @push('styles')
 <style>
 :root {
-    --primary: #3b82f6;
-    --success: #10b981;
-    --warning: #f59e0b;
-    --danger: #ef4444;
-    --dark: #1e293b;
+    --primary: #cd853f;
+    --success: #cd853f;
+    --warning: #cd853f;
+    --danger: #654321;
+    --dark: #654321;
     --light: #f8fafc;
     --border: #e2e8f0;
     --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
@@ -166,20 +166,20 @@
 }
 
 .badge-active {
-    background: rgba(16,185,129,0.1);
-    color: #059669;
-    border: 1px solid rgba(16,185,129,0.2);
+    background: rgba(205,133,63,0.1);
+    color: #b87333;
+    border: 1px solid rgba(205,133,63,0.2);
 }
 
 .badge-closed {
     background: rgba(30,41,59,0.1);
-    color: #1e293b;
+    color: #654321;
     border: 1px solid rgba(30,41,59,0.2);
 }
 
 .badge-pending {
     background: rgba(245,158,11,0.1);
-    color: #d97706;
+    color: #b87333;
     border: 1px solid rgba(245,158,11,0.2);
 }
 

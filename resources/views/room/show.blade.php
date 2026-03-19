@@ -15,15 +15,15 @@
     --txt2:     #475569;
     --txt3:     #94a3b8;
     
-    --blue:     #3b82f6;
+    --blue:     #cd853f;
     --blue-dim: rgba(59,130,246,.15);
-    --grn:      #10b981;
-    --grn-dim:  rgba(16,185,129,.15);
+    --grn:      #cd853f;
+    --grn-dim:  rgba(205,133,63,.15);
     --yel:      #eab308;
     --yel-dim:  rgba(234,179,8,.15);
-    --red:      #ef4444;
-    --red-dim:  rgba(239,68,68,.15);
-    --purple:   #8b5cf6;
+    --red:      #654321;
+    --red-dim:  rgba(101,67,33,.15);
+    --purple:   #cd853f;
     --purple-dim: rgba(139,92,246,.15);
     --cyan:     #06b6d4;
     --cyan-dim: rgba(6,182,212,.15);
@@ -123,7 +123,7 @@ body {
     gap: 10px;
 }
 .card__head--blue {
-    background: linear-gradient(135deg, var(--blue), #2563eb);
+    background: linear-gradient(135deg, var(--blue), #cd853f);
     color: white;
     border-bottom: none;
 }
@@ -162,18 +162,18 @@ body {
     color: white;
 }
 .btn--primary:hover {
-    background: #2563eb;
-    border-color: #2563eb;
+    background: #cd853f;
+    border-color: #cd853f;
     color: white;
     transform: translateY(-1px);
 }
 .btn--danger {
     background: var(--red-dim);
-    border-color: rgba(239,68,68,.3);
+    border-color: rgba(101,67,33,.3);
     color: var(--red);
 }
 .btn--danger:hover {
-    background: rgba(239,68,68,.25);
+    background: rgba(101,67,33,.25);
     border-color: var(--red);
     color: var(--red);
 }

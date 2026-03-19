@@ -8,36 +8,36 @@
 ═══════════════════════════════════════════════════════════════════ */
 :root {
     /* Palette principale - Vert du Sidebar */
-    --primary-50: #E8F5F0;
-    --primary-100: #C1E4D6;
-    --primary-200: #96D3BA;
-    --primary-300: #6BC29E;
-    --primary-400: #4BB589;
-    --primary-500: #2AA874;
-    --primary-600: #25A06C;
-    --primary-700: #1F9661;
-    --primary-800: #198C57;
-    --primary-900: #0F7C44;
+    --primary-50: #e8f5f0;
+    --primary-100: #c1e4d6;
+    --primary-200: #96d3ba;
+    --primary-300: #6bc29e;
+    --primary-400: #4bb589;
+    --primary-500: #2aa874;
+    --primary-600: #25a06c;
+    --primary-700: #1f9661;
+    --primary-800: #198c57;
+    --primary-900: #0f7c44;
 
     /* Couleurs utilitaires */
-    --success-500: #22C55E;
-    --danger-500: #EF4444;
-    --danger-600: #DC2626;
-    --warning-500: #F59E0B;
-    --warning-600: #D97706;
-    --info-500: #3B82F6;
-    --info-600: #2563EB;
+    --success-500: #22c55e;
+    --danger-500: #654321;
+    --danger-600: #4d3319;
+    --warning-500: #cd853f;
+    --warning-600: #b87333;
+    --info-500: #cd853f;
+    --info-600: #cd853f;
 
     /* Neutres */
-    --gray-50: #F9FAFB;
-    --gray-100: #F3F4F6;
-    --gray-200: #E5E7EB;
-    --gray-300: #D1D5DB;
-    --gray-400: #9CA3AF;
-    --gray-500: #6B7280;
-    --gray-600: #4B5563;
+    --gray-50: #f9fafb;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-300: #d1d5db;
+    --gray-400: #9ca3af;
+    --gray-500: #6b7280;
+    --gray-600: #4b5563;
     --gray-700: #374151;
-    --gray-800: #1F2937;
+    --gray-800: #1f2937;
     --gray-900: #111827;
 
     /* Ombres */
@@ -416,8 +416,8 @@
 }
 
 .user-avatar.admin {
-    background: linear-gradient(135deg, #FEF3C7, #FDE68A);
-    color: #D97706;
+    background: linear-gradient(135deg, #f7e7d1, #fde68a);
+    color: #b87333;
 }
 
 .user-avatar.staff {
@@ -426,8 +426,8 @@
 }
 
 .user-avatar.customer {
-    background: linear-gradient(135deg, #DBEAFE, #BFDBFE);
-    color: #2563EB;
+    background: linear-gradient(135deg, #f7e7d1, #bfdbfe);
+    color: #cd853f;
 }
 
 /* Role Badges */
@@ -442,9 +442,9 @@
 }
 
 .role-badge.admin {
-    background: #FEF3C7;
-    color: #D97706;
-    border: 1px solid #FDE68A;
+    background: #f7e7d1;
+    color: #b87333;
+    border: 1px solid #fde68a;
 }
 
 .role-badge.staff {
@@ -454,9 +454,9 @@
 }
 
 .role-badge.customer {
-    background: #DBEAFE;
-    color: #2563EB;
-    border: 1px solid #BFDBFE;
+    background: #f7e7d1;
+    color: #cd853f;
+    border: 1px solid #bfdbfe;
 }
 
 /* ═══════════════════════════════════════════════════════════════
@@ -770,9 +770,14 @@
                                             </td>
                                             <td>
                                                 <div class="user-avatar-cell">
-                                                    <div class="user-avatar {{ $user->role == 'Admin' ? 'admin' : 'staff' }}">
-                                                        <i class="fas fa-{{ $user->role == 'Admin' ? 'crown' : ($user->role == 'Receptionist' ? 'headset' : 'broom') }}"></i>
-                                                    </div>
+                                                    @php $avatarUrl = $user->getAvatar(); @endphp
+                                                    @if(!$user->hasDefaultAvatar())
+                                                        <img src="{{ $avatarUrl }}" class="user-avatar" style="object-fit: cover;">
+                                                    @else
+                                                        <div class="user-avatar {{ $user->role == 'Admin' ? 'admin' : 'staff' }}">
+                                                            <i class="fas fa-{{ $user->role == 'Admin' ? 'crown' : ($user->role == 'Receptionist' ? 'headset' : 'broom') }}"></i>
+                                                        </div>
+                                                    @endif
                                                     <span style="font-weight: 500;">{{ $user->name }}</span>
                                                 </div>
                                             </td>
@@ -902,9 +907,18 @@
                                             </td>
                                             <td>
                                                 <div class="user-avatar-cell">
-                                                    <div class="user-avatar customer">
-                                                        <i class="fas fa-user"></i>
-                                                    </div>
+                                                    @php 
+                                                        $avatarUrl = $user->getAvatar();
+                                                        $hasCustomAvatar = !$user->hasDefaultAvatar();
+                                                    @endphp
+                                                    
+                                                    @if($hasCustomAvatar)
+                                                        <img src="{{ $avatarUrl }}" class="user-avatar" style="object-fit: cover;">
+                                                    @else
+                                                        <div class="user-avatar customer">
+                                                            <i class="fas fa-user"></i>
+                                                        </div>
+                                                    @endif
                                                     <span style="font-weight: 500;">{{ $user->name }}</span>
                                                 </div>
                                             </td>
@@ -1005,8 +1019,8 @@ function confirmDelete(name, id, role) {
         confirmButtonText: '<i class="fas fa-trash me-2"></i>Oui, supprimer',
         cancelButtonText: '<i class="fas fa-times me-2"></i>Annuler',
         reverseButtons: true,
-        confirmButtonColor: '#EF4444',
-        cancelButtonColor: '#6B7280'
+        confirmButtonColor: '#654321',
+        cancelButtonColor: '#6b7280'
     }).then((result) => {
         if (result.isConfirmed) {
             if (role == "Customer") {

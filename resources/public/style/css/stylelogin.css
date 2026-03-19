@@ -8,7 +8,7 @@ body {
     background: linear-gradient(to right, rgba(80, 0, 202, 1), rgba(80, 0, 202, 1));
 }
 
-.bgblue {
+.bg#cd853f {
     background: linear-gradient(to right, #0099ff, #0099ff);
 }
 

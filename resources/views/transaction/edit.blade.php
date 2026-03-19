@@ -4,18 +4,18 @@
 
 <style>
 :root {
-    --primary: #2563eb;
-    --primary-light: #3b82f6;
-    --primary-soft: rgba(37, 99, 235, 0.08);
-    --success: #10b981;
-    --success-light: rgba(16, 185, 129, 0.08);
-    --warning: #f59e0b;
+    --primary: #cd853f;
+    --primary-light: #cd853f;
+    --primary-soft: rgba(205, 133, 63, 0.08);
+    --success: #cd853f;
+    --success-light: rgba(205, 133, 63, 0.08);
+    --warning: #cd853f;
     --warning-light: rgba(245, 158, 11, 0.08);
-    --danger: #ef4444;
-    --danger-light: rgba(239, 68, 68, 0.08);
-    --info: #3b82f6;
+    --danger: #654321;
+    --danger-light: rgba(101, 67, 33, 0.08);
+    --info: #cd853f;
     --info-light: rgba(59, 130, 246, 0.08);
-    --dark: #1e293b;
+    --dark: #654321;
     --gray-50: #f8fafc;
     --gray-100: #f1f5f9;
     --gray-200: #e2e8f0;
@@ -23,8 +23,8 @@
     --gray-400: #94a3b8;
     --gray-500: #64748b;
     --gray-600: #475569;
-    --gray-700: #334155;
-    --gray-800: #1e293b;
+    --gray-700: #7b522a;
+    --gray-800: #654321;
     --radius: 12px;
     --shadow: 0 4px 20px rgba(0, 0, 0, 0.02), 0 1px 3px rgba(0, 0, 0, 0.05);
     --shadow-hover: 0 10px 30px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.1);
@@ -98,18 +98,18 @@
 }
 .badge-active {
     background: var(--success-light);
-    color: #047857;
-    border: 1px solid rgba(16, 185, 129, 0.15);
+    color: #332111;
+    border: 1px solid rgba(205, 133, 63, 0.15);
 }
 .badge-completed {
     background: var(--info-light);
-    color: #1e40af;
-    border: 1px solid rgba(37, 99, 235, 0.15);
+    color: #cd853f;
+    border: 1px solid rgba(205, 133, 63, 0.15);
 }
 .badge-cancelled {
     background: var(--danger-light);
     color: #b91c1c;
-    border: 1px solid rgba(239, 68, 68, 0.15);
+    border: 1px solid rgba(101, 67, 33, 0.15);
 }
 .badge-no_show {
     background: var(--gray-100);
@@ -171,7 +171,7 @@
 .btn-primary-custom:hover {
     background: var(--primary-light);
     transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(37, 99, 235, 0.2);
+    box-shadow: 0 4px 8px rgba(205, 133, 63, 0.2);
 }
 .btn-outline-custom {
     background: transparent;
@@ -199,9 +199,9 @@
     transition: var(--transition);
 }
 .btn-danger-custom:hover {
-    background: #dc2626;
+    background: #4d3319;
     transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(239, 68, 68, 0.2);
+    box-shadow: 0 4px 8px rgba(101, 67, 33, 0.2);
 }
 
 /* Date picker */

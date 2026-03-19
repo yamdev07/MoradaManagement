@@ -195,7 +195,7 @@
 
         .password-match {
             font-size: 0.875rem;
-            color: #28a745;
+            color: #cd853f;
             margin-top: 0.5rem;
         }
 
@@ -214,7 +214,7 @@
         }
 
         .requirement-item.met {
-            color: #28a745;
+            color: #cd853f;
         }
 
         .requirement-icon {
@@ -223,7 +223,7 @@
         }
 
         .requirement-item.met .requirement-icon {
-            color: #28a745;
+            color: #cd853f;
         }
 
         .password-toggle {
@@ -311,9 +311,9 @@
                 strengthText.textContent = 'Password strength';
                 strengthText.style.color = 'rgba(255, 255, 255, 0.7)';
             } else if (score < 2) {
-                strengthFill.style.background = '#dc3545';
+                strengthFill.style.background = '#654321';
                 strengthText.textContent = 'Weak password';
-                strengthText.style.color = '#dc3545';
+                strengthText.style.color = '#654321';
             } else if (score < 3) {
                 strengthFill.style.background = '#ffc107';
                 strengthText.textContent = 'Fair password';
@@ -323,9 +323,9 @@
                 strengthText.textContent = 'Good password';
                 strengthText.style.color = '#fd7e14';
             } else {
-                strengthFill.style.background = '#28a745';
+                strengthFill.style.background = '#cd853f';
                 strengthText.textContent = 'Strong password';
-                strengthText.style.color = '#28a745';
+                strengthText.style.color = '#cd853f';
             }
         }
 
@@ -342,7 +342,7 @@
                 } else {
                     matchIndicator.style.display = 'block';
                     matchIndicator.innerHTML = '<i class="fas fa-times-circle text-danger me-1"></i><span>Passwords do not match</span>';
-                    matchIndicator.style.color = '#dc3545';
+                    matchIndicator.style.color = '#654321';
                 }
             } else {
                 matchIndicator.style.display = 'none';

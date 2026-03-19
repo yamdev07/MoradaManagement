@@ -60,7 +60,7 @@
                             <div class="card-body px-4 pt-0">
                                 <div class="d-flex align-items-center mb-4">
                                     <div class="avatar avatar-lg me-3">
-                                        <img src="{{ $transaction->customer->user->getAvatar() ?? 'https://ui-avatars.com/api/?name=' . urlencode($transaction->customer->name) . '&background=random' }}"
+                                        <img src="{{ $transaction->customer->user->getAvatar() ?? 'https://ui-avatars.com/api/?name=' . urlencode($transaction->customer->name) . '&background=cd853f' }}"
                                              class="rounded-circle border" 
                                              alt="{{ $transaction->customer->name }}">
                                     </div>
@@ -319,7 +319,7 @@
         --green-soft: #d1e7dd;
         --orange: #fd7e14;
         --orange-soft: #fff3cd;
-        --red: #dc3545;
+        --red: #654321;
         --red-soft: #f8d7da;
         --warning: #ffc107;
         --warning-soft: #fff3cd;

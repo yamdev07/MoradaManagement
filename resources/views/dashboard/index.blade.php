@@ -7,40 +7,40 @@
    VARIABLES
 ══════════════════════════════════════════════ */
 :root {
-    --green-950: #052e16;
-    --green-900: #064e3b;
-    --green-800: #065f46;
-    --green-700: #047857;
-    --green-600: #059669;
-    --green-500: #10b981;
-    --green-400: #34d399;
+    --green-950: #332111;
+    --green-900: #654321;
+    --green-800: #4d3319;
+    --green-700: #332111;
+    --green-600: #b87333;
+    --green-500: #cd853f;
+    --green-400: #e0a05a;
     --green-200: #a7f3d0;
-    --green-100: #d1fae5;
-    --green-50:  #ecfdf5;
+    --green-100: #f7e7d1;
+    --green-50:  #fdf5ec;
 
-    --blue-700:  #1d4ed8;
-    --blue-600:  #2563eb;
-    --blue-500:  #3b82f6;
-    --blue-100:  #dbeafe;
-    --blue-50:   #eff6ff;
+    --blue-700:  #b87333;
+    --blue-600:  #cd853f;
+    --blue-500:  #cd853f;
+    --blue-100:  #f7e7d1;
+    --blue-50:   #fdf5ec;
 
-    --amber-600: #d97706;
-    --amber-500: #f59e0b;
-    --amber-100: #fef3c7;
-    --amber-50:  #fffbeb;
+    --amber-600: #b87333;
+    --amber-500: #cd853f;
+    --amber-100: #f7e7d1;
+    --amber-50:  #fdf5ec;
 
-    --red-600:   #dc2626;
-    --red-500:   #ef4444;
-    --red-100:   #fee2e2;
+    --red-600:   #4d3319;
+    --red-500:   #654321;
+    --red-100:   #f5ecec;
     --red-50:    #fef2f2;
 
-    --violet-500: #8b5cf6;
+    --violet-500: #cd853f;
     --violet-100: #ede9fe;
-    --violet-50:  #f5f3ff;
+    --violet-50:  #fdf5ec;
 
     --slate-900: #0f172a;
-    --slate-800: #1e293b;
-    --slate-700: #334155;
+    --slate-800: #654321;
+    --slate-700: #7b522a;
     --slate-600: #475569;
     --slate-500: #64748b;
     --slate-400: #94a3b8;
@@ -361,10 +361,10 @@
 }
 .btn-db-primary {
     background: linear-gradient(135deg, var(--green-800), var(--green-600));
-    color: white; box-shadow: 0 3px 10px rgba(5,150,105,.25);
+    color: white; box-shadow: 0 3px 10px rgba(101,67,33,.25);
 }
 .btn-db-primary:hover {
-    box-shadow: 0 5px 14px rgba(5,150,105,.35);
+    box-shadow: 0 5px 14px rgba(101,67,33,.35);
     color: white; transform: translateY(-1px); text-decoration: none;
 }
 .btn-db-ghost {
@@ -519,7 +519,7 @@
     outline: none; transition: var(--transition);
     color: var(--slate-900);
 }
-.qci-input:focus { border-color: var(--green-500); box-shadow: 0 0 0 3px rgba(16,185,129,.1); }
+.qci-input:focus { border-color: var(--green-500); box-shadow: 0 0 0 3px rgba(205,133,63,.1); }
 .qci-btn {
     width: 38px; height: 38px; flex-shrink: 0;
     background: linear-gradient(135deg, var(--green-800), var(--green-600));
@@ -528,7 +528,7 @@
     cursor: pointer; font-size: .85rem;
     transition: var(--transition);
 }
-.qci-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 10px rgba(5,150,105,.3); }
+.qci-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 10px rgba(101,67,33,.3); }
 .qci-cta { display: flex; flex-direction: column; gap: 8px; }
 .btn-qci-outline {
     display: flex; align-items: center; gap: 8px;
@@ -546,9 +546,9 @@
     color: white;
     background: linear-gradient(135deg, var(--green-800), var(--green-600));
     text-decoration: none; transition: var(--transition);
-    box-shadow: 0 3px 10px rgba(5,150,105,.25);
+    box-shadow: 0 3px 10px rgba(101,67,33,.25);
 }
-.btn-qci-solid:hover { transform: translateY(-1px); box-shadow: 0 5px 14px rgba(5,150,105,.35); color: white; text-decoration: none; }
+.btn-qci-solid:hover { transform: translateY(-1px); box-shadow: 0 5px 14px rgba(101,67,33,.35); color: white; text-decoration: none; }
 
 /* Quick actions list */
 .qa-list { display: flex; flex-direction: column; gap: 4px; }
@@ -1128,8 +1128,8 @@ function confirmCancel(url, name) {
         showCancelButton: true,
         confirmButtonText: 'Oui, annuler',
         cancelButtonText: 'Conserver',
-        confirmButtonColor: '#dc2626',
-        cancelButtonColor: '#059669',
+        confirmButtonColor: '#4d3319',
+        cancelButtonColor: '#b87333',
         borderRadius: '12px',
     }).then(r => {
         if (!r.isConfirmed) return;

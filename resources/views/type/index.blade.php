@@ -401,14 +401,14 @@ document.addEventListener('DOMContentLoaded', function() {
 <style>
 /* Design System */
 :root {
-    --primary: #3b82f6;
-    --primary-soft: #dbeafe;
-    --success: #10b981;
-    --success-soft: #d1fae5;
-    --warning: #f59e0b;
-    --warning-soft: #fef3c7;
-    --danger: #ef4444;
-    --danger-soft: #fee2e2;
+    --primary: #cd853f;
+    --primary-soft: #f7e7d1;
+    --success: #cd853f;
+    --success-soft: #f7e7d1;
+    --warning: #cd853f;
+    --warning-soft: #f7e7d1;
+    --danger: #654321;
+    --danger-soft: #f5ecec;
     --info: #06b6d4;
     --info-soft: #cffafe;
     --dark: #1f2937;
@@ -523,7 +523,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 .alert-success {
     background-color: var(--success-soft);
-    color: #065f46;
+    color: #4d3319;
 }
 
 .alert-danger {

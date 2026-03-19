@@ -305,7 +305,7 @@
     .card-header.bg-warning,
     .card-header.bg-primary,
     .card-header.bg-success {
-        background: linear-gradient(135deg, var(--bs-danger), #dc2626) !important;
+        background: linear-gradient(135deg, var(--bs-danger), #4d3319) !important;
     }
     
     .card-header.bg-warning {

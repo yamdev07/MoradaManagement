@@ -1,6 +1,6 @@
 @extends('frontend.layouts.master')
 
-@section('title', 'Contact - Hôtel Cactus Palace')
+@section('title', 'Contact - Hôtel Morada Lodge')
 
 @section('content')
     <!-- Hero Section Contact -->
@@ -37,56 +37,56 @@
     @endif
 
     <!-- Informations de contact -->
-    <section class="py-5" style="background-color: #F1F8E9;">
+    <section class="py-5" style="background-color: #FFFFFF;">
         <div class="container">
             <div class="row g-5">
                 <div class="col-lg-4">
-                    <div class="card border-0 shadow-sm h-100" style="background-color: white; border-top: 4px solid #4CAF50;">
+                    <div class="card border-0 shadow-sm h-100" style="background-color: white; border-top: 4px solid #654321;">
                         <div class="card-body text-center p-4">
                             <div class="rounded-circle d-inline-flex align-items-center justify-content-center mb-3" 
-                                 style="width: 60px; height: 60px; background-color: #4CAF50;">
+                                 style="width: 60px; height: 60px; background-color: #654321;">
                                 <i class="fas fa-map-marker-alt fa-2x text-white"></i>
                             </div>
-                            <h4 style="color: #2E7D32;">Adresse</h4>
+                            <h4 style="color: #654321;">Adresse</h4>
                             <p class="text-muted mb-0">
-                                fidjrossé<br>
-                                fidjossé, Cotonou, Bénin<br>
+                                Covè,<br>
+                                République du Bénin<br>
                             </p>
                         </div>
                     </div>
                 </div>
                 
                 <div class="col-lg-4">
-                    <div class="card border-0 shadow-sm h-100" style="background-color: white; border-top: 4px solid #4CAF50;">
+                    <div class="card border-0 shadow-sm h-100" style="background-color: white; border-top: 4px solid #654321;">
                         <div class="card-body text-center p-4">
                             <div class="rounded-circle d-inline-flex align-items-center justify-content-center mb-3" 
-                                 style="width: 60px; height: 60px; background-color: #4CAF50;">
+                                 style="width: 60px; height: 60px; background-color: #654321;">
                                 <i class="fas fa-phone fa-2x text-white"></i>
                             </div>
-                            <h4 style="color: #2E7D32;">Téléphone</h4>
+                            <h4 style="color: #654321;">Téléphone</h4>
                             <p class="text-muted mb-2">
-                                <i class="fas fa-phone me-2"></i>+229 01 90000000
+                                <i class="fas fa-phone me-2"></i>+229 01 67 83 64 81
                             </p>
                             <p class="text-muted mb-0">
-                                <i class="fas fa-fax me-2"></i>+33 019000000
+                                <i class="fas fa-clock me-2"></i>Réception 24h/24 - 7j/7
                             </p>
                         </div>
                     </div>
                 </div>
                 
                 <div class="col-lg-4">
-                    <div class="card border-0 shadow-sm h-100" style="background-color: white; border-top: 4px solid #4CAF50;">
+                    <div class="card border-0 shadow-sm h-100" style="background-color: white; border-top: 4px solid #654321;">
                         <div class="card-body text-center p-4">
                             <div class="rounded-circle d-inline-flex align-items-center justify-content-center mb-3" 
-                                 style="width: 60px; height: 60px; background-color: #4CAF50;">
+                                 style="width: 60px; height: 60px; background-color: #654321;">
                                 <i class="fas fa-envelope fa-2x text-white"></i>
                             </div>
-                            <h4 style="color: #2E7D32;">Email</h4>
+                            <h4 style="color: #654321;">Email</h4>
                             <p class="text-muted mb-2">
-                                <i class="fas fa-envelope me-2"></i>contact@cactushotel.com
+                                <i class="fas fa-envelope me-2"></i>admin@moradalodge.com
                             </p>
                             <p class="text-muted mb-0">
-                                <i class="fas fa-envelope me-2"></i>reservation@cactushotel.com
+                                <i class="fas fa-globe me-2"></i>www.moradalodge.com
                             </p>
                         </div>
                     </div>
@@ -101,7 +101,7 @@
             <div class="row">
                 <div class="col-lg-8 mx-auto">
                     <div class="text-center mb-5">
-                        <h2 style="color: #2E7D32;">Envoyez-nous un message</h2>
+                        <h2 style="color: #654321;">Envoyez-nous un message</h2>
                         <p class="text-muted">Remplissez le formulaire ci-dessous et nous vous répondrons dans les plus brefs délais</p>
                     </div>
                     
@@ -112,7 +112,7 @@
                                 <div class="row g-3">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="name" class="form-label" style="color: #2E7D32; font-weight: 500;">
+                                            <label for="name" class="form-label" style="color: #654321; font-weight: 500;">
                                                 <i class="fas fa-user me-1"></i>Nom complet *
                                             </label>
                                             <input type="text" 
@@ -121,7 +121,7 @@
                                                    name="name" 
                                                    required
                                                    placeholder="Votre nom et prénom"
-                                                   style="border: 1px solid #C8E6C9;"
+                                                   style="border: 1px solid #cd853f;"
                                                    value="{{ old('name') }}">
                                             @error('name')
                                                 <span class="text-danger small">{{ $message }}</span>
@@ -131,7 +131,7 @@
                                     
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="email" class="form-label" style="color: #2E7D32; font-weight: 500;">
+                                            <label for="email" class="form-label" style="color: #654321; font-weight: 500;">
                                                 <i class="fas fa-envelope me-1"></i>Adresse email *
                                             </label>
                                             <input type="email" 
@@ -140,7 +140,7 @@
                                                    name="email" 
                                                    required
                                                    placeholder="votre.email@exemple.com"
-                                                   style="border: 1px solid #C8E6C9;"
+                                                   style="border: 1px solid #cd853f;"
                                                    value="{{ old('email') }}">
                                             @error('email')
                                                 <span class="text-danger small">{{ $message }}</span>
@@ -150,7 +150,7 @@
                                     
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="phone" class="form-label" style="color: #2E7D32; font-weight: 500;">
+                                            <label for="phone" class="form-label" style="color: #654321; font-weight: 500;">
                                                 <i class="fas fa-phone me-1"></i>Téléphone
                                             </label>
                                             <input type="tel" 
@@ -158,7 +158,7 @@
                                                    id="phone" 
                                                    name="phone"
                                                    placeholder="+33 1 23 45 67 89"
-                                                   style="border: 1px solid #C8E6C9;"
+                                                   style="border: 1px solid #cd853f;"
                                                    value="{{ old('phone') }}">
                                             @error('phone')
                                                 <span class="text-danger small">{{ $message }}</span>
@@ -168,14 +168,14 @@
                                     
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="subject" class="form-label" style="color: #2E7D32; font-weight: 500;">
+                                            <label for="subject" class="form-label" style="color: #654321; font-weight: 500;">
                                                 <i class="fas fa-tag me-1"></i>Sujet *
                                             </label>
                                             <select class="form-select" 
                                                     id="subject" 
                                                     name="subject" 
                                                     required
-                                                    style="border: 1px solid #C8E6C9;">
+                                                    style="border: 1px solid #cd853f;">
                                                 <option value="" selected disabled>Sélectionnez un sujet</option>
                                                 <option value="reservation" {{ old('subject') == 'reservation' ? 'selected' : '' }}>Réservation</option>
                                                 <option value="information" {{ old('subject') == 'information' ? 'selected' : '' }}>Demande d'information</option>
@@ -192,7 +192,7 @@
                                     
                                     <div class="col-12">
                                         <div class="form-group">
-                                            <label for="message" class="form-label" style="color: #2E7D32; font-weight: 500;">
+                                            <label for="message" class="form-label" style="color: #654321; font-weight: 500;">
                                                 <i class="fas fa-comment me-1"></i>Message *
                                             </label>
                                             <textarea class="form-control" 
@@ -201,7 +201,7 @@
                                                       rows="6" 
                                                       required
                                                       placeholder="Votre message..."
-                                                      style="border: 1px solid #C8E6C9;">{{ old('message') }}</textarea>
+                                                      style="border: 1px solid #cd853f;">{{ old('message') }}</textarea>
                                             @error('message')
                                                 <span class="text-danger small">{{ $message }}</span>
                                             @enderror
@@ -214,10 +214,10 @@
                                                    type="checkbox" 
                                                    id="newsletter" 
                                                    name="newsletter"
-                                                   style="border-color: #4CAF50;"
+                                                   style="border-color: #654321;"
                                                    {{ old('newsletter') ? 'checked' : '' }}>
                                             <label class="form-check-label text-muted" for="newsletter">
-                                                Je souhaite recevoir les offres spéciales et actualités du Luxury Palace
+                                                Je souhaite recevoir les offres spéciales et actualités du Morada Lodge
                                             </label>
                                         </div>
                                     </div>
@@ -225,7 +225,7 @@
                                     <div class="col-12 text-center">
                                         <button type="submit" 
                                                 class="btn btn-lg"
-                                                style="background-color: #4CAF50; border-color: #4CAF50; color: white; padding: 12px 40px;">
+                                                style="background-color: #654321; border-color: #654321; color: white; padding: 12px 40px;">
                                             <i class="fas fa-paper-plane me-2"></i>Envoyer le message
                                         </button>
                                     </div>
@@ -239,11 +239,11 @@
     </section>
 
     <!-- Carte Google Maps -->
-    <section class="py-5" style="background-color: #E8F5E9;">
+    <section class="py-5" style="background-color: #FFFFFF;">
         <div class="container">
             <div class="text-center mb-5">
-                <h2 style="color: #2E7D32;">Notre emplacement</h2>
-                <p class="text-muted">Venez nous rendre visite au cœur de Paris</p>
+                <h2 style="color: #654321;">Notre emplacement</h2>
+                <p class="text-muted">Venez nous rendre visite à Covè, au Bénin</p>
             </div>
             
             <div class="card border-0 shadow-sm overflow-hidden">
@@ -265,47 +265,15 @@
             
             <!-- Informations d'accès -->
             <div class="row mt-4 g-4">
-                <div class="col-md-4">
-                    <div class="card border-0 h-100" style="background-color: transparent; border-left: 3px solid #4CAF50;">
+                <div class="col-md-12">
+                    <div class="card border-0" style="background-color: transparent; border-left: 3px solid #654321;">
                         <div class="card-body">
-                            <h5 style="color: #2E7D32;">
-                                <i class="fas fa-subway me-2"></i>Métro
+                            <h5 style="color: #654321;">
+                                <i class="fas fa-info-circle me-2"></i>Comment nous trouver
                             </h5>
-                            <ul class="list-unstyled text-muted">
-                                <li><i class="fas fa-circle fa-xs me-2" style="color: #4CAF50;"></i>Charles de Gaulle - Étoile (lignes 1, 2, 6)</li>
-                                <li><i class="fas fa-circle fa-xs me-2" style="color: #4CAF50;"></i>George V (ligne 1)</li>
-                                <li><i class="fas fa-circle fa-xs me-2" style="color: #4CAF50;"></i>Franklin D. Roosevelt (lignes 1, 9)</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col-md-4">
-                    <div class="card border-0 h-100" style="background-color: transparent; border-left: 3px solid #4CAF50;">
-                        <div class="card-body">
-                            <h5 style="color: #2E7D32;">
-                                <i class="fas fa-bus me-2"></i>Bus
-                            </h5>
-                            <ul class="list-unstyled text-muted">
-                                <li><i class="fas fa-circle fa-xs me-2" style="color: #4CAF50;"></i>Lignes : 73, 83, 93</li>
-                                <li><i class="fas fa-circle fa-xs me-2" style="color: #4CAF50;"></i>Arrêt : Champs-Élysées - Clemenceau</li>
-                                <li><i class="fas fa-circle fa-xs me-2" style="color: #4CAF50;"></i>Noctilien : N11, N24</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col-md-4">
-                    <div class="card border-0 h-100" style="background-color: transparent; border-left: 3px solid #4CAF50;">
-                        <div class="card-body">
-                            <h5 style="color: #2E7D32;">
-                                <i class="fas fa-car me-2"></i>Voiture
-                            </h5>
-                            <ul class="list-unstyled text-muted">
-                                <li><i class="fas fa-circle fa-xs me-2" style="color: #4CAF50;"></i>Parking public à proximité</li>
-                                <li><i class="fas fa-circle fa-xs me-2" style="color: #4CAF50;"></i>Service valet disponible</li>
-                                <li><i class="fas fa-circle fa-xs me-2" style="color: #4CAF50;"></i>Station de taxi devant l'hôtel</li>
-                            </ul>
+                            <p class="text-muted">
+                                Morada Lodge est situé à Covè, dans le département du Zou au Bénin. Notre établissement est facilement accessible par la route nationale. Pour toute assistance lors de votre trajet, n'hésitez pas à appeler notre réception disponible 24h/24.
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -317,7 +285,7 @@
     <section class="py-5">
         <div class="container">
             <div class="text-center mb-5">
-                <h2 style="color: #2E7D32;">Questions fréquentes</h2>
+                <h2 style="color: #654321;">Questions fréquentes</h2>
                 <p class="text-muted">Trouvez rapidement des réponses à vos questions</p>
             </div>
             
@@ -331,13 +299,13 @@
                                         type="button" 
                                         data-bs-toggle="collapse" 
                                         data-bs-target="#faq1"
-                                        style="background-color: #F1F8E9; color: #2E7D32; font-weight: 500;">
-                                    <i class="fas fa-question-circle me-3" style="color: #4CAF50;"></i>
+                                        style="#FFFFFF; color: #654321; font-weight: 500;">
+                                    <i class="fas fa-question-circle me-3" style="color: #654321;"></i>
                                     Quels sont les horaires de check-in et check-out ?
                                 </button>
                             </h2>
                             <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                                <div class="accordion-body" style="background-color: #F9FDF8;">
+                                <div class="accordion-body" style="background-color: #FFFFFF;">
                                     <p>Le check-in est possible à partir de 15h00 et le check-out doit être effectué avant 12h00.</p>
                                     <p>Un check-in anticipé ou un check-out tardif peut être organisé sous réserve de disponibilité et peut engendrer des frais supplémentaires.</p>
                                 </div>
@@ -351,14 +319,14 @@
                                         type="button" 
                                         data-bs-toggle="collapse" 
                                         data-bs-target="#faq2"
-                                        style="background-color: #F1F8E9; color: #2E7D32; font-weight: 500;">
-                                    <i class="fas fa-question-circle me-3" style="color: #4CAF50;"></i>
+                                        style="#FFFFFF; color: #654321; font-weight: 500;">
+                                    <i class="fas fa-question-circle me-3" style="color: #654321;"></i>
                                     L'hôtel accepte-t-il les animaux de compagnie ?
                                 </button>
                             </h2>
                             <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                                <div class="accordion-body" style="background-color: #F9FDF8;">
-                                    <p>Oui, le Luxury Palace accepte les animaux de compagnie (chiens et chats) jusqu'à 8kg.</p>
+                                <div class="accordion-body" style="background-color: #FFFFFF;">
+                                    <p>Oui, le Morada Lodge accepte les animaux de compagnie (chiens et chats) jusqu'à 8kg.</p>
                                     <p>Des frais supplémentaires de 50€ par nuit sont appliqués. Un lit et des gamelles sont fournis sur demande.</p>
                                 </div>
                             </div>
@@ -371,13 +339,13 @@
                                         type="button" 
                                         data-bs-toggle="collapse" 
                                         data-bs-target="#faq3"
-                                        style="background-color: #F1F8E9; color: #2E7D32; font-weight: 500;">
-                                    <i class="fas fa-question-circle me-3" style="color: #4CAF50;"></i>
+                                        style="#FFFFFF; color: #654321; font-weight: 500;">
+                                    <i class="fas fa-question-circle me-3" style="color: #654321;"></i>
                                     Proposez-vous des services de navette depuis l'aéroport ?
                                 </button>
                             </h2>
                             <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                                <div class="accordion-body" style="background-color: #F9FDF8;">
+                                <div class="accordion-body" style="background-color: #FFFFFF;">
                                     <p>Oui, nous proposons un service de navette privée depuis les aéroports de Paris (Charles de Gaulle, Orly et Le Bourget).</p>
                                     <p>Le service doit être réservé au minimum 48 heures à l'avance. Des véhicules de luxe (Berline, Van) sont disponibles.</p>
                                 </div>
@@ -391,13 +359,13 @@
                                         type="button" 
                                         data-bs-toggle="collapse" 
                                         data-bs-target="#faq4"
-                                        style="background-color: #F1F8E9; color: #2E7D32; font-weight: 500;">
-                                    <i class="fas fa-question-circle me-3" style="color: #4CAF50;"></i>
+                                        style="#FFFFFF; color: #654321; font-weight: 500;">
+                                    <i class="fas fa-question-circle me-3" style="color: #654321;"></i>
                                     Quels sont les moyens de paiement acceptés ?
                                 </button>
                             </h2>
                             <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                                <div class="accordion-body" style="background-color: #F9FDF8;">
+                                <div class="accordion-body" style="background-color: #FFFFFF;">
                                     <p>Nous acceptons les cartes de crédit suivantes : Visa, MasterCard, American Express.</p>
                                     <p>Les paiements en espèces (en euros) sont également acceptés, ainsi que les virements bancaires pour les réservations de groupes.</p>
                                 </div>
@@ -407,7 +375,7 @@
                     
                     <div class="text-center mt-4">
                         <p class="text-muted mb-3">Vous ne trouvez pas la réponse à votre question ?</p>
-                        <a href="#contactForm" class="btn" style="color: #4CAF50; border-color: #4CAF50; background-color: transparent;">
+                        <a href="#contactForm" class="btn" style="color: #654321; border-color: #654321; background-color: transparent;">
                             <i class="fas fa-envelope me-2"></i>Contactez-nous directement
                         </a>
                     </div>
@@ -431,8 +399,8 @@
 /* Style pour les formulaires */
 .form-control:focus,
 .form-select:focus {
-    border-color: #4CAF50;
-    box-shadow: 0 0 0 0.25rem rgba(76, 175, 80, 0.25);
+    border-color: #654321;
+    box-shadow: 0 0 0 0.25rem rgba(101, 67, 33, 0.25);
 }
 
 /* Style pour la carte */
@@ -442,13 +410,13 @@
 
 /* Style pour les accordéons */
 .accordion-button:not(.collapsed) {
-    background-color: #4CAF50 !important;
+    background-color: #654321 !important;
     color: white !important;
 }
 
 .accordion-button:focus {
-    box-shadow: 0 0 0 0.25rem rgba(76, 175, 80, 0.25);
-    border-color: #4CAF50;
+    box-shadow: 0 0 0 0.25rem rgba(101, 67, 33, 0.25);
+    border-color: #654321;
 }
 
 /* Style pour les cartes de contact */
@@ -459,17 +427,17 @@
 }
 
 /* Boutons avec effet hover */
-.btn[style*="background-color: #4CAF50"]:hover {
-    background-color: #388E3C !important;
-    border-color: #388E3C !important;
+.btn[style*="background-color: #654321"]:hover {
+    background-color: #a0522d !important;
+    border-color: #a0522d !important;
     transform: translateY(-2px);
     transition: all 0.3s ease;
 }
 
-.btn[style*="color: #4CAF50"]:hover {
-    background-color: #4CAF50 !important;
+.btn[style*="color: #654321"]:hover {
+    background-color: #654321 !important;
     color: white !important;
-    border-color: #4CAF50 !important;
+    border-color: #654321 !important;
 }
 
 /* Alertes */
@@ -478,10 +446,9 @@
     border: none;
 }
 
-.alert-success {
-    background-color: #E8F5E9;
-    color: #2E7D32;
-    border-left: 4px solid #4CAF50;
+.alert-success { background-color: #FFFFFF;
+    color: #654321;
+    border-left: 4px solid #654321;
 }
 
 .alert-danger {
@@ -500,7 +467,30 @@
         font-size: 2.5rem;
     }
 }
-</style>
+
+    /* Contrast Fixes */
+    .bg-primary, .bg-hotel-brown, .bg-dark, .badge-dark, .btn-primary { color: #ffffff !important; }
+    .text-white { color: #ffffff !important; }
+    .bg-primary-soft i, .bg-info-soft i { color: var(--primary) !important; }
+    
+    /* Contrast & Visibility Fixes */
+    .bg-primary, .bg-hotel-brown, .bg-dark, .badge-dark, .btn-primary, .btn-ci-primary { color: #ffffff !important; }
+    .text-white, .btn-ci-primary i, .btn-modern i, .header-icon i { color: #ffffff !important; }
+    .room-stat-badge { color: #654321 !important; background: #D2B48C !important; }
+    .badge-blue, .status-info { background: #FFFFFF !important; color: #0369a1 !important; }
+    .badge-hotel-brown, .status-online { background: #FFFFFF !important; color: #654321 !important; }
+    .badge-amber, .status-normal { background: #FFFFFF !important; color: #92400e !important; }
+    
+    /* Design Fixes */
+    .bg-primary { background-color: #654321 !important; }
+    .text-primary { color: #654321 !important; }
+    .btn-primary { background-color: #654321 !important; border-color: #654321 !important; }
+    .btn-primary:hover { background-color: #654321 !important; border-color: #654321 !important; }
+    .card-header.bg-primary { background-color: #654321 !important; }
+    .existing-customer-info { background-color: #FFFFFF !important; border-left: 4px solid #654321 !important; }
+    .existing-customer-info h5 { color: #654321 !important; }
+    .text-white, .btn-primary { color: #ffffff !important; }
+    </style>
 @endpush
 
 @push('scripts')
@@ -520,7 +510,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Réinitialiser les bordures
             [name, email, subject, message].forEach(input => {
-                input.style.borderColor = '#C8E6C9';
+                input.style.borderColor = '#cd853f';
             });
             
             // Validation des champs requis

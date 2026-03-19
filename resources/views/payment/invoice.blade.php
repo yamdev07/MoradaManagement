@@ -15,11 +15,11 @@
             background: white;
             border-radius: 10px;
             box-shadow: 0 0 20px rgba(0,0,0,0.1);
-            border: 2px solid #28a745;
+            border: 2px solid #cd853f;
         }
 
         .invoice-header {
-            background: linear-gradient(135deg, #28a745 0%, #1e7e34 100%);
+            background: linear-gradient(135deg, #cd853f 0%, #1e7e34 100%);
             color: white;
             padding: 30px;
             border-radius: 10px 10px 0 0;
@@ -28,8 +28,8 @@
         .section-title {
             font-size: 16px;
             font-weight: bold;
-            color: #28a745;
-            border-bottom: 2px solid #28a745;
+            color: #cd853f;
+            border-bottom: 2px solid #cd853f;
             padding-bottom: 8px;
             margin-bottom: 20px;
         }
@@ -39,11 +39,11 @@
             border-radius: 8px;
             padding: 15px;
             margin-bottom: 20px;
-            border-left: 4px solid #28a745;
+            border-left: 4px solid #cd853f;
         }
 
         .total-box {
-            background: linear-gradient(135deg, #28a745 0%, #1e7e34 100%);
+            background: linear-gradient(135deg, #cd853f 0%, #1e7e34 100%);
             color: white;
             border-radius: 8px;
             padding: 20px;
@@ -58,7 +58,7 @@
         }
 
         .status-paid {
-            background: #28a745;
+            background: #cd853f;
             color: white;
         }
 
@@ -85,7 +85,7 @@
         }
 
         .btn-print {
-            background: #28a745;
+            background: #cd853f;
             color: white;
             border: none;
         }
@@ -96,7 +96,7 @@
         }
 
         .btn-pdf {
-            background: #28a745;
+            background: #cd853f;
             color: white;
             border: none;
         }
@@ -107,13 +107,13 @@
         }
 
         .table thead th {
-            background-color: #28a745 !important;
+            background-color: #cd853f !important;
             color: white !important;
-            border-color: #28a745 !important;
+            border-color: #cd853f !important;
         }
 
         .table-bordered {
-            border-color: #28a745 !important;
+            border-color: #cd853f !important;
         }
 
         .table-bordered th,
@@ -122,20 +122,20 @@
         }
 
         .status-available {
-            background: #28a745;
+            background: #cd853f;
             color: white;
         }
 
         .text-primary {
-            color: #28a745 !important;
+            color: #cd853f !important;
         }
 
         .text-success {
-            color: #28a745 !important;
+            color: #cd853f !important;
         }
 
         .border-top {
-            border-top-color: #28a745 !important;
+            border-top-color: #cd853f !important;
         }
 
         /* Styles pour l'impression */
@@ -155,7 +155,7 @@
                 width: 100%;
                 box-shadow: none;
                 border-radius: 0;
-                border: 1px solid #28a745;
+                border: 1px solid #cd853f;
             }
             
             .action-buttons, .btn-print, .btn-pdf {
@@ -165,19 +165,19 @@
             .invoice-header {
                 -webkit-print-color-adjust: exact;
                 print-color-adjust: exact;
-                background: #28a745 !important;
+                background: #cd853f !important;
             }
             
             .total-box {
                 -webkit-print-color-adjust: exact;
                 print-color-adjust: exact;
-                background: #28a745 !important;
+                background: #cd853f !important;
             }
             
             .table thead th {
                 -webkit-print-color-adjust: exact;
                 print-color-adjust: exact;
-                background-color: #28a745 !important;
+                background-color: #cd853f !important;
             }
             
             .no-print {
@@ -246,15 +246,15 @@
         <div class="p-3 border-bottom">
             <div class="row">
                 <div class="col-md-6">
-                    <h6 class="mb-2" style="font-weight: bold; color: #28a745;">CACTUS HOTEL</h6>
+                    <h6 class="mb-2" style="font-weight: bold; color: #cd853f;">MORADA LODGE</h6>
                     <p class="mb-1" style="font-size: 14px;">Haie Vive, Cotonou</p>
                     <p class="mb-1" style="font-size: 14px;">Bénin</p>
                     <p class="mb-0" style="font-size: 14px;">Tél : +229 XX XX XX XX</p>
                 </div>
                 <div class="col-md-6 text-right">
-                    <p class="mb-1" style="font-size: 14px; color: #28a745;"><strong>RCCM :</strong> BJ-COT-XXXX-XXXXX</p>
-                    <p class="mb-1" style="font-size: 14px; color: #28a745;"><strong>NIF :</strong> XXXXXXXXX</p>
-                    <p class="mb-0" style="font-size: 14px; color: #28a745;"><strong>Email :</strong> contact@lecactushotel.bj</p>
+                    <p class="mb-1" style="font-size: 14px; color: #cd853f;"><strong>RCCM :</strong> BJ-COT-XXXX-XXXXX</p>
+                    <p class="mb-1" style="font-size: 14px; color: #cd853f;"><strong>NIF :</strong> XXXXXXXXX</p>
+                    <p class="mb-0" style="font-size: 14px; color: #cd853f;"><strong>Email :</strong> contact@lemoradahotel.bj</p>
                 </div>
             </div>
         </div>
@@ -266,18 +266,18 @@
                 <div class="col-md-6">
                     <h6 class="section-title">CLIENT</h6>
                     <div class="info-box">
-                        <p class="mb-2"><strong style="color: #28a745;">ID Client :</strong> {{ $payment->transaction->customer->id }}</p>
-                        <p class="mb-2"><strong style="color: #28a745;">Nom :</strong> {{ $payment->transaction->customer->name }}</p>
-                        <p class="mb-2"><strong style="color: #28a745;">Profession :</strong> {{ $payment->transaction->customer->job }}</p>
-                        <p class="mb-0"><strong style="color: #28a745;">Adresse :</strong> {{ $payment->transaction->customer->address }}</p>
+                        <p class="mb-2"><strong style="color: #cd853f;">ID Client :</strong> {{ $payment->transaction->customer->id }}</p>
+                        <p class="mb-2"><strong style="color: #cd853f;">Nom :</strong> {{ $payment->transaction->customer->name }}</p>
+                        <p class="mb-2"><strong style="color: #cd853f;">Profession :</strong> {{ $payment->transaction->customer->job }}</p>
+                        <p class="mb-0"><strong style="color: #cd853f;">Adresse :</strong> {{ $payment->transaction->customer->address }}</p>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <h6 class="section-title">PÉRIODE DE SÉJOUR</h6>
                     <div class="info-box">
-                        <p class="mb-2"><strong style="color: #28a745;">Arrivée :</strong> {{ Helper::dateDayFormat($payment->transaction->check_in) }}</p>
-                        <p class="mb-2"><strong style="color: #28a745;">Départ :</strong> {{ Helper::dateDayFormat($payment->transaction->check_out) }}</p>
-                        <p class="mb-0"><strong style="color: #28a745;">Durée :</strong> {{ $payment->transaction->getDateDifferenceWithPlural() }}</p>
+                        <p class="mb-2"><strong style="color: #cd853f;">Arrivée :</strong> {{ Helper::dateDayFormat($payment->transaction->check_in) }}</p>
+                        <p class="mb-2"><strong style="color: #cd853f;">Départ :</strong> {{ Helper::dateDayFormat($payment->transaction->check_out) }}</p>
+                        <p class="mb-0"><strong style="color: #cd853f;">Durée :</strong> {{ $payment->transaction->getDateDifferenceWithPlural() }}</p>
                     </div>
                 </div>
             </div>
@@ -289,10 +289,10 @@
                     <table class="table table-bordered">
                         <thead class="thead-light">
                             <tr>
-                                <th style="background-color: #28a745 !important; color: white !important;">Description</th>
-                                <th class="text-center" style="background-color: #28a745 !important; color: white !important;">Prix/Jour</th>
-                                <th class="text-center" style="background-color: #28a745 !important; color: white !important;">Jours</th>
-                                <th class="text-right" style="background-color: #28a745 !important; color: white !important;">Total</th>
+                                <th style="background-color: #cd853f !important; color: white !important;">Description</th>
+                                <th class="text-center" style="background-color: #cd853f !important; color: white !important;">Prix/Jour</th>
+                                <th class="text-center" style="background-color: #cd853f !important; color: white !important;">Jours</th>
+                                <th class="text-right" style="background-color: #cd853f !important; color: white !important;">Total</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -302,7 +302,7 @@
                                     {{ Helper::formatCFA($payment->transaction->room->price) }}
                                 </td>
                                 <td class="text-center">{{ $payment->transaction->getDateDifferenceWithPlural() }}</td>
-                                <td class="text-right font-weight-bold" style="color: #28a745;">
+                                <td class="text-right font-weight-bold" style="color: #cd853f;">
                                     {{ Helper::formatCFA($payment->transaction->getTotalPrice()) }}
                                 </td>
                             </tr>
@@ -318,7 +318,7 @@
                     <div class="col-md-3">
                         <div class="info-box text-center">
                             <p class="mb-1 text-muted">Total Séjour</p>
-                            <p class="mb-0 amount" style="color: #28a745;">
+                            <p class="mb-0 amount" style="color: #cd853f;">
                                 {{ Helper::formatCFA($payment->transaction->getTotalPrice()) }}
                             </p>
                         </div>
@@ -326,7 +326,7 @@
                     <div class="col-md-3">
                         <div class="info-box text-center">
                             <p class="mb-1 text-muted">Acompte Requis</p>
-                            <p class="mb-0 amount" style="color: #28a745;">
+                            <p class="mb-0 amount" style="color: #cd853f;">
                                 {{ Helper::formatCFA($payment->transaction->getMinimumDownPayment()) }}
                             </p>
                         </div>
@@ -334,7 +334,7 @@
                     <div class="col-md-3">
                         <div class="info-box text-center">
                             <p class="mb-1 text-muted">Montant Payé</p>
-                            <p class="mb-0 amount" style="color: #28a745;">
+                            <p class="mb-0 amount" style="color: #cd853f;">
                                 {{ Helper::formatCFA($payment->price) }}
                             </p>
                         </div>
@@ -342,7 +342,7 @@
                     <div class="col-md-3">
                         <div class="info-box text-center">
                             <p class="mb-1 text-muted">Total Payé à ce jour</p>
-                            <p class="mb-0 amount" style="color: #28a745;">
+                            <p class="mb-0 amount" style="color: #cd853f;">
                                 {{ Helper::formatCFA($payment->transaction->getTotalPayment()) }}
                             </p>
                         </div>
@@ -378,11 +378,11 @@
             </div>
 
             <!-- Notes -->
-            <div class="mt-4 p-3 border rounded" style="border-color: #28a745 !important;">
+            <div class="mt-4 p-3 border rounded" style="border-color: #cd853f !important;">
                 <h6 class="section-title mb-3">INFORMATIONS IMPORTANTES</h6>
                 <div class="row">
                     <div class="col-md-6">
-                        <p class="small mb-2"><strong style="color: #28a745;">Conditions de paiement :</strong></p>
+                        <p class="small mb-2"><strong style="color: #cd853f;">Conditions de paiement :</strong></p>
                         <ul class="small pl-3 mb-0">
                             <li>Acompte minimum de 30% à la réservation</li>
                             <li>Solde à régler à l'arrivée ou au départ</li>
@@ -390,7 +390,7 @@
                         </ul>
                     </div>
                     <div class="col-md-6">
-                        <p class="small mb-2"><strong style="color: #28a745;">Moyens de paiement acceptés :</strong></p>
+                        <p class="small mb-2"><strong style="color: #cd853f;">Moyens de paiement acceptés :</strong></p>
                         <ul class="small pl-3 mb-0">
                             <li>Espèces (FCFA)</li>
                             <li>Carte bancaire</li>
@@ -401,7 +401,7 @@
                 </div>
                 <div class="row mt-3">
                     <div class="col-12">
-                        <p class="small mb-0"><strong style="color: #28a745;">Note :</strong> Tous les montants sont exprimés en Francs CFA (FCFA)</p>
+                        <p class="small mb-0"><strong style="color: #cd853f;">Note :</strong> Tous les montants sont exprimés en Francs CFA (FCFA)</p>
                     </div>
                 </div>
             </div>
@@ -412,12 +412,12 @@
             <div class="row">
                 <div class="col-md-6">
                     <p class="small text-muted mb-0">
-                        <strong style="color: #28a745;">Signature et cachet :</strong><br>
-                        <span style="margin-top: 50px; display: inline-block; border-top: 1px solid #28a745; padding-top: 10px;">_________________________</span>
+                        <strong style="color: #cd853f;">Signature et cachet :</strong><br>
+                        <span style="margin-top: 50px; display: inline-block; border-top: 1px solid #cd853f; padding-top: 10px;">_________________________</span>
                     </p>
                 </div>
                 <div class="col-md-6 text-right">
-                    <p class="small mb-0" style="color: #28a745;">
+                    <p class="small mb-0" style="color: #cd853f;">
                         Merci de votre confiance.<br>
                         Nous vous souhaitons un agréable séjour !
                     </p>
@@ -425,8 +425,8 @@
             </div>
             <div class="row mt-3">
                 <div class="col-12 text-center">
-                    <p class="small mb-0" style="color: #28a745;">
-                        CACTUS HOTEL • Haie Vive • Cotonou, Bénin • Tél : +229 XX XX XX XX • contact@lecactushotel.bj
+                    <p class="small mb-0" style="color: #cd853f;">
+                        MORADA LODGE • Haie Vive • Cotonou, Bénin • Tél : +229 XX XX XX XX • contact@lemoradahotel.bj
                     </p>
                 </div>
             </div>
@@ -453,7 +453,7 @@ function downloadPDF() {
             scale: 2,
             useCORS: true,
             logging: false,
-            backgroundColor: '#FFFFFF'
+            backgroundColor: '#ffffff'
         },
         jsPDF:        { 
             unit: 'in', 
@@ -489,7 +489,7 @@ function downloadPDF() {
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background: #28a745;
+            background: #cd853f;
             color: white;
             padding: 15px 25px;
             border-radius: 10px;

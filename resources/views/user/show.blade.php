@@ -13,7 +13,7 @@
     }
     
     .profile-header {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(135deg, #cd853f 0%, #b87333 100%);
         padding: 3rem 2rem;
         color: white;
         text-align: center;
@@ -141,7 +141,7 @@
             <img src="{{ $user->getAvatar() }}" 
                  class="profile-avatar" 
                  alt="{{ $user->name }}"
-                 onerror="this.src='https://ui-avatars.com/api/?name={{ urlencode($user->name) }}&background=4ecdc4&color=fff&size=150'">
+                 onerror="this.src='https://ui-avatars.com/api/?name={{ urlencode($user->name) }}&background=cd853f&color=fff&size=150'">
             
             <h2 class="mb-2">{{ $user->name }}</h2>
             

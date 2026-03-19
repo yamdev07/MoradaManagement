@@ -89,8 +89,7 @@ p:not([class]):first-child {
 
 .card {
     border-radius: var(--timelineCardBorderRadius, 2px);
-    border-left: var(--timelineCardBorderLeftWidth, 3px) solid
-        var(--timelineCardBorderLeftColor, var(--uiTimelineMainColor));
+    border-left: var(--timelineCardBorderLeftWidth, 3px) solid var(--timelineCardBorderLeftColor, var(--uiTimelineMainColor));
     box-shadow: var(--timelineCardBoxShadow, 0 1px 3px 0 rgba(0, 0, 0, 0.12), 0 1px 2px 0 rgba(0, 0, 0, 0.24));
     background-color: var(--timelineCardBackgroundColor, #fff);
 }
@@ -186,7 +185,7 @@ p:not([class]):first-child {
 /**/
 
 .timelines {
-    --timelineMainColor: #4557bb;
+    --timelineMainColor: #cd853f;
 }
 
 /*
@@ -195,29 +194,25 @@ p:not([class]):first-child {
                                         =====
                                         */
 
-body {
-    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Open Sans, Ubuntu, Fira Sans, Helvetica Neue,
-        sans-serif;
-    color: #222;
-    background-color: #f0f0f0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-}
-
-p {
-    margin-top: 0;
-    margin-bottom: 1rem;
-    line-height: 1.5;
-}
-
-p:last-child {
-    margin-bottom: 0;
-}
+/* 
+   Body overrides removed to maintain consistency with dashboard layout
+*/
 
 .page {
     max-width: 47rem;
     padding: 2rem 3rem;
     margin-left: auto;
     margin-right: auto;
+}
+
+.myBtn {
+    background-color: transparent !important;
+    color: #cd853f !important;
+    border-color: #cd853f !important;
+    transition: all 0.2s ease;
+
+    &:hover {
+        background-color: #cd853f !important;
+        color: white !important;
+    }
 }

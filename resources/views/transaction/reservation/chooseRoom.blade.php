@@ -55,7 +55,7 @@
         .room-price {
             font-size: 1.25rem;
             font-weight: bold;
-            color: #28a745;
+            color: #cd853f;
             margin-bottom: 1rem;
         }
         
@@ -128,7 +128,7 @@
         }
         
         .search-btn {
-            background: #28a745;
+            background: #cd853f;
             color: white;
             border: none;
             border-radius: 8px;

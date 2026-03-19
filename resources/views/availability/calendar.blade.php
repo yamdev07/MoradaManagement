@@ -13,12 +13,12 @@
     --brd:      #e2e8f0;
     --brd2:     #cbd5e1;
     --txt:      #0f172a;
-    --txt2:     #334155;
+    --txt2:     #7b522a;
     --txt3:     #64748b;
-    --acc:      #3b82f6;
-    --grn:      #10b981;
-    --yel:      #f59e0b;
-    --red:      #ef4444;
+    --acc:      #cd853f;
+    --grn:      #cd853f;
+    --yel:      #cd853f;
+    --red:      #654321;
     --ora:      #f97316;
     --r:        10px;
 }
@@ -121,7 +121,7 @@ body {
     color: white;
 }
 .btn--primary:hover {
-    background: #2563eb;
+    background: #cd853f;
     color: white;
 }
 .btn--outline {
@@ -270,8 +270,8 @@ body {
     height: 18px;
     border-radius: 4px;
 }
-.legend-sq.avail { background: rgba(16,185,129,.15); border: 1px solid rgba(16,185,129,.3); }
-.legend-sq.reserved { background: rgba(239,68,68,.15); border: 1px solid rgba(239,68,68,.3); }
+.legend-sq.avail { background: rgba(205,133,63,.15); border: 1px solid rgba(205,133,63,.3); }
+.legend-sq.reserved { background: rgba(101,67,33,.15); border: 1px solid rgba(101,67,33,.3); }
 .legend-sq.unavail { background: rgba(100,116,139,.15); border: 1px solid rgba(100,116,139,.3); }
 .legend-sq.today { background: rgba(245,158,11,.2); border: 2px solid var(--yel); }
 .legend-item span {
@@ -408,7 +408,7 @@ body {
     width: 36px;
     height: 36px;
     border-radius: 8px;
-    background: linear-gradient(135deg, var(--acc), #2563eb);
+    background: linear-gradient(135deg, var(--acc), #cd853f);
     color: white;
     display: flex;
     align-items: center;
@@ -494,21 +494,21 @@ body {
 
 /* States */
 .avail-cell.available {
-    background: rgba(16,185,129,.08);
-    border-left: 1px solid rgba(16,185,129,.15);
+    background: rgba(205,133,63,.08);
+    border-left: 1px solid rgba(205,133,63,.15);
 }
 .avail-cell.available i { color: var(--grn); }
 .avail-cell.available:hover {
-    background: rgba(16,185,129,.15);
+    background: rgba(205,133,63,.15);
 }
 
 .avail-cell.reserved {
-    background: rgba(239,68,68,.08);
-    border-left: 1px solid rgba(239,68,68,.15);
+    background: rgba(101,67,33,.08);
+    border-left: 1px solid rgba(101,67,33,.15);
 }
 .avail-cell.reserved i { color: var(--red); }
 .avail-cell.reserved:hover {
-    background: rgba(239,68,68,.15);
+    background: rgba(101,67,33,.15);
 }
 
 .avail-cell.unavailable {
@@ -633,13 +633,13 @@ body {
     color: #b45309;
 }
 .alert-danger {
-    background: rgba(239,68,68,.1);
-    border-color: rgba(239,68,68,.3);
+    background: rgba(101,67,33,.1);
+    border-color: rgba(101,67,33,.3);
     color: var(--red);
 }
 .alert-success {
-    background: rgba(16,185,129,.1);
-    border-color: rgba(16,185,129,.3);
+    background: rgba(205,133,63,.1);
+    border-color: rgba(205,133,63,.3);
     color: var(--grn);
 }
 .badge {
@@ -649,7 +649,7 @@ body {
     font-weight: 600;
 }
 .badge.bg-success {
-    background: rgba(16,185,129,.15) !important;
+    background: rgba(205,133,63,.15) !important;
     color: var(--grn) !important;
 }
 .badge.bg-warning {
@@ -657,7 +657,7 @@ body {
     color: #b45309 !important;
 }
 .badge.bg-danger {
-    background: rgba(239,68,68,.15) !important;
+    background: rgba(101,67,33,.15) !important;
     color: var(--red) !important;
 }
 .table {
@@ -786,7 +786,7 @@ body {
         </div>
     </div>
     <div class="kpi-card" onclick="filterByStatus('available')" title="Voir les chambres disponibles">
-        <div class="kpi-icon" style="background:rgba(16,185,129,.1);color:var(--grn)">
+        <div class="kpi-icon" style="background:rgba(205,133,63,.1);color:var(--grn)">
             <i class="fas fa-check-circle"></i>
         </div>
         <div>
@@ -804,7 +804,7 @@ body {
         </div>
     </div>
     <div class="kpi-card" onclick="filterByStatus('unavailable')" title="Voir les chambres indisponibles">
-        <div class="kpi-icon" style="background:rgba(239,68,68,.1);color:var(--red)">
+        <div class="kpi-icon" style="background:rgba(101,67,33,.1);color:var(--red)">
             <i class="fas fa-times-circle"></i>
         </div>
         <div>
@@ -1031,7 +1031,7 @@ body {
             'export_type' => 'calendar',
             'month' => $month,
             'year' => $year
-        ]) }}" class="btn btn--outline" style="color:var(--grn);border-color:rgba(16,185,129,.3)">
+        ]) }}" class="btn btn--outline" style="color:var(--grn);border-color:rgba(205,133,63,.3)">
             <i class="fas fa-file-excel"></i>
             Exporter Excel
         </a>
@@ -1061,7 +1061,7 @@ window.scrollToToday = function() {
     // Mettre en évidence la colonne d'aujourd'hui
     document.querySelectorAll('.th-today').forEach(el => {
         el.style.backgroundColor = 'rgba(245,158,11,.3)';
-        el.style.outline = '2px solid #f59e0b';
+        el.style.outline = '2px solid #cd853f';
         setTimeout(() => {
             el.style.backgroundColor = '';
             el.style.outline = '';
@@ -1085,7 +1085,7 @@ window.scrollToDate = function(dateString) {
             inline: 'center' 
         });
         
-        targetCell.style.outline = '2px solid #3b82f6';
+        targetCell.style.outline = '2px solid #cd853f';
         targetCell.style.backgroundColor = 'rgba(59,130,246,.2)';
         
         setTimeout(() => {
@@ -1145,12 +1145,12 @@ window.showOccupancyDetails = function(roomId, date) {
             let content = `
                 <div class="p-3">
                     <h5 class="fw-bold mb-3">
-                        <i class="fas fa-calendar-times me-2" style="color:#ef4444"></i>
+                        <i class="fas fa-calendar-times me-2" style="color:#654321"></i>
                         Chambre Réservée
                     </h5>
                     <div class="row mb-4">
                         <div class="col-md-6">
-                            <div class="card" style="border-color:rgba(239,68,68,.3)">
+                            <div class="card" style="border-color:rgba(101,67,33,.3)">
                                 <div class="card-body">
                                     <h6>Informations Chambre</h6>
                                     <div class="mb-2"><small style="color:#64748b">Numéro:</small> <strong>${data.room.number}</strong></div>
@@ -1250,12 +1250,12 @@ window.showAvailabilityDetails = function(roomId, date) {
             let content = `
                 <div class="p-3">
                     <h5 class="fw-bold mb-3">
-                        <i class="fas fa-calendar-check me-2" style="color:#10b981"></i>
+                        <i class="fas fa-calendar-check me-2" style="color:#cd853f"></i>
                         Chambre Disponible
                     </h5>
                     <div class="row mb-4">
                         <div class="col-md-6">
-                            <div class="card" style="border-color:rgba(16,185,129,.3)">
+                            <div class="card" style="border-color:rgba(205,133,63,.3)">
                                 <div class="card-body">
                                     <h6>Informations Chambre</h6>
                                     <div class="mb-2"><small style="color:#64748b">Numéro:</small> <strong>${data.room.number}</strong></div>
@@ -1272,7 +1272,7 @@ window.showAvailabilityDetails = function(roomId, date) {
                                     <div class="mb-2"><small style="color:#64748b">Date:</small> <strong>${formattedDate}</strong></div>
                                     <div class="mb-3">
                                         <small style="color:#64748b">Prix total:</small>
-                                        <div class="fs-4 fw-bold" style="color:#10b981">${totalPrice} FCFA</div>
+                                        <div class="fs-4 fw-bold" style="color:#cd853f">${totalPrice} FCFA</div>
                                     </div>
                                     <div class="alert alert-success">
                                         <i class="fas fa-check-circle me-2"></i>
@@ -1374,7 +1374,7 @@ window.handlePeriodSelection = function(cell) {
             date: cell.getAttribute('data-date'),
             element: cell
         };
-        cell.style.outline = '2px solid #3b82f6';
+        cell.style.outline = '2px solid #cd853f';
         
         const formattedDate = new Date(window.selectionStart.date).toLocaleDateString('fr-FR');
         
@@ -1418,7 +1418,7 @@ window.handlePeriodSelection = function(cell) {
         
         window.showModal('Période sélectionnée', `
             <div class="p-3">
-                <h5 class="fw-bold mb-3"><i class="fas fa-calendar-check me-2" style="color:#10b981"></i>Période sélectionnée</h5>
+                <h5 class="fw-bold mb-3"><i class="fas fa-calendar-check me-2" style="color:#cd853f"></i>Période sélectionnée</h5>
                 <div class="row mb-4">
                     <div class="col-md-6">
                         <div class="card">
@@ -1439,7 +1439,7 @@ window.handlePeriodSelection = function(cell) {
                                 <div class="mb-2"><small style="color:#64748b">Durée:</small> <strong>${nights} nuit(s)</strong></div>
                                 <div class="mb-2">
                                     <small style="color:#64748b">Total:</small>
-                                    <div class="fs-4 fw-bold" style="color:#10b981">${formattedTotal} FCFA</div>
+                                    <div class="fs-4 fw-bold" style="color:#cd853f">${formattedTotal} FCFA</div>
                                 </div>
                             </div>
                         </div>

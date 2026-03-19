@@ -5,11 +5,11 @@
 @push('styles')
 <style>
 :root {
-    --primary: #3b82f6;
-    --success: #10b981;
-    --warning: #f59e0b;
-    --danger: #ef4444;
-    --dark: #1e293b;
+    --primary: #cd853f;
+    --success: #cd853f;
+    --warning: #cd853f;
+    --danger: #654321;
+    --dark: #654321;
     --light: #f8fafc;
     --border: #e2e8f0;
 }
@@ -120,7 +120,7 @@
 }
 
 .method-cash {
-    background: rgba(16,185,129,0.1);
+    background: rgba(205,133,63,0.1);
     color: var(--success);
 }
 
@@ -165,7 +165,7 @@
 }
 
 .btn-print:hover {
-    background: #2563eb;
+    background: #cd853f;
     transform: translateY(-2px);
 }
 

@@ -66,11 +66,36 @@ class User extends Authenticatable
             return asset('img/default/default-user.jpg');
         }
 
-        // Le fichier est directement dans /public/img/user/
-        $fullPath = 'img/user/'.trim($this->avatar, '/');
+        $path = $this->avatar;
+        
+        // Supprimer le slash de tête si présent pour faciliter les tests
+        $ltrimmedPath = ltrim($path, '/');
 
+        // Si c'est déjà un chemin complet vers storage ou img
+        if (str_starts_with($ltrimmedPath, 'storage/') || str_starts_with($ltrimmedPath, 'img/')) {
+            $fullPath = $ltrimmedPath;
+        } else {
+            // Sinon, essayer de deviner le dossier
+            // On vérifie d'abord si le fichier brut existe dans img/user/
+            if (file_exists(public_path('img/user/' . $ltrimmedPath))) {
+                $fullPath = 'img/user/' . $ltrimmedPath;
+            } else {
+                // Par défaut, supposer que c'est dans storage (cas d'upload standard Laravel)
+                $fullPath = 'storage/' . $ltrimmedPath;
+            }
+        }
+
+        // Vérifier si le fichier existe réellement
         if (file_exists(public_path($fullPath))) {
             return asset($fullPath);
+        }
+
+        // Essayer dans le sous-dossier spécifique au nom + id (ex: img/user/Matinou BELLO-3/photo.jpg)
+        $userFolderName = $this->name . '-' . $this->id;
+        $userFolderPath = 'img/user/' . $userFolderName . '/' . $ltrimmedPath;
+        
+        if (file_exists(public_path($userFolderPath))) {
+            return asset($userFolderPath);
         }
 
         return asset('img/default/default-user.jpg');
@@ -411,7 +436,7 @@ class User extends Authenticatable
      */
     public function generateRandomAvatar(): string
     {
-        $colors = ['4e73df', '1cc88a', '36b9cc', 'f6c23e', 'e74a3b', '858796'];
+        $colors = ['cd853f', '654321', 'b87333', '4d3319', 'e0a05a', '8b5d33'];
         $color = $colors[array_rand($colors)];
 
         return 'https://ui-avatars.com/api/?name='.urlencode($this->name).

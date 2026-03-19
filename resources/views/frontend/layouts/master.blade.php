@@ -4,14 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Hôtel de luxe - Réservez votre séjour dans notre établissement 5 étoiles">
-    <title>@yield('title', 'Hôtel Cactus Palace')</title>
+    <title>@yield('title', 'Hôtel Morada Lodge')</title>
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon-32x32.png') }}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicon-16x16.png') }}">
-    <link rel="apple-touch-icon" href="{{ asset('apple-touch-icon.png') }}">
-    <link rel="manifest" href="{{ asset('site.webmanifest') }}">
-    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
+    <link rel="icon" type="image/jpeg" href="{{ asset('img/logo_morada.jpg') }}">
+    <link rel="apple-touch-icon" href="{{ asset('img/logo_morada.jpg') }}">
+    <link rel="shortcut icon" href="{{ asset('img/logo_morada.jpg') }}">
     
 
     
@@ -27,17 +25,19 @@
     <!-- Styles personnalisés -->
     <style>
         :root {
-            --primary-color: #4CAF50; /* Vert principal */
-            --secondary-color: #81C784; /* Vert secondaire */
-            --light-color: #F1F8E9; /* Vert très clair */
-            --dark-color: #2E7D32; /* Vert foncé */
-            --accent-color: #C8E6C9; /* Vert accent */
+            --primary-color: #654321; /* Brun Profond Riche */
+            --secondary-color: #C5A059; /* Or Mat / Champagne */
+            --accent-gold: #D4AF37; /* Or Brillant */
+            --light-color: #FDFBF7; /* Crème Luxueux */
+            --dark-color: #654321; /* Anthracite Brunâtre */
+            --text-main: #333333; /* Gris foncé pour lisibilité */
+            --text-muted: #666666;
         }
         
-        body {
+        body { 
+            background-color: #FFFFFF;
+            color: var(--text-main);
             font-family: 'Montserrat', sans-serif;
-            color: #333;
-            background-color: var(--light-color);
         }
         
         h1, h2, h3, h4, h5, h6 {
@@ -50,30 +50,37 @@
             background-color: var(--primary-color) !important;
         }
         
-        .text-primary-custom {
+        .text-brown-custom {
             color: var(--primary-color) !important;
+        }
+
+        .text-gold-accent {
+            color: var(--secondary-color) !important;
         }
         
         .btn-primary-custom {
             background-color: var(--primary-color);
             border-color: var(--primary-color);
             color: white;
+            transition: all 0.3s ease;
         }
         
         .btn-primary-custom:hover {
-            background-color: #388E3C;
-            border-color: #388E3C;
+            background-color: var(--dark-color);
+            border-color: var(--dark-color);
+            color: #ffffff !important;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
         
         .navbar-brand {
             font-family: 'Playfair Display', serif;
             font-size: 1.8rem;
             font-weight: 700;
-            color: var(--dark-color) !important;
+            color: var(--primary-color) !important;
         }
         
         .hero-section {
-            background: url('https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -89,7 +96,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0, 0, 0, 0.3);
+            background: rgba(0, 0, 0, 0.4);
             z-index: 1;
         }
         
@@ -101,20 +108,20 @@
         .room-card {
             transition: transform 0.3s ease;
             border: none;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
             background-color: white;
-            border-radius: 10px;
+            border-radius: 12px;
             overflow: hidden;
         }
         
         .room-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 8px 25px rgba(76, 175, 80, 0.2);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
         }
         
         .footer {
             background-color: var(--dark-color);
-            color: white;
+            color: rgba(255,255,255,0.8);
         }
         
         .social-icons a {
@@ -134,88 +141,196 @@
         }
         
         .nav-link:hover {
-            color: var(--primary-color) !important;
+            color: var(--secondary-color) !important;
         }
         
         .btn-outline-primary-custom {
             color: var(--primary-color);
-            border-color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+            background: transparent;
+            font-weight: 600;
         }
         
         .btn-outline-primary-custom:hover {
             background-color: var(--primary-color);
-            border-color: var(--primary-color);
             color: white;
         }
         
         /* Styles pour les formulaires */
         .form-control:focus {
             border-color: var(--secondary-color);
-            box-shadow: 0 0 0 0.25rem rgba(129, 199, 132, 0.25);
+            box-shadow: 0 0 0 0.25rem rgba(197, 160, 89, 0.2);
         }
         
         /* Cartes et conteneurs */
         .card {
-            border: 1px solid rgba(76, 175, 80, 0.1);
+            border: 1px solid rgba(0, 0, 0, 0.05);
             background-color: white;
+            border-radius: 12px;
         }
         
         .card-header {
-            background-color: var(--accent-color);
-            border-bottom: 1px solid rgba(76, 175, 80, 0.1);
+            background-color: var(--light-color);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            color: var(--primary-color);
+            font-weight: 600;
         }
         
         /* Tables */
         .table-hover tbody tr:hover {
-            background-color: var(--accent-color);
+            background-color: rgba(197, 160, 89, 0.05);
         }
         
         /* Alertes */
         .alert-success {
-            background-color: var(--accent-color);
-            border-color: var(--secondary-color);
-            color: var(--dark-color);
+            background-color: #E8F5E9;
+            border-color: #C8E6C9;
+            color: #654321;
         }
         
-        /* Badges */
-        .badge.bg-primary {
+        /* Badges et Utilitaires */
+        .bg-hotel-brown {
             background-color: var(--primary-color) !important;
+            color: white !important;
         }
         
-        /* Boutons Hero Section */
-        .hero-section .btn-primary-custom {
-            background-color: #2E7D32;
-            border-color: #2E7D32;
+        .bg-hotel-gold {
+            background-color: var(--secondary-color) !important;
+            color: white !important;
         }
         
-        .hero-section .btn-primary-custom:hover {
-            background-color: #1B5E20;
-            border-color: #1B5E20;
+        .bg-hotel-light {
+            background-color: var(--light-color) !important;
         }
         
-        .hero-section .btn-outline-light {
-            border-color: white;
-            color: white;
+        .text-hotel-brown {
+            color: var(--primary-color) !important;
         }
         
-        .hero-section .btn-outline-light:hover {
-            background-color: white;
-            color: var(--dark-color);
+        .text-hotel-gold {
+            color: var(--secondary-color) !important;
+        }
+ 
+        /* Contrast Fixes */
+        .bg-primary, .bg-hotel-brown, .bg-dark { color: #ffffff !important; }
+        .btn-primary { 
+            background-color: var(--primary-color) !important; 
+            border-color: var(--primary-color) !important;
+            color: #fff !important;
+        }
+        
+        /* Force links to be visible and balanced */
+        .navbar-nav .nav-link {
+            color: #654321 !important;
+            font-weight: 600 !important;
+            display: block !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+        }
+        
+        .navbar-nav .nav-link:hover {
+            color: var(--secondary-color) !important;
+        }
+
+        /* Conflict Fixes between Tailwind and Bootstrap */
+        .collapse:not(.navbar-collapse) {
+            visibility: visible !important;
+        }
+        
+        .collapse.navbar-collapse {
+            visibility: visible !important;
+        }
+        
+        .navbar-toggler {
+            z-index: 1000;
+        }
+
+        /* Common Design Fixes */
+        .bg-primary, .bg-hotel-brown, .bg-dark { color: #ffffff !important; }
+        .text-white { color: #ffffff !important; }
+        
+        .room-stat-badge { color: var(--primary-color) !important; background: var(--secondary-color) !important; }
+        
+        .bg-primary { background-color: var(--primary-color) !important; }
+        .text-primary { color: var(--primary-color) !important; }
+        .btn-primary { 
+            background-color: var(--primary-color) !important; 
+            border-color: var(--primary-color) !important;
+            color: #ffffff !important;
+        }
+        .btn-primary:hover { 
+            background-color: var(--dark-color) !important; 
+            border-color: var(--dark-color) !important; 
+            color: #ffffff !important;
+        }
+        .card-header.bg-primary { background-color: var(--primary-color) !important; }
+        .existing-customer-info { background-color: #FFFFFF !important; border-left: 4px solid var(--primary-color) !important; }
+        .existing-customer-info h5 { color: var(--primary-color) !important; }
+        
+        .status-badge-available {
+            background-color: rgba(197, 160, 89, 0.15);
+            color: var(--primary-color);
+            border: 1px solid var(--secondary-color);
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-weight: 600;
+        }
+
+        .status-badge-unavailable {
+            background-color: rgba(0, 0, 0, 0.05);
+            color: #666;
+            border: 1px solid #ccc;
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-weight: 600;
+        }
+
+        /* Outline Brown Button */
+        .btn-outline-hotel-brown {
+            color: var(--primary-color) !important;
+            border-color: var(--primary-color) !important;
+            background-color: transparent !important;
+            transition: all 0.3s ease !important;
+        }
+        .btn-outline-hotel-brown:hover {
+            background-color: var(--primary-color) !important;
+            color: #ffffff !important;
         }
     </style>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        amber: {
+                            600: '#654321',
+                            700: '#654321',
+                            800: '#4d3319',
+                        }
+                    },
+                    fontFamily: {
+                        playfair: ['Playfair Display', 'serif'],
+                        montserrat: ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
     
     @stack('styles')
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top" style="z-index: 9999;">
         <div class="container">
             <a class="navbar-brand d-flex align-items-center" href="{{ route('frontend.home') }}">
-                <img src="{{ asset('img/logo_cactus.png') }}"
-                    alt="Hôtel Le Cactus"
+                <img src="{{ asset('img/logo_morada.jpg') }}"
+                    alt="Morada Lodge"
                     class="me-2"
                     style="height: 45px; width: auto;">
-                <span>Le cactus Hotel</span>
+                <span style="color: #654321 !important; font-weight: 700;">Morada Lodge</span>
             </a>
 
 
@@ -266,45 +381,62 @@
     </main>
 
     <!-- Footer -->
-    <footer class="footer py-5 mt-5">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4 mb-4">
-                    <h4 class="mb-3">Cactus Palace</h4>
-                    <p>Un hôtel 5 étoiles offrant des services exceptionnels dans un cadre luxueux et paisible.</p>
-                    <div class="social-icons mt-3">
-                        <a href="#"><i class="fab fa-facebook"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
+    <footer class="bg-gray-900 text-gray-300 py-12 mt-auto">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="w-10 h-10 bg-gradient-to-br from-amber-600 to-amber-800 rounded-xl flex items-center justify-center">
+                            <i class="fas fa-leaf text-white"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-playfair font-bold text-white">Morada Lodge</h3>
+                            <p class="text-xs text-gray-500">Luxury Nature Resort</p>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-400 leading-relaxed mb-6">Un sanctuaire de luxe au cœur de la nature béninoise, où authenticité et raffinement se rencontrent pour créer des souvenirs inoubliables.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-amber-600 transition-colors"><i class="fab fa-facebook-f text-sm"></i></a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-amber-600 transition-colors"><i class="fab fa-instagram text-sm"></i></a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-amber-600 transition-colors"><i class="fab fa-tripadvisor text-sm"></i></a>
                     </div>
                 </div>
-                
-                <div class="col-lg-4 mb-4">
-                    <h5 class="mb-3">Liens rapides</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="{{ route('frontend.home') }}" class="text-white text-decoration-none">Accueil</a></li>
-                        <li><a href="{{ route('frontend.rooms') }}" class="text-white text-decoration-none">Chambres</a></li>
-                        <li><a href="{{ route('frontend.restaurant') }}" class="text-white text-decoration-none">Restaurant</a></li>
-                        <li><a href="{{ route('frontend.services') }}" class="text-white text-decoration-none">Services</a></li>
-                        <li><a href="{{ route('frontend.contact') }}" class="text-white text-decoration-none">Contact</a></li>
+                <div>
+                    <h4 class="text-white font-semibold mb-6">Liens Rapides</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li><a href="{{ route('frontend.rooms') }}" class="hover:text-amber-400 transition-colors">Hébergements</a></li>
+                        <li><a href="{{ route('frontend.restaurant') }}" class="hover:text-amber-400 transition-colors">Restaurant & Bar</a></li>
+                        <li><a href="{{ route('frontend.services') }}" class="hover:text-amber-400 transition-colors">Services</a></li>
+                        <li><a href="#" class="hover:text-amber-400 transition-colors">Galerie</a></li>
+                        <li><a href="{{ route('frontend.contact') }}" class="hover:text-amber-400 transition-colors">Contact</a></li>
                     </ul>
                 </div>
-                
-                <div class="col-lg-4 mb-4">
-                    <h5 class="mb-3">Contact & Localisation</h5>
-                    <p><i class="fas fa-map-marker-alt me-2"></i> Haie Vive, Cotonou, Bénin</p>
-                    <p><i class="fas fa-phone me-2"></i> +229 01 XX XX XX XX</p>
-                    <p><i class="fas fa-phone me-2"></i> +229 02 XX XX XX XX</p>
-                    <p><i class="fas fa-envelope me-2"></i> contact@cactushotel.com</p>
-                    <p><i class="fas fa-envelope me-2"></i> reservation@cactushotel.com</p>
+                <div>
+                    <h4 class="text-white font-semibold mb-6">Services</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li><a href="#" class="hover:text-amber-400 transition-colors">Réservation en ligne</a></li>
+                        <li><a href="#" class="hover:text-amber-400 transition-colors">Service de conciergerie</a></li>
+                        <li><a href="#" class="hover:text-amber-400 transition-colors">Transfert aéroport</a></li>
+                        <li><a href="#" class="hover:text-amber-400 transition-colors">Excursions</a></li>
+                        <li><a href="#" class="hover:text-amber-400 transition-colors">Événements privés</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-6">Newsletter</h4>
+                    <p class="text-sm text-gray-400 mb-4">Restez informés de nos offres spéciales et nouveautés</p>
+                    <div class="flex">
+                        <input type="email" placeholder="Votre email" class="flex-1 px-4 py-2 bg-gray-800 text-white rounded-l-lg focus:outline-none focus:ring-2 focus:ring-amber-600">
+                        <button class="bg-amber-600 hover:bg-amber-700 px-4 py-2 rounded-r-lg transition-colors"><i class="fas fa-paper-plane"></i></button>
+                    </div>
                 </div>
             </div>
-            
-            <hr class="my-4" style="border-color: rgba(255,255,255,0.1);">
-            
-            <div class="text-center">
-                <p class="mb-0">&copy; {{ date('Y') }} Cactus Palace - Haie Vive, Cotonou. Tous droits réservés.</p>
+            <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-sm text-gray-500">© {{ date('Y') }} Morada Lodge - Tous droits réservés.</p>
+                <div class="flex space-x-6 mt-4 md:mt-0 text-sm">
+                    <a href="#" class="hover:text-amber-400 transition-colors">Conditions générales</a>
+                    <a href="#" class="hover:text-amber-400 transition-colors">Politique de confidentialité</a>
+                    <a href="#" class="hover:text-amber-400 transition-colors">Mentions légales</a>
+                </div>
             </div>
         </div>
     </footer>
