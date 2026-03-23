@@ -38,12 +38,14 @@ body {
     background: var(--gray-50);
     font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
     min-height: 100vh;
+    margin: 0;
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 
 .login-container {
-    min-height: 100vh;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -260,16 +262,19 @@ body {
 
 .input-icon {
     position: absolute;
-    left: 1rem;
-    top: 2.7rem;
+    left: 1.1rem;
+    top: 50%;
+    transform: translateY(-50%);
     color: var(--gray-400);
     font-size: 1.1rem;
     transition: var(--transition);
     pointer-events: none;
+    z-index: 2;
 }
 
-.form-control:focus + .input-icon {
+.position-relative:focus-within .input-icon {
     color: var(--primary);
+    transform: translateY(-50%) scale(1.1);
 }
 
 .remember-forgot {
