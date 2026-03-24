@@ -854,4 +854,4 @@ Route::fallback(function () {
     }
 
     return redirect()->route('login.index')->with('error', 'Page non trouvée. Veuillez vous connecter.');
-});
+});   
