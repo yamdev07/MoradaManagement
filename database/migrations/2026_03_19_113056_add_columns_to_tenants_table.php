@@ -9,23 +9,27 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
-    {
-        Schema::table('tenants', function (Blueprint $table) {
-            $table->string('domain')->nullable()->after('name');
-            $table->string('contact_email')->nullable()->after('domain');
-            $table->string('contact_phone')->nullable()->after('contact_email');
-            $table->boolean('is_active')->default(true)->after('contact_phone');
-        });
+   public function up(): void
+{
+    if (!Schema::hasTable('tenants')) {
+        return;
     }
 
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
-    {
-        Schema::table('tenants', function (Blueprint $table) {
-            $table->dropColumn(['domain', 'contact_email', 'contact_phone', 'is_active']);
-        });
+    Schema::table('tenants', function (Blueprint $table) {
+        $table->string('domain')->nullable();
+    });
+}
+
+public function down(): void
+{
+    if (!Schema::hasTable('tenants')) {
+        return;
     }
-};
+
+    Schema::table('tenants', function (Blueprint $table) {
+        $table->dropColumn('domain');
+    });
+}
+}
+
+
