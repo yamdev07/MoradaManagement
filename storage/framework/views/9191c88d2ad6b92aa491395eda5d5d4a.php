@@ -6,7 +6,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root {
-    /* ── Morada Lodge Palette ── */
+    /* ── <?php echo e($currentHotel->name ?? 'Morada Lodge'); ?> Palette ── */
     /* BROWN/BEIGE */
     --m50:  #f9f5f0;
     --m100: #f4f1e8;
@@ -526,7 +526,7 @@ body { font-family: var(--font); background: var(--surface); }
                         <hr class="my-4">
                         <h6 class="fw-bold mb-3">Besoin d'aide ?</h6>
                         <div class="d-grid gap-2">
-                            <a href="https://wa.me/229XXXXX" target="_blank" class="btn btn-success">
+                            <a href="https://wa.me/229XXXXX" class="btn btn-success">
                                 <i class="fab fa-whatsapp me-2"></i>WhatsApp
                             </a>
                             <a href="tel:+229XXXXX" class="btn btn-outline-primary">

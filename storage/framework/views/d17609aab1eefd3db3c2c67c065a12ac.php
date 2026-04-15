@@ -12,8 +12,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    <!-- Vite Assets -->
-    <?php echo app('Illuminate\Foundation\Vite')('resources/sass/app.scss'); ?>
+    <!-- CSS Assets -->
+    <link href="<?php echo e(asset('css/app.css')); ?>" rel="stylesheet">
 
     <title><?php echo $__env->yieldContent('title', 'Hotel Management System'); ?></title>
 
@@ -24,6 +24,9 @@
             margin: 0;
             padding: 0;
             min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             overflow-x: hidden;
         }
@@ -319,12 +322,12 @@
 </head>
 
 <body>
-    <main>
+    <main style="width: 100%; max-width: 100%;">
         <?php echo $__env->yieldContent('content'); ?>
     </main>
 
-    <!-- Vite Scripts -->
-    <?php echo app('Illuminate\Foundation\Vite')('resources/js/app.js'); ?>
+    <!-- JavaScript Assets -->
+    <script src="<?php echo e(asset('js/app.js')); ?>"></script>
 
     <!-- Additional Scripts -->
     <?php echo $__env->yieldContent('scripts'); ?>

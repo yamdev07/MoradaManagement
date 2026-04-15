@@ -652,7 +652,7 @@
                     @if($activity->subject_url)
                         <div class="mt-4">
                             <a href="{{ $activity->subject_url }}" class="btn-modern btn-outline-modern btn-sm-modern">
-                                <i class="fas fa-external-link-alt me-1"></i> Voir l'objet
+                                <i class="fas fa-eye me-1"></i> Voir l'objet
                             </a>
                         </div>
                     @endif

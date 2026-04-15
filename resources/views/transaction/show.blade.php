@@ -1032,7 +1032,7 @@
                                             <p class="fw-bold text-success mb-1" style="font-size: 1.1rem;">
                                                 {{ number_format($payment->amount, 0, ',', ' ') }} CFA
                                             </p>
-                                            <a href="{{ route('payment.invoice', $payment) }}" class="btn-modern btn-outline-modern btn-sm" target="_blank">
+                                            <a href="{{ route('payment.invoice', $payment) }}" class="btn-modern btn-outline-modern btn-sm">
                                                 <i class="fas fa-receipt"></i> Reçu
                                             </a>
                                             @if($payment->status == 'pending')
@@ -1109,7 +1109,7 @@
                         </a>
                         
                         @if($payments && $payments->count() > 0)
-                        <a href="{{ route('transaction.invoice', $transaction) }}" class="btn-modern btn-outline-modern w-100" target="_blank">
+                        <a href="{{ route('transaction.invoice', $transaction) }}" class="btn-modern btn-outline-modern w-100">
                             <i class="fas fa-file-invoice me-1"></i>Facture
                         </a>
                         @endif

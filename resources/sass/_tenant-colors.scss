@@ -1,0 +1,48 @@
+/* ===================================
+   Tenant Colors - Dynamic Theme System
+   =================================== */
+
+:root {
+    /* ---- COULEURS TENANT DYNAMIQUES ---- */
+    --tenant-primary: #8b4513;
+    --tenant-secondary: #d2b48c;
+    --tenant-accent: #f59e0b;
+    
+    /* Couleurs de base adaptées */
+    --primary: var(--tenant-primary);
+    --primary-light: var(--tenant-secondary);
+    --primary-soft: rgba(var(--tenant-primary), 0.08);
+    --success: var(--tenant-primary);
+    --success-light: rgba(var(--tenant-primary), 0.08);
+    --warning: var(--tenant-primary);
+    --warning-light: rgba(var(--tenant-primary), 0.08);
+    --info: var(--tenant-primary);
+    --info-light: rgba(var(--tenant-primary), 0.08);
+    --dark: var(--tenant-primary);
+    
+    /* ---- Sidebar Theme Colors ---- */
+    --sidebar-bg-primary: linear-gradient(180deg, var(--tenant-primary) 0%, var(--tenant-secondary) 100%);
+    --sidebar-bg-secondary: rgba(255, 255, 255, 0.05);
+    --sidebar-border: rgba(255, 255, 255, 0.1);
+    --sidebar-text-primary: #ffffff;
+    --sidebar-text-secondary: #e2e8f0;
+    --sidebar-text-muted: #94a3b8;
+    
+    /* ---- Navigation Colors ---- */
+    --nav-item-bg-hover: rgba(255, 255, 255, 0.08);
+    --nav-item-border-hover: rgba(255, 255, 255, 0.1);
+    --nav-item-bg-active: linear-gradient(135deg, rgba(var(--tenant-primary), 0.2) 0%, rgba(var(--tenant-secondary), 0.1) 100%);
+    --nav-item-border-active: rgba(var(--tenant-primary), 0.3);
+    --nav-item-icon-bg: rgba(255, 255, 255, 0.1);
+    --nav-item-icon-bg-hover: linear-gradient(135deg, var(--tenant-primary) 0%, var(--tenant-secondary) 100%);
+    --nav-item-icon-bg-active: linear-gradient(135deg, var(--tenant-primary) 0%, var(--tenant-secondary) 100%);
+    
+    /* ---- Highlight Items (Check-in, Reservation) ---- */
+    --nav-highlight-bg: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(5, 150, 105, 0.05) 100%);
+    --nav-highlight-border: rgba(16, 185, 129, 0.2);
+    --nav-highlight-bg-hover: linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(5, 150, 105, 0.1) 100%);
+    --nav-highlight-border-hover: rgba(16, 185, 129, 0.3);
+    --nav-highlight-bg-active: linear-gradient(135deg, rgba(16, 185, 129, 0.25) 0%, rgba(5, 150, 105, 0.15) 100%);
+    --nav-highlight-border-active: rgba(16, 185, 129, 0.4);
+    --nav-highlight-icon-bg: linear-gradient(135deg, #10b981 0%, #059669 100%);
+}

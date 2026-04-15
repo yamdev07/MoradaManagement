@@ -1137,7 +1137,7 @@
                                 <!-- Lien pour voir tous les conflits -->
                                 <a href="{{ route('availability.room.conflicts', $room->id) }}?check_in={{ $checkIn }}&check_out={{ $checkOut }}" 
                                    class="conflict-link">
-                                    <i class="fas fa-external-link-alt"></i>
+                                    <i class="fas fa-eye"></i>
                                     Voir tous les détails
                                 </a>
                             </div>

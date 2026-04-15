@@ -6,33 +6,61 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap');
 
 :root {
-    /* ── Palette : 3 couleurs uniquement ── */
-    /* VERT */
-    --g50:  #f0faf0;
-    --g100: #d4edda;
-    --g200: #a8d5b5;
-    --g300: #72bb82;
-    --g400: #4a9e5c;
-    --g500: #2e8540;
-    --g600: #1e6b2e;
-    --g700: #155221;
-    --g800: #0d3a16;
-    --g900: #072210;
+    /* ---- COULEURS TENANT DYNAMIQUES ---- */
+    --tenant-primary: {{ $tenantColors['primary_color'] ?? '#8b4513' }};
+    --tenant-secondary: {{ $tenantColors['secondary_color'] ?? '#d2b48c' }};
+    --tenant-accent: {{ $tenantColors['accent_color'] ?? '#f59e0b' }};
+    
+    /* Couleurs de base adaptées */
+    --primary: var(--tenant-primary);
+    --primary-light: var(--tenant-secondary);
+    --primary-soft: rgba(var(--tenant-primary), 0.08);
+    --success: var(--tenant-primary);
+    --success-light: rgba(var(--tenant-primary), 0.08);
+    --warning: var(--tenant-primary);
+    --warning-light: rgba(var(--tenant-primary), 0.08);
+    --info: var(--tenant-primary);
+    --info-light: rgba(var(--tenant-primary), 0.08);
+    --dark: var(--tenant-primary);
+    
+    /* ---- Palette Morada Lodge ---- */
+    /* MARRON PRIMAIRE */
+    --m50:  #f5e6d3;
+    --m100: #e6d7c3;
+    --m200: #d4c4b0;
+    --m300: #c2b09d;
+    --m400: #a0522d;
+    --m500: var(--tenant-primary);
+    --m600: var(--tenant-secondary);
+    --m700: var(--tenant-accent);
+    --m800: #33190d;
+    --m900: #1a0e07;
+    /* DORÉ ACCENT */
+    --a50:  #fef9e7;
+    --a100: #fef3c7;
+    --a200: #fde68a;
+    --a300: #fcd34d;
+    --a400: #fbbf24;
+    --a500: #f59e0b;
+    --a600: #d97706;
+    --a700: #b45309;
+    --a800: #92400e;
+    --a900: #78350f;
     /* BLANC / SURFACE */
     --white:    #ffffff;
-    --surface:  #f7f9f7;
-    --surface2: #eef3ee;
+    --surface:  #f4f1e8;
+    --surface2: #f5e6d3;
     /* GRIS */
-    --s50:  #f8f9f8;
-    --s100: #eff0ef;
-    --s200: #dde0dd;
-    --s300: #c2c7c2;
-    --s400: #9ba09b;
-    --s500: #737873;
-    --s600: #545954;
-    --s700: #3a3e3a;
-    --s800: #252825;
-    --s900: #131513;
+    --s50:  #f8f8f8;
+    --s100: #e9ecef;
+    --s200: #dee2e6;
+    --s300: #ced4da;
+    --s400: #adb5bd;
+    --s500: #6c757d;
+    --s600: #495057;
+    --s700: #343a40;
+    --s800: #212529;
+    --s900: #000000;
 
     --shadow-xs: 0 1px 2px rgba(0,0,0,.04);
     --shadow-sm: 0 1px 6px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.04);
@@ -85,7 +113,7 @@
     color: var(--s400); text-decoration: none;
     transition: var(--transition);
 }
-.status-breadcrumb a:hover { color: var(--g600); }
+.status-breadcrumb a:hover { color: var(--m600); }
 .status-breadcrumb .sep { color: var(--s300); }
 .status-breadcrumb .current { color: var(--s600); font-weight: 500; }
 
@@ -102,21 +130,21 @@
 .status-brand { display: flex; align-items: center; gap: 14px; }
 .status-brand-icon {
     width: 48px; height: 48px;
-    background: var(--g600); border-radius: 12px;
+    background: var(--m600); border-radius: 12px;
     display: flex; align-items: center; justify-content: center;
     color: white; font-size: 1.1rem; flex-shrink: 0;
-    box-shadow: 0 4px 14px rgba(46,133,64,.35);
+    box-shadow: 0 4px 14px rgba(139,69,19,.35);
 }
 .status-header-title {
     font-size: 1.4rem; font-weight: 700;
     color: var(--s900); line-height: 1.2; letter-spacing: -.3px;
 }
-.status-header-title em { font-style: normal; color: var(--g600); }
+.status-header-title em { font-style: normal; color: var(--m600); }
 .status-header-sub {
     font-size: .8rem; color: var(--s400); margin-top: 3px;
     display: flex; align-items: center; gap: 8px;
 }
-.status-header-sub i { color: var(--g500); }
+.status-header-sub i { color: var(--m500); }
 .status-header-actions { display: flex; align-items: center; gap: 10px; }
 
 /* ══════════════════════════════════════════════
@@ -131,13 +159,13 @@
     font-family: var(--font);
 }
 .btn-db-primary {
-    background: var(--g600); color: white;
-    box-shadow: 0 2px 10px rgba(46,133,64,.3);
+    background: var(--m600); color: white;
+    box-shadow: 0 2px 10px rgba(139,69,19,.3);
 }
 .btn-db-primary:hover {
-    background: var(--g700); color: white;
+    background: var(--m700); color: white;
     transform: translateY(-1px);
-    box-shadow: 0 4px 14px rgba(46,133,64,.35);
+    box-shadow: 0 4px 14px rgba(139,69,19,.35);
     text-decoration: none;
 }
 .btn-db-ghost {
@@ -169,18 +197,18 @@
 }
 .stat-card:hover {
     transform: translateY(-3px); box-shadow: var(--shadow-md);
-    border-color: var(--g200); text-decoration: none;
+    border-color: var(--m200); text-decoration: none;
 }
 .stat-card::after {
     content: ''; position: absolute;
     bottom: 0; left: 0; right: 0; height: 3px;
-    background: var(--bar-c, var(--g400));
+    background: var(--bar-c, var(--m400));
     border-radius: 0 0 var(--rl) var(--rl);
 }
 
-.stat-card--total { --bar-c: var(--g500); }
-.stat-card--active { --bar-c: var(--g600); }
-.stat-card--occupied { --bar-c: var(--g300); }
+.stat-card--total { --bar-c: var(--m500); }
+.stat-card--active { --bar-c: var(--m600); }
+.stat-card--occupied { --bar-c: var(--m300); }
 .stat-card--inactive { --bar-c: var(--s400); }
 
 .stat-card-head { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px; }
@@ -189,9 +217,9 @@
     display: flex; align-items: center; justify-content: center;
     font-size: 1rem; flex-shrink: 0;
 }
-.stat-card--total .stat-card-icon { background: var(--g100); color: var(--g600); }
-.stat-card--active .stat-card-icon { background: var(--g50); color: var(--g600); }
-.stat-card--occupied .stat-card-icon { background: var(--g50); color: var(--g500); }
+.stat-card--total .stat-card-icon { background: var(--m100); color: var(--m600); }
+.stat-card--active .stat-card-icon { background: var(--m50); color: var(--m600); }
+.stat-card--occupied .stat-card-icon { background: var(--m50); color: var(--m500); }
 .stat-card--inactive .stat-card-icon { background: var(--s100); color: var(--s500); }
 
 .stat-card-value {
@@ -224,8 +252,8 @@
 .filter-badge {
     display: inline-flex; align-items: center; gap: 6px;
     padding: 5px 12px; border-radius: 30px; font-size: .75rem;
-    font-weight: 600; background: var(--g100); color: var(--g700);
-    border: 1px solid var(--g200);
+    font-weight: 600; background: var(--m100); color: var(--m700);
+    border: 1px solid var(--m200);
 }
 .badge-count {
     background: var(--white); padding: 2px 6px; border-radius: 20px;
@@ -307,20 +335,20 @@
     font-weight: 600; white-space: nowrap;
 }
 .status-badge--available {
-    background: var(--g100); color: var(--g700);
-    border: 1px solid var(--g200);
+    background: var(--m100); color: var(--m700);
+    border: 1px solid var(--m200);
 }
 .status-badge--occupied {
     background: #fee2e2; color: #b91c1c;
     border: 1px solid #fecaca;
 }
 .status-badge--maintenance {
-    background: #fff3cd; color: #856404;
-    border: 1px solid #ffeeba;
+    background: var(--a100); color: var(--a700);
+    border: 1px solid var(--a200);
 }
 .status-badge--cleaning {
-    background: var(--g50); color: var(--g600);
-    border: 1px solid var(--g200);
+    background: var(--m50); color: var(--m600);
+    border: 1px solid var(--m200);
 }
 .status-badge--reserved {
     background: #e0e7ff; color: #4338ca;

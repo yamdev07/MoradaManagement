@@ -7,48 +7,74 @@
    STYLES LOGIN - Design moderne cohérent
 ═══════════════════════════════════════════════════════════════════ */
 :root {
-    --primary: #8b4513;
-    --primary-light: #a0522d;
-    --primary-soft: rgba(139, 69, 19, 0.08);
-    --success: #8b4513;
-    --success-light: rgba(139, 69, 19, 0.08);
+    /* ── THÈME BLEU UNIFORME ── */
+    --primary: #2563eb;
+    --primary-light: #3b82f6;
+    --primary-soft: rgba(37, 99, 235, 0.08);
+    --primary-dark: #1d4ed8;
+    --secondary: #60a5fa;
+    --secondary-light: #93c5fd;
+    --secondary-soft: rgba(96, 165, 250, 0.08);
+    --accent: #3b82f6;
+    --accent-light: rgba(59, 130, 246, 0.08);
+    --success: #10b981;
+    --success-light: #34d399;
+    --success-soft: rgba(16, 185, 129, 0.08);
     --warning: #f59e0b;
-    --warning-light: rgba(245, 158, 11, 0.08);
+    --warning-light: #fbbf24;
+    --warning-soft: rgba(251, 191, 36, 0.08);
     --danger: #ef4444;
-    --danger-light: rgba(239, 68, 68, 0.08);
-    --info: #8b4513;
-    --info-light: rgba(139, 69, 19, 0.08);
-    --gray-50: #fcf8f3;
-    --gray-100: #f9f0e6;
-    --gray-200: #f5e6d3;
-    --gray-300: #e8d5c4;
-    --gray-400: #d2b48c;
-    --gray-500: #704838;
-    --gray-600: #5f3c2e;
-    --gray-700: #4e3024;
-    --gray-800: #3d241a;
+    --danger-light: #f87171;
+    --danger-soft: rgba(239, 68, 68, 0.08);
+    --info: #6366f1;
+    --info-light: #818cf8;
+    --info-soft: rgba(129, 140, 248, 0.08);
+    
+    /* Couleurs de base */
+    --gray-50: #f8fafc;
+    --gray-100: #f1f5f9;
+    --gray-200: #e5e7eb;
+    --gray-300: #d1d5db;
+    --gray-400: #9ca3af;
+    --gray-500: #6b7280;
+    --gray-600: #4b5563;
+    --gray-700: #374151;
+    --gray-800: #1f2937;
+    --gray-900: #111827;
     --white: #ffffff;
-    --radius: 12px;
-    --shadow: 0 4px 20px rgba(0, 0, 0, 0.02), 0 1px 3px rgba(0, 0, 0, 0.05);
-    --shadow-hover: 0 10px 30px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.1);
-    --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    /* Espacements et ombres */
+    --radius-sm: 6px;
+    --radius: 8px;
+    --radius-lg: 12px;
+    --radius-xl: 16px;
+    --shadow-sm: 0 1px 2px rgba(37, 99, 235, 0.05);
+    --shadow: 0 4px 6px rgba(37, 99, 235, 0.07);
+    --shadow-lg: 0 10px 15px rgba(37, 99, 235, 0.1);
+    --shadow-xl: 0 20px 25px rgba(37, 99, 235, 0.15);
+    
+    /* Transitions */
+    --transition-fast: all 0.15s ease;
+    --transition: all 0.2s ease;
+    --transition-slow: all 0.3s ease;
+    
+    /* Typography */
+    --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+    --font-display: 'Inter Display', sans-serif;
 }
 
 body {
-    background: var(--gray-50);
-    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%) !important;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
     min-height: 100vh;
-    display: flex;
-    align-items: center;
 }
 
 .login-container {
-    min-height: 100vh;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 2rem 1rem;
-    background: linear-gradient(135deg, rgba(139, 69, 19, 0.05) 0%, rgba(160, 82, 45, 0.05) 100%);
 }
 
 .login-card {
@@ -334,20 +360,18 @@ body {
 }
 
 .btn-login {
-    background: linear-gradient(135deg, #8B4513 0%, #964B00 100%);
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
     color: white;
     border: none;
     padding: 0.8rem 2.5rem;
-    border-radius: var(--radius);
-    font-size: 1rem;
+    border-radius: var(--radius-lg);
     font-weight: 600;
+    font-size: 1rem;
     cursor: pointer;
     transition: var(--transition);
-    width: 100%;
-    box-shadow: 0 4px 15px rgba(139, 69, 19, 0.3);
-    display: flex;
-    justify-content: center;
-    gap: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: var(--shadow);
     position: relative;
     overflow: hidden;
 }
@@ -355,24 +379,22 @@ body {
 .btn-login::before {
     content: '';
     position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.2);
-    transform: translate(-50%, -50%);
-    transition: width 0.6s, height 0.6s;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: var(--transition-slow);
 }
 
 .btn-login:hover {
-    background: linear-gradient(135deg, #654321 0%, var(--primary) 100%);
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(139, 69, 19, 0.3);
+    box-shadow: var(--shadow-lg);
+    background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary) 100%);
 }
 
 .btn-login:hover::before {
-    width: 300px;
+    left: 100%;
     height: 300px;
 }
 
@@ -557,11 +579,17 @@ body {
         <!-- Côté gauche avec présentation -->
         <div class="login-left">
             <div class="hotel-icon">
-                <img src="{{ asset('img/logo/logo_ancien.jpg') }}"
-                     alt="Morada Lodge"
-                     class="mb-2">
-                <div class="hotel-name">MORADA LODGE</div>
-                <div class="hotel-slogan">Votre oasis de tranquillité et de saveurs</div>
+                @if($currentHotel && $currentHotel->logo)
+                    <img src="{{ asset('storage/' . $currentHotel->logo) }}"
+                         alt="{{ $currentHotel->name }}"
+                         class="mb-2">
+                @else
+                    <img src="{{ asset('img/logo/logo_ancien.jpg') }}"
+                         alt="Morada Lodge"
+                         class="mb-2">
+                @endif
+                <div class="hotel-name">{{ $currentHotel->name ?? 'MORADA LODGE' }}</div>
+                <div class="hotel-slogan">{{ $currentHotel->description ?? 'Votre oasis de tranquillité et de saveurs' }}</div>
             </div>
 
             <ul class="features-list">
@@ -598,6 +626,9 @@ body {
 
             <form id="form-login" action="/login" method="POST">
                 @csrf
+                @if($currentHotel)
+                    <input type="hidden" name="tenant_id" value="{{ $currentHotel->id }}">
+                @endif
 
                 <div class="form-group">
                     <label for="email" class="form-label">Adresse email</label>
@@ -648,7 +679,6 @@ body {
                     <i class="fas fa-sign-in-alt"></i>
                     Se connecter
                 </button>
-
                 
             </form>
         </div>

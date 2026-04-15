@@ -1,34 +1,35 @@
 // Body
-$body-bg: #f4f1e8;
+$body-bg: #ffffff;
 
 // Typography
 $font-family-sans-serif: "Inter", "Nunito", sans-serif;
 $font-size-base: 0.875rem;
 $line-height-base: 1.6;
 
-// Morada Lodge Color Palette
-$primary: #8b4513;
-$secondary: #a0522d;
-$success: #cd853f;
+// Morada Lodge Color Palette - Couleurs neutres
+$primary: #007bff;
+$secondary: #6c757d;
+$success: #007bff;
 $info: #0891b2;
 $warning: #d97706;
 $danger: #dc2626;
-$light: #f4f1e8;
-$dark: #654321;
+$light: #f8f9fa;
+$dark: #343a40;
 
-// Custom Hotel Theme Colors - Morada Lodge
-$hotel-primary: #8b4513;
-$hotel-secondary: #a0522d;
-$hotel-accent: #cd853f;
-$hotel-success: #8b4513;
-$hotel-danger: #ef4444;
-$hotel-light: #f4f1e8;
-$hotel-dark: #654321;
+// Custom Hotel Theme Colors - Couleurs neutres
+$hotel-primary: #007bff;
+$hotel-secondary: #6c757d;
+$hotel-accent: #007bff;
+$hotel-success: #007bff;
+$hotel-danger: #dc2626;
+$hotel-light: #f8f9fa;
+$hotel-dark: #343a40;
 
 // Sidebar Colors
 $sidebar-bg: #1e293b;
 $sidebar-item-hover: #334155;
-$sidebar-item-active: #8b4513;
+$sidebar-item-active: #007bff;
+$sidebar-item-active: #007bff;
 
 // Colors
 $blue: #2563eb;
@@ -38,6 +39,6 @@ $pink: #ec4899;
 $red: #ef4444;
 $orange: #f97316;
 $yellow: #eab308;
-$green: #8b4513;
+$green: #007bff;
 $teal: #14b8a6;
 $cyan: #06b6d4;

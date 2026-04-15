@@ -9,7 +9,7 @@
         <!-- Brand -->
         <div class="navbar-brand fw-bold text-gradient me-auto">
             <i class="fas fa-hotel me-2"></i>
-            Hotel Admin
+            {{ $currentHotel->name ?? 'Hotel Admin' }}
         </div>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"

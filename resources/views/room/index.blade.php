@@ -7,6 +7,23 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap');
 
 :root {
+    /* ── COULEURS TENANT DYNAMIQUES ── */
+    --tenant-primary: {{ $tenantColors['primary_color'] ?? '#8b4513' }};
+    --tenant-secondary: {{ $tenantColors['secondary_color'] ?? '#d2b48c' }};
+    --tenant-accent: {{ $tenantColors['accent_color'] ?? '#f59e0b' }};
+    
+    /* Couleurs de base adaptées */
+    --primary: var(--tenant-primary);
+    --primary-light: var(--tenant-secondary);
+    --primary-soft: rgba(var(--tenant-primary), 0.08);
+    --success: var(--tenant-primary);
+    --success-light: rgba(var(--tenant-primary), 0.08);
+    --warning: var(--tenant-primary);
+    --warning-light: rgba(var(--tenant-primary), 0.08);
+    --info: var(--tenant-primary);
+    --info-light: rgba(var(--tenant-primary), 0.08);
+    --dark: var(--tenant-primary);
+    
     /* ── Morada Lodge Palette ── */
     /* BROWN/BEIGE */
     --m50:  #f9f5f0;
@@ -14,9 +31,9 @@
     --m200: #e8dcc0;
     --m300: #d4b896;
     --m400: #c19a6b;
-    --m500: #8b4513;
-    --m600: #703610;
-    --m700: #5a2b0d;
+    --m500: var(--tenant-primary);
+    --m600: var(--tenant-secondary);
+    --m700: var(--tenant-accent);
     --m800: #4a1f08;
     --m900: #3a1504;
     /* BLANC / SURFACE */

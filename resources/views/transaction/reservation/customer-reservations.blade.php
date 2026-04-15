@@ -245,20 +245,51 @@
 
 @push('styles')
 <style>
-    .room-badge {
-        width: 40px;
-        height: 40px;
-        border-radius: 8px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-        font-weight: bold;
-        font-size: 1.1rem;
-    }
-    
-    .progress {
-        border-radius: 10px;
+    :root {
+        /* ── COULEURS TENANT DYNAMIQUES ── */
+        --tenant-primary: {{ $tenantColors['primary_color'] ?? '#8b4513' }};
+        --tenant-secondary: {{ $tenantColors['secondary_color'] ?? '#d2b48c' }};
+        --tenant-accent: {{ $tenantColors['accent_color'] ?? '#f59e0b' }};
+        
+        /* Couleurs de base adaptées */
+        --primary: var(--tenant-primary);
+        --primary-light: var(--tenant-secondary);
+        --primary-soft: rgba(var(--tenant-primary), 0.08);
+        --success: var(--tenant-primary);
+        --success-light: rgba(var(--tenant-primary), 0.08);
+        --warning: var(--tenant-primary);
+        --warning-light: rgba(var(--tenant-primary), 0.08);
+        --info: var(--tenant-primary);
+        --info-light: rgba(var(--tenant-primary), 0.08);
+        --dark: var(--tenant-primary);
+        
+        /* ── Morada Lodge Palette ── */
+        /* BROWN/BEIGE */
+        --m50: #f9f5f0;
+        --m100: #f4f1e8;
+        --m200: #e8dcc0;
+        --m300: #d4b896;
+        --m400: #c19a6b;
+        --m500: var(--tenant-primary);
+        --m600: var(--tenant-secondary);
+        --m700: var(--tenant-accent);
+        --m800: #4a1f08;
+        --m900: #3a1504;
+        /* BLANC / SURFACE */
+        --white:    #ffffff;
+        --surface:  #f9f5f0;
+        --surface2: #f4f1e8;
+        /* GRIS */
+        --s50:  #fafafa;
+        --s100: #f5f5f5;
+        --s200: #e5e5e5;
+        --s300: #d4d4d4;
+        --s400: #a3a3a3;
+        --s500: #737373;
+        --s600: #525252;
+        --s700: #404040;
+        --s800: #262626;
+        --s900: #171717;
         background-color: #e9ecef;
     }
     

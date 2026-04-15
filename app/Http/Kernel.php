@@ -6,6 +6,8 @@ use App\Http\Middleware\CheckAdminRestriction;
 use App\Http\Middleware\CheckHousekeepingReadOnly;
 use App\Http\Middleware\CheckReceptionistRestriction;
 use App\Http\Middleware\CheckRole;
+use App\Http\Middleware\SetTenantByUrl;
+use App\Http\Middleware\TenantIsolation;
 use App\Http\Middleware\TrackUserActivity;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
@@ -42,9 +44,14 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            // \App\Http\Middleware\SetTenantByUrl::class, // Détection par URL - Désactivé temporairement
+            \App\Http\Middleware\SetTenant::class, // Multitenant middleware
             
             // SUPPRIMEZ CETTE LIGNE TEMPORAIREMENT POUR DÉBOGUER
             // \App\Http\Middleware\TrackUserActivity::class,
+            
+            // Middleware SPA pour sidebar fixe
+            \App\Http\Middleware\SPAContent::class,
         ],
 
         'api' => [
@@ -76,6 +83,9 @@ class Kernel extends HttpKernel
         'admin.restrict' => CheckAdminRestriction::class,
         'receptionist.restrict' => CheckReceptionistRestriction::class,
         'housekeeping.readonly' => CheckHousekeepingReadOnly::class,
+        'hotel.context' => \App\Http\Middleware\SetHotelContext::class,
+        'tenant.isolation' => \App\Http\Middleware\TenantIsolation::class,
+        'tenant.theme' => \App\Http\Middleware\TenantThemeMiddleware::class,
         
         // SUPPRIMEZ CES LIGNES TEMPORAIREMENT POUR DÉBOGUER
         // 'activity' => TrackUserActivity::class,

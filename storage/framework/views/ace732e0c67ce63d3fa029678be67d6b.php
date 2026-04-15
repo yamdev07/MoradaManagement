@@ -7,41 +7,43 @@
    VARIABLES & BASE
 ══════════════════════════════════════════════ */
 :root {
-    --brown-950: #2c1810;
-    --brown-900: #3d241a;
-    --brown-800: #4e3024;
-    --brown-600: #704838;
-    --brown-500: #8b4513;
-    --brown-400: #a0522d;
-    --brown-100: #f9f0e6;
-    --brown-50:  #fcf8f3;
-
-    --amber-500: #8b4513;
-    --amber-100: #f9f0e6;
-    --amber-50:  #fcf8f3;
-
-    --blue-600:  #8b4513;
-    --blue-100:  #f9f0e6;
-    --blue-50:   #fcf8f3;
-
-    --slate-900: #3d241a;
-    --slate-700: #4e3024;
-    --slate-500: #704838;
-    --slate-400: #d2b48c;
-    --slate-200: #f5e6d3;
-    --slate-100: #f9f0e6;
-    --slate-50:  #fcf8f3;
-
-    --red-500:   #ef4444;
-    --red-100:   #fee2e2;
-
-    --shadow-sm:  0 1px 3px rgba(0,0,0,.07), 0 1px 2px rgba(0,0,0,.05);
-    --shadow-md:  0 4px 12px rgba(0,0,0,.08), 0 2px 6px rgba(0,0,0,.05);
-    --shadow-lg:  0 10px 30px rgba(0,0,0,.1),  0 4px 12px rgba(0,0,0,.06);
-    --radius-sm:  8px;
-    --radius-md:  12px;
-    --radius-lg:  16px;
-
+    /* ── COULEURS TENANT DYNAMIQUES ── */
+    --tenant-primary: <?php echo e($tenantColors['primary_color'] ?? '#8b4513'); ?>;
+    --tenant-secondary: <?php echo e($tenantColors['secondary_color'] ?? '#d2b48c'); ?>;
+    --tenant-accent: <?php echo e($tenantColors['accent_color'] ?? '#f59e0b'); ?>;
+    
+    /* Couleurs de base adaptées */
+    --primary: var(--tenant-primary);
+    --primary-light: var(--tenant-secondary);
+    --primary-soft: rgba(var(--tenant-primary), 0.08);
+    --success: var(--tenant-primary);
+    --success-light: rgba(var(--tenant-primary), 0.08);
+    --warning: var(--tenant-primary);
+    --warning-light: rgba(var(--tenant-primary), 0.08);
+    --info: var(--tenant-primary);
+    --info-light: rgba(var(--tenant-primary), 0.08);
+    --dark: var(--tenant-primary);
+    
+    /* Couleurs de base (neutres) */
+    --gray-950: #111827;
+    --gray-900: #1f2937;
+    --gray-800: #374151;
+    --gray-700: #4b5563;
+    --gray-600: #6b7280;
+    --gray-500: #9ca3af;
+    --gray-400: #d1d5db;
+    --gray-300: #e5e7eb;
+    --gray-200: #f3f4f6;
+    --gray-100: #f9fafb;
+    --gray-50: #f8fafc;
+    --red-500: #ef4444;
+    --red-100: #fee2e2;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,.07), 0 1px 2px rgba(0,0,0,.05);
+    --shadow-md: 0 4px 12px rgba(0,0,0,.08), 0 2px 6px rgba(0,0,0,.05);
+    --shadow-lg: 0 10px 30px rgba(0,0,0,.1), 0 4px 12px rgba(0,0,0,.06);
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
     --transition: all .2s cubic-bezier(.4,0,.2,1);
 }
 
@@ -98,11 +100,11 @@
 }
 .ci-header-icon {
     width: 44px; height: 44px;
-    background: linear-gradient(135deg, var(--brown-800), var(--brown-600));
+    background: linear-gradient(135deg, var(--tenant-primary), var(--tenant-secondary));
     border-radius: var(--radius-sm);
     display: flex; align-items: center; justify-content: center;
     color: white; font-size: 1.1rem;
-    box-shadow: 0 4px 12px rgba(139,69,19,.3);
+    box-shadow: 0 4px 12px rgba(var(--tenant-primary), 0.3);
     flex-shrink: 0;
 }
 .ci-header-subtitle {
@@ -128,13 +130,13 @@
     line-height: 1;
 }
 .btn-ci-primary {
-    background: linear-gradient(135deg, var(--brown-800), var(--brown-600));
+    background: linear-gradient(135deg, var(--tenant-primary), var(--tenant-secondary));
     color: white;
-    box-shadow: 0 4px 12px rgba(139,69,19,.3);
+    box-shadow: 0 4px 12px rgba(var(--tenant-primary), 0.3);
 }
 .btn-ci-primary:hover {
-    background: linear-gradient(135deg, var(--brown-900), var(--brown-800));
-    box-shadow: 0 6px 16px rgba(139,69,19,.4);
+    background: linear-gradient(135deg, var(--tenant-secondary), var(--tenant-primary));
+    box-shadow: 0 6px 16px rgba(var(--tenant-primary), 0.4);
     transform: translateY(-1px);
     color: white;
     text-decoration: none;
@@ -163,9 +165,9 @@
     font-size: .875rem;
 }
 .ci-alert-success {
-    background: var(--brown-50);
-    border-color: var(--brown-100);
-    color: #4e3024;
+    background: var(--success-light);
+    border-color: var(--success-light);
+    color: var(--tenant-primary);
 }
 .ci-alert-error {
     background: var(--red-100);
@@ -208,17 +210,17 @@
     position: absolute;
     top: 0; left: 0; right: 0;
     height: 3px;
-    background: var(--card-accent, var(--primary-500));
+    background: var(--card-accent, var(--tenant-primary));
     border-radius: 4px 4px 0 0;
 }
 .stat-card:hover {
     transform: translateY(-3px);
     box-shadow: var(--shadow-md);
 }
-.stat-card--arrivals   { --card-accent: var(--blue-600); }
-.stat-card--staying    { --card-accent: var(--primary-500); }
-.stat-card--departures { --card-accent: var(--amber-500); }
-.stat-card--available  { --card-accent: var(--brown-500); }
+.stat-card--arrivals   { --card-accent: var(--tenant-primary); }
+.stat-card--staying    { --card-accent: var(--tenant-primary); }
+.stat-card--departures { --card-accent: var(--tenant-secondary); }
+.stat-card--available  { --card-accent: var(--tenant-accent); }
 
 .stat-card-top {
     display: flex; justify-content: space-between; align-items: flex-start;
@@ -246,10 +248,10 @@
     flex-shrink: 0;
     opacity: .85;
 }
-.stat-card--arrivals .stat-card-icon   { background: var(--blue-50);  color: var(--blue-600); }
-.stat-card--staying .stat-card-icon    { background: var(--primary-50); color: var(--primary-600); }
-.stat-card--departures .stat-card-icon { background: var(--amber-50); color: var(--amber-500); }
-.stat-card--available .stat-card-icon  { background: var(--brown-50);         color: var(--brown-500); }
+.stat-card--arrivals .stat-card-icon   { background: var(--primary-soft);  color: var(--tenant-primary); }
+.stat-card--staying .stat-card-icon    { background: var(--primary-soft); color: var(--tenant-primary); }
+.stat-card--departures .stat-card-icon { background: var(--warning-light); color: var(--tenant-secondary); }
+.stat-card--available .stat-card-icon  { background: var(--success-light);         color: var(--tenant-accent); }
 
 .stat-card-meta {
     font-size: .78rem;
@@ -313,10 +315,10 @@
 }
 
 /* ── Badge colors ───────────────────────────── */
-.badge-green  { background: var(--primary-100); color: #4e3024; }
-.badge-amber  { background: var(--amber-100); color: #92400e; }
-.badge-blue   { background: var(--blue-100);  color: #1e40af; }
-.badge-purple { background: var(--brown-100);          color: var(--brown-600); }
+.badge-green  { background: var(--success-light); color: var(--tenant-primary); }
+.badge-amber  { background: var(--warning-light); color: var(--tenant-secondary); }
+.badge-blue   { background: var(--info-light); color: var(--tenant-primary); }
+.badge-purple { background: var(--gray-100);          color: var(--gray-700); }
 .badge-slate  { background: var(--slate-100); color: var(--slate-700); }
 
 /* ══════════════════════════════════════════════
@@ -343,13 +345,13 @@
 }
 .date-group-pill {
     display: inline-flex; align-items: center; gap: 6px;
-    background: var(--blue-50);
-    color: var(--blue-600);
+    background: var(--primary-soft);
+    color: var(--tenant-primary);
     font-size: .7rem;
     font-weight: 700;
     padding: 2px 10px;
     border-radius: 20px;
-    border: 1px solid var(--blue-100);
+    border: 1px solid var(--primary-light);
 }
 
 /* ── Reservation row ────────────────────────── */
@@ -435,19 +437,20 @@
 }
 .btn-res:hover { transform: translateY(-1px); text-decoration: none; }
 .btn-res-checkin {
-    background: linear-gradient(135deg, var(--brown-800), var(--brown-600));
-    color: white; border-color: var(--primary-700);
-    box-shadow: 0 2px 6px rgba(139,69,19,.25);
+    background: linear-gradient(135deg, var(--tenant-primary), var(--tenant-secondary));
+    color: white; border-color: var(--gray-700);
+    box-shadow: 0 2px 6px rgba(var(--tenant-primary), 0.25);
 }
 .btn-res-checkin:hover {
-    box-shadow: 0 4px 10px rgba(5,150,105,.35);
+    background: linear-gradient(135deg, var(--tenant-secondary), var(--tenant-primary));
+    box-shadow: 0 4px 10px rgba(var(--tenant-primary), 0.35);
     color: white;
 }
 .btn-res-quick {
     background: white; color: var(--primary-700);
     border-color: var(--green-200);
 }
-.btn-res-quick:hover { background: var(--primary-50); color: var(--primary-800); border-color: var(--primary-300); }
+.btn-res-quick:hover { background: var(--primary-soft); color: var(--tenant-primary); border-color: var(--primary-light); }
 .btn-res-view {
     background: white; color: var(--slate-600);
     border-color: var(--slate-200);
@@ -1103,7 +1106,7 @@ function showToast(msg, type = 'success') {
     const t = document.createElement('div');
     t.className = 'ci-toast' + (type === 'error' ? ' ci-toast-error' : '');
     const icon = type === 'success' ? 'fas fa-check-circle' : 'fas fa-exclamation-circle';
-    const colors = { error: 'var(--red-500)', info: 'var(--blue-600)', success: 'var(--brown-500)' };
+    const colors = { error: 'var(--red-500)', info: 'var(--tenant-primary)', success: 'var(--tenant-primary)' };
     t.innerHTML = `<i class="${icon}" style="color:${colors[type]};font-size:1rem;flex-shrink:0"></i><span>${msg}</span>`;
     wrap.appendChild(t);
     setTimeout(() => t.style.opacity = '0', 2800);

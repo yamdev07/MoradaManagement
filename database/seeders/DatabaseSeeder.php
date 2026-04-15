@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
             // ImageSeeder::class,
             DemoUserSeeder::class,
             MoradaLodgeUserSeeder::class,
+            TenantUsersSeeder::class,
         ]);
     }
 }

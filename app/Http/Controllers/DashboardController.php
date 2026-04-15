@@ -16,6 +16,7 @@ class DashboardController extends Controller
 {
     $dateFilter = $request->get('date_filter', 'today');
     $statusFilter = $request->get('status', null);
+    $hotelId = $request->get('hotel_id', session('selected_hotel_id'));
 
     $today = Carbon::today();
     $now = Carbon::now();
@@ -28,6 +29,13 @@ class DashboardController extends Controller
             $q->where('status', 'completed');
         },
     ]);
+
+    // Filtrer par hotel_id si disponible
+    if ($hotelId) {
+        $query->where('tenant_id', $hotelId);
+        // Mettre en session pour le contexte
+        session(['selected_hotel_id' => $hotelId]);
+    }
 
     // --- FILTRE DATE (version sûre date+heure) ---
     switch ($dateFilter) {
@@ -102,18 +110,33 @@ class DashboardController extends Controller
     $todayArrivalsCount = Transaction::whereDate('check_in', $today)
         ->whereIn('status', ['reservation', 'active'])
         ->whereNotIn('status', ['cancelled', 'no_show'])
+        ->when($hotelId, function ($query) use ($hotelId) {
+            return $query->where('tenant_id', $hotelId);
+        })
         ->count();
 
     $todayDeparturesCount = Transaction::whereDate('check_out', $today)
         ->where('status', 'active')
+        ->when($hotelId, function ($query) use ($hotelId) {
+            return $query->where('tenant_id', $hotelId);
+        })
         ->count();
 
-    $availableRoomsCount = Room::where('room_status_id', 1)->count();
-    $totalRoomsCount = Room::count();
+    $availableRoomsCount = Room::where('room_status_id', 1)
+        ->when($hotelId, function ($query) use ($hotelId) {
+            return $query->where('tenant_id', $hotelId);
+        })
+        ->count();
+    $totalRoomsCount = Room::when($hotelId, function ($query) use ($hotelId) {
+            return $query->where('tenant_id', $hotelId);
+        })->count();
 
     $occupiedRoomsCount = Transaction::where('status', 'active')
         ->whereDate('check_in', '<=', $today)
         ->whereDate('check_out', '>=', $today)
+        ->when($hotelId, function ($query) use ($hotelId) {
+            return $query->where('tenant_id', $hotelId);
+        })
         ->distinct('room_id')
         ->count('room_id');
 

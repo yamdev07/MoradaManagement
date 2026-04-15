@@ -6,12 +6,29 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root {
-    --primary: #8b4513;
-    --success: #8b4513;
-    --warning: #8b4513;
+    /* ── COULEURS TENANT DYNAMIQUES ── */
+    --tenant-primary: <?php echo e($tenantColors['primary_color'] ?? '#8b4513'); ?>;
+    --tenant-secondary: <?php echo e($tenantColors['secondary_color'] ?? '#d2b48c'); ?>;
+    --tenant-accent: <?php echo e($tenantColors['accent_color'] ?? '#f59e0b'); ?>;
+    
+    /* Couleurs de base adaptées */
+    --primary: var(--tenant-primary);
+    --primary-light: var(--tenant-secondary);
+    --primary-soft: rgba(var(--tenant-primary), 0.08);
+    --success: var(--tenant-primary);
+    --success-light: rgba(var(--tenant-primary), 0.08);
+    --warning: var(--tenant-primary);
+    --warning-light: rgba(var(--tenant-primary), 0.08);
+    --info: var(--tenant-primary);
+    --info-light: rgba(var(--tenant-primary), 0.08);
+    --dark: var(--tenant-primary);
+    
+    /* Couleurs originales (fallback) */
+    --success-original: #8b4513;
+    --warning-original: #8b4513;
     --danger: #ef4444;
-    --info: #8b4513;
-    --dark: #3d241a;
+    --info-original: #8b4513;
+    --dark-original: #3d241a;
     --light: #fcf8f3;
     --border: #f5e6d3;
     --shadow: rgba(139,69,19,0.05);

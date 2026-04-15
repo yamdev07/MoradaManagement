@@ -12,8 +12,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    <!-- Vite Assets -->
-    @vite('resources/sass/app.scss')
+    <!-- CSS Assets -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     <title>@yield('title', 'Hotel Management System')</title>
 
@@ -24,6 +24,9 @@
             margin: 0;
             padding: 0;
             min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             overflow-x: hidden;
         }
@@ -319,12 +322,12 @@
 </head>
 
 <body>
-    <main>
+    <main style="width: 100%; max-width: 100%;">
         @yield('content')
     </main>
 
-    <!-- Vite Scripts -->
-    @vite('resources/js/app.js')
+    <!-- JavaScript Assets -->
+    <script src="{{ asset('js/app.js') }}"></script>
 
     <!-- Additional Scripts -->
     @yield('scripts')

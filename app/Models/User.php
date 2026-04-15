@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\BelongsToTenant;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -10,7 +11,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
 
 class User extends Authenticatable
 {
-    use HasFactory, LogsActivity, Notifiable;
+    use HasFactory, LogsActivity, Notifiable, BelongsToTenant;
 
     /**
      * Les attributs assignables en masse.
@@ -20,10 +21,13 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'phone',
         'role',
         'avatar',
         'password',
         'random_key',
+        'tenant_id',
+        'is_active',
     ];
 
     /**
@@ -463,4 +467,6 @@ class User extends Authenticatable
     {
         return ! $this->avatar || str_contains($this->avatar, 'default-user.jpg');
     }
+
+    // Les méthodes tenant() et global scope sont maintenant gérées par le trait BelongsToTenant
 }

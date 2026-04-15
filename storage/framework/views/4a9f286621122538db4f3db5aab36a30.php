@@ -7,33 +7,51 @@
    DESIGN SYSTEM - MÊME STYLE QUE CHECK-IN
 ═══════════════════════════════════════════════════════════════════ */
 :root {
+    /* ── COULEURS TENANT DYNAMIQUES ── */
+    --tenant-primary: <?php echo e($tenantColors['primary_color'] ?? '#8b4513'); ?>;
+    --tenant-secondary: <?php echo e($tenantColors['secondary_color'] ?? '#d2b48c'); ?>;
+    --tenant-accent: <?php echo e($tenantColors['accent_color'] ?? '#f59e0b'); ?>;
+    
+    /* Couleurs de base adaptées */
+    --primary: var(--tenant-primary);
+    --primary-light: var(--tenant-secondary);
+    --primary-soft: rgba(var(--tenant-primary), 0.08);
+    --success: var(--tenant-primary);
+    --success-light: rgba(var(--tenant-primary), 0.08);
+    --warning: var(--tenant-primary);
+    --warning-light: rgba(var(--tenant-primary), 0.08);
+    --info: var(--tenant-primary);
+    --info-light: rgba(var(--tenant-primary), 0.08);
+    --dark: var(--tenant-primary);
+    
+    /* ── Morada Lodge Palette ── */
     --primary-50: #fcf8f3;
     --primary-100: #f9f0e6;
     --primary-400: #a0522d;
-    --primary-500: #8b4513;
-    --primary-600: #704838;
-    --primary-700: #5f3c2e;
+    --primary-500: var(--tenant-primary);
+    --primary-600: var(--tenant-secondary);
+    --primary-700: var(--tenant-accent);
     --primary-800: #4e3024;
 
     --amber-50: #fcf8f3;
     --amber-100: #f9f0e6;
     --amber-400: #a0522d;
-    --amber-500: #8b4513;
-    --amber-600: #704838;
+    --amber-500: var(--tenant-primary);
+    --amber-600: var(--tenant-secondary);
 
     --blue-50: #fcf8f3;
     --blue-100: #f9f0e6;
-    --blue-500: #8b4513;
-    --blue-600: #704838;
+    --blue-500: var(--tenant-primary);
+    --blue-600: var(--tenant-secondary);
 
     --gray-50: #fcf8f3;
     --gray-100: #f9f0e6;
     --gray-200: #f5e6d3;
     --gray-300: #e8d5c4;
-    --gray-400: #d2b48c;
-    --gray-500: #704838;
-    --gray-600: #5f3c2e;
-    --gray-700: #4e3024;
+    --gray-400: var(--tenant-secondary);
+    --gray-500: var(--tenant-primary);
+    --gray-600: var(--tenant-secondary);
+    --gray-700: var(--tenant-accent);
     --gray-800: #3d241a;
     --gray-900: #2d1f15;
 

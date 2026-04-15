@@ -8,31 +8,35 @@
    STYLES DASHBOARD DISPONIBILITÉ - Version claire
 ═══════════════════════════════════════════════════════════════════ */
 :root {
-    --primary: #8b4513;
-    --primary-light: #a0522d;
-    --primary-soft: rgba(139, 69, 19, 0.08);
-    --success: #8b4513;
-    --success-light: rgba(139, 69, 19, 0.08);
-    --warning: #8b4513;
-    --warning-light: rgba(139, 69, 19, 0.08);
-    --danger: #ef4444;
-    --danger-light: rgba(239, 68, 68, 0.08);
-    --info: #8b4513;
-    --info-light: rgba(139, 69, 19, 0.08);
-    --dark: #3d241a;
-    --gray-50: #fcf8f3;
-    --gray-100: #f9f0e6;
-    --gray-200: #f5e6d3;
-    --gray-300: #e8d5c4;
-    --gray-400: #d2b48c;
-    --gray-500: #704838;
-    --gray-600: #5f3c2e;
-    --gray-700: #4e3024;
-    --gray-800: #3d241a;
+    /* ── COULEURS TENANT DYNAMIQUES ── */
+    --tenant-primary: <?php echo e($tenantColors['primary_color'] ?? '#8b4513'); ?>;
+    --tenant-secondary: <?php echo e($tenantColors['secondary_color'] ?? '#d2b48c'); ?>;
+    --tenant-accent: <?php echo e($tenantColors['accent_color'] ?? '#f59e0b'); ?>;
+    
+    /* Couleurs de base */
+    --primary: var(--tenant-primary);
+    --primary-light: var(--tenant-secondary);
+    --primary-soft: rgba(var(--tenant-primary), 0.08);
+    --success: var(--tenant-primary);
+    --success-light: rgba(var(--tenant-primary), 0.08);
+    --warning: var(--tenant-primary);
+    --warning-light: rgba(var(--tenant-primary), 0.08);
+    --info: var(--tenant-primary);
+    --info-light: rgba(var(--tenant-primary), 0.08);
+    --dark: var(--tenant-primary);
+    --gray-50: #f8fafc;
+    --gray-100: #f1f5f9;
+    --gray-200: #e5e7eb;
+    --gray-300: #d1d5db;
+    --gray-400: #9ca3af;
+    --gray-500: #6b7280;
+    --gray-600: #4b5563;
+    --gray-700: #374151;
+    --gray-800: #1f2937;
     --white: #ffffff;
     --radius: 12px;
-    --shadow: 0 4px 20px rgba(0, 0, 0, 0.02), 0 1px 3px rgba(0, 0, 0, 0.05);
-    --shadow-hover: 0 10px 30px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.1);
+    --shadow: 0 4px 20px rgba(var(--tenant-primary), 0.02), 0 1px 3px rgba(var(--tenant-primary), 0.05);
+    --shadow-hover: 0 10px 30px rgba(var(--tenant-primary), 0.05), 0 1px 3px rgba(var(--tenant-primary), 0.1);
     --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 

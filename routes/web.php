@@ -13,6 +13,8 @@ use App\Http\Controllers\FacilityController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\HousekeepingController;
 use App\Http\Controllers\ImageController;
+use App\Http\Controllers\MultitenantTestController;
+use App\Http\Controllers\TenantAdminController;
 use App\Http\Controllers\NotificationsController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProfileController;
@@ -24,6 +26,11 @@ use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\TransactionRoomReservationController;
 use App\Http\Controllers\TypeController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\SuperAdminController;
+use App\Http\Controllers\TenantApprovalController;
+use App\Http\Controllers\TenantRegistrationController;
+use App\Http\Controllers\TenantPortalController;
+use App\Http\Controllers\TenantController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -45,25 +52,127 @@ Route::get('/debug-test', function () {
     ]);
 });
 
-// ==================== ROUTES FRONTEND (Site Vitrine) ====================
-Route::get('/', [FrontendController::class, 'home'])->name('frontend.home');
-Route::get('/chambres', [FrontendController::class, 'rooms'])->name('frontend.rooms');
-Route::get('/chambre/{id}', [FrontendController::class, 'roomDetails'])->name('frontend.room.details');
-Route::get('/restaurant-vitrine', [FrontendController::class, 'restaurant'])->name('frontend.restaurant');
-Route::get('/services', [FrontendController::class, 'services'])->name('frontend.services');
-Route::get('/contact', [FrontendController::class, 'contact'])->name('frontend.contact');
-Route::post('/contact/submit', [FrontendController::class, 'contactSubmit'])->name('frontend.contact.submit');
-Route::post('/restaurant/reservation', [FrontendController::class, 'restaurantReservationStore'])
-    ->name('restaurant.reservation.store');
-Route::post('/reservation/request', [FrontendController::class, 'reservationRequest'])->name('frontend.reservation.request');
-Route::get('/reservation', [FrontendController::class, 'reservationForm'])->name('frontend.reservation');
-Route::post('/reservation/submit', [FrontendController::class, 'submitReservation'])->name('frontend.reservation.submit');
+// ==================== APPROBATION ET GESTION DES TENANTS (déplacé au début) ====================
+Route::middleware(['auth', 'checkrole:Super,Admin'])->group(function () {
+    Route::post('/api/tenant/{id}/approve', [TenantApprovalController::class, 'approveTenant'])->name('api.tenant.approve');
+    Route::post('/api/tenant/{id}/reject', [SuperAdminController::class, 'rejectTenant'])->name('api.tenant.reject');
+    Route::get('/api/tenant/{id}/stats', [TenantApprovalController::class, 'getTenantStats'])->name('api.tenant.stats');
+    Route::post('/api/tenant/{id}/theme', [TenantApprovalController::class, 'updateTenantTheme'])->name('api.tenant.theme.update');
+});
 
-Route::get('/api/available-rooms', [FrontendController::class, 'availableRooms'])->name('api.available-rooms');
+// ==================== PAGE D'ACCUEIL CHECK-SYS ====================
+Route::get('/', function () {
+    return view('checksys-home');
+})->name('home');
+
+// ==================== FRONTEND MULTITENANT ====================
+Route::group(['middleware' => 'hotel.context'], function () {
+    Route::get('/hotel', [FrontendController::class, 'multitenantHome'])->name('multitenant.home');
+    Route::get('/hotel/chambres', [FrontendController::class, 'multitenantRooms'])->name('multitenant.rooms');
+    Route::get('/hotel/chambre/{id}', [FrontendController::class, 'multitenantRoomDetails'])->name('multitenant.room.details');
+    Route::get('/hotel/restaurant', [FrontendController::class, 'multitenantRestaurant'])->name('multitenant.restaurant');
+    Route::get('/hotel/services', [FrontendController::class, 'multitenantServices'])->name('multitenant.services');
+    Route::get('/hotel/contact', [FrontendController::class, 'multitenantContact'])->name('multitenant.contact');
+    Route::post('/hotel/contact/submit', [FrontendController::class, 'multitenantContactSubmit'])->name('multitenant.contact.submit');
+    Route::get('/hotel/reservation', [FrontendController::class, 'multitenantReservation'])->name('multitenant.reservation');
+    Route::post('/hotel/reservation/submit', [FrontendController::class, 'multitenantReservationSubmit'])->name('multitenant.reservation.submit');
+    Route::post('/hotel/restaurant/reservation', [FrontendController::class, 'multitenantRestaurantReservationStore'])
+        ->name('multitenant.restaurant.reservation.store');
+});
+
+// ==================== TEST NAVIGATION ====================
+Route::get('/test-navigation', function () {
+    return view('test-navigation');
+})->name('test.navigation');
+
+// ==================== TEST SIMPLE ====================
+Route::get('/test-simple', function () {
+    return view('test-simple');
+})->name('test.simple');
+
+// ==================== TEST FINAL ====================
+Route::get('/test-final', function () {
+    return view('test-final');
+})->name('test.final');
+
+// ==================== ROUTES FRONTEND (Site Vitrine) ====================
+Route::group(['middleware' => ['web', 'hotel.context']], function () {
+    Route::get('/hotel', [FrontendController::class, 'home'])->name('frontend.home');
+    Route::get('/chambres', [FrontendController::class, 'rooms'])->name('frontend.rooms');
+    Route::get('/chambre/{id}', [FrontendController::class, 'roomDetails'])->name('frontend.room.details');
+    Route::get('/restaurant-vitrine', [FrontendController::class, 'restaurant'])->name('frontend.restaurant');
+    Route::get('/services', [FrontendController::class, 'services'])->name('frontend.services');
+    Route::get('/contact', [FrontendController::class, 'contact'])->name('frontend.contact');
+    Route::post('/contact/submit', [FrontendController::class, 'contactSubmit'])->name('frontend.contact.submit');
+    Route::post('/restaurant/reservation', [FrontendController::class, 'restaurantReservationStore'])
+        ->name('restaurant.reservation.store');
+    Route::post('/reservation/request', [FrontendController::class, 'reservationRequest'])->name('frontend.reservation.request');
+    Route::get('/reservation', [FrontendController::class, 'reservationForm'])->name('frontend.reservation');
+    Route::post('/reservation/submit', [FrontendController::class, 'submitReservation'])->name('frontend.reservation.submit');
+});
+
+Route::get('/api/available-rooms', [FrontendController::class, 'availableRooms'])->middleware('hotel.context')->name('api.available-rooms');
 
 // ==================== ROUTES D'AUTHENTIFICATION ====================
-Route::view('/login', 'auth.login')->name('login.index');
+Route::get('/login', function() {
+    // Récupérer le tenant depuis la session (déjà défini par le middleware)
+    $hotelId = session('selected_hotel_id');
+    $currentHotel = null;
+    
+    if ($hotelId) {
+        $currentHotel = \App\Models\Tenant::find($hotelId);
+    }
+    
+    return view('auth.login', compact('currentHotel'));
+})->middleware('hotel.context')->name('login.index');
 Route::post('/login', [AuthController::class, 'login'])->name('login');
+
+// ==================== ROUTES D'ISOLATION DES TENANTS ====================
+Route::prefix('tenant/{tenantIdentifier}')->middleware(['auth', 'tenant.isolation'])->group(function() {
+    Route::get('/dashboard', [TenantController::class, 'dashboard'])->name('tenant.dashboard');
+    Route::get('/rooms', [TenantController::class, 'rooms'])->name('tenant.rooms');
+    Route::get('/transactions', [TenantController::class, 'transactions'])->name('tenant.transactions');
+    Route::get('/customers', [TenantController::class, 'customers'])->name('tenant.customers');
+    Route::get('/home', [TenantController::class, 'home'])->name('tenant.home');
+    Route::get('/api/info', [TenantController::class, 'apiInfo'])->name('tenant.api.info');
+});
+
+// ==================== ROUTES PORTAIL TENANTS ====================
+Route::get('/tenants', [TenantPortalController::class, 'index'])->name('tenant.portal');
+Route::get('/tenants/search', [TenantPortalController::class, 'search'])->name('tenant.search');
+Route::get('/tenants/{tenant}/info', [TenantPortalController::class, 'getTenantInfo'])->name('tenant.info');
+
+// ==================== ROUTES LOGIN TENANT ====================
+Route::get('/login/{tenant}', [TenantPortalController::class, 'showLogin'])->name('tenant.login');
+Route::post('/login/{tenant}', [AuthController::class, 'tenantLogin'])->name('tenant.login.submit');
+
+// ==================== ROUTES D'INSCRIPTION TENANT ====================
+Route::get('/tenant-landing', function() { return view('auth.tenant-landing'); })->name('tenant.landing');
+Route::get('/register-tenant', [TenantRegistrationController::class, 'showRegistrationForm'])->name('tenant.register');
+Route::post('/register-tenant', [TenantRegistrationController::class, 'register'])->name('tenant.register.submit');
+Route::get('/tenant-registration-success', [TenantRegistrationController::class, 'registrationSuccess'])->name('tenant.registration.success');
+Route::post('/api/check-domain', [TenantRegistrationController::class, 'checkDomainAvailability'])->name('api.check.domain');
+Route::post('/api/check-email', [TenantRegistrationController::class, 'checkEmailAvailability'])->name('api.check.email');
+
+// ==================== ROUTES DE CONNEXION TENANT ====================
+Route::get('/login-tenant', function() { return view('auth.tenant-login'); })->name('tenant.login.page')->middleware('tenant.theme');
+Route::post('/login-tenant', [AuthController::class, 'tenantLoginGeneric'])->name('login.submit')->middleware('tenant.theme');
+Route::post('/api/preview-theme', [TenantRegistrationController::class, 'previewTheme'])->name('api.preview.theme');
+
+// ==================== ROUTE ACCUEIL TENANT ====================
+Route::get('/tenant-home', function () {
+    $hotelId = session('selected_hotel_id') ?: request('hotel_id');
+    
+    if ($hotelId) {
+        $currentTenant = \App\Models\Tenant::find($hotelId);
+        if (!$currentTenant) {
+            return redirect('/')->with('error', 'Tenant non trouvé');
+        }
+        return view('tenant-home', compact('currentTenant'));
+    }
+    
+    return redirect('/')->with('error', 'Aucun tenant sélectionné');
+})->name('tenant.home')->middleware(['auth', 'tenant.theme']);
 
 // ==================== ROUTE LOGOUT GLOBALE ====================
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
@@ -106,6 +215,16 @@ Route::prefix('authorization')->name('authorization.')->middleware('auth')->grou
         ->middleware('checkrole:Super,Admin');
 });
 
+// ==================== ROUTES SUPER ADMIN ====================
+Route::prefix('super-admin')->name('super-admin.')->middleware(['auth', 'checkrole:Super'])->group(function () {
+    Route::get('/dashboard', [SuperAdminController::class, 'dashboard'])->name('dashboard');
+    Route::get('/tenants', [SuperAdminController::class, 'tenants'])->name('tenants');
+    Route::get('/users', [SuperAdminController::class, 'users'])->name('users');
+    Route::post('/tenant/{id}/approve', [SuperAdminController::class, 'approveTenant'])->name('tenant.approve');
+    Route::post('/tenant/{id}/reject', [SuperAdminController::class, 'rejectTenant'])->name('tenant.reject');
+    Route::patch('/tenant/{id}/toggle', [SuperAdminController::class, 'toggleTenantStatus'])->name('tenant.toggle');
+});
+
 // ==================== ROUTES SUPER ADMIN SEULEMENT ====================
 Route::group(['middleware' => ['auth', 'checkrole:Super']], function () {
     Route::resource('user', UserController::class);
@@ -145,7 +264,7 @@ Route::group(['middleware' => ['auth', 'checkrole:Super,Admin,Receptionist', 'ad
     })->name('quick.createIdentity');
 
     // ==================== RÉSERVATIONS (ACCESSIBLE AUX RÉCEPTIONNISTES) ====================
-    Route::prefix('transaction/reservation')->name('transaction.reservation.')->group(function () {
+    Route::prefix('transaction/reservation')->name('transaction.reservation.')->middleware(['auth', 'checkrole:Super,Admin,Receptionist', 'tenant.theme'])->group(function () {
         Route::get('/createIdentity', [TransactionRoomReservationController::class, 'createIdentity'])->name('createIdentity');
         Route::get('/pickFromCustomer', [TransactionRoomReservationController::class, 'pickFromCustomer'])->name('pickFromCustomer');
         Route::post('/search-by-email', [TransactionRoomReservationController::class, 'searchByEmail'])->name('searchByEmail');
@@ -154,7 +273,7 @@ Route::group(['middleware' => ['auth', 'checkrole:Super,Admin,Receptionist', 'ad
         Route::get('/{customer}/chooseRoom', [TransactionRoomReservationController::class, 'chooseRoom'])->name('chooseRoom');
         Route::get('/{customer}/{room}/{from}/{to}/confirmation', [TransactionRoomReservationController::class, 'confirmation'])->name('confirmation');
         Route::post('/{customer}/{room}/payDownPayment', [TransactionRoomReservationController::class, 'payDownPayment'])->name('payDownPayment');
-        Route::get('/customer/{customer}/reservations', [TransactionRoomReservationController::class, 'showCustomerReservations'])->name('customerReservations');
+        Route::get('/customer/{customer}/reservations', [TransactionRoomReservationController::class, 'showCustomerReservations'])->name('customerReservations')->middleware('tenant.theme');
          Route::get('/api/checkouts-today', [TransactionRoomReservationController::class, 'getRoomsBeingCheckedOutToday'])
         ->name('api.checkouts-today');  
         Route::post('/api/check-room-availability', [TransactionRoomReservationController::class, 'checkRoomAvailabilityToday'])
@@ -167,7 +286,7 @@ Route::group(['middleware' => ['auth', 'checkrole:Super,Admin,Receptionist', 'ad
     });
 
     // ==================== CLIENTS (ACCESSIBLE AUX RÉCEPTIONNISTES) ====================
-    Route::resource('customer', CustomerController::class);
+    Route::resource('customer', CustomerController::class)->middleware('tenant.theme');
 
     // Suppression nécessite autorisation pour réceptionnistes
     Route::delete('/customer/{customer}', [CustomerController::class, 'destroy'])->name('customer.destroy')
@@ -215,17 +334,17 @@ Route::group(['middleware' => ['auth', 'checkrole:Super,Admin,Receptionist', 'ad
         });
 
         // Routes de lecture pour tous (admins et réceptionnistes)
-        Route::get('/', [RoomController::class, 'index'])->name('index');
+        Route::get('/', [RoomController::class, 'index'])->name('index')->middleware('tenant.theme');
 
         // IMPORTANT: La route show DOIT être définie EN DERNIER
         Route::get('/{room}', [RoomController::class, 'show'])->name('show');
     });
     // ==================== STATUTS DE CHAMBRES ====================
     // Seulement pour admins
-    Route::resource('roomstatus', RoomStatusController::class)->middleware('checkrole:Super,Admin');
+    Route::resource('roomstatus', RoomStatusController::class)->middleware(['checkrole:Super,Admin', 'tenant.theme']);
 
     // ==================== TRANSACTIONS (ACCESSIBLE AUX RÉCEPTIONNISTES) ====================
-    Route::prefix('transaction')->name('transaction.')->group(function () {
+    Route::prefix('transaction')->name('transaction.')->middleware(['auth', 'checkrole:Super,Admin,Receptionist', 'tenant.theme'])->group(function () {
         // Routes CRUD complètes SANS paramètres d'abord
         Route::get('/', [TransactionController::class, 'index'])->name('index');
         Route::get('/create', [TransactionController::class, 'create'])->name('create');
@@ -293,10 +412,10 @@ Route::group(['middleware' => ['auth', 'checkrole:Super,Admin,Receptionist', 'ad
     });
     // ==================== ÉQUIPEMENTS ====================
     // Seulement pour admins
-    Route::resource('facility', FacilityController::class)->middleware('checkrole:Super,Admin');
+    Route::resource('facility', FacilityController::class)->middleware(['checkrole:Super,Admin', 'tenant.theme']);
 
     // ==================== PAIEMENTS (ACCESSIBLE AUX RÉCEPTIONNISTES) ====================
-    Route::prefix('payments')->name('payments.')->group(function () {
+    Route::prefix('payments')->name('payments.')->middleware(['auth', 'checkrole:Super,Admin,Receptionist', 'tenant.theme'])->group(function () {
         Route::get('/', [PaymentController::class, 'index'])->name('index');
 
         Route::get('/{payment}/details', [PaymentController::class, 'getDetails'])->name('details');
@@ -330,8 +449,8 @@ Route::group(['middleware' => ['auth', 'checkrole:Super,Admin,Receptionist', 'ad
     });
 
     // ==================== ALIAS PAIEMENTS ====================
-    Route::get('/payment', [PaymentController::class, 'index'])->name('payment.index');
-    Route::get('/payment/{payment}/invoice', [PaymentController::class, 'invoice'])->name('payment.invoice');
+    Route::get('/payment', [PaymentController::class, 'index'])->name('payment.index')->middleware('tenant.theme');
+    Route::get('/payment/{payment}/invoice', [PaymentController::class, 'invoice'])->name('payment.invoice')->middleware('tenant.theme');
 
     // ==================== CHARTS ====================
     Route::get('/get-dialy-guest-chart-data', [ChartController::class, 'dailyGuestPerMonth']);
@@ -359,14 +478,14 @@ Route::group(['middleware' => ['auth', 'checkrole:Super,Admin,Receptionist', 'ad
 
         // Autres routes
         Route::get('/daily-report', [CashierSessionController::class, 'dailyReport'])->name('daily-report');
-        Route::get('/dashboard', [CashierSessionController::class, 'dashboard'])->name('dashboard');
-        Route::get('/current-session', [CashierSessionController::class, 'getCurrentSession'])->name('current-session');
-        Route::get('/session-summary', [CashierSessionController::class, 'sessionSummary'])->name('session-summary');
+        Route::get('/dashboard', [CashierSessionController::class, 'dashboard'])->name('dashboard')->middleware('tenant.theme');
+        Route::get('/current-session', [CashierSessionController::class, 'getCurrentSession'])->name('current-session')->middleware('tenant.theme');
+        Route::get('/session-summary', [CashierSessionController::class, 'sessionSummary'])->name('session-summary')->middleware('tenant.theme');
     });
 });
 
 // ==================== ROUTES POUR TOUS LES UTILISATEURS AUTHENTIFIÉS ====================
-Route::group(['middleware' => ['auth', 'checkrole:Super,Admin,Customer,Housekeeping,Receptionist']], function () {
+Route::group(['middleware' => ['auth', 'checkrole:Super,Admin,Customer,Housekeeping,Receptionist', 'tenant.theme']], function () {
     // ==================== DASHBOARD ====================
     Route::prefix('dashboard')->name('dashboard.')->group(function () {
         Route::get('/', [DashboardController::class, 'index'])->name('index');
@@ -377,10 +496,10 @@ Route::group(['middleware' => ['auth', 'checkrole:Super,Admin,Customer,Housekeep
 
     Route::get('/home', function () {
         return redirect()->route('dashboard.index');
-    })->name('home');
+    })->name('dashboard.home');
 
     // ==================== ACTIVITY LOG ====================
-    Route::prefix('activity')->name('activity.')->group(function () {
+    Route::prefix('activity')->name('activity.')->middleware(['auth', 'tenant.theme'])->group(function () {
         Route::get('/', [ActivityController::class, 'index'])->name('index');
         Route::get('/all', [ActivityController::class, 'all'])->name('all');
         Route::get('/export/{format?}', [ActivityController::class, 'export'])->name('export');
@@ -395,12 +514,12 @@ Route::group(['middleware' => ['auth', 'checkrole:Super,Admin,Customer,Housekeep
     });
 
     // ==================== NOTIFICATIONS ====================
-    Route::view('/notification', 'notification.index')->name('notification.index');
-    Route::get('/mark-all-as-read', [NotificationsController::class, 'markAllAsRead'])->name('notification.markAllAsRead');
-    Route::get('/notification-to/{id}', [NotificationsController::class, 'routeTo'])->name('notification.routeTo');
+    Route::view('/notification', 'notification.index')->name('notification.index')->middleware('tenant.theme');
+    Route::get('/mark-all-as-read', [NotificationsController::class, 'markAllAsRead'])->name('notification.markAllAsRead')->middleware('tenant.theme');
+    Route::get('/notification-to/{id}', [NotificationsController::class, 'routeTo'])->name('notification.routeTo')->middleware('tenant.theme');
 
     // ==================== PROFIL ====================
-    Route::prefix('profile')->name('profile.')->group(function () {
+    Route::prefix('profile')->name('profile.')->middleware(['auth', 'tenant.theme'])->group(function () {
         // Routes sans paramètres d'abord
         Route::get('/', [ProfileController::class, 'index'])->name('index');
         Route::get('/edit', [ProfileController::class, 'edit'])->name('edit');
@@ -420,7 +539,7 @@ Route::group(['middleware' => ['auth', 'checkrole:Super,Admin,Customer,Housekeep
     });
 
     // ==================== RAPPORTS ====================
-    Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');
+    Route::get('/reports', [ReportController::class, 'index'])->name('reports.index')->middleware('tenant.theme');
 
     // ==================== RÉSERVATIONS CLIENTS ====================
     Route::get('/my-reservations', [TransactionController::class, 'myReservations'])->name('transaction.myReservations')
@@ -458,7 +577,7 @@ Route::group(['middleware' => ['auth', 'checkrole:Super,Admin,Customer,Housekeep
 });
 
 // ==================== DISPONIBILITÉ DES CHAMBRES ====================
-Route::group(['middleware' => ['auth', 'checkrole:Super,Admin,Customer,Housekeeping,Receptionist']], function () {
+Route::group(['middleware' => ['auth', 'checkrole:Super,Admin,Customer,Housekeeping,Receptionist', 'tenant.theme']], function () {
     Route::prefix('availability')->name('availability.')->group(function () {
         // Routes sans paramètres d'abord
         Route::get('/dashboard', [AvailabilityController::class, 'dashboard'])->name('dashboard');
@@ -487,23 +606,23 @@ Route::group(['middleware' => ['auth', 'checkrole:Super,Admin,Customer,Housekeep
     });
 });
 
-// ==================== CHECK-IN AVANCÉ (RÉCEPTIONNISTES + ADMINS) ====================
-Route::group(['middleware' => ['auth', 'checkrole:Super,Admin,Receptionist']], function () {
-    Route::prefix('checkin')->name('checkin.')->group(function () {
-        // Routes sans paramètres d'abord
-        Route::get('/', [CheckInController::class, 'index'])->name('index');
-        Route::get('/search', [CheckInController::class, 'search'])->name('search');
-        Route::get('/direct', [CheckInController::class, 'directCheckIn'])->name('direct');
-        Route::post('/process-direct-checkin', [CheckInController::class, 'processDirectCheckIn'])->name('process-direct-checkin');
-        Route::get('/availability/check', [CheckInController::class, 'checkAvailability'])->name('availability');
+// ==================== CHECK-IN ====================
+    Route::group(['middleware' => ['auth', 'checkrole:Super,Admin,Customer,Housekeeping,Receptionist', 'tenant.theme']], function () {
+        Route::prefix('checkin')->name('checkin.')->group(function () {
+            // Routes sans paramètres d'abord
+            Route::get('/', [CheckInController::class, 'index'])->name('index');
+            Route::get('/search', [CheckInController::class, 'search'])->name('search');
+            Route::get('/direct', [CheckInController::class, 'directCheckIn'])->name('direct');
+            Route::post('/process-direct-checkin', [CheckInController::class, 'processDirectCheckIn'])->name('process-direct-checkin');
+            Route::get('/availability/check', [CheckInController::class, 'checkAvailability'])->name('availability');
 
-        // Routes avec paramètre {transaction}
-        Route::prefix('{transaction}')->group(function () {
-            Route::get('/', [CheckInController::class, 'show'])->name('show');
-            Route::post('/', [CheckInController::class, 'store'])->name('store');
-            Route::post('/quick', [CheckInController::class, 'quickCheckIn'])->name('quick');
+            // Routes avec paramètre {transaction}
+            Route::prefix('{transaction}')->group(function () {
+                Route::get('/', [CheckInController::class, 'show'])->name('show');
+                Route::post('/', [CheckInController::class, 'store'])->name('store');
+                Route::post('/quick', [CheckInController::class, 'quickCheckIn'])->name('quick');
+            });
         });
-    });
 
     Route::get('/checkin-dashboard', [DashboardController::class, 'checkinDashboard'])->name('checkin.dashboard');
 
@@ -513,7 +632,7 @@ Route::group(['middleware' => ['auth', 'checkrole:Super,Admin,Receptionist']], f
 });
 
 // ==================== HOUSEKEEPING POUR RÉCEPTION ====================
-Route::prefix('housekeeping')->name('housekeeping.')->middleware(['auth', 'checkrole:Super,Admin,Housekeeping,Receptionist'])->group(function () {
+Route::prefix('housekeeping')->name('housekeeping.')->middleware(['auth', 'checkrole:Super,Admin,Housekeeping,Receptionist', 'tenant.theme'])->group(function () {
     // Dashboard et listes
     Route::get('/', [HousekeepingController::class, 'index'])->name('index');
     Route::get('/dashboard', [HousekeepingController::class, 'index'])->name('dashboard');
@@ -846,6 +965,26 @@ Route::middleware(['auth', 'checkrole:Super,Admin,Receptionist'])->group(functio
     Route::get('/api/customers', [CustomerController::class, 'apiSearch'])->name('api.customers.search');
 
 });
+
+// ==================== TEST MULTITENANT ====================
+Route::middleware(['auth'])->group(function () {
+    Route::get('/test-multitenant', [MultitenantTestController::class, 'dashboard'])->name('multitenant.test.dashboard');
+    Route::post('/test-multitenant/create-room', [MultitenantTestController::class, 'createRoom'])->name('multitenant.test.create-room');
+});
+
+// ==================== ADMINISTRATION TENANT (B2B) ====================
+Route::middleware(['auth'])->group(function () {
+    Route::get('/tenant/{id}/dashboard', [TenantAdminController::class, 'dashboard'])->name('tenant.dashboard');
+    Route::get('/tenant/{subdomain}/users', [TenantAdminController::class, 'users'])->name('tenant.users');
+    Route::get('/tenant/{subdomain}/create-user', [TenantAdminController::class, 'createUser'])->name('tenant.create-user');
+    Route::post('/tenant/{subdomain}/store-user', [TenantAdminController::class, 'storeUser'])->name('tenant.store-user');
+    Route::get('/tenant/{subdomain}/rooms', [TenantAdminController::class, 'rooms'])->name('tenant.rooms');
+    Route::get('/tenant/{subdomain}/transactions', [TenantAdminController::class, 'transactions'])->name('tenant.transactions');
+    Route::get('/tenant/{subdomain}/settings', [TenantAdminController::class, 'settings'])->name('tenant.settings');
+    Route::post('/tenant/{subdomain}/update-settings', [TenantAdminController::class, 'updateSettings'])->name('tenant.update-settings');
+});
+
+// Anciennes routes API déplacées au début du fichier
 
 // ==================== ROUTE FALLBACK ====================
 Route::fallback(function () {

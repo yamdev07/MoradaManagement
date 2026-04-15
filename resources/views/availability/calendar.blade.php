@@ -1198,7 +1198,7 @@ window.showOccupancyDetails = function(roomId, date) {
                         <td>${new Date(r.check_out).toLocaleDateString('fr-FR')}</td>
                         <td><span class="badge ${statusClass}">${statusText}</span></td>
                         <td>
-                            <a href="/transactions/${r.id}" class="btn btn-sm btn-outline-primary" target="_blank">
+                            <a href="/transactions/${r.id}" class="btn btn-sm btn-outline-primary">
                                 <i class="fas fa-eye"></i>
                             </a>
                         </td>

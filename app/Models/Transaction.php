@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\BelongsToTenant;
 use App\Helpers\Helper;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -15,7 +16,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
 
 class Transaction extends Model
 {
-    use HasFactory, LogsActivity, SoftDeletes;
+    use HasFactory, LogsActivity, SoftDeletes, BelongsToTenant;
 
     protected $fillable = [
         'user_id',
@@ -40,7 +41,7 @@ class Transaction extends Model
         'late_checkout_fee',
         'late_checkout',
         'expected_checkout_time',
-
+        'tenant_id',
     ];
 
     protected $casts = [
@@ -1316,4 +1317,6 @@ class Transaction extends Model
             'message' => 'Late checkout non payé',
         ];
     }
+
+    // Les méthodes tenant() et global scope sont maintenant gérées par le trait BelongsToTenant
 }

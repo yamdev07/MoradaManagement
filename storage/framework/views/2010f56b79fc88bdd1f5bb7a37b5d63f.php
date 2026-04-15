@@ -1,6 +1,6 @@
 
 
-<?php $__env->startSection('title', 'Nos Suites de Prestige - Morada Lodge'); ?>
+<?php $__env->startSection('title', 'Nos Suites de Prestige - ' . ($currentHotel->name ?? 'Morada Lodge')); ?>
 
 <?php $__env->startSection('content'); ?>
     <!-- Hero Section pour les chambres -->
@@ -827,8 +827,8 @@
 }
 
 .status-badge.premium {
-    color: #8b4513;
-    background: rgba(139, 69, 19, 0.1);
+    color: #007bff;
+    background: rgba(0, 123, 255, 0.1);
     padding: 5px 12px;
     border-radius: 20px;
     font-size: 0.8rem;
@@ -847,8 +847,8 @@
 }
 
 .status-badge.prestige {
-    color: #cd853f;
-    background: rgba(205, 133, 63, 0.1);
+    color: #6c757d;
+    background: rgba(108, 117, 125, 0.1);
     padding: 5px 12px;
     border-radius: 20px;
     font-size: 0.8rem;
@@ -892,7 +892,7 @@
 .room-name {
     font-size: 1.3rem;
     font-weight: 600;
-    color: #654321;
+    color: #343a40;
     margin: 0;
 }
 
@@ -902,8 +902,8 @@
 }
 
 .capacity-badge {
-    background: #f5e6d3;
-    color: #8b4513;
+    background: #f8f9fa;
+    color: #007bff;
     padding: 5px 10px;
     border-radius: 20px;
     font-size: 0.8rem;
@@ -932,7 +932,7 @@
 }
 
 .spec-item i {
-    color: #8b4513;
+    color: #007bff;
     width: 16px;
 }
 
@@ -947,7 +947,7 @@
 .price {
     font-size: 1.5rem;
     font-weight: 700;
-    color: #8b4513;
+    color: #007bff;
 }
 
 .price-label {
@@ -956,7 +956,7 @@
 }
 
 .btn-view {
-    background: #8b4513;
+    background: #007bff;
     color: white;
     padding: 10px 20px;
     border-radius: 8px;
@@ -968,7 +968,7 @@
 }
 
 .btn-view:hover {
-    background: #a0522d;
+    background: #0056b3;
     color: white;
 }
 

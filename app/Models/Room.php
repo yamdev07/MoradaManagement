@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\BelongsToTenant;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -10,7 +11,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
 
 class Room extends Model
 {
-    use HasFactory, LogsActivity;
+    use HasFactory, LogsActivity, BelongsToTenant;
 
     protected $fillable = [
         'type_id',
@@ -26,6 +27,7 @@ class Room extends Model
         'maintenance_started_at',
         'maintenance_ended_at',
         'maintenance_reason',
+        'tenant_id',
     ];
 
     protected $appends = [
@@ -1361,4 +1363,6 @@ public static function getRoomsBeingCheckedOutByType($typeId)
         return $room['room']->type_id == $typeId;
     });
 }
+
+// Les méthodes tenant() et global scope sont maintenant gérées par le trait BelongsToTenant
 }

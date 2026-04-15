@@ -6,6 +6,13 @@
             ->where('status', 'active')
             ->first();
     }
+    
+    // Récupérer les couleurs du tenant (session ou middleware)
+    $tenantColors = session('tenant_colors', view()->shared('tenantColors', [
+        'primary_color' => '#8b4513',
+        'secondary_color' => '#d2b48c',
+        'accent_color' => '#f59e0b'
+    ]));
 @endphp
 <!doctype html>
 <html lang="en">
@@ -28,7 +35,112 @@
     {{-- Styles spécifiques aux pages --}}
     @stack('styles')
     
-    <title>@yield('title') - Morada Lodge Admin</title>
+    <!-- Dynamic Tenant Theme Styles -->
+    <style>
+        :root {
+            --tenant-primary: {{ $tenantColors['primary_color'] ?? '#8b4513' }};
+            --tenant-secondary: {{ $tenantColors['secondary_color'] ?? '#d2b48c' }};
+            --tenant-accent: {{ $tenantColors['accent_color'] ?? '#f59e0b' }};
+        }
+        
+        /* Force Sidebar Colors */
+        .sidebar {
+            background: linear-gradient(180deg, {{ $tenantColors['primary_color'] ?? '#8b4513' }} 0%, {{ $tenantColors['secondary_color'] ?? '#d2b48c' }} 100%) !important;
+            border-right: 1px solid rgba(255, 255, 255, 0.1) !important;
+        }
+        
+        .sidebar-logo {
+            background: rgba(255, 255, 255, 0.05) !important;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+        }
+        
+        .sidebar-logo .brand-name {
+            color: #ffffff !important;
+            background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 100%) !important;
+            -webkit-background-clip: text !important;
+            -webkit-text-fill-color: transparent !important;
+            background-clip: text !important;
+        }
+        
+        .sidebar-logo .brand-subtitle {
+            color: #94a3b8 !important;
+        }
+        
+        .nav-item {
+            color: #e2e8f0 !important;
+        }
+        
+        .nav-item:hover {
+            background: rgba(255, 255, 255, 0.08) !important;
+            border-color: rgba(255, 255, 255, 0.1) !important;
+            color: #ffffff !important;
+        }
+        
+        .nav-item.active {
+            background: linear-gradient(135deg, {{ $tenantColors['primary_color'] ?? '#8b4513' }} 0%, {{ $tenantColors['secondary_color'] ?? '#d2b48c' }} 100%) !important;
+            border: 1px solid {{ $tenantColors['primary_color'] ?? '#8b4513' }} !important;
+            color: #ffffff !important;
+            box-shadow: 0 4px 12px {{ $tenantColors['primary_color'] ?? '#8b4513' }} !important;
+        }
+        
+        .nav-item.active::after {
+            background: linear-gradient(180deg, {{ $tenantColors['primary_color'] ?? '#8b4513' }} 0%, {{ $tenantColors['secondary_color'] ?? '#d2b48c' }} 100%) !important;
+        }
+        
+        .nav-item:hover .nav-icon {
+            background: linear-gradient(135deg, {{ $tenantColors['primary_color'] ?? '#8b4513' }} 0%, {{ $tenantColors['secondary_color'] ?? '#d2b48c' }} 100%) !important;
+            color: #ffffff !important;
+        }
+        
+        .nav-item.active .nav-icon {
+            background: linear-gradient(135deg, {{ $tenantColors['primary_color'] ?? '#8b4513' }} 0%, {{ $tenantColors['secondary_color'] ?? '#d2b48c' }} 100%) !important;
+            color: #ffffff !important;
+            box-shadow: 0 4px 8px {{ $tenantColors['primary_color'] ?? '#8b4513' }} !important;
+        }
+        
+        .nav-icon {
+            background: rgba(255, 255, 255, 0.1) !important;
+            color: #94a3b8 !important;
+        }
+        
+        .nav-title {
+            color: #e2e8f0 !important;
+        }
+        
+        .nav-subtitle {
+            color: #94a3b8 !important;
+        }
+        
+        .nav-item:hover .nav-title,
+        .nav-item.active .nav-title {
+            color: #ffffff !important;
+        }
+        
+        .nav-item:hover .nav-subtitle,
+        .nav-item.active .nav-subtitle {
+            color: #e2e8f0 !important;
+        }
+    </style>
+    
+    <!-- Tenant Theme Script -->
+    <script>
+        window.tenantColors = @json($tenantColors);
+        
+        // Debug: Forcer des couleurs de test pour voir si le système fonctionne
+        console.log('Tenant Colors:', window.tenantColors);
+        
+        // Forcer des couleurs de test si nécessaire
+        if (!window.tenantColors || !window.tenantColors.primary_color) {
+            window.tenantColors = {
+                primary_color: '#1e3a8a',  // Bleu test
+                secondary_color: '#3b82f6', // Bleu clair test
+                accent_color: '#f59e0b'      // Orange test
+            };
+            console.log('Using test colors:', window.tenantColors);
+        }
+    </script>
+    
+    <title>@yield('title') - {{ $currentHotel->name ?? 'Morada Lodge' }} Admin</title>
     
     @yield('head')
 </head>
@@ -78,6 +190,16 @@
 
     <!-- SweetAlert2 -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <!-- Tenant Theme System -->
+    <script src="{{ asset('js/tenant-theme.js') }}"></script>
+
+    @if(request()->is('dashboard*') || request()->is('transaction*') || request()->is('room*') || request()->is('customer*') || request()->is('checkin*') || request()->is('availability*') || request()->is('profile*') || request()->is('reports*'))
+        <script src="{{ asset('js/dashboard-spa.js') }}"></script>
+        <script src="{{ asset('js/spa-toggle.js') }}"></script>
+        <!-- Script de debug pour les formulaires -->
+        <script src="{{ asset('js/form-debug.js') }}"></script>
+    @endif
 
     <!-- Initialize Tooltips and Components -->
     <script>

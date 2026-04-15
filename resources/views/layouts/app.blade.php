@@ -20,11 +20,258 @@
     <!-- Chart.js (pour les graphiques) -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    <!-- Vite - Assets compilés (si disponible) -->
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
-
+    <!-- CSS Assets -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    
     <!-- Fallback CSS personnalisé (si Vite ne charge pas) -->
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
+
+    <!-- Styles Morada Lodge -->
+    <style>
+        :root {
+            /* Couleurs Morada Lodge */
+            --morada-primary: #8b4513;
+            --morada-secondary: #a0522d;
+            --morada-accent: #cd853f;
+            --morada-dark: #654321;
+            --morada-light: #f4f1e8;
+            --morada-warm: #f5e6d3;
+        }
+        
+        /* Navbar Morada Lodge */
+        .navbar {
+            background-color: var(--morada-light) !important;
+            border-bottom: 2px solid var(--morada-primary);
+        }
+        
+        .navbar-brand {
+            color: var(--morada-primary) !important;
+            font-weight: 700;
+        }
+        
+        .nav-link {
+            color: var(--morada-dark) !important;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            color: var(--morada-primary) !important;
+            background-color: var(--morada-warm);
+            border-radius: 5px;
+        }
+        
+        .nav-link.active {
+            color: var(--morada-primary) !important;
+            background-color: var(--morada-warm);
+            border-radius: 5px;
+        }
+        
+        /* Dropdown menus */
+        .dropdown-menu {
+            border: 1px solid var(--morada-accent);
+            box-shadow: 0 4px 8px rgba(139, 69, 19, 0.1);
+        }
+        
+        .dropdown-item {
+            color: var(--morada-dark);
+            transition: all 0.3s ease;
+        }
+        
+        .dropdown-item:hover {
+            background-color: var(--morada-warm);
+            color: var(--morada-primary);
+        }
+        
+        /* Body */
+        body {
+            background-color: var(--morada-light);
+            color: var(--morada-dark);
+        }
+        
+        /* Cards */
+        .card {
+            border: 1px solid var(--morada-accent);
+            box-shadow: 0 2px 4px rgba(139, 69, 19, 0.1);
+        }
+        
+        .card-header {
+            background-color: var(--morada-primary);
+            color: white;
+            border-bottom: 1px solid var(--morada-secondary);
+        }
+        
+        /* Buttons */
+        .btn-primary {
+            background-color: var(--morada-primary);
+            border-color: var(--morada-primary);
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--morada-secondary);
+            border-color: var(--morada-secondary);
+        }
+        
+        .btn-outline-primary {
+            color: var(--morada-primary);
+            border-color: var(--morada-primary);
+        }
+        
+        .btn-outline-primary:hover {
+            background-color: var(--morada-primary);
+            border-color: var(--morada-primary);
+            color: white;
+        }
+        
+        /* Tables */
+        .table {
+            border-color: var(--morada-accent);
+        }
+        
+        .table thead th {
+            background-color: var(--morada-warm);
+            color: var(--morada-dark);
+            border-color: var(--morada-accent);
+        }
+        
+        .table-hover tbody tr:hover {
+            background-color: var(--morada-warm);
+        }
+        
+        /* Forms */
+        .form-control:focus {
+            border-color: var(--morada-primary);
+            box-shadow: 0 0 0 0.2rem rgba(139, 69, 19, 0.25);
+        }
+        
+        .form-select:focus {
+            border-color: var(--morada-primary);
+            box-shadow: 0 0 0 0.2rem rgba(139, 69, 19, 0.25);
+        }
+        
+        /* Badges */
+        .badge.bg-primary {
+            background-color: var(--morada-primary) !important;
+        }
+        
+        .badge.bg-success {
+            background-color: #28a745 !important;
+        }
+        
+        .badge.bg-warning {
+            background-color: var(--morada-accent) !important;
+        }
+        
+        .badge.bg-danger {
+            background-color: #dc3545 !important;
+        }
+        
+        .badge.bg-info {
+            background-color: #17a2b8 !important;
+        }
+        
+        /* Alerts */
+        .alert-primary {
+            background-color: var(--morada-warm);
+            border-color: var(--morada-primary);
+            color: var(--morada-dark);
+        }
+        
+        .alert-success {
+            background-color: #d4edda;
+            border-color: #28a745;
+            color: #155724;
+        }
+        
+        .alert-warning {
+            background-color: var(--morada-warm);
+            border-color: var(--morada-accent);
+            color: var(--morada-dark);
+        }
+        
+        .alert-danger {
+            background-color: #f8d7da;
+            border-color: #dc3545;
+            color: #721c24;
+        }
+        
+        .alert-info {
+            background-color: #d1ecf1;
+            border-color: #17a2b8;
+            color: #0c5460;
+        }
+        
+        /* Sidebar (AdminLTE style) */
+        .main-sidebar {
+            background-color: var(--morada-dark) !important;
+        }
+        
+        .main-sidebar .nav-link {
+            color: var(--morada-light) !important;
+        }
+        
+        .main-sidebar .nav-link:hover,
+        .main-sidebar .nav-link.active {
+            background-color: var(--morada-primary) !important;
+            color: white !important;
+        }
+        
+        /* Content wrapper */
+        .content-wrapper {
+            background-color: var(--morada-light);
+        }
+        
+        /* Small boxes (stats cards) */
+        .small-box {
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(139, 69, 19, 0.1);
+        }
+        
+        .small-box.bg-info {
+            background-color: var(--morada-primary) !important;
+        }
+        
+        .small-box.bg-success {
+            background-color: #28a745 !important;
+        }
+        
+        .small-box.bg-warning {
+            background-color: var(--morada-accent) !important;
+        }
+        
+        .small-box.bg-danger {
+            background-color: #dc3545 !important;
+        }
+        
+        /* Icons */
+        .fas {
+            color: var(--morada-primary);
+        }
+        
+        .text-primary {
+            color: var(--morada-primary) !important;
+        }
+        
+        .text-secondary {
+            color: var(--morada-secondary) !important;
+        }
+        
+        .text-success {
+            color: #28a745 !important;
+        }
+        
+        .text-warning {
+            color: var(--morada-accent) !important;
+        }
+        
+        .text-danger {
+            color: #dc3545 !important;
+        }
+        
+        .text-info {
+            color: #17a2b8 !important;
+        }
+    </style>
 
     @stack('styles')
 </head>

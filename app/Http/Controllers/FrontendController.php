@@ -8,6 +8,7 @@ use App\Models\Type;
 use App\Models\Transaction;
 use App\Models\Customer;
 use App\Models\User;
+use App\Models\Tenant;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -17,22 +18,63 @@ use Illuminate\Support\Str;
 class FrontendController extends Controller
 {
     // Page d'accueil du site vitrine
-    public function home()
+    public function home(Request $request)
     {
-        $featuredRooms = Room::with(['type', 'roomStatus', 'images', 'facilities'])
-            ->where('room_status_id', 1) // Available
-            ->limit(3)
-            ->get();
+        // Récupérer le contexte du tenant depuis les vues partagées
+        $currentHotel = view()->shared('currentHotel');
+        
+        // Priorité au hotel_id de l'URL si fourni
+        $hotelId = $request->get('hotel_id');
+        if ($hotelId) {
+            $tenant = Tenant::find($hotelId);
+            if ($tenant) {
+                $currentHotel = $tenant;
+                // Mettre en session pour le contexte
+                session(['selectedHotelId' => $hotelId]);
+            }
+        }
+        
+        // Log pour débug
+        if ($currentHotel) {
+            \Log::info('FrontendController: home() avec currentHotel', [
+                'hotel_id' => $currentHotel->id,
+                'hotel_name' => $currentHotel->name,
+                'url' => request()->fullUrl()
+            ]);
+        } else {
+            \Log::info('FrontendController: home() sans currentHotel', [
+                'url' => request()->fullUrl(),
+                'hotel_id_param' => $request->get('hotel_id')
+            ]);
+        }
+        
+        // Chambres du tenant actuel ou globales si aucun tenant
+        $roomsQuery = Room::with(['type', 'roomStatus', 'images', 'facilities'])
+            ->where('room_status_id', 1); // Available
+            
+        if ($currentHotel) {
+            $roomsQuery->where('tenant_id', $currentHotel->id);
+        }
+        
+        $featuredRooms = $roomsQuery->limit(3)->get();
 
-        return view('frontend.pages.home', compact('featuredRooms'));
+        return view('frontend.pages.home', compact('featuredRooms', 'currentHotel'));
     }
 
     // Liste des chambres
     public function rooms(Request $request)
     {
+        // Récupérer le contexte du tenant depuis les vues partagées
+        $currentHotel = view()->shared('currentHotel');
+        
         // Requête de base
         $query = Room::with(['type', 'roomStatus', 'images', 'facilities'])
             ->where('room_status_id', 1); // Available
+            
+        // Filtrer par tenant si disponible
+        if ($currentHotel) {
+            $query->where('tenant_id', $currentHotel->id);
+        }
 
         // Filtres
         if ($request->filled('type')) {
@@ -143,23 +185,50 @@ class FrontendController extends Controller
     }
 
     // Restaurant vitrine
-    public function restaurant()
+    public function restaurant(Request $request)
     {
-        $menus = Menu::all();
+        // Récupérer le contexte du tenant depuis les vues partagées
+        $currentHotel = view()->shared('currentHotel');
+        
+        // Priorité au hotel_id de l'URL si fourni
+        $hotelId = $request->get('hotel_id');
+        if ($hotelId) {
+            $tenant = Tenant::find($hotelId);
+            if ($tenant) {
+                $currentHotel = $tenant;
+                // Mettre en session pour le contexte
+                session(['selectedHotelId' => $hotelId]);
+            }
+        }
+        
+        // Menus du tenant actuel ou globaux si aucun tenant
+        $menusQuery = Menu::query();
+        
+        if ($currentHotel) {
+            $menusQuery->where('tenant_id', $currentHotel->id);
+        }
+        
+        $menus = $menusQuery->get();
 
-        return view('frontend.pages.restaurant', compact('menus'));
+        return view('frontend.pages.restaurant', compact('menus', 'currentHotel'));
     }
 
     // Services
     public function services()
     {
-        return view('frontend.pages.services');
+        // Récupérer le contexte du tenant depuis les vues partagées
+        $currentHotel = view()->shared('currentHotel');
+        
+        return view('frontend.pages.services', compact('currentHotel'));
     }
 
     // Contact
     public function contact()
     {
-        return view('frontend.pages.contact');
+        // Récupérer le contexte du tenant depuis les vues partagées
+        $currentHotel = view()->shared('currentHotel');
+        
+        return view('frontend.pages.contact', compact('currentHotel'));
     }
 
     // Envoyer message de contact
@@ -467,11 +536,134 @@ class FrontendController extends Controller
             
         } catch (\Exception $e) {
             \Log::error('Erreur réservation: ' . $e->getMessage());
-            
             return response()->json([
                 'success' => false,
                 'message' => 'Une erreur est survenue. Veuillez réessayer ou nous appeler directement.'
             ], 500);
         }
+    }
+
+    // ==================== MÉTHODES MULTITENANT ====================
+
+    // Page d'accueil multitenant
+    public function multitenantHome(Request $request)
+    {
+        \Log::info('multitenantHome: DÉBUT', [
+            'hotel_id_session' => session('selected_hotel_id'),
+            'hotel_id_request' => $request->get('hotel_id'),
+            'hotel_id_final' => session('selected_hotel_id') ?: $request->get('hotel_id'),
+            'url' => $request->fullUrl()
+        ]);
+        
+        // Récupérer l'hôtel depuis la session ou l'URL
+        $hotelId = session('selected_hotel_id') ?: $request->get('hotel_id');
+        
+        if (!$hotelId) {
+            \Log::error('multitenantHome: Aucun hotel_id trouvé');
+            return redirect('/')->with('error', 'Aucun hôtel sélectionné');
+        }
+        
+        $currentHotel = Tenant::find($hotelId);
+        if (!$currentHotel) {
+            \Log::error('multitenantHome: Hotel non trouvé', ['hotel_id' => $hotelId]);
+            return redirect('/')->with('error', 'Hôtel non trouvé');
+        }
+        
+        \Log::info('multitenantHome: Hotel trouvé', [
+            'hotel_id' => $currentHotel->id,
+            'hotel_name' => $currentHotel->name
+        ]);
+        
+        // Partager l'hôtel dans les vues
+        view()->share('currentHotel', $currentHotel);
+        
+        // Chambres de cet hôtel uniquement
+        $featuredRooms = Room::with(['type', 'roomStatus', 'images', 'facilities'])
+            ->where('tenant_id', $currentHotel->id)
+            ->where('room_status_id', 1) // Available
+            ->limit(3)
+            ->get();
+
+        return view('frontend.multitenant.home', compact('featuredRooms', 'currentHotel'));
+    }
+
+    // Liste des chambres multitenant
+    public function multitenantRooms(Request $request)
+    {
+        $currentHotel = app('current_hotel');
+        if (!$currentHotel) {
+            return redirect('/')->with('error', 'Aucun hôtel sélectionné');
+        }
+        
+        // Requête de base avec isolation par hôtel
+        $query = Room::with(['type', 'roomStatus', 'images', 'facilities'])
+            ->where('tenant_id', $currentHotel->id)
+            ->where('room_status_id', 1); // Available
+
+        // Filtres
+        if ($request->filled('type')) {
+            $query->where('type_id', $request->type);
+        }
+
+        if ($request->filled('capacity')) {
+            $query->where('capacity', $request->capacity);
+        }
+
+        if ($request->filled('price_range')) {
+            $range = $request->price_range;
+            if ($range === '200000+') {
+                $query->where('price', '>=', 200000);
+            } else {
+                [$min, $max] = explode('-', $range);
+                $query->whereBetween('price', [(int) $min, (int) $max]);
+            }
+        }
+
+        $rooms = $query->paginate(9)->appends($request->all());
+
+        // Statistiques pour cet hôtel uniquement
+        $types = Type::whereHas('rooms', function ($q) use ($currentHotel) {
+            $q->where('tenant_id', $currentHotel->id);
+        })->withCount(['rooms' => function ($q) use ($currentHotel) {
+            $q->where('tenant_id', $currentHotel->id);
+        }])->get();
+
+        return view('frontend.multitenant.rooms', compact('rooms', 'types', 'currentHotel'));
+    }
+
+    // Restaurant multitenant
+    public function multitenantRestaurant()
+    {
+        $currentHotel = app('current_hotel');
+        if (!$currentHotel) {
+            return redirect('/')->with('error', 'Aucun hôtel sélectionné');
+        }
+        
+        // Menus de cet hôtel uniquement
+        $menus = Menu::where('tenant_id', $currentHotel->id)->get();
+        
+        return view('frontend.multitenant.restaurant', compact('menus', 'currentHotel'));
+    }
+
+    // Services multitenant
+    public function multitenantServices()
+    {
+        $currentHotel = app('current_hotel');
+        if (!$currentHotel) {
+            return redirect('/')->with('error', 'Aucun hôtel sélectionné');
+        }
+        
+        return view('frontend.multitenant.services', compact('currentHotel'));
+    }
+
+    // Contact multitenant
+    public function multitenantContact()
+    {
+        $currentHotel = app('current_hotel');
+        if (!$currentHotel) {
+            return redirect('/')->with('error', 'Aucun hôtel sélectionné');
+        }
+        
+        return view('frontend.multitenant.contact', compact('currentHotel'));
     }
 }

@@ -1,6 +1,6 @@
 
 
-<?php $__env->startSection('title', 'Nos Services - Morada Lodge'); ?>
+<?php $__env->startSection('title', 'Nos Services - ' . ($currentHotel->name ?? 'Morada Lodge')); ?>
 
 <?php $__env->startSection('content'); ?>
     <!-- Hero Section Services -->
@@ -21,98 +21,98 @@
             <div class="row g-4">
                 <!-- Piscine Privée -->
                 <div class="col-lg-4 col-md-6">
-                    <div class="card border-0 shadow-sm h-100 service-card" style="background-color: white; border-top: 4px solid var(--primary-brown);">
+                    <div class="card border-0 shadow-sm h-100 service-card" style="background-color: white; border-top: 4px solid var(--primary-brown, #007bff);">
                         <div class="card-body text-center p-4">
                             <div class="rounded-circle d-inline-flex align-items-center justify-content-center mb-3" 
-                                 style="width: 80px; height: 80px; background-color: var(--primary-brown);">
-                                <i class="fas fa-swimming-pool fa-3x text-white"></i>
+                                 style="width: 80px; height: 80px; background-color: var(--primary-brown, #007bff);">
+                                <i class="fas fa-swimming-pool fa-3x" style="color: white;"></i>
                             </div>
-                            <h4 style="color: var(--primary-brown);">Piscine Privée</h4>
-                            <p class="text-muted">Détente absolue dans un cadre idyllique</p>
+                            <h4 style="color: var(--primary-brown, #007bff);">Piscine Privée</h4>
+                            <p style="color: #6c757d; font-size: 0.9rem;">Détente absolue dans un cadre idyllique</p>
                         </div>
                     </div>
                 </div>
 
                 <!-- Gastronomie -->
                 <div class="col-lg-4 col-md-6">
-                    <div class="card border-0 shadow-sm h-100 service-card" style="background-color: white; border-top: 4px solid var(--primary-brown);">
+                    <div class="card border-0 shadow-sm h-100 service-card" style="background-color: white; border-top: 4px solid var(--primary-brown, #007bff);">
                         <div class="card-body text-center p-4">
                             <div class="rounded-circle d-inline-flex align-items-center justify-content-center mb-3" 
-                                 style="width: 80px; height: 80px; background-color: var(--primary-brown);">
-                                <i class="fas fa-utensils fa-3x text-white"></i>
+                                 style="width: 80px; height: 80px; background-color: var(--primary-brown, #007bff);">
+                                <i class="fas fa-utensils fa-3x style="color: white;""></i>
                             </div>
-                            <h4 style="color: var(--primary-brown);">Gastronomie</h4>
-                            <p class="text-muted">Cuisine raffinée locale et internationale</p>
+                            <h4 style="color: var(--primary-brown, #007bff);">Gastronomie</h4>
+                            <p style="color: #6c757d; font-size: 0.9rem;">Cuisine raffinée locale et internationale</p>
                         </div>
                     </div>
                 </div>
 
                 <!-- Écologique -->
                 <div class="col-lg-4 col-md-6">
-                    <div class="card border-0 shadow-sm h-100 service-card" style="background-color: white; border-top: 4px solid var(--primary-brown);">
+                    <div class="card border-0 shadow-sm h-100 service-card" style="background-color: white; border-top: 4px solid var(--primary-brown, #007bff);">
                         <div class="card-body text-center p-4">
                             <div class="rounded-circle d-inline-flex align-items-center justify-content-center mb-3" 
-                                 style="width: 80px; height: 80px; background-color: var(--primary-brown);">
-                                <i class="fas fa-leaf fa-3x text-white"></i>
+                                 style="width: 80px; height: 80px; background-color: var(--primary-brown, #007bff);">
+                                <i class="fas fa-leaf fa-3x style="color: white;""></i>
                             </div>
-                            <h4 style="color: var(--primary-brown);">Écologique</h4>
-                            <p class="text-muted">Respect de l'environnement et développement durable</p>
+                            <h4 style="color: var(--primary-brown, #007bff);">Écologique</h4>
+                            <p style="color: #6c757d; font-size: 0.9rem;">Respect de l'environnement et développement durable</p>
                         </div>
                     </div>
                 </div>
 
                 <!-- Service 5 étoiles -->
                 <div class="col-lg-4 col-md-6">
-                    <div class="card border-0 shadow-sm h-100 service-card" style="background-color: white; border-top: 4px solid var(--primary-brown);">
+                    <div class="card border-0 shadow-sm h-100 service-card" style="background-color: white; border-top: 4px solid var(--primary-brown, #007bff);">
                         <div class="card-body text-center p-4">
                             <div class="rounded-circle d-inline-flex align-items-center justify-content-center mb-3" 
-                                 style="width: 80px; height: 80px; background-color: var(--primary-brown);">
-                                <i class="fas fa-star fa-3x text-white"></i>
+                                 style="width: 80px; height: 80px; background-color: var(--primary-brown, #007bff);">
+                                <i class="fas fa-star fa-3x style="color: white;""></i>
                             </div>
-                            <h4 style="color: var(--primary-brown);">Service 5 étoiles</h4>
-                            <p class="text-muted">Excellence et attention personnalisée</p>
+                            <h4 style="color: var(--primary-brown, #007bff);">Service 5 étoiles</h4>
+                            <p style="color: #6c757d; font-size: 0.9rem;">Excellence et attention personnalisée</p>
                         </div>
                     </div>
                 </div>
 
                 <!-- Wi-Fi Haut Débit -->
                 <div class="col-lg-4 col-md-6">
-                    <div class="card border-0 shadow-sm h-100 service-card" style="background-color: white; border-top: 4px solid var(--primary-brown);">
+                    <div class="card border-0 shadow-sm h-100 service-card" style="background-color: white; border-top: 4px solid var(--primary-brown, #007bff);">
                         <div class="card-body text-center p-4">
                             <div class="rounded-circle d-inline-flex align-items-center justify-content-center mb-3" 
-                                 style="width: 80px; height: 80px; background-color: var(--primary-brown);">
-                                <i class="fas fa-wifi fa-3x text-white"></i>
+                                 style="width: 80px; height: 80px; background-color: var(--primary-brown, #007bff);">
+                                <i class="fas fa-wifi fa-3x style="color: white;""></i>
                             </div>
-                            <h4 style="color: var(--primary-brown);">Wi-Fi Haut Débit</h4>
-                            <p class="text-muted">Connexion internet gratuite dans tout l'établissement</p>
+                            <h4 style="color: var(--primary-brown, #007bff);">Wi-Fi Haut Débit</h4>
+                            <p style="color: #6c757d; font-size: 0.9rem;">Connexion internet gratuite dans tout l'établissement</p>
                         </div>
                     </div>
                 </div>
 
                 <!-- Parking Sécurisé -->
                 <div class="col-lg-4 col-md-6">
-                    <div class="card border-0 shadow-sm h-100 service-card" style="background-color: white; border-top: 4px solid var(--primary-brown);">
+                    <div class="card border-0 shadow-sm h-100 service-card" style="background-color: white; border-top: 4px solid var(--primary-brown, #007bff);">
                         <div class="card-body text-center p-4">
                             <div class="rounded-circle d-inline-flex align-items-center justify-content-center mb-3" 
-                                 style="width: 80px; height: 80px; background-color: var(--primary-brown);">
-                                <i class="fas fa-car fa-3x text-white"></i>
+                                 style="width: 80px; height: 80px; background-color: var(--primary-brown, #007bff);">
+                                <i class="fas fa-car fa-3x style="color: white;""></i>
                             </div>
-                            <h4 style="color: var(--primary-brown);">Parking Sécurisé</h4>
-                            <p class="text-muted">Stationnement gratuit et surveillance 24h/24</p>
+                            <h4 style="color: var(--primary-brown, #007bff);">Parking Sécurisé</h4>
+                            <p style="color: #6c757d; font-size: 0.9rem;">Stationnement gratuit et surveillance 24h/24</p>
                         </div>
                     </div>
                 </div>
 
                 <!-- Conciergerie -->
                 <div class="col-lg-4 col-md-6">
-                    <div class="card border-0 shadow-sm h-100 service-card" style="background-color: white; border-top: 4px solid var(--primary-brown);">
+                    <div class="card border-0 shadow-sm h-100 service-card" style="background-color: white; border-top: 4px solid var(--primary-brown, #007bff);">
                         <div class="card-body text-center p-4">
                             <div class="rounded-circle d-inline-flex align-items-center justify-content-center mb-3" 
-                                 style="width: 80px; height: 80px; background-color: var(--primary-brown);">
-                                <i class="fas fa-concierge-bell fa-3x text-white"></i>
+                                 style="width: 80px; height: 80px; background-color: var(--primary-brown, #007bff);">
+                                <i class="fas fa-concierge-bell fa-3x style="color: white;""></i>
                             </div>
-                            <h4 style="color: var(--primary-brown);">Conciergerie</h4>
-                            <p class="text-muted">Service personnalisé pour organiser vos activités</p>
+                            <h4 style="color: var(--primary-brown, #007bff);">Conciergerie</h4>
+                            <p style="color: #6c757d; font-size: 0.9rem;">Service personnalisé pour organiser vos activités</p>
                         </div>
                     </div>
                 </div>
@@ -146,7 +146,7 @@
 }
 
 .service-card:hover .rounded-circle {
-    background-color: var(--dark-brown) !important;
+    background-color: var(--dark-brown, #343a40) !important;
 }
 
 /* Responsive */

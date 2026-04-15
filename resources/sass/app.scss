@@ -5,6 +5,9 @@
 // Variables
 @import "variables";
 
+// Tenant Colors (must be after variables)
+@import "tenant-colors";
+
 // Bootstrap
 @import "bootstrap/scss/bootstrap";
 
@@ -22,6 +25,7 @@
 
 // Custom scss
 @import "navbar";
+@import "sidebar";
 @import "notification";
 @import "progressindicatior";
 

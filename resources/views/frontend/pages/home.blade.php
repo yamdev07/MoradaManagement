@@ -1,6 +1,6 @@
 @extends('frontend.layouts.master')
 
-@section('title', 'Morada Lodge - Havre de Luxe au Cœur de la Nature')
+@section('title', ($currentHotel->name ?? 'Morada Lodge') . ' - ' . ($currentHotel->description ?? 'Havre de Luxe au Cœur de la Nature'))
 
 @section('content')
     <!-- Hero Section modernisé -->
@@ -10,13 +10,13 @@
                 <div class="row min-vh-100 align-items-center justify-content-center">
                     <div class="col-lg-10 text-center">
                         <div class="hero-badge mb-4" data-aos="fade-down">
-                            <span class="badge-text">Le luxe au cœur de la nature</span>
+                            <span class="badge-text">{{ $currentHotel ? $currentHotel->description : 'Le luxe au cœur de la nature' }}</span>
                         </div>
                         <h1 class="hero-title mb-4" data-aos="fade-up" data-aos-delay="100">
-                            Morada Lodge
+                            @if(!empty($currentHotel)) {{ $currentHotel->name }} @else Morada Lodge @endif
                         </h1>
                         <p class="hero-subtitle mb-5" data-aos="fade-up" data-aos-delay="200">
-                            Un sanctuaire de tranquillité où l'élégance rencontre l'authenticité africaine
+                            @if(!empty($currentHotel)) {{ $currentHotel ? $currentHotel->description : 'Un sanctuaire de tranquillité où l\'élégance rencontre l\'authenticité africaine' }} @else Un sanctuaire de tranquillité où l'élégance rencontre l'authenticité africaine @endif
                         </p>
                         <div class="hero-cta" data-aos="fade-up" data-aos-delay="300">
                             <a href="{{ route('frontend.rooms') }}" class="btn-modern btn-primary me-3">
@@ -76,7 +76,7 @@
                     <div class="intro-image-wrapper">
                         <div class="main-image">
                             <img src="{{ asset('img/room/Photo10.jpeg') }}" 
-                                 alt="Morada Lodge" 
+                                 alt="{{ $currentHotel ? $currentHotel->name : 'Morada Lodge' }}" 
                                  class="img-fluid">
                         </div>
                         <div class="floating-badge">
@@ -90,16 +90,16 @@
                 </div>
                 <div class="col-lg-6" data-aos="fade-left">
                     <div class="section-header mb-4">
-                        <span class="section-tag">Morada Lodge</span>
+                        <span class="section-tag">{{ $currentHotel ? $currentHotel->name : 'Morada Lodge' }}</span>
                         <h2 class="section-title">Une expérience unique au Bénin</h2>
                     </div>
                     <p class="lead-text mb-4">
-                        Situé à Covè, Morada Lodge offre un cadre paisible où nature, confort et hospitalité béninoise se rencontrent. 
+                        Situé à Covè, {{ $currentHotel ? $currentHotel->name : 'Morada Lodge' }} offre un cadre paisible où nature, confort et hospitalité béninoise se rencontrent. 
                         Entre hébergements élégants, piscine extérieure et restaurant aux saveurs locales et internationales, 
                         chaque séjour est pensé pour offrir détente, bien-être et authenticité.
                     </p>
                     <p class="lead-text mb-4">
-                        Que ce soit pour une escapade de détente ou un séjour spécial, Morada Lodge vous accueille 
+                        Que ce soit pour une escapade de détente ou un séjour spécial, {{ $currentHotel ? $currentHotel->name : 'Morada Lodge' }} vous accueille 
                         dans un environnement naturel et raffiné propice à des moments inoubliables.
                     </p>
                 </div>
@@ -431,7 +431,7 @@
                             <i class="fas fa-star"></i>
                         </div>
                         <p class="testimonial-text">
-                            La tranquillité du lieu et la qualité des services font de Morada Lodge une adresse incontournable. Nous reviendrons sans hésiter !
+                            La tranquillité du lieu et la qualité des services font de {{ $currentHotel ? $currentHotel->name : 'Morada Lodge' }} une adresse incontournable. Nous reviendrons sans hésiter !
                         </p>
                         <div class="testimonial-author">
                             <img src="https://randomuser.me/api/portraits/men/32.jpg" 
@@ -518,7 +518,7 @@
             <div class="cta-wrapper">
                 <div class="row align-items-center">
                     <div class="col-lg-7" data-aos="fade-right">
-                        <h2 class="cta-title">Vivez l'Expérience Morada Lodge</h2>
+                        <h2 class="cta-title">Vivez l'Expérience {{ $currentHotel ? $currentHotel->name : 'Morada Lodge' }}</h2>
                         <p class="cta-text">
                             Réservez dès maintenant et bénéficiez d'une offre exclusive de bienvenue
                         </p>
@@ -550,18 +550,276 @@
 
 @push('styles')
 <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+
+<!-- Style spécifique pour Hotel Paradise -->
+@if(request()->get('hotel_id') == 3 || (isset($currentHotel) && $currentHotel->id == 3))
+<style>
+    .hero-modern {
+        background: linear-gradient(135deg, rgba(40, 167, 69, 0.8) 0%, rgba(30, 126, 52, 0.6) 100%), 
+                    url('https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') !important;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+    }
+    
+    /* Forcer le fond vert sur tous les éléments */
+    .hero-modern * {
+        background-color: transparent !important;
+    }
+    
+    /* S'assurer que le fond reste vert */
+    body .hero-modern {
+        background: linear-gradient(135deg, rgba(40, 167, 69, 0.8) 0%, rgba(30, 126, 52, 0.6) 100%), 
+                    url('https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') !important;
+    }
+    
+    /* Styles Hotel Paradise pour les sections */
+    .services-section {
+        background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%) !important;
+    }
+    
+    .service-card-modern {
+        background: white;
+        border: 2px solid rgba(40, 167, 69, 0.1);
+        box-shadow: 0 10px 30px rgba(40, 167, 69, 0.1);
+    }
+    
+    .service-card-modern::before {
+        background: linear-gradient(90deg, #007bff, #0056b3);
+    }
+    
+    .service-icon-wrapper {
+        background: linear-gradient(135deg, #007bff, #0056b3);
+        box-shadow: 0 10px 25px rgba(0, 123, 255, 0.3);
+    }
+    
+    .service-card-modern h3 {
+        color: #0056b3;
+    }
+    
+    .service-link {
+        color: #007bff;
+    }
+    
+    .service-link:hover {
+        color: #0056b3;
+    }
+    
+    .testimonials-section {
+        background: linear-gradient(135deg, #0056b3 0%, #007bff 100%) !important;
+    }
+    
+    .testimonial-card-modern {
+        background: rgba(255, 255, 255, 0.95);
+        border: 2px solid rgba(0, 123, 255, 0.2);
+    }
+    
+    .quote-icon {
+        background: #007bff;
+    }
+    
+    .rating i {
+        color: #007bff;
+    }
+    
+    .author-avatar {
+        border-color: #007bff;
+    }
+    
+    .stats-row {
+        background: rgba(255, 255, 255, 0.15);
+        border: 2px solid rgba(0, 123, 255, 0.3);
+    }
+    
+    .cta-section {
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%) !important;
+    }
+    
+    .cta-wrapper {
+        background: white;
+        border: 2px solid rgba(0, 123, 255, 0.1);
+        box-shadow: 0 20px 40px rgba(0, 123, 255, 0.15);
+    }
+    
+    .cta-title {
+        color: #0056b3;
+    }
+    
+    /* Cercle Service client - couleur neutre */
+    .badge-circle {
+        background: linear-gradient(135deg, #007bff, #0056b3) !important;
+        border: 3px solid #007bff !important;
+        box-shadow: 0 10px 30px rgba(0, 123, 255, 0.3) !important;
+    }
+    
+    .availability-text {
+        color: white !important;
+        font-weight: 600 !important;
+    }
+    
+    .availability-hours {
+        color: #f8f9fa !important;
+        font-weight: 700 !important;
+    }
+    
+    .availability-desc {
+        color: rgba(255, 255, 255, 0.9) !important;
+    }
+    
+    .badge-circle:hover {
+        background: linear-gradient(135deg, #0056b3, #007bff) !important;
+        border-color: #0056b3 !important;
+        box-shadow: 0 15px 40px rgba(0, 123, 255, 0.4) !important;
+    }
+    
+    /* Correction superposition entre hero et introduction */
+    .hero-modern {
+        position: relative !important;
+        z-index: 1 !important;
+        overflow: hidden !important;
+    }
+    
+    .intro-section {
+        position: relative !important;
+        z-index: 2 !important;
+        background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%) !important;
+        margin-top: 0 !important;
+        padding-top: 100px !important;
+    }
+    
+    /* Correction superposition des textes dans les cartes de chambres */
+    .room-card-modern {
+        background: white !important;
+        border: 2px solid rgba(40, 167, 69, 0.1) !important;
+        box-shadow: 0 10px 30px rgba(40, 167, 69, 0.1) !important;
+        overflow: hidden !important;
+        position: relative !important;
+        z-index: 1 !important;
+    }
+    
+    .room-card-modern:hover {
+        box-shadow: 0 15px 40px rgba(40, 167, 69, 0.2) !important;
+        z-index: 2 !important;
+    }
+    
+    .room-details {
+        background: white !important;
+        position: relative !important;
+        z-index: 3 !important;
+        padding: 25px !important;
+    }
+    
+    .room-header {
+        background: transparent !important;
+        position: relative !important;
+        z-index: 4 !important;
+    }
+    
+    .room-name {
+        color: #1e7e34 !important;
+        background: transparent !important;
+        position: relative !important;
+        z-index: 5 !important;
+    }
+    
+    .room-type {
+        color: rgba(40, 167, 69, 0.7) !important;
+        background: transparent !important;
+    }
+    
+    .room-description {
+        color: var(--text-gray) !important;
+        background: transparent !important;
+        position: relative !important;
+        z-index: 5 !important;
+        line-height: 1.6 !important;
+        margin-bottom: 15px !important;
+    }
+    
+    .room-specs {
+        background: transparent !important;
+        position: relative !important;
+        z-index: 5 !important;
+    }
+    
+    .spec-item {
+        color: var(--text-gray) !important;
+        background: transparent !important;
+    }
+    
+    .spec-item i {
+        color: #007bff !important;
+    }
+    
+    .room-footer {
+        background: white !important;
+        border-top: 1px solid rgba(40, 167, 69, 0.2) !important;
+        position: relative !important;
+        z-index: 6 !important;
+    }
+    
+    .price {
+        color: #007bff !important;
+        background: transparent !important;
+    }
+    
+    .btn-view {
+        background: #007bff !important;
+        color: white !important;
+        border: none !important;
+        position: relative !important;
+        z-index: 7 !important;
+    }
+    
+    .btn-view:hover {
+        background: #0056b3 !important;
+        color: white !important;
+    }
+    
+    .status-badge {
+        background: rgba(255, 255, 255, 0.95) !important;
+        border: 1px solid rgba(40, 167, 69, 0.2) !important;
+        position: relative !important;
+        z-index: 10 !important;
+    }
+    
+    .status-badge.premium {
+        color: #007bff !important;
+        background: rgba(0, 123, 255, 0.1) !important;
+        border-color: #007bff !important;
+    }
+    
+    .status-badge.classic {
+        color: var(--text-gray) !important;
+        background: rgba(107, 114, 128, 0.1) !important;
+        border-color: rgba(107, 114, 128, 0.3) !important;
+    }
+    
+    .wishlist-btn {
+        background: rgba(255, 255, 255, 0.95) !important;
+        border: 1px solid rgba(40, 167, 69, 0.2) !important;
+        position: relative !important;
+        z-index: 10 !important;
+    }
+    
+    /* Animations de superposition désactivées pour Hotel Paradise */
+</style>
+@endif
 <style>
 /* ============================================
    VARIABLES & BASE
    ============================================ */
 :root {
-    /* Morada Lodge Base Colors */
-    --primary-brown: #8b4513;
-    --secondary-brown: #a0522d;
-    --accent-gold: #cd853f;
-    --dark-brown: #654321;
-    --light-brown: #f5e6d3;
-    --warm-beige: #f4f1e8;
+    /* Couleurs neutres - PLUS de marron */
+    --primary-brown: #007bff;
+    --secondary-brown: #6c757d;
+    --accent-gold: #007bff;
+    --dark-brown: #343a40;
+    --light-brown: #f8f9fa;
+    --warm-beige: #ffffff;
     
     /* Legacy variables for compatibility */
     --cactus-green: var(--primary-brown);
@@ -972,7 +1230,6 @@ body {
 }
 
 .room-card-modern:hover {
-    transform: translateY(-8px);
     box-shadow: var(--shadow-lg);
 }
 
@@ -990,7 +1247,7 @@ body {
 }
 
 .room-card-modern:hover .room-image {
-    transform: scale(1.08);
+    filter: brightness(1.05);
 }
 
 .room-status {
@@ -1017,8 +1274,8 @@ body {
 }
 
 .status-badge.premium {
-    color: #8b4513;
-    background: rgba(139, 69, 19, 0.1);
+    color: #007bff;
+    background: rgba(0, 123, 255, 0.1);
 }
 
 .status-badge.classic {
@@ -1027,8 +1284,8 @@ body {
 }
 
 .status-badge.prestige {
-    color: #cd853f;
-    background: rgba(205, 133, 63, 0.1);
+    color: #6c757d;
+    background: rgba(108, 117, 125, 0.1);
 }
 
 .wishlist-btn {
@@ -1169,7 +1426,6 @@ body {
 
 .btn-modern.btn-primary:hover {
     background: var(--secondary-brown);
-    transform: translateY(-2px);
     box-shadow: var(--shadow-md);
 }
 
@@ -1214,6 +1470,276 @@ body {
 .btn-modern.btn-white-lg:hover {
     background: white;
     color: var(--primary-brown);
+}
+
+/* ============================================
+   SERVICES SECTION
+   ============================================ */
+.services-section {
+    background: var(--warm-beige);
+    padding: 100px 0;
+}
+
+.service-card-modern {
+    background: white;
+    border-radius: 20px;
+    padding: 40px 30px;
+    text-align: center;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(139, 69, 19, 0.1);
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.service-card-modern::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-brown), var(--accent-gold));
+    transform: scaleX(0);
+    transition: transform 0.4s ease;
+}
+
+.service-card-modern:hover::before {
+    transform: scaleX(1);
+}
+
+.service-card-modern:hover {
+    box-shadow: 0 20px 40px rgba(139, 69, 19, 0.15);
+    border-color: var(--primary-brown);
+}
+
+.service-icon-wrapper {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, var(--primary-brown), var(--secondary-brown));
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 25px;
+    transition: all 0.3s ease;
+    color: white;
+    font-size: 2rem;
+}
+
+.service-card-modern:hover .service-icon-wrapper {
+    box-shadow: 0 10px 25px rgba(139, 69, 19, 0.3);
+}
+
+.service-card-modern h3 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--dark-brown);
+    margin-bottom: 15px;
+}
+
+.service-card-modern p {
+    color: var(--text-gray);
+    line-height: 1.6;
+    margin-bottom: 20px;
+    font-size: 0.95rem;
+}
+
+.service-link {
+    color: var(--primary-brown);
+    text-decoration: none;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.service-link:hover {
+    color: var(--secondary-brown);
+}
+
+/* ============================================
+   TESTIMONIALS SECTION
+   ============================================ */
+.testimonials-section {
+    background: linear-gradient(135deg, var(--dark-brown) 0%, var(--primary-brown) 100%);
+    padding: 100px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.testimonials-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+    opacity: 0.3;
+}
+
+.testimonial-card-modern {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 35px;
+    position: relative;
+    transition: all 0.4s ease;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    height: 100%;
+}
+
+.testimonial-card-modern:hover {
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    background: rgba(255, 255, 255, 0.98);
+}
+
+.quote-icon {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    background: var(--accent-gold);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.2rem;
+    opacity: 0.8;
+}
+
+.rating {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 20px;
+}
+
+.rating i {
+    color: var(--accent-gold);
+    font-size: 1.1rem;
+}
+
+.testimonial-text {
+    color: var(--text-dark);
+    line-height: 1.7;
+    font-style: italic;
+    margin-bottom: 25px;
+    font-size: 1rem;
+}
+
+.testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.author-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--accent-gold);
+}
+
+.author-info h5 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--dark-brown);
+    margin: 0;
+}
+
+.author-info p {
+    color: var(--text-gray);
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+/* ============================================
+   STATS SECTION
+   ============================================ */
+.stats-row {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.stat-item {
+    text-align: center;
+    padding: 20px;
+}
+
+.stat-number {
+    font-size: 3rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 10px;
+    display: block;
+    animation: countUp 2s ease-out;
+}
+
+.stat-label {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1rem;
+    margin-bottom: 15px;
+}
+
+.stat-stars {
+    display: flex;
+    justify-content: center;
+    gap: 3px;
+}
+
+.stat-stars i {
+    color: var(--accent-gold);
+    font-size: 1rem;
+}
+
+@keyframes countUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================
+   CTA SECTION
+   ============================================ */
+.cta-section {
+    background: var(--warm-beige);
+    padding: 100px 0;
+}
+
+.cta-wrapper {
+    background: white;
+    border-radius: 20px;
+    padding: 60px;
+    box-shadow: 0 20px 40px rgba(139, 69, 19, 0.1);
+    border: 1px solid rgba(139, 69, 19, 0.1);
+}
+
+.cta-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--dark-brown);
+    margin-bottom: 20px;
+}
+
+.cta-text {
+    color: var(--text-gray);
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.cta-actions {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
 }
 
 /* ============================================
@@ -1290,5 +1816,188 @@ body {
             this.querySelector('i').classList.toggle('fas');
         });
     });
+
+    // Animations améliorées pour les services
+    const serviceCards = document.querySelectorAll('.service-card-modern');
+    serviceCards.forEach((card, index) => {
+        card.addEventListener('mouseenter', function() {
+            // Animation de l'icône
+            const icon = this.querySelector('.service-icon-wrapper');
+            if (icon) {
+                icon.style.transform = 'scale(1.2) rotate(10deg)';
+                icon.style.transition = 'all 0.3s ease';
+            }
+            
+            // Animation du texte
+            const title = this.querySelector('h3');
+            if (title) {
+                title.style.color = '#007bff';
+                title.style.transition = 'all 0.3s ease';
+            }
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            const icon = this.querySelector('.service-icon-wrapper');
+            if (icon) {
+                icon.style.transform = 'scale(1) rotate(0deg)';
+            }
+            
+            const title = this.querySelector('h3');
+            if (title) {
+                title.style.color = '';
+            }
+        });
+    });
+
+    // Animations pour les témoignages
+    const testimonialCards = document.querySelectorAll('.testimonial-card-modern');
+    testimonialCards.forEach((card, index) => {
+        // Animation au scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                        entry.target.style.transition = 'all 0.6s ease';
+                    }, index * 200);
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        observer.observe(card);
+        
+        // Animation au hover
+        card.addEventListener('mouseenter', function() {
+            const quote = this.querySelector('.quote-icon');
+            if (quote) {
+                quote.style.transform = 'scale(1.2) rotate(15deg)';
+                quote.style.transition = 'all 0.3s ease';
+            }
+            
+            const avatar = this.querySelector('.author-avatar');
+            if (avatar) {
+                avatar.style.transform = 'scale(1.1)';
+                avatar.style.transition = 'all 0.3s ease';
+            }
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            const quote = this.querySelector('.quote-icon');
+            if (quote) {
+                quote.style.transform = 'scale(1) rotate(0deg)';
+            }
+            
+            const avatar = this.querySelector('.author-avatar');
+            if (avatar) {
+                avatar.style.transform = 'scale(1)';
+            }
+        });
+    });
+
+    // Animation des statistiques - DÉSACTIVÉE
+    /*
+    const statNumbers = document.querySelectorAll('.stat-number');
+    const statsObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const target = entry.target;
+                const finalValue = parseFloat(target.textContent);
+                let currentValue = 0;
+                const increment = finalValue / 50;
+                const timer = setInterval(() => {
+                    currentValue += increment;
+                    if (currentValue >= finalValue) {
+                        currentValue = finalValue;
+                        clearInterval(timer);
+                    }
+                    
+                    if (target.textContent.includes('.')) {
+                        target.textContent = currentValue.toFixed(1);
+                    } else if (target.textContent.includes('+')) {
+                        target.textContent = Math.floor(currentValue) + '+';
+                    } else if (target.textContent.includes('★')) {
+                        target.textContent = '5★';
+                    } else {
+                        target.textContent = Math.floor(currentValue) + '%';
+                    }
+                }, 30);
+                
+                statsObserver.unobserve(target);
+            }
+        });
+    }, { threshold: 0.5 });
+    
+    statNumbers.forEach(stat => statsObserver.observe(stat));
+    */
+
+    // Animation pour la section CTA - DÉSACTIVÉE
+    /*
+    const ctaSection = document.querySelector('.cta-section');
+    if (ctaSection) {
+        const ctaObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const wrapper = entry.target.querySelector('.cta-wrapper');
+                    if (wrapper) {
+                        wrapper.style.opacity = '0';
+                        wrapper.style.transform = 'translateY(30px)';
+                        wrapper.style.transition = 'all 0.8s ease';
+                        
+                        setTimeout(() => {
+                            wrapper.style.opacity = '1';
+                            wrapper.style.transform = 'translateY(0)';
+                        }, 200);
+                    }
+                    
+                    const badge = entry.target.querySelector('.badge-circle');
+                    if (badge) {
+                        badge.style.transform = 'scale(0)';
+                        badge.style.transition = 'all 0.6s ease';
+                        
+                        setTimeout(() => {
+                            badge.style.transform = 'scale(1)';
+                        }, 600);
+                    }
+                    
+                    ctaObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.3 });
+        
+        ctaObserver.observe(ctaSection);
+    }
+    */
+
+    // Effet de parallaxe pour l'hero - DÉSACTIVÉ
+    /*
+    window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        const hero = document.querySelector('.hero-modern');
+        if (hero) {
+            hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+        }
+    });
+    */
+
+    // Animation des liens de service - DÉSACTIVÉE
+    /*
+    document.querySelectorAll('.service-link').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const icon = this.querySelector('i');
+            if (icon) {
+                icon.style.transform = 'translateX(10px)';
+                icon.style.transition = 'all 0.3s ease';
+                
+                setTimeout(() => {
+                    window.location.href = this.href;
+                }, 300);
+            } else {
+                window.location.href = this.href;
+            }
+        });
+    });
+    */
 </script>
 @endpush

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Navigation</title>
+</head>
+<body>
+    <h1>Test de Navigation</h1>
+    
+    <h2>Liens normaux (devraient rester dans le même onglet)</h2>
+    <a href="http://127.0.0.1:8001/">Page d'accueil</a><br><br>
+    <a href="http://127.0.0.1:8001/tenant/benin/dashboard">Dashboard Bénin</a><br><br>
+    
+    <h2>Liens avec target="_blank (devraient ouvrir un nouvel onglet)</h2>
+    <a href="http://127.0.0.1:8001/" target="_blank">Page d'accueil (nouvel onglet)</a><br><br>
+    
+    <h2>Bouton JavaScript</h2>
+    <button onclick="window.location.href='http://127.0.0.1:8001/'">Navigation JS</button><br><br>
+    <button onclick="window.open('http://127.0.0.1:8001/', '_blank')">Nouvel onglet JS</button>
+    
+    <script>
+        console.log('Page de test chargée');
+        
+        // Intercepter tous les clics
+        document.addEventListener('click', function(e) {
+            console.log('Click detected:', e.target);
+            console.log('Href:', e.target.href);
+            console.log('Target:', e.target.target);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Boutons</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-4">
+    <h2>Test des Boutons d'Approbation</h2>
+    <div class="card mb-3">
+        <div class="card-body">
+            <h5>Hôtel Azure Paradise</h5>
+            <p>Admin: Admin Azure Paradise</p>
+            <div class="btn-group">
+                <button type="button" 
+                        class="btn btn-success btn-sm" 
+                        data-action="approve-tenant"
+                        data-tenant-id="13"
+                        data-tenant-name="Hôtel Azure Paradise">
+                    Approuver
+                </button>
+                <button type="button" 
+                        class="btn btn-info btn-sm" 
+                        data-action="view-tenant-details"
+                        data-tenant-id="13">
+                    Détails
+                </button>
+                <button type="button" 
+                        class="btn btn-danger btn-sm" 
+                        data-action="reject-tenant"
+                        data-tenant-id="13"
+                        data-tenant-name="Hôtel Azure Paradise">
+                    Rejeter
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="card mb-3">
+        <div class="card-body">
+            <h5>Hôtel Royal Palace</h5>
+            <p>Admin: Admin Royal Palace</p>
+            <div class="btn-group">
+                <button type="button" 
+                        class="btn btn-success btn-sm" 
+                        data-action="approve-tenant"
+                        data-tenant-id="14"
+                        data-tenant-name="Hôtel Royal Palace">
+                    Approuver
+                </button>
+                <button type="button" 
+                        class="btn btn-info btn-sm" 
+                        data-action="view-tenant-details"
+                        data-tenant-id="14">
+                    Détails
+                </button>
+                <button type="button" 
+                        class="btn btn-danger btn-sm" 
+                        data-action="reject-tenant"
+                        data-tenant-id="14"
+                        data-tenant-name="Hôtel Royal Palace">
+                    Rejeter
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="card mb-3">
+        <div class="card-body">
+            <h5>Hôtel Émeraude Beach</h5>
+            <p>Admin: Admin Émeraude Beach</p>
+            <div class="btn-group">
+                <button type="button" 
+                        class="btn btn-success btn-sm" 
+                        data-action="approve-tenant"
+                        data-tenant-id="15"
+                        data-tenant-name="Hôtel Émeraude Beach">
+                    Approuver
+                </button>
+                <button type="button" 
+                        class="btn btn-info btn-sm" 
+                        data-action="view-tenant-details"
+                        data-tenant-id="15">
+                    Détails
+                </button>
+                <button type="button" 
+                        class="btn btn-danger btn-sm" 
+                        data-action="reject-tenant"
+                        data-tenant-id="15"
+                        data-tenant-name="Hôtel Émeraude Beach">
+                    Rejeter
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// Test simple avec JavaScript natif
+document.addEventListener("click", function(e) {
+    const button = e.target.closest("[data-action]");
+    if (!button) return;
+    
+    const action = button.dataset.action;
+    const tenantId = button.dataset.tenantId;
+    const tenantName = button.dataset.tenantName;
+    
+    console.log("Bouton cliqué:", action, tenantId, tenantName);
+    
+    switch(action) {
+        case "approve-tenant":
+            alert("Approuver: " + tenantName + " (ID: " + tenantId + ")");
+            break;
+        case "reject-tenant":
+            alert("Rejeter: " + tenantName + " (ID: " + tenantId + ")");
+            break;
+        case "view-tenant-details":
+            alert("Détails: " + tenantName + " (ID: " + tenantId + ")");
+            break;
+    }
+});
+</script>
+
+</body>
+</html>

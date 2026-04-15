@@ -221,9 +221,8 @@
                                     </td>
                                     <td>
                                         <a href="{{ route('transaction.show', $conflict['transaction']->id) }}" 
-                                           class="btn btn-sm btn-outline-primary"
-                                           target="_blank">
-                                            <i class="fas fa-external-link-alt me-1"></i>
+                                           class="btn btn-sm btn-outline-primary">
+                                            <i class="fas fa-eye me-1"></i>
                                             Voir réservation
                                         </a>
                                     </td>

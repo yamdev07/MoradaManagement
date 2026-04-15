@@ -3,38 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Morada Lodge - Havre de luxe au cœur de la nature à Covè, Bénin">
-    <title><?php echo $__env->yieldContent('title', 'Morada Lodge - Luxury Nature Resort'); ?></title>
+    <meta name="description" content="<?php echo e($currentHotel->name ?? 'Morada Lodge'); ?> - <?php echo e($currentHotel->description ?? 'Havre de luxe au cœur de la nature à Covè, Bénin'); ?>">
+    <title><?php echo $__env->yieldContent('title', $currentHotel->name ?? 'Morada Lodge' . ' - Luxury Nature Resort'); ?></title>
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" sizes="32x32" href="<?php echo e(asset('favicon-32x32.png')); ?>">
     <link rel="icon" type="image/png" sizes="16x16" href="<?php echo e(asset('favicon-16x16.png')); ?>">
     <link rel="apple-touch-icon" href="<?php echo e(asset('apple-touch-icon.png')); ?>">
-    <link rel="manifest" href="<?php echo e(asset('site.webmanifest')); ?>">
-    <link rel="shortcut icon" href="<?php echo e(asset('favicon.ico')); ?>">
-    
-
     
     <!-- Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    
+
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     
     <!-- Styles personnalisés -->
-    <link rel="stylesheet" href="<?php echo e(asset('css/morada-lodge.css')); ?>">
     <style>
         :root {
-            /* Morada Lodge Base Colors */
-            --primary-brown: #8b4513;
-            --secondary-brown: #a0522d;
-            --accent-gold: #cd853f;
-            --dark-brown: #654321;
-            --light-brown: #f5e6d3;
-            --warm-beige: #f4f1e8;
+            <?php if(!empty($currentHotel)): ?>
+            /* Couleurs du Tenant - utiliser les couleurs du tenant */
+            <?php
+            $theme = $currentHotel->theme_settings ?? [];
+            if (is_string($theme)) {
+                $theme = json_decode($theme, true);
+            }
+            $primaryColor = $theme['primary_color'] ?? '#007bff';
+            $secondaryColor = $theme['secondary_color'] ?? '#6c757d';
+            $accentColor = $theme['accent_color'] ?? '#28a745';
+            ?>
+            --primary-brown: {{ $primaryColor }};
+            --secondary-brown: {{ $secondaryColor }};
+            --accent-gold: {{ $accentColor }};
+            --dark-brown: #343a40;
+            --light-brown: #f8f9fa;
+            --warm-beige: #ffffff;
+            
+            /* Legacy variables for compatibility */
+            --primary-color: {{ $primaryColor }};
+            --secondary-color: {{ $secondaryColor }};
+            --light-color: #f8f9fa;
+            --dark-color: #343a40;
+            --accent-color: {{ $accentColor }};
+            ?>
+            <?php else: ?>
+            /* Couleurs neutres - SEULEMENT si pas de tenant */
+            --primary-brown: #007bff;
+            --secondary-brown: #6c757d;
+            --accent-gold: #007bff;
+            --dark-brown: #343a40;
+            --light-brown: #f8f9fa;
+            --warm-beige: #ffffff;
             
             /* Legacy variables for compatibility */
             --primary-color: var(--primary-brown);
@@ -42,18 +63,28 @@
             --light-color: var(--warm-beige);
             --dark-color: var(--dark-brown);
             --accent-color: var(--light-brown);
+            <?php endif; ?>
         }
         
         body {
             font-family: 'Inter', sans-serif;
+            <?php if(!empty($currentHotel)): ?>
+            color: #333;
+            background-color: #ffffff;
+            <?php else: ?>
             color: #333;
             background-color: var(--warm-beige);
+            <?php endif; ?>
         }
         
         h1, h2, h3, h4, h5, h6 {
             font-family: 'Playfair Display', serif;
             font-weight: 700;
+            <?php if(!empty($currentHotel)): ?>
+            color: #333;
+            <?php else: ?>
             color: var(--dark-color);
+            <?php endif; ?>
         }
         
         .bg-primary-custom {
@@ -71,15 +102,62 @@
         }
         
         .btn-primary-custom:hover {
+            <?php if(!empty($currentHotel)): ?>
+            background-color: #666;
+            border-color: #666;
+            <?php else: ?>
             background-color: var(--secondary-brown);
             border-color: var(--secondary-brown);
+            <?php endif; ?>
         }
         
         .navbar-brand {
             font-family: 'Playfair Display', serif;
             font-size: 1.8rem;
             font-weight: 700;
+            <?php if(!empty($currentHotel)): ?>
+            color: #333 !important;
+            <?php else: ?>
             color: var(--dark-color) !important;
+            <?php endif; ?>
+        }
+        
+        .nav-link {
+            <?php if(!empty($currentHotel)): ?>
+            color: #333 !important;
+            <?php else: ?>
+            color: var(--dark-color) !important;
+            <?php endif; ?>
+            font-weight: 500;
+        }
+        
+        .nav-link:hover {
+            <?php if(!empty($currentHotel)): ?>
+            color: #666 !important;
+            <?php else: ?>
+            color: var(--primary-color) !important;
+            <?php endif; ?>
+        }
+        
+        .btn-outline-primary-custom {
+            <?php if(!empty($currentHotel)): ?>
+            color: #666;
+            border-color: #666;
+            <?php else: ?>
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+            <?php endif; ?>
+        }
+        
+        .btn-outline-primary-custom:hover {
+            <?php if(!empty($currentHotel)): ?>
+            background-color: #666;
+            border-color: #666;
+            <?php else: ?>
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            <?php endif; ?>
+            color: white;
         }
         
         .hero-section {
@@ -99,7 +177,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0, 0, 0, 0.3);
+            background: linear-gradient(135deg, rgba(40, 167, 69, 0.4) 0%, rgba(30, 126, 52, 0.6) 100%);
             z-index: 1;
         }
         
@@ -119,7 +197,7 @@
         
         .room-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 8px 25px rgba(139, 69, 19, 0.2);
+            box-shadow: 0 8px 25px rgba(40, 167, 69, 0.2);
         }
         
         .footer {
@@ -137,81 +215,6 @@
         .social-icons a:hover {
             color: var(--secondary-color);
         }
-        
-        .nav-link {
-            color: var(--dark-color) !important;
-            font-weight: 500;
-        }
-        
-        .nav-link:hover {
-            color: var(--primary-color) !important;
-        }
-        
-        .btn-outline-primary-custom {
-            color: var(--primary-color);
-            border-color: var(--primary-color);
-        }
-        
-        .btn-outline-primary-custom:hover {
-            background-color: var(--primary-color);
-            border-color: var(--primary-color);
-            color: white;
-        }
-        
-        /* Styles pour les formulaires */
-        .form-control:focus {
-            border-color: var(--secondary-brown);
-            box-shadow: 0 0 0 0.25rem rgba(160, 82, 45, 0.25);
-        }
-        
-        /* Cartes et conteneurs */
-        .card {
-            border: 1px solid rgba(139, 69, 19, 0.1);
-            background-color: white;
-        }
-        
-        .card-header {
-            background-color: var(--accent-color);
-            border-bottom: 1px solid rgba(139, 69, 19, 0.1);
-        }
-        
-        /* Tables */
-        .table-hover tbody tr:hover {
-            background-color: var(--accent-color);
-        }
-        
-        /* Alertes */
-        .alert-success {
-            background-color: var(--accent-color);
-            border-color: var(--secondary-color);
-            color: var(--dark-color);
-        }
-        
-        /* Badges */
-        .badge.bg-primary {
-            background-color: var(--primary-color) !important;
-        }
-        
-        /* Boutons Hero Section */
-        .hero-section .btn-primary-custom {
-            background-color: var(--primary-brown);
-            border-color: var(--primary-brown);
-        }
-        
-        .hero-section .btn-primary-custom:hover {
-            background-color: var(--dark-brown);
-            border-color: var(--dark-brown);
-        }
-        
-        .hero-section .btn-outline-light {
-            border-color: white;
-            color: white;
-        }
-        
-        .hero-section .btn-outline-light:hover {
-            background-color: white;
-            color: var(--dark-color);
-        }
     </style>
     
     <?php echo $__env->yieldPushContent('styles'); ?>
@@ -221,13 +224,19 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
         <div class="container">
             <a class="navbar-brand d-flex align-items-center" href="<?php echo e(route('frontend.home')); ?>">
-                <img src="<?php echo e(asset('img/logo/logo_ancien.jpg')); ?>"
-                    alt="Morada Lodge"
-                    class="me-2"
-                    style="height: 45px; width: auto;">
-                <span>Morada Lodge</span>
+                <?php if(!empty($currentHotel) && $currentHotel->logo): ?>
+                    <img src="<?php echo e(asset('storage/' . $currentHotel->logo)); ?>"
+                        alt="<?php echo e($currentHotel->name); ?>"
+                        class="me-2"
+                        style="height: 45px; width: auto;">
+                <?php else: ?>
+                    <img src="<?php echo e(asset('img/logo/logo_ancien.jpg')); ?>"
+                        alt="Morada Lodge"
+                        class="me-2"
+                        style="height: 45px; width: auto;">
+                <?php endif; ?>
+                <span><?php if(!empty($currentHotel)): ?> <?php echo e($currentHotel->name); ?> <?php else: ?> Morada Lodge <?php endif; ?></span>
             </a>
-
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
@@ -236,19 +245,19 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="<?php echo e(route('frontend.home')); ?>">Accueil</a>
+                        <a class="nav-link" href="<?php echo e(route('frontend.home')); ?><?php echo e(request()->get('hotel_id') ? '?hotel_id=' . request()->get('hotel_id') : ''); ?>">Accueil</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?php echo e(route('frontend.rooms')); ?>">Chambres & Suites</a>
+                        <a class="nav-link" href="<?php echo e(route('frontend.rooms')); ?><?php echo e(request()->get('hotel_id') ? '?hotel_id=' . request()->get('hotel_id') : ''); ?>">Chambres & Suites</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?php echo e(route('frontend.restaurant')); ?>">Restaurant</a>
+                        <a class="nav-link" href="<?php echo e(route('frontend.restaurant')); ?><?php echo e(request()->get('hotel_id') ? '?hotel_id=' . request()->get('hotel_id') : ''); ?>">Restaurant</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?php echo e(route('frontend.services')); ?>">Services</a>
+                        <a class="nav-link" href="<?php echo e(route('frontend.services')); ?><?php echo e(request()->get('hotel_id') ? '?hotel_id=' . request()->get('hotel_id') : ''); ?>">Services</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?php echo e(route('frontend.contact')); ?>">Contact</a>
+                        <a class="nav-link" href="<?php echo e(route('frontend.contact')); ?><?php echo e(request()->get('hotel_id') ? '?hotel_id=' . request()->get('hotel_id') : ''); ?>">Contact</a>
                     </li>
                     
                     <!-- Bouton dashboard pour les utilisateurs connectés -->
@@ -280,8 +289,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-4 mb-4">
-                    <h4 class="mb-3">Morada Lodge</h4>
-                    <p>Un sanctuaire de luxe au cœur de la nature béninoise, où authenticité et raffinement se rencontrent pour créer des souvenirs inoubliables.</p>
+                    <h4 class="mb-3"><?php if(!empty($currentHotel)): ?> <?php echo e($currentHotel->name); ?> <?php else: ?> Morada Lodge <?php endif; ?></h4>
+                    <p><?php if(!empty($currentHotel)): ?> <?php echo e($currentHotel->description ?? 'Un établissement de luxe où authenticité et raffinement se rencontrent pour créer des souvenirs inoubliables.'); ?> <?php else: ?> Un sanctuaire de luxe au cœur de la nature béninoise, où authenticité et raffinement se rencontrent pour créer des souvenirs inoubliables. <?php endif; ?></p>
                     <div class="social-icons mt-3">
                         <a href="#"><i class="fab fa-facebook"></i></a>
                         <a href="#"><i class="fab fa-instagram"></i></a>
@@ -293,11 +302,11 @@
                 <div class="col-lg-4 mb-4">
                     <h5 class="mb-3">Liens rapides</h5>
                     <ul class="list-unstyled">
-                        <li><a href="<?php echo e(route('frontend.home')); ?>" class="text-white text-decoration-none">Accueil</a></li>
-                        <li><a href="<?php echo e(route('frontend.rooms')); ?>" class="text-white text-decoration-none">Chambres</a></li>
-                        <li><a href="<?php echo e(route('frontend.restaurant')); ?>" class="text-white text-decoration-none">Restaurant</a></li>
-                        <li><a href="<?php echo e(route('frontend.services')); ?>" class="text-white text-decoration-none">Services</a></li>
-                        <li><a href="<?php echo e(route('frontend.contact')); ?>" class="text-white text-decoration-none">Contact</a></li>
+                        <li><a href="<?php echo e(route('frontend.home')); ?><?php echo e(request()->get('hotel_id') ? '?hotel_id=' . request()->get('hotel_id') : ''); ?>" class="text-white text-decoration-none">Accueil</a></li>
+                        <li><a href="<?php echo e(route('frontend.rooms')); ?><?php echo e(request()->get('hotel_id') ? '?hotel_id=' . request()->get('hotel_id') : ''); ?>" class="text-white text-decoration-none">Chambres</a></li>
+                        <li><a href="<?php echo e(route('frontend.restaurant')); ?><?php echo e(request()->get('hotel_id') ? '?hotel_id=' . request()->get('hotel_id') : ''); ?>" class="text-white text-decoration-none">Restaurant</a></li>
+                        <li><a href="<?php echo e(route('frontend.services')); ?><?php echo e(request()->get('hotel_id') ? '?hotel_id=' . request()->get('hotel_id') : ''); ?>" class="text-white text-decoration-none">Services</a></li>
+                        <li><a href="<?php echo e(route('frontend.contact')); ?><?php echo e(request()->get('hotel_id') ? '?hotel_id=' . request()->get('hotel_id') : ''); ?>" class="text-white text-decoration-none">Contact</a></li>
                     </ul>
                 </div>
                 
@@ -322,5 +331,173 @@
     
     <!-- Scripts personnalisés -->
     <?php echo $__env->yieldPushContent('scripts'); ?>
+    
+    <!-- Thème dynamique basé sur currentHotel -->
+    <?php if(!empty($currentHotel)): ?>
+    <script>
+        (function() {
+            console.log('🎨 DÉMARRAGE THÈME DYNAMIQUE');
+            console.log('📋 Tenant ID: <?php echo e($currentHotel->id); ?>');
+            console.log('📋 Tenant Nom: <?php echo e($currentHotel->name); ?>');
+            
+            var themeSettings = <?php echo json_encode($currentHotel->theme_settings ?? [], 15, 512) ?>;
+            console.log('🎨 Thème Settings:', themeSettings);
+            
+            // Vérifier si les couleurs existent
+            if (!themeSettings || typeof themeSettings !== 'object') {
+                console.warn('⚠️ Thème settings invalide:', themeSettings);
+                return;
+            }
+            
+            var primaryColor = themeSettings.primary_color || '#007bff';
+            var secondaryColor = themeSettings.secondary_color || '#6c757d';
+            var accentColor = themeSettings.accent_color || '#28a745';
+            var backgroundColor = themeSettings.background_color || '#ffffff';
+            var textColor = themeSettings.text_color || '#333333';
+            var fontFamily = themeSettings.font_family || 'Inter';
+            
+            console.log('🎨 Couleurs à appliquer:', {
+                primary: primaryColor,
+                secondary: secondaryColor,
+                accent: accentColor,
+                background: backgroundColor,
+                text: textColor,
+                font: fontFamily
+            });
+            
+            // 1. Créer et injecter les CSS
+            var style = document.createElement('style');
+            style.id = 'dynamic-theme-css';
+            style.innerHTML = `
+                /* Thème dynamique pour <?php echo e($currentHotel->name); ?> */
+                body {
+                    background-color: ${backgroundColor} !important;
+                    color: ${textColor} !important;
+                    font-family: '${fontFamily}', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+                }
+                
+                .hero-section {
+                    background: linear-gradient(135deg, ${primaryColor} 0%, ${secondaryColor} 100%) !important;
+                    background-image: none !important;
+                    background-color: ${primaryColor} !important;
+                }
+                
+                .btn-primary, .btn-primary-custom {
+                    background-color: ${accentColor} !important;
+                    border-color: ${accentColor} !important;
+                    color: white !important;
+                }
+                
+                .btn-primary:hover, .btn-primary-custom:hover {
+                    background-color: ${primaryColor} !important;
+                    border-color: ${primaryColor} !important;
+                }
+                
+                .btn-outline-primary, .btn-outline-primary-custom {
+                    border-color: ${primaryColor} !important;
+                    color: ${primaryColor} !important;
+                }
+                
+                .btn-outline-primary:hover, .btn-outline-primary-custom:hover {
+                    background-color: ${primaryColor} !important;
+                    color: white !important;
+                }
+                
+                .navbar {
+                    background-color: white !important;
+                    box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
+                }
+                
+                .navbar-brand {
+                    color: ${primaryColor} !important;
+                }
+                
+                .nav-link {
+                    color: ${textColor} !important;
+                }
+                
+                .nav-link:hover {
+                    color: ${primaryColor} !important;
+                }
+                
+                .footer {
+                    background-color: ${primaryColor} !important;
+                    color: white !important;
+                }
+                
+                .card {
+                    border-color: ${primaryColor} !important;
+                }
+                
+                .text-primary-custom {
+                    color: ${primaryColor} !important;
+                }
+                
+                .bg-primary-custom {
+                    background-color: ${primaryColor} !important;
+                }
+            `;
+            
+            document.head.appendChild(style);
+            console.log('✅ CSS injecté dans le head');
+            
+            // 2. Application forcée des styles
+            function applyThemeForcibly() {
+                console.log('🔥 Application forcée du thème');
+                
+                // Body
+                document.body.style.backgroundColor = backgroundColor;
+                document.body.style.color = textColor;
+                document.body.style.fontFamily = `'${fontFamily}', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif`;
+                
+                // Hero section
+                var heroElements = document.querySelectorAll('.hero-section');
+                heroElements.forEach(function(element) {
+                    element.style.background = `linear-gradient(135deg, ${primaryColor} 0%, ${secondaryColor} 100%)`;
+                    element.style.backgroundImage = 'none';
+                    element.style.backgroundColor = primaryColor;
+                });
+                
+                // Boutons
+                var btnPrimary = document.querySelectorAll('.btn-primary, .btn-primary-custom');
+                btnPrimary.forEach(function(btn) {
+                    btn.style.backgroundColor = accentColor;
+                    btn.style.borderColor = accentColor;
+                    btn.style.color = 'white';
+                });
+                
+                var btnOutline = document.querySelectorAll('.btn-outline-primary, .btn-outline-primary-custom');
+                btnOutline.forEach(function(btn) {
+                    btn.style.borderColor = primaryColor;
+                    btn.style.color = primaryColor;
+                });
+                
+                console.log('✅ Thème appliqué avec succès');
+            }
+            
+            // Application immédiate
+            applyThemeForcibly();
+            
+            // Application après chargement DOM
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', applyThemeForcibly);
+            } else {
+                applyThemeForcibly();
+            }
+            
+            // Application retardée pour les éléments qui pourraient se charger plus tard
+            setTimeout(applyThemeForcibly, 100);
+            setTimeout(applyThemeForcibly, 500);
+            setTimeout(applyThemeForcibly, 1000);
+            
+            console.log('🎯 Thème dynamique terminé pour <?php echo e($currentHotel->name); ?>');
+        })();
+    </script>
+    <?php else: ?>
+    <script>
+        console.log('ℹ️ Aucun currentHotel disponible - thème par défaut appliqué');
+    </script>
+    <?php endif; ?>
 </body>
-</html><?php /**PATH C:\Users\Majorelle V\Documents\MoradaManagement\resources\views/frontend/layouts/master.blade.php ENDPATH**/ ?>
+</html>
+<?php /**PATH C:\Users\Majorelle V\Documents\MoradaManagement\resources\views/frontend/layouts/master.blade.php ENDPATH**/ ?>

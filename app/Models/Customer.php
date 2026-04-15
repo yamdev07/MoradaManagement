@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\BelongsToTenant;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -11,7 +12,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
 
 class Customer extends Model
 {
-    use HasFactory, LogsActivity, Notifiable;
+    use HasFactory, LogsActivity, Notifiable, BelongsToTenant;
 
     protected $fillable = [
         'name',
@@ -33,6 +34,7 @@ class Customer extends Model
         'loyalty_points',
         'special_requests',
         'payment_preferences',
+        'tenant_id',
     ];
 
     protected $casts = [
@@ -666,4 +668,6 @@ class Customer extends Model
 
         return parent::fill($attributes);
     }
+
+    // Les méthodes tenant() et global scope sont maintenant gérées par le trait BelongsToTenant
 }
