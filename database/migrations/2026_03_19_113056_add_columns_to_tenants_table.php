@@ -6,30 +6,25 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
-   public function up(): void
-{
-    if (!Schema::hasTable('tenants')) {
-        return;
+    public function up(): void
+    {
+        if (!Schema::hasTable('tenants')) {
+            return;
+        }
+
+        Schema::table('tenants', function (Blueprint $table) {
+            $table->string('domain')->nullable()->after('name');
+        });
     }
 
-    Schema::table('tenants', function (Blueprint $table) {
-        $table->string('domain')->nullable();
-    });
-}
+    public function down(): void
+    {
+        if (!Schema::hasTable('tenants')) {
+            return;
+        }
 
-public function down(): void
-{
-    if (!Schema::hasTable('tenants')) {
-        return;
+        Schema::table('tenants', function (Blueprint $table) {
+            $table->dropColumn('domain');
+        });
     }
-
-    Schema::table('tenants', function (Blueprint $table) {
-        $table->dropColumn('domain');
-    });
-}
-}
-
-
+};
