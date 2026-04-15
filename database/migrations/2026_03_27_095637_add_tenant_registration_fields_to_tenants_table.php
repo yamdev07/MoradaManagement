@@ -6,28 +6,58 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
+        if (!Schema::hasTable('tenants')) {
+            return;
+        }
+
         Schema::table('tenants', function (Blueprint $table) {
-            $table->string('email')->nullable()->after('domain');
-            $table->string('phone')->nullable()->after('email');
-            $table->text('address')->nullable()->after('phone');
-            $table->text('description')->nullable()->after('address');
-            $table->string('logo')->nullable()->after('description');
-            $table->json('theme_settings')->nullable()->after('logo');
+            $table->string('registration_code')->nullable();
+            $table->string('status')->default('active');
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
+        if (!Schema::hasTable('tenants')) {
+            return;
+        }
+
         Schema::table('tenants', function (Blueprint $table) {
-            $table->dropColumn(['email', 'phone', 'address', 'description', 'logo', 'theme_settings']);
+            $table->dropColumn('registration_code');
+            $table->dropColumn('status');
+        });
+    }
+};<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    public function up(): void
+    {
+        if (!Schema::hasTable('tenants')) {
+            return;
+        }
+
+        Schema::table('tenants', function (Blueprint $table) {
+            $table->string('registration_code')->nullable();
+            $table->string('status')->default('active');
+        });
+    }
+
+    public function down(): void
+    {
+        if (!Schema::hasTable('tenants')) {
+            return;
+        }
+
+        Schema::table('tenants', function (Blueprint $table) {
+            $table->dropColumn('registration_code');
+            $table->dropColumn('status');
         });
     }
 };
