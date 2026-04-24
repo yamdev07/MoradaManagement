@@ -398,21 +398,65 @@ class FrontendController extends Controller
 
             Log::info('Chambre disponible');
 
-            // Vérifier si le client existe
-            $customer = Customer::where('email', $validated['email'])->first();
+            // Récupérer le tenant_id
+            $tenantId = session('selected_hotel_id') ?: auth()->user()->tenant_id;
             
-            if (!$customer) {
-                Log::info('Création nouveau client pour email: ' . $validated['email']);
-                
-                // Créer un utilisateur
+            // Toujours essayer de créer l'utilisateur, avec gestion des doublons
+            Log::info('Tentative de création utilisateur pour email: ' . $validated['email']);
+            try {
                 $user = User::create([
                     'name' => $validated['name'],
                     'email' => $validated['email'],
                     'password' => bcrypt(Str::random(16)),
                     'role' => 'Customer',
                     'random_key' => Str::random(60),
+                    'tenant_id' => $tenantId,
                 ]);
+                Log::info('Nouvel utilisateur créé avec succès: ID ' . $user->id);
+            } catch (\Illuminate\Database\QueryException $e) {
+                // Si c'est une erreur de doublon d'email, récupérer l'utilisateur existant
+                if (strpos($e->getMessage(), 'Duplicate entry') !== false && strpos($e->getMessage(), 'users_email_unique') !== false) {
+                    Log::warning('Doublon d\'email détecté, récupération de l\'utilisateur existant...');
+                    
+                    // Essayer plusieurs méthodes pour trouver l'utilisateur
+                    $user = User::where('email', $validated['email'])->first();
+                    
+                    // Si la recherche simple échouche, essayer avec une requête plus flexible
+                    if (!$user) {
+                        Log::info('Recherche simple échouchée, tentative avec requête flexible...');
+                        $user = DB::table('users')->where('email', $validated['email'])->first();
+                    }
+                    
+                    // Si toujours rien trouvé, essayer avec une recherche sans contraintes
+                    if (!$user) {
+                        Log::info('Recherche avec contraintes échouchée, tentative sans contraintes...');
+                        $user = DB::table('users')->whereRaw('email LIKE ?', [$validated['email']])->first();
+                    }
+                    
+                    if ($user) {
+                        Log::info('Utilisateur existant récupéré avec méthode flexible: ID ' . $user->id);
+                    } else {
+                        Log::error('Aucun utilisateur trouvé même avec recherche flexible');
+                        return response()->json([
+                            'success' => false,
+                            'message' => 'Conflit d\'utilisateur. Veuillez contacter le support.',
+                        ], 500);
+                    }
+                } else {
+                    Log::error('Erreur création utilisateur: ' . $e->getMessage());
+                    return response()->json([
+                        'success' => false,
+                        'message' => 'Erreur de création d\'utilisateur. Veuillez réessayer.',
+                    ], 500);
+                }
+            }
 
+            // Vérifier si le client existe
+            $customer = Customer::where('email', $validated['email'])->first();
+            
+            if (!$customer) {
+                Log::info('Création nouveau client pour email: ' . $validated['email']);
+                
                 // Conversion du genre
                 $genderValue = match($validated['gender']) {
                     'Homme', 'Masculin', 'M' => 'Male',

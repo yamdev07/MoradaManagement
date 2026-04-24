@@ -1,3 +1,4 @@
+
 <?php $__env->startSection('title', 'Créer votre compte Hôtel - Check-Sys'); ?>
 <?php $__env->startSection('content'); ?>
 

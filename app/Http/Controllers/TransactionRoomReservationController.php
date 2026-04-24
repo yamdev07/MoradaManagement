@@ -261,6 +261,8 @@ class TransactionRoomReservationController extends Controller
         \Log::info('👤 Nom utilisateur final: '.($user->name ?? 'Inconnu'));
 
         try {
+            DB::beginTransaction();
+            
             // ============ VALIDATION ============
             \Log::info('🔵 Validation des données...');
 
@@ -362,11 +364,24 @@ class TransactionRoomReservationController extends Controller
                 // ============ CRÉATION TRANSACTION ============
                 \Log::info('🔵 Création de la transaction avec colonnes existantes...');
 
+                // Récupérer le tenant courant
+                $tenantId = null;
+                if (auth()->user()->tenant_id) {
+                    $tenantId = auth()->user()->tenant_id;
+                } else {
+                    // Essayer de récupérer le premier tenant disponible
+                    $firstTenant = \App\Models\Tenant::first();
+                    if ($firstTenant) {
+                        $tenantId = $firstTenant->id;
+                    }
+                }
+
                 // Données avec SEULEMENT les colonnes qui existent dans votre table transactions
                 $transactionData = [
                     'user_id' => $userId,
                     'customer_id' => $customer->id,
                     'room_id' => $room->id,
+                    'tenant_id' => $tenantId,
                     'check_in' => $checkIn,
                     'check_out' => $checkOut,
                     'status' => 'reservation',

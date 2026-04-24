@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreCustomerRequest;
 use App\Models\Customer;
+use App\Models\Tenant;
 use App\Models\User;
 use App\Repositories\Interface\CustomerRepositoryInterface;
 use App\Repositories\Interface\ImageRepositoryInterface;
@@ -19,7 +20,26 @@ class CustomerController extends Controller
     {
         $customers = $this->customerRepository->get($request);
 
-        return view('customer.index', ['customers' => $customers]);
+        // Récupérer le tenant courant pour la sidebar
+        $currentTenant = null;
+        $hotelId = $request->get('hotel_id', session('selected_hotel_id'));
+        if ($hotelId) {
+            $currentTenant = Tenant::find($hotelId);
+        } elseif (auth()->user()->tenant_id) {
+            $currentTenant = Tenant::find(auth()->user()->tenant_id);
+        } else {
+            // Essayer de récupérer le premier tenant disponible comme fallback
+            $firstTenant = Tenant::first();
+            if ($firstTenant) {
+                $currentTenant = $firstTenant;
+                session(['selected_hotel_id' => $firstTenant->id]);
+            }
+        }
+
+        return view('customer.index', [
+            'customers' => $customers,
+            'currentTenant' => $currentTenant,
+        ]);
     }
 
     public function create()

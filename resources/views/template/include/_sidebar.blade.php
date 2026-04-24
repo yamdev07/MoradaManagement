@@ -8,13 +8,37 @@
     <a href="{{ route('dashboard.index') }}" class="sidebar-logo">
         <div class="d-flex align-items-center">
             <div class="">
-                <img src="{{ asset('img/logo/logo_ancien.jpg') }}"
-                    alt="Hotel Cactus"
-                    style="height: 42px; border-radius: 8px;">
+                @if(isset($currentTenant) && $currentTenant)
+                    @if($currentTenant->logo)
+                        <img src="{{ asset('storage/' . $currentTenant->logo) }}"
+                            alt="{{ $currentTenant->name }}"
+                            style="height: 42px; border-radius: 8px; object-fit: cover;">
+                    @else
+                        <img src="{{ asset('img/logo/logo_ancien.jpg') }}"
+                            alt="{{ $currentTenant->name }}"
+                            style="height: 42px; border-radius: 8px;">
+                    @endif
+                @else
+                    <img src="{{ asset('img/logo/logo_ancien.jpg') }}"
+                        alt="Hotel Cactus"
+                        style="height: 42px; border-radius: 8px;">
+                @endif
             </div>
             <div class="brand-text ms-2">
-                <span class="brand-name">Hotel Management</span>
-                <small class="brand-subtitle d-block">Gestion Hôtelière</small>
+                <span class="brand-name">
+                    @if(isset($currentTenant) && $currentTenant)
+                        {{ Str::limit($currentTenant->name, 25) }}
+                    @else
+                        Hotel Management
+                    @endif
+                </span>
+                <small class="brand-subtitle d-block">
+                    @if(isset($currentTenant) && $currentTenant)
+                        Gestion Hôtelière
+                    @else
+                        Gestion Hôtelière
+                    @endif
+                </small>
             </div>
         </div>
         <button id="toggle-sidebar" class="btn btn-icon">

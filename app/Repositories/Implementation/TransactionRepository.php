@@ -48,11 +48,24 @@ class TransactionRepository implements TransactionRepositoryInterface
 
             \Log::info('🔵 Calcul: '.$days.' jours, '.$personCount.' pers, prix: '.$totalPrice);
 
+            // Récupérer le tenant courant
+            $tenantId = null;
+            if (auth()->user()->tenant_id) {
+                $tenantId = auth()->user()->tenant_id;
+            } else {
+                // Essayer de récupérer le premier tenant disponible
+                $firstTenant = \App\Models\Tenant::first();
+                if ($firstTenant) {
+                    $tenantId = $firstTenant->id;
+                }
+            }
+
             // Données de la transaction
             $data = [
                 'user_id' => auth()->check() ? auth()->id() : 1,
                 'customer_id' => $customer->id,
                 'room_id' => $room->id,
+                'tenant_id' => $tenantId,
                 'check_in' => $request->check_in,
                 'check_out' => $request->check_out,
                 'status' => 'reservation',

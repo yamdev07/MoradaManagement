@@ -7,6 +7,7 @@ use App\Models\History;
 use App\Models\Payment;
 use App\Models\ReceptionistAction;
 use App\Models\ReceptionistSession;
+use App\Models\Tenant;
 use App\Models\Transaction;
 use App\Models\Room;
 use App\Repositories\Interface\TransactionRepositoryInterface;
@@ -39,9 +40,26 @@ class TransactionController extends Controller
         $transactions = $this->transactionRepository->getTransaction($request);
         $transactionsExpired = $this->transactionRepository->getTransactionExpired($request);
 
+        // Récupérer le tenant courant pour la sidebar
+        $currentTenant = null;
+        $hotelId = $request->get('hotel_id', session('selected_hotel_id'));
+        if ($hotelId) {
+            $currentTenant = Tenant::find($hotelId);
+        } elseif (auth()->user()->tenant_id) {
+            $currentTenant = Tenant::find(auth()->user()->tenant_id);
+        } else {
+            // Essayer de récupérer le premier tenant disponible comme fallback
+            $firstTenant = Tenant::first();
+            if ($firstTenant) {
+                $currentTenant = $firstTenant;
+                session(['selected_hotel_id' => $firstTenant->id]);
+            }
+        }
+
         return view('transaction.index', [
             'transactions' => $transactions,
             'transactionsExpired' => $transactionsExpired,
+            'currentTenant' => $currentTenant,
         ]);
     }
 

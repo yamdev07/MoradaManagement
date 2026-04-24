@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Customer;
 use App\Models\Payment;
 use App\Models\Room;
+use App\Models\Tenant;
 use App\Models\Transaction;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -144,6 +145,22 @@ class DashboardController extends Controller
         ? round(($occupiedRoomsCount / $totalRoomsCount) * 100, 2)
         : 0;
 
+    // Récupérer les informations du tenant courant
+    $currentTenant = null;
+    if ($hotelId) {
+        $currentTenant = Tenant::find($hotelId);
+    } elseif (auth()->user()->tenant_id) {
+        $currentTenant = Tenant::find(auth()->user()->tenant_id);
+    } else {
+        // Essayer de récupérer le premier tenant disponible comme fallback
+        $firstTenant = Tenant::first();
+        if ($firstTenant) {
+            $currentTenant = $firstTenant;
+            // Mettre en session pour les prochaines requêtes
+            session(['selected_hotel_id' => $firstTenant->id]);
+        }
+    }
+
     $stats = [
         'activeGuests' => $activeTransactions,
         'completedToday' => $completedTodayCount,
@@ -162,7 +179,7 @@ class DashboardController extends Controller
         'statusFilter' => $statusFilter,
     ];
 
-    return view('dashboard.index', compact('transactions', 'stats'));
+    return view('dashboard.index', compact('transactions', 'stats', 'currentTenant'));
 }
 
     /**

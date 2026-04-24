@@ -109,25 +109,27 @@ class TenantIsolation
     {
         // Scope global pour les chambres
         Room::addGlobalScope('tenant', function ($query) use ($hotelId) {
-            $query->where('hotel_id', $hotelId);
+            $query->where('tenant_id', $hotelId);
         });
         
         // Scope global pour les transactions
         Transaction::addGlobalScope('tenant', function ($query) use ($hotelId) {
-            $query->where('hotel_id', $hotelId);
+            $query->where('tenant_id', $hotelId);
         });
         
-        // Scope global pour les réservations
-        Reservation::addGlobalScope('tenant', function ($query) use ($hotelId) {
-            $query->where('hotel_id', $hotelId);
-        });
+        // Scope global pour les réservations (si le modèle existe)
+        if (class_exists('\App\Models\Reservation')) {
+            Reservation::addGlobalScope('tenant', function ($query) use ($hotelId) {
+                $query->where('tenant_id', $hotelId);
+            });
+        }
         
         // Scope global pour les clients (si applicable)
         if (class_exists('\App\Models\Customer')) {
             Customer::addGlobalScope('tenant', function ($query) use ($hotelId) {
                 if (method_exists($query, 'whereHas')) {
                     $query->whereHas('transactions', function ($q) use ($hotelId) {
-                        $q->where('hotel_id', $hotelId);
+                        $q->where('tenant_id', $hotelId);
                     });
                 }
             });

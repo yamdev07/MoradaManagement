@@ -13,6 +13,24 @@
         'secondary_color' => '#d2b48c',
         'accent_color' => '#f59e0b'
     ]));
+
+    // Récupérer le tenant courant pour la sidebar
+    $currentTenant = null;
+    if (auth()->check()) {
+        $hotelId = request()->get('hotel_id', session('selected_hotel_id'));
+        if ($hotelId) {
+            $currentTenant = \App\Models\Tenant::find($hotelId);
+        } elseif (auth()->user()->tenant_id) {
+            $currentTenant = \App\Models\Tenant::find(auth()->user()->tenant_id);
+        } else {
+            // Essayer de récupérer le premier tenant disponible comme fallback
+            $firstTenant = \App\Models\Tenant::first();
+            if ($firstTenant) {
+                $currentTenant = $firstTenant;
+                session(['selected_hotel_id' => $firstTenant->id]);
+            }
+        }
+    }
 ?>
 <!doctype html>
 <html lang="en">
@@ -197,8 +215,8 @@
     <?php if(request()->is('dashboard*') || request()->is('transaction*') || request()->is('room*') || request()->is('customer*') || request()->is('checkin*') || request()->is('availability*') || request()->is('profile*') || request()->is('reports*')): ?>
         <script src="<?php echo e(asset('js/dashboard-spa.js')); ?>"></script>
         <script src="<?php echo e(asset('js/spa-toggle.js')); ?>"></script>
-        <!-- Script de debug pour les formulaires -->
-        <script src="<?php echo e(asset('js/form-debug.js')); ?>"></script>
+        <!-- Script de debug pour les formulaires (désactivé) -->
+        <!-- <script src="<?php echo e(asset('js/form-debug.js')); ?>"></script> -->
     <?php endif; ?>
 
     <!-- Initialize Tooltips and Components -->

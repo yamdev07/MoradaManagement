@@ -40,12 +40,27 @@
     --slate-100: #f1f5f9;
     --slate-50:  #f8fafc;
 
+    --primary-50: #fcf8f3;
+    --primary-100: #f9f0e6;
+    --primary-200: #f5e6d3;
+    --primary-300: #e5d4b1;
+    --primary-400: #d4a374;
+    --primary-500: #c19663;
+    --primary-600: #b2653e;
+    --primary-700: #92400e;
+    --primary-800: #78350f;
+    --primary-900: #451a03;
+    --primary-950: #2c1810;
+
+    --brown-700: #92400e;
+    --brown-800: #78350f;
+
     --shadow-sm:  0 1px 3px rgba(0,0,0,.07);
-    --shadow-md:  0 4px 14px rgba(0,0,0,.09);
+    --shadow-md: 0 4px 14px rgba(0,0,0,.09);
     --shadow-lg:  0 10px 32px rgba(0,0,0,.11);
-    --radius-sm:  8px;
-    --radius-md:  12px;
-    --radius-lg:  18px;
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 18px;
     --transition: all .2s cubic-bezier(.4,0,.2,1);
 }
 

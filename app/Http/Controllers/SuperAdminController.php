@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Room;
 use App\Models\Transaction;
 use App\Models\Customer;
+use App\Jobs\SendTenantApprovalEmail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -213,6 +214,9 @@ class SuperAdminController extends Controller
             }
             
             $tenant->save();
+            
+            // Envoyer l'email d'approbation au tenant
+            SendTenantApprovalEmail::dispatch($tenant, Auth::user());
             
             // APPROBATION ULTRA-RAPIDE : Pas de création de données pour l'instant
             if ($isAjax) {

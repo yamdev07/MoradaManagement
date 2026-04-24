@@ -28,25 +28,28 @@ class TenantController extends Controller
         
         // Statistiques isolées pour ce tenant
         $stats = [
-            'totalRooms' => Room::where('hotel_id', $tenant->id)->count(),
-            'availableRooms' => Room::where('hotel_id', $tenant->id)->where('status', 'available')->count(),
-            'occupiedRooms' => Room::where('hotel_id', $tenant->id)->where('status', 'occupied')->count(),
-            'activeTransactions' => Transaction::where('hotel_id', $tenant->id)->where('status', 'active')->count(),
-            'todayTransactions' => Transaction::where('hotel_id', $tenant->id)
+            'totalRooms' => Room::where('tenant_id', $tenant->id)->count(),
+            'availableRooms' => Room::where('tenant_id', $tenant->id)->where('room_status_id', 1)->count(), // 1 = available
+            'occupiedRooms' => Room::where('tenant_id', $tenant->id)->where('room_status_id', 2)->count(), // 2 = occupied
+            'activeTransactions' => Transaction::where('tenant_id', $tenant->id)->where('status', 'active')->count(),
+            'todayTransactions' => Transaction::where('tenant_id', $tenant->id)
                 ->whereDate('created_at', today())->count(),
             'totalCustomers' => Customer::whereHas('transactions', function($query) use ($tenant) {
-                $query->where('hotel_id', $tenant->id);
+                $query->where('tenant_id', $tenant->id);
             })->count(),
         ];
         
         // Transactions récentes du tenant
-        $recentTransactions = Transaction::where('hotel_id', $tenant->id)
+        $recentTransactions = Transaction::where('tenant_id', $tenant->id)
             ->with(['customer', 'room'])
             ->orderBy('created_at', 'desc')
             ->limit(10)
             ->get();
             
-        return view('tenant.dashboard', compact('tenant', 'stats', 'recentTransactions'));
+        // Définir le tenant courant pour la sidebar
+        $currentTenant = $tenant;
+            
+        return view('tenant.dashboard', compact('tenant', 'stats', 'recentTransactions', 'currentTenant'));
     }
     
     /**

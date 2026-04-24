@@ -8,13 +8,38 @@
     <a href="<?php echo e(route('dashboard.index')); ?>" class="sidebar-logo">
         <div class="d-flex align-items-center">
             <div class="">
-                <img src="<?php echo e(asset('img/logo/logo_ancien.jpg')); ?>"
-                    alt="Hotel Cactus"
-                    style="height: 42px; border-radius: 8px;">
+                <?php if(isset($currentTenant) && $currentTenant): ?>
+                    <?php if($currentTenant->logo): ?>
+                        <img src="<?php echo e(asset('storage/' . $currentTenant->logo)); ?>"
+                            alt="<?php echo e($currentTenant->name); ?>"
+                            style="height: 42px; border-radius: 8px; object-fit: cover;">
+                    <?php else: ?>
+                        <img src="<?php echo e(asset('img/logo/logo_ancien.jpg')); ?>"
+                            alt="<?php echo e($currentTenant->name); ?>"
+                            style="height: 42px; border-radius: 8px;">
+                    <?php endif; ?>
+                <?php else: ?>
+                    <img src="<?php echo e(asset('img/logo/logo_ancien.jpg')); ?>"
+                        alt="Hotel Cactus"
+                        style="height: 42px; border-radius: 8px;">
+                <?php endif; ?>
             </div>
             <div class="brand-text ms-2">
-                <span class="brand-name">Hotel Management</span>
-                <small class="brand-subtitle d-block">Gestion Hôtelière</small>
+                <span class="brand-name">
+                    <?php if(isset($currentTenant) && $currentTenant): ?>
+                        <?php echo e(Str::limit($currentTenant->name, 25)); ?>
+
+                    <?php else: ?>
+                        Hotel Management
+                    <?php endif; ?>
+                </span>
+                <small class="brand-subtitle d-block">
+                    <?php if(isset($currentTenant) && $currentTenant): ?>
+                        Gestion Hôtelière
+                    <?php else: ?>
+                        Gestion Hôtelière
+                    <?php endif; ?>
+                </small>
             </div>
         </div>
         <button id="toggle-sidebar" class="btn btn-icon">
